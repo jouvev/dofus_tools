@@ -29,16 +29,16 @@ if __name__ == "__main__":
     
     while True:
         if(win32api.GetKeyState(0x01)<0):
-            print("detection")
+            x,y = pyautogui.position()
+            print("detection x,y : ",x,y)
             for i in range(len(top_windows)):
                 hwnd = top_windows[i][0]
                 win32gui.ShowWindow(hwnd,5)
                 win32gui.SetForegroundWindow(hwnd)
-
+                
+                time.sleep(0.05)
                 print('click',i)
-                pyautogui.click(clicks=2)
-                time.sleep(0.1)
+                pyautogui.click(x,y,clicks=2)
                 
         if(win32api.GetKeyState(0x02)<0):
             break
-        time.sleep(0.1)
