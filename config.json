@@ -1,0 +1,8 @@
+{
+    "img" : {
+        "iop" : "img\\iop.png",
+        "sadi" : "img\\sadi.jpg",
+        "elio" : "img\\elio.jpg",
+        "panda" : "img\\panda.jpg"
+    }
+}
