@@ -8,9 +8,12 @@ def windowEnumerationHandler(hwnd, top_windows):
     if ("- dofus" in name.lower()):
         top_windows.append((hwnd, name))
 
-class Hwnd:
+class DofusHandler:
     def __init__(self):
         self.reset_win()
+        if(len(self)==0):
+            raise RuntimeError("No dofus window found")
+        self.curr_hwnd = self.get_hwnd(0)
             
     def sort_win(self):
         self.dofus_hwnd.sort(key=lambda x: self.hwnd_ini[x],reverse=True)
@@ -33,16 +36,22 @@ class Hwnd:
                 
         self.sort_win()
         
-        self.i = 0
+    def get_index_from_hwnd(self,hwnd):
+        return self.dofus_hwnd.index(hwnd)
         
     def get_hwnd(self,i):
         return self.dofus_hwnd[i]
         
     def get_next_hwnd(self):
-        res = self.dofus_hwnd[self.i]
-        self.i += 1
-        self.i %= len(self.dofus_hwnd)
-        return res
+        curr = self.get_curr_hwnd()
+        i = (self.get_index_from_hwnd(curr)+1) % len(self.dofus_hwnd)
+        return self.dofus_hwnd[i]
+    
+    def get_curr_hwnd(self):
+        tmp = win32gui.GetForegroundWindow()
+        if(tmp in self.dofus_hwnd):
+            self.curr_hwnd = tmp
+        return self.curr_hwnd
         
     def __len__(self):
         return len(self.dofus_hwnd)

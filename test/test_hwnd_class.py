@@ -1,4 +1,4 @@
-from src.hwnd import Hwnd
+from dofushandler import Hwnd
 
 dofus_hwnd = Hwnd()
 

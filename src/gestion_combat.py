@@ -1,4 +1,4 @@
-from src.hwnd import Hwnd
+from dofushandler import Hwnd
 import win32com.client
 import win32gui
 import time
