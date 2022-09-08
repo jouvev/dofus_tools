@@ -1,4 +1,3 @@
-from concurrent.futures import thread
 import keyboard
 import mouse
 from interface.dofus_overlay import DofusOverlay
@@ -14,15 +13,22 @@ class TestManager(Thread):
         self.i = 0
         
         #binding events
-        keyboard.on_press_key("²", lambda _: self._switch_mode())
-        keyboard.on_press_key("Tab", lambda _: self._switch_win())
-        mouse.on_click(lambda : self._on_click())
+        keyboard.add_hotkey("²", lambda : self._switch_mode())
+        keyboard.add_hotkey("Tab", lambda : self._switch_win())
+        keyboard.add_hotkey("shift + tab", lambda : self._switch_previous_win())
+        mouse.on_click(lambda : self._on_click())   
+        
+    def _switch_previous_win(self):
+        if(self.mode == "combat"):
+            print('press shift tab')
+            self.i = (self.i-1)%len(self.order)
+            self.interface.update_perso(self.order[self.i])
 
     def _switch_win(self):
         if(self.mode == "combat"):
             print('press tab')
-            self.interface.update_perso(self.order[self.i])
             self.i = (self.i+1)%len(self.order)
+            self.interface.update_perso(self.order[self.i])
 
     def _switch_mode(self):
         if(self.mode=="combat"):

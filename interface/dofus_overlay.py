@@ -4,7 +4,7 @@ import tkinter as tk
 from PIL import Image,ImageTk
 
 class DofusOverlay:
-    def __init__(self,order=["panda","sadi","elio","iop"]):
+    def __init__(self,order):
         self.overlay = OverlayFactory().make_overlay()
         self.img = json.load(open("config.json"))['img']
         self.perso = dict()
@@ -52,4 +52,5 @@ class DofusOverlay:
         self.overlay.mainloop()
 
 if __name__=='__main__':
-    DofusOverlay().mainloop()
+    order = ["panda","sadi","elio","iop"]
+    DofusOverlay(order=order).mainloop()

@@ -36,6 +36,9 @@ class DofusHandler:
                 
         self.sort_win()
         
+    def get_name_in_order(self):
+        return [self.get_perso_name(self.get_hwnd(i)) for i in range(len(self))]
+        
     def get_index_from_hwnd(self,hwnd):
         return self.dofus_hwnd.index(hwnd)
         
@@ -45,6 +48,11 @@ class DofusHandler:
     def get_next_hwnd(self):
         curr = self.get_curr_hwnd()
         i = (self.get_index_from_hwnd(curr)+1) % len(self.dofus_hwnd)
+        return self.dofus_hwnd[i]
+    
+    def get_previous_hwnd(self):
+        curr = self.get_curr_hwnd()
+        i = (self.get_index_from_hwnd(curr)-1) % len(self.dofus_hwnd)
         return self.dofus_hwnd[i]
     
     def get_curr_hwnd(self):
