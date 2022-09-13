@@ -4,5 +4,10 @@
         "Syllafarmn" : "img\\sadi.jpg",
         "Xox-elie" : "img\\elio.jpg",
         "Jeandou" : "img\\panda.jpg"
+    },
+    "keyboard_bindings" :
+    {
+        "stop" : "ESC"
     }
+    
 }
