@@ -8,6 +8,10 @@ class DofusOverlay:
         self.overlay = OverlayFactory().make_overlay()
         self.img = json.load(open("config.json"))['img']
         self.perso = dict()
+        
+        self.curr_mode = ""
+        self.curr_perso = ""
+        
         for n in order:
             path = self.img[n]
             img = ImageTk.PhotoImage(Image.open(path).resize((70,70)))
@@ -38,6 +42,7 @@ class DofusOverlay:
             else:
                 self.perso[n].config(borderwidth=2, relief="flat")
         self.overlay.update()
+        self.curr_perso = name
         
     def update_mode(self,mode):
         if(mode=="combat"):
@@ -47,6 +52,7 @@ class DofusOverlay:
             self.hors_combat.config(borderwidth=2, relief="solid")
             self.combat.config(borderwidth=2, relief="flat")
         self.overlay.update()
+        self.curr_mode = mode
         
     def mainloop(self):
         self.overlay.mainloop()
