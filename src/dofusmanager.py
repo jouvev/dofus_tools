@@ -1,3 +1,4 @@
+from threading import Thread
 import keyboard
 import pyautogui
 import win32api
@@ -6,8 +7,9 @@ import win32gui
 import time
 import win32com.client
 
-class DofusManager:
+class DofusManager(Thread):
     def __init__(self):
+        Thread.__init__(self)
         self.mode = "combat"
         shell = win32com.client.Dispatch("WScript.Shell")
         shell.SendKeys('%')
@@ -19,6 +21,9 @@ class DofusManager:
         keyboard.add_hotkey("Tab", lambda : self._switch_next_win())
         keyboard.add_hotkey("shift+Tab", lambda : self._switch_previous_win())
         keyboard.add_hotkey("ESC", lambda : self._stop())
+        
+        hwnd = self.dofus_handler.get_hwnd(0)
+        self._open(hwnd)
 
     def _stop(self):
         self.running = False
@@ -29,7 +34,6 @@ class DofusManager:
     def _open(self,hwnd):
         while hwnd != self.dofus_handler.get_curr_hwnd():
             win32gui.SetForegroundWindow(hwnd)
-        #self.interface.update_perso(self.dofus_handler.get_perso_name(hwnd))
             time.sleep(0.1)
           
     def _open_previous(self):
@@ -49,7 +53,6 @@ class DofusManager:
         elif(self.mode=="hors_combat"):
             self.mode = "combat"
         print("mode : ",self.mode)
-        #self.interface.update_mode(self.mode)
             
     def run(self):
         while self.running:

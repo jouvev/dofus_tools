@@ -36,7 +36,7 @@ class DofusOverlay:
         self.hors_combat = f
             
     def update_perso(self,name):
-        for n in self.perso:
+        for n in self.perso.keys():
             if(n==name):
                 self.perso[n].config(borderwidth=2, relief="solid")
             else:
@@ -58,5 +58,8 @@ class DofusOverlay:
         self.overlay.mainloop()
 
 if __name__=='__main__':
-    order = ["panda","sadi","elio","iop"]
+    order = ["Nighwin",
+    "Jeandou" ,
+    "Xox-elie" ,
+    "Syllafarmn"]
     DofusOverlay(order=order).mainloop()

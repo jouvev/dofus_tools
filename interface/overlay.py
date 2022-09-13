@@ -5,7 +5,7 @@ class OverlayFactory:
         overlay = tk.Tk()
         overlay.attributes('-alpha',0.8)
         overlay.attributes('-topmost', True)
-        overlay.geometry('390x80+1930+10')
+        overlay.geometry('390x80+0+0')
         overlay.wm_resizable(False, False)
         overlay.overrideredirect(True)
         return overlay

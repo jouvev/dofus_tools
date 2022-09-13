@@ -8,6 +8,12 @@ interface = DofusOverlay(handler.get_name_in_order())
 
 listener = Listener(man,interface)
 
-interface.mainloop()
 listener.start()
-man.run()
+man.start()
+interface.mainloop()
+
+print('wait end')
+listener.join()
+man.join()
+
+print("END")
