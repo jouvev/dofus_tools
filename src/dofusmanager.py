@@ -33,6 +33,7 @@ class DofusManager(Thread):
     
     def _open(self,hwnd):
         while hwnd != self.dofus_handler.get_curr_hwnd():
+            win32gui.ShowWindow(hwnd,3)
             win32gui.SetForegroundWindow(hwnd)
             time.sleep(0.1)
           
