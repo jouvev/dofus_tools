@@ -6,6 +6,7 @@ from PIL import Image,ImageTk
 class DofusOverlay:
     def __init__(self,order):
         self.overlay = OverlayFactory().make_overlay()
+        self.overlay.bind("<<Destroy>>", lambda e: self.overlay.destroy())
         self.img = json.load(open("config.json"))['img']
         self.perso = dict()
         

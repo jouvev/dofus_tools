@@ -21,7 +21,8 @@ class Listener(Thread):
                 self.interface.update_mode(curr_mode)
                 
             time.sleep(0.1)
-          
+            
+        self.interface.overlay.event_generate("<<Destroy>>", when="tail")  
         print("listener stopped")
         
                
