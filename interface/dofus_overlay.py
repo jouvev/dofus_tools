@@ -9,6 +9,7 @@ class DofusOverlay:
         self.overlay.bind("<<Destroy>>", lambda e: self.overlay.destroy())
         self.img = json.load(open("config.json"))['img']
         self.perso = dict()
+        self.img_order = []
         
         self.curr_mode = ""
         self.curr_perso = ""
@@ -20,6 +21,7 @@ class DofusOverlay:
             f.image = img
             f.pack(side="left",padx=5, pady=5)
             self.perso[n] = f
+            self.img_order.append(f)
         
         frame_mode = tk.Frame(self.overlay)
         frame_mode.pack(side="left",padx=5, pady=5)
@@ -58,6 +60,16 @@ class DofusOverlay:
     def mainloop(self):
         self.overlay.mainloop()
 
+    def update_order(self,order):
+        for i in range(len(order)):
+            n = order[i]
+            img = ImageTk.PhotoImage(Image.open(self.img[n]).resize((70,70)))
+            self.img_order[i].configure(image=img)
+            self.img_order[i].image = img
+            self.perso[n] = self.img_order[i]
+        self.overlay.update()
+        self.update_perso(self.curr_perso)
+        
 if __name__=='__main__':
     order = ["Nighwin",
     "Jeandou" ,

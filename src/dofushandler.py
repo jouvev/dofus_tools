@@ -5,10 +5,14 @@ INI = "initiative.json"
 
 def windowEnumerationHandler(hwnd, top_windows):
     name = win32gui.GetWindowText(hwnd)
-    if ("- dofus" in name.lower()):
+    if ("dofus 2" in name.lower()):
         top_windows.append((hwnd, name))
 
 class DofusHandler:
+    """
+    Class qui gere les id des fenetres dofus (hwnd)
+    
+    """
     def __init__(self):
         self.reset_win()
         if(len(self)==0):
@@ -18,6 +22,13 @@ class DofusHandler:
     def sort_win(self):
         self.dofus_hwnd.sort(key=lambda x: self.hwnd_ini[x],reverse=True)
         
+    def update_order(self,order):
+        for i in range(len(order)):
+            n = order[i]
+            hwnd = self.name_hwnd[n]
+            self.hwnd_ini[hwnd] = -i
+        self.sort_win()
+        
     def reset_win(self):
         self.dofus_win = []
         win32gui.EnumWindows(windowEnumerationHandler, self.dofus_win)
@@ -25,6 +36,7 @@ class DofusHandler:
         self.name_ini = json.load(open(INI))
         self.hwnd_ini = dict()
         self.hwnd_name = dict()
+        self.name_hwnd = dict()
         
         self.dofus_hwnd = []
         
@@ -34,6 +46,7 @@ class DofusHandler:
                     self.dofus_hwnd.append(hwnd)
                     self.hwnd_ini[hwnd] = self.name_ini[n]
                     self.hwnd_name[hwnd] = n
+                    self.name_hwnd[n] = hwnd
                     break
                 
         self.sort_win()
@@ -68,3 +81,7 @@ class DofusHandler:
     
     def __len__(self):
         return len(self.dofus_hwnd)
+    
+    
+if __name__ == "__main__":
+    dh = DofusHandler()
