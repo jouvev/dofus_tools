@@ -78,6 +78,8 @@ class PacketSniffer(Thread):
                 self.handler.update_order(orderlist)
                 gamesynchro = None
                 turnlist = None
-                
+        
+        cap.close()
+        
         print("sniffer stoped")
                 
