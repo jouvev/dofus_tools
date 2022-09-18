@@ -4,10 +4,10 @@ import tkinter as tk
 from PIL import Image,ImageTk
 
 class DofusOverlay:
-    def __init__(self,order):
+    def __init__(self,config,order):
         self.overlay = OverlayFactory().make_overlay()
         self.overlay.bind("<<Destroy>>", lambda e: self.overlay.destroy())
-        self.img = json.load(open("config.json"))['img']
+        self.img = config['img']
         self.perso = dict()
         self.img_order = []
         

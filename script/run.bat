@@ -1,4 +1,4 @@
 @echo off
 set PYTHONPATH=%PYTHONPATH%;.
 cd ..
-python main.py 
+python src/main.py 

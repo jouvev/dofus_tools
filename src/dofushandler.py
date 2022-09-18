@@ -1,7 +1,7 @@
 import win32gui
 import json
 
-INI = "initiative.json"
+INI = "script/initiative.json"
 
 def windowEnumerationHandler(hwnd, top_windows):
     name = win32gui.GetWindowText(hwnd)

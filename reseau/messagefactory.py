@@ -3,7 +3,7 @@ from reseau.messages.fight.GameFightTurnListMessage import GameFightTurnListMess
 import json
 
 class MessageFactory:
-    id_class = json.load(open('id_class.json'))
+    id_class = json.load(open('reseau/id_class.json'))
     
     @classmethod
     def get_instance_id(cls,id,content):

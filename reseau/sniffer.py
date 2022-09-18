@@ -1,6 +1,5 @@
 from threading import Thread
 import pyshark
-import regex as re
 from reseau.tools import *
 from reseau.packet import Packet
 from reseau.messagefactory import MessageFactory
@@ -48,12 +47,12 @@ class PacketSniffer(Thread):
                 msg, rest, c = get_msg(buffer)
                 if(c):
                     p = Packet(msg)
-                    if("GameFightSynchronizeMessage".lower() in p.get_class().lower()):
+                    if("GameFightSynchronizeMessage".lower() in MessageFactory.id_class[str(p.get_packet_id())].lower()):
                         
                         content = p.get_content()
                         inst = MessageFactory.get_instance_id(p.packetid,content)
                         gamesynchro = inst    
-                    elif("GameFightTurnListMessage".lower() in p.get_class().lower()):
+                    elif("GameFightTurnListMessage".lower() in MessageFactory.id_class[str(p.get_packet_id())].lower()):
                         
                         content = p.get_content()
                         inst = MessageFactory.get_instance_id(p.packetid,content)

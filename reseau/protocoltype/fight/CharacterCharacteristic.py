@@ -3,7 +3,7 @@ import json
 
 class CharacterCharacteristic:
     def __init__(self,content):
-        dico = json.loads(open("caracid.json","r").read())
+        dico = json.loads(open("reseau/caracid.json","r").read())
         self.caracid = content.readShort()
         self.caracname = dico[str(self.caracid)]
         

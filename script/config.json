@@ -8,7 +8,7 @@
     "keyboard_bindings" :
     {
         "stop" : "ESC",
-        "switch_mode" : "²",
+        "switch_mode" : " ",
         "next_win": "Tab",
         "prev_win": "Shift+Tab"
     }
