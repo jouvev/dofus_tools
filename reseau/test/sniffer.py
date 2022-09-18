@@ -5,12 +5,12 @@ from reseau.packet import Packet
 from reseau.messagefactory import MessageFactory
 
 cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555')
-#bug si plusieurs dofus ouvert il faut focus un seul dst port
+"""#bug si plusieurs dofus ouvert il faut focus un seul dst port
 cap.sniff(packet_count=1)
 dst_port = cap[0].tcp.dstport
 print(dst_port)
 
-cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555 and tcp dst port '+dst_port)
+cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555 and tcp dst port '+dst_port)"""
 
 buffer = ""
 
@@ -32,8 +32,9 @@ for packet in cap.sniff_continuously():
         packet.tcp.payload
     except:
         continue 
+    print(packet.tcp.dstport)
     
-    content = hexa_to_bin(packet)
+    """content = hexa_to_bin(packet)
     buffer += content
     stop = False
     rest = " "
@@ -69,5 +70,5 @@ for packet in cap.sniff_continuously():
         gamesynchro = None
         turnlist = None
     if(stop):
-        break
+        break"""
 

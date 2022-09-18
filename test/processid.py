@@ -4,6 +4,7 @@ import win32process
 import time
 from interface.overlay import OverlayFactory
 from threading import Thread
+import random
 
 class tmp(Thread):
     def __init__(self,overlay):
@@ -17,7 +18,8 @@ class tmp(Thread):
         while(True):
             pos = win32gui.GetWindowPlacement(top_window[0][0])
             x,y = pos[-1][0],pos[-1][1]
-            self.overlay.geometry('390x80+'+str(x)+'+'+str(y))
+            h,l = random.randint(80,500),random.randint(80,500)
+            self.overlay.geometry(str(h)+'x'+str(l)+'+'+str(x)+'+'+str(y))
 
 def windowEnumerationHandler(hwnd, top_windows):
     name = win32gui.GetWindowText(hwnd)
