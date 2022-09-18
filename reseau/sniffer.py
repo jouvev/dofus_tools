@@ -60,6 +60,7 @@ class PacketSniffer(Thread):
                                         
 
                     buffer = buffer[len(msg):]
+            
             if(gamesynchro and turnlist):
                 id_name = dict()
                 for f in gamesynchro.fighters:
@@ -70,11 +71,10 @@ class PacketSniffer(Thread):
                     id_name[f.contextualid] = name
                     
                 orderlist = [id_name[conid] for conid in turnlist.ids if conid in id_name]
-                print(orderlist)
                 self.interface.update_order(orderlist)
                 self.handler.update_order(orderlist)
                 gamesynchro = None
                 turnlist = None
         
         cap.close()
-                
+        
