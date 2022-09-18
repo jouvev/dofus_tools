@@ -51,6 +51,9 @@ class DofusHandler:
                 
         self.sort_win()
         
+    def is_dofus_window(self,hwnd):
+        return hwnd in self.dofus_hwnd
+        
     def get_name_in_order(self):
         return sorted(list(self.name_ini.keys()),key=lambda x: self.name_ini[x],reverse=True)
         
@@ -72,7 +75,7 @@ class DofusHandler:
     
     def get_curr_hwnd(self):
         tmp = win32gui.GetForegroundWindow()
-        if(tmp in self.dofus_hwnd):
+        if(self.is_dofus_window(tmp)):
             self.curr_hwnd = tmp
         return self.curr_hwnd
         

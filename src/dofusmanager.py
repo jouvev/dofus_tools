@@ -26,11 +26,19 @@ class DofusManager(Thread):
         
         hwnd = self.dofus_handler.get_hwnd(0)
         self._open(hwnd)
+        
+    def allow_event(self):
+        tmp = win32gui.GetForegroundWindow()
+        return self.dofus_handler.is_dofus_window(tmp)
 
     def _stop(self):
+        if( not self.allow_event()):
+            return
         self.running = False
 
     def _switch_previous_win(self):
+        if( not self.allow_event()):
+            return
         hwnd = self.dofus_handler.get_previous_hwnd()
         self._open(hwnd)
     
@@ -41,10 +49,14 @@ class DofusManager(Thread):
             time.sleep(0.1)
     
     def _switch_next_win(self):
+        if( not self.allow_event()):
+            return
         hwnd = self.dofus_handler.get_next_hwnd()
         self._open(hwnd)
 
     def _switch_mode(self):
+        if( not self.allow_event()):
+            return
         if(self.mode=="combat"):
             self.mode = "hors_combat"
         elif(self.mode=="hors_combat"):
@@ -52,7 +64,7 @@ class DofusManager(Thread):
             
     def run(self):
         while self.running:
-            if(self.mode=="hors_combat" and win32api.GetKeyState(0x01)<0):
+            if(self.allow_event() and self.mode=="hors_combat" and win32api.GetKeyState(0x01)<0):
                 x,y = pyautogui.position()
                 time.sleep(0.2)
                 for _ in range(len(self.dofus_handler)-1):

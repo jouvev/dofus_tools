@@ -18,7 +18,6 @@ man.start()
 sniff.start()
 interface.mainloop()
 
-print('wait end')
 listener.join()
 man.join()
 sniff.join()
