@@ -16,8 +16,6 @@ class PacketSniffer(Thread):
         self.manager = manager
     
     def run(self):
-        print("sniffer started")
-        
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         
@@ -70,7 +68,7 @@ class PacketSniffer(Thread):
                         name = f.name
                     except :
                         continue
-                    id_name[f.contextualid] = f.name
+                    id_name[f.contextualid] = name
                     
                 orderlist = [id_name[conid] for conid in turnlist.ids if conid in id_name]
                 print(orderlist)
@@ -80,6 +78,4 @@ class PacketSniffer(Thread):
                 turnlist = None
         
         cap.close()
-        
-        print("sniffer stoped")
                 

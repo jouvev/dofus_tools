@@ -1,20 +1,35 @@
 import psutil
 import win32gui
 import win32process
+import time
+from interface.overlay import OverlayFactory
+from threading import Thread
+
+class tmp(Thread):
+    def __init__(self,overlay):
+        Thread.__init__(self)
+        self.overlay = overlay
+    
+    def run(self):
+        top_window = []
+
+        win32gui.EnumWindows(windowEnumerationHandler, top_window)
+        while(True):
+            pos = win32gui.GetWindowPlacement(top_window[0][0])
+            x,y = pos[-1][0],pos[-1][1]
+            self.overlay.geometry('390x80+'+str(x)+'+'+str(y))
 
 def windowEnumerationHandler(hwnd, top_windows):
     name = win32gui.GetWindowText(hwnd)
-    if ("dofus 2" in name.lower()):
+    _,pid = win32process.GetWindowThreadProcessId(hwnd)
+    exe = psutil.Process(pid).exe()
+    visible = win32gui.IsWindowVisible(hwnd)
+    if("dofus.exe" in exe.lower() and visible):
         top_windows.append((hwnd, name))
         
-        
-top_window = []
+overlay = OverlayFactory().make_overlay()
 
-win32gui.EnumWindows(windowEnumerationHandler, top_window)
+possniffer = tmp(overlay)
+possniffer.start()
 
-print(top_window)
-
-for h,name in top_window:
-    _,pid = win32process.GetWindowThreadProcessId(h)
-    exe = psutil.Process(pid).exe()
-    print(h,name,pid,exe)
+overlay.mainloop()

@@ -8,7 +8,6 @@ class Listener(Thread):
         self.interface = interface
         
     def run(self):
-        print("listener started")
         while self.manager.running:
             curr_perso = self.manager.dofus_handler.get_perso_name(self.manager.dofus_handler.get_curr_hwnd())
             inter_perso = self.interface.curr_perso
@@ -23,7 +22,6 @@ class Listener(Thread):
             time.sleep(0.1)
             
         self.interface.overlay.event_generate("<<Destroy>>", when="tail")  
-        print("listener stopped")
         
                
 
