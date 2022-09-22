@@ -1,15 +1,12 @@
 import tkinter as tk
 
 class OverlayFactory:
-    def make_overlay(self):
+    def make_overlay(self,posx,posy):
         overlay = tk.Tk()
         overlay.attributes('-alpha',0.8)
         overlay.attributes('-topmost', True)
-        overlay.geometry('390x80+0+0')
+        overlay.geometry('44x84+'+str(posx)+"+"+str(posy))
         overlay.wm_resizable(False, False)
         overlay.overrideredirect(True)
         return overlay
     
-if __name__ == '__main__':
-    overlay = OverlayFactory().make_overlay()
-    overlay.mainloop()

@@ -1,61 +1,90 @@
 import win32gui
-import json
-
-INI = "script/initiative.json"
+from threading import Thread, Lock
+import time
+import win32process
+import psutil
 
 def windowEnumerationHandler(hwnd, top_windows):
     name = win32gui.GetWindowText(hwnd)
-    if ("dofus 2" in name.lower()):
-        top_windows.append((hwnd, name))
+    _,pid = win32process.GetWindowThreadProcessId(hwnd)
+    exe = psutil.Process(pid).exe()
+    visible = win32gui.IsWindowVisible(hwnd)
+    if("dofus 2" in name.lower() and "dofus.exe" in exe.lower() and visible):
+        top_windows.append(hwnd)
 
-class DofusHandler:
+class DofusHandler(Thread):
     """
     Class qui gere les id des fenetres dofus (hwnd)
     
+    event : update_hwnd
+    
     """
     def __init__(self):
-        self.reset_win()
-        if(len(self)==0):
-            raise RuntimeError("No dofus window found")
+        Thread.__init__(self)
         self.curr_hwnd = 0
-            
-    def sort_win(self):
-        self.dofus_hwnd.sort(key=lambda x: self.hwnd_ini[x],reverse=True)
+        self.running = True
+        self.dofus_hwnd = self._get_win()
+        self.lock = Lock()
+        self.observers = {
+            "update_hwnd" : []
+        }
+        self.name_order = []
+        
+    def add_observer(self,eventtype,callback):
+        if(eventtype in self.observers):
+            self.observers[eventtype].append(callback)
+        else:
+            raise RuntimeError("Event type not found : "+eventtype," in DofusHandler")
         
     def update_order(self,order):
-        for i in range(len(order)):
-            n = order[i]
-            hwnd = self.name_hwnd[n]
-            self.hwnd_ini[hwnd] = -i
-        self.sort_win()
+        self.lock.acquire()
         
-    def reset_win(self):
-        self.dofus_win = []
-        win32gui.EnumWindows(windowEnumerationHandler, self.dofus_win)
+        new_order = order
+        #ajoute les fenetres qui n'ont pas été ajoutées
+        for hwnd in self.dofus_hwnd:
+            if hwnd not in new_order:
+                new_order.append(hwnd)
         
-        self.name_ini = json.load(open(INI))
-        self.hwnd_ini = dict()
-        self.hwnd_name = dict()
-        self.name_hwnd = dict()
+        self.dofus_hwnd = new_order
+        self.lock.release()
+        self.notify("update_hwnd")
         
-        self.dofus_hwnd = []
+    def _get_win(self):
+        tmp = []
+        win32gui.EnumWindows(windowEnumerationHandler, tmp)
+        return tmp
+    
+    def add_win(self,hwnd):
+        self.lock.acquire()
         
-        for hwnd,win_name in self.dofus_win:
-            for n in self.name_ini.keys():
-                if n in win_name:
-                    self.dofus_hwnd.append(hwnd)
-                    self.hwnd_ini[hwnd] = self.name_ini[n]
-                    self.hwnd_name[hwnd] = n
-                    self.name_hwnd[n] = hwnd
-                    break
-                
-        self.sort_win()
+        if hwnd not in self.dofus_hwnd :
+            self.dofus_hwnd.append(hwnd)
+            
+            self.lock.release()
+            self.notify("update_hwnd")
+            return True
+        
+        self.lock.release()
+        return False
         
     def is_dofus_window(self,hwnd):
         return hwnd in self.dofus_hwnd
+    
+    def get_name(self,hwnd):
+        if hwnd not in self.dofus_hwnd:
+            return ""
+        name = win32gui.GetWindowText(hwnd)
+        lname = name.split(" - ")
+        if(len(lname) == 1):
+            return ""
+        return lname[0]
+    
+    def get_hwnd_by_name(self,name):
+        namelist = self.get_name_in_order()
+        return self.dofus_hwnd[namelist.index(name)]
         
     def get_name_in_order(self):
-        return sorted(list(self.name_ini.keys()),key=lambda x: self.name_ini[x],reverse=True)
+        return [self.get_name(i) for i in self.dofus_hwnd]
         
     def get_index_from_hwnd(self,hwnd):
         return self.dofus_hwnd.index(hwnd)
@@ -78,13 +107,38 @@ class DofusHandler:
         if(self.is_dofus_window(tmp)):
             self.curr_hwnd = tmp
         return self.curr_hwnd
-        
-    def get_perso_name(self,hwnd):
-        return self.hwnd_name[hwnd]
     
     def __len__(self):
         return len(self.dofus_hwnd)
     
+    def remove_win(self,hwnd):
+        self.lock.acquire()
+        self.dofus_hwnd.remove(hwnd)
+        self.lock.release()
+        self.notify("update_hwnd")
+        
+    def notify(self,eventtype):
+        for f in self.observers[eventtype]:
+            f(self.dofus_hwnd,self.get_name_in_order())
     
-if __name__ == "__main__":
-    dh = DofusHandler()
+    def run(self):
+        while self.running :
+            hwnd_tmp = self._get_win()
+            
+            #test si les fenetres ont été fermées
+            for hwnd in self.dofus_hwnd:
+                if hwnd not in hwnd_tmp:
+                    self.remove_win(hwnd)
+                    print("Fenetre fermee :",hwnd)
+                    
+            #test si des fenetres ont été ouvertes
+            for hwnd in hwnd_tmp:
+                if(self.add_win(hwnd)):
+                    print("new dofus window :",hwnd,"name :",self.get_name(hwnd))
+        
+            tmp_name_order = self.get_name_in_order()
+            if(tmp_name_order != self.name_order):
+                self.notify("update_hwnd")
+                self.name_order = self.get_name_in_order()
+
+            time.sleep(0.5)

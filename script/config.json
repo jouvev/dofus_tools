@@ -3,14 +3,21 @@
         "Nighwin" : "img\\iop.png",
         "Syllafarmn" : "img\\sadi.jpg",
         "Xox-elie" : "img\\elio.jpg",
-        "Jeandou" : "img\\panda.jpg"
+        "Jeandou" : "img\\panda.jpg",
+        "" : "img\\unknonw.jpg",
+        "El-Carnox" : "img\\hupper.jpg"
     },
     "keyboard_bindings" :
     {
         "stop" : "ESC",
-        "switch_mode" : " ",
+        "switch_mode" : "Ctrl",
         "next_win": "Tab",
         "prev_win": "Shift+Tab"
+    },
+    "overlay" :
+    {
+        "posx" : 0,
+        "posy" : 0 
     }
     
 }

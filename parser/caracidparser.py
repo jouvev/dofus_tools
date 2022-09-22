@@ -3,7 +3,7 @@ import regex as re
 import json
 
 caracfile = "C:\\Users\\vincent\\Desktop\\dofus source\\scripts\\damageCalculation\\tools\\StatIds.as"
-output_file = "caracid.json"
+output_file = "reseau\\caracid.json"
 
 with open(caracfile, "r") as f:
     content = f.read()

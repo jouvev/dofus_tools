@@ -8,9 +8,8 @@ import asyncio
 
 
 class PacketSniffer(Thread):
-    def __init__(self,interface,manager):
+    def __init__(self,manager):
         Thread.__init__(self)
-        self.interface = interface
         self.handler = manager.dofus_handler
         self.manager = manager
     
@@ -19,62 +18,64 @@ class PacketSniffer(Thread):
         asyncio.set_event_loop(loop)
         
         cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555')
-        #bug si plusieurs dofus ouvert il faut focus un seul dst port
-        cap.sniff(packet_count=1)
-        dst_port = cap[0].tcp.dstport
-        print(dst_port)
+        buffer = dict()
 
-        cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555 and tcp dst port '+dst_port)
-
-        buffer = ""
-
-        gamesynchro = None
-        turnlist = None
+        gamesynchro = dict()
+        turnlist = dict()
 
         for packet in cap.sniff_continuously():
-            if not self.manager.running:
-                break
             try : 
                 packet.tcp.payload
             except:
                 continue 
+            dst_port = packet.tcp.dstport
             
-            brut_content = hexa_to_bin(packet)
-            buffer += brut_content
+            content = hexa_to_bin(packet)
+            
+            if( dst_port in buffer):
+                buffer[dst_port] += content
+            else:
+                buffer[dst_port] = content
+
             rest = " "
             
             while(len(rest)>0):
-                msg, rest, c = get_msg(buffer)
+                msg, rest, c = get_msg(buffer[dst_port])
                 if(c):
                     p = Packet(msg)
-                    if("GameFightSynchronizeMessage".lower() in MessageFactory.id_class[str(p.get_packet_id())].lower()):
+                    #print(MessageFactory.id_class[str(p.packetid)],dst_port)
+                    if("GameFightSynchronizeMessage".lower() in MessageFactory.id_class[str(p.packetid)].lower()):
                         
                         content = p.get_content()
                         inst = MessageFactory.get_instance_id(p.packetid,content)
-                        gamesynchro = inst    
-                    elif("GameFightTurnListMessage".lower() in MessageFactory.id_class[str(p.get_packet_id())].lower()):
+                        gamesynchro[dst_port] = inst    
+                    elif("GameFightTurnListMessage".lower() in MessageFactory.id_class[str(p.packetid)].lower()):
                         
                         content = p.get_content()
                         inst = MessageFactory.get_instance_id(p.packetid,content)
-                        turnlist = inst
+                        turnlist[dst_port] = inst
                                         
 
-                    buffer = buffer[len(msg):]
-            
-            if(gamesynchro and turnlist):
-                id_name = dict()
-                for f in gamesynchro.fighters:
-                    try:
-                        name = f.name
-                    except :
-                        continue
-                    id_name[f.contextualid] = name
+                    buffer[dst_port] = buffer[dst_port][len(msg):]
                     
-                orderlist = [id_name[conid] for conid in turnlist.ids if conid in id_name]
-                self.interface.update_order(orderlist)
-                self.handler.update_order(orderlist)
-                gamesynchro = None
-                turnlist = None
+            supp = []
+            for dst_port in gamesynchro.keys():
+                if(dst_port in turnlist.keys()):
+                    id_hwnd = dict()
+                    for f in gamesynchro[dst_port].fighters:
+                        try:
+                            hwnd = self.handler.get_hwnd_by_name(f.name)
+                        except :
+                            continue
+                        id_hwnd[f.contextualid] = hwnd
+                        
+                    orderlist = [id_hwnd[conid] for conid in turnlist[dst_port].ids if conid in id_hwnd]
+                    self.handler.update_order(orderlist)
+                    supp.append(dst_port)
+            
+            for dst_port in supp:
+                del gamesynchro[dst_port]
+                del turnlist[dst_port]
         
         cap.close()
         

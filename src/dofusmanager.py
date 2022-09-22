@@ -8,11 +8,11 @@ import time
 import win32com.client
 
 class DofusManager(Thread):
-    def __init__(self,config):
+    def __init__(self,config,dofus_handler):
         Thread.__init__(self)
         self.config = config
         self.mode = "combat"
-        self.dofus_handler = DofusHandler()
+        self.dofus_handler = dofus_handler
         self.running = True
         
         shell = win32com.client.Dispatch("WScript.Shell")
@@ -23,9 +23,6 @@ class DofusManager(Thread):
         keyboard.add_hotkey(config["keyboard_bindings"]['next_win'], lambda : self._switch_next_win())
         keyboard.add_hotkey(config["keyboard_bindings"]['prev_win'], lambda : self._switch_previous_win())
         keyboard.add_hotkey(config["keyboard_bindings"]['stop'], lambda : self._stop())
-        
-        hwnd = self.dofus_handler.get_hwnd(0)
-        self._open(hwnd)
         
     def allow_event(self):
         tmp = win32gui.GetForegroundWindow()
@@ -66,7 +63,7 @@ class DofusManager(Thread):
         while self.running:
             if(self.allow_event() and self.mode=="hors_combat" and win32api.GetKeyState(0x01)<0):
                 x,y = pyautogui.position()
-                time.sleep(0.2)
+                time.sleep(0.1)
                 for _ in range(len(self.dofus_handler)-1):
                     self._switch_next_win()
                     time.sleep(0.1)#pause pour l'affichage
