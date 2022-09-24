@@ -29,8 +29,7 @@ class Listener(Thread):
                     self.interface.overlay.deiconify()
                 
             time.sleep(0.3)
-            
-        self.interface.overlay.event_generate("<<Destroy>>", when="tail")  
+              
         
                
 

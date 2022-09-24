@@ -30,6 +30,9 @@ class DofusHandler(Thread):
         }
         self.name_order = []
         
+    def stop(self):
+        self.running = False
+        
     def add_observer(self,eventtype,callback):
         if(eventtype in self.observers):
             self.observers[eventtype].append(callback)

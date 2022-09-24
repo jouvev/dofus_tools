@@ -14,6 +14,9 @@ class DofusManager(Thread):
         self.mode = "combat"
         self.dofus_handler = dofus_handler
         self.running = True
+        self.observers = {
+            "stop" : []
+        }
         
         shell = win32com.client.Dispatch("WScript.Shell")
         shell.SendKeys('%')
@@ -31,7 +34,12 @@ class DofusManager(Thread):
     def _stop(self):
         if( not self.allow_event()):
             return
+        for callback in self.observers["stop"]:
+            callback()
         self.running = False
+        
+    def add_observer(self,event,callback):
+        self.observers[event].append(callback)
 
     def _switch_previous_win(self):
         if( not self.allow_event()):
@@ -43,7 +51,16 @@ class DofusManager(Thread):
         while hwnd != self.dofus_handler.get_curr_hwnd():
             win32gui.ShowWindow(hwnd,3)
             win32gui.SetForegroundWindow(hwnd)
+            if(hwnd == self.dofus_handler.get_curr_hwnd()):
+                break
             time.sleep(0.1)
+        #wait for loading
+        """color = 0
+        while color == 0 :
+            color = win32gui.GetPixel(win32gui.GetDC(hwnd), 500 , 500)
+            print("color",color)
+            time.sleep(0.25)"""
+        
     
     def _switch_next_win(self):
         if( not self.allow_event()):
@@ -66,9 +83,9 @@ class DofusManager(Thread):
                 time.sleep(0.1)
                 for _ in range(len(self.dofus_handler)-1):
                     self._switch_next_win()
-                    time.sleep(0.1)#pause pour l'affichage
+                    #time.sleep(0.1)#pause pour l'affichage
                     pyautogui.click(x,y)
-                    time.sleep(0.02)#pause pour click
+                    time.sleep(0.05)#pause pour click
                 self._switch_next_win()
             time.sleep(0.05)#pause de la boucle
         

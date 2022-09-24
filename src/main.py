@@ -17,6 +17,14 @@ Listener(dm,interface).start()
 sniff = PacketSniffer(dm)
 sniff.start()
 
+dm.add_observer("stop",interface.stop)
+dm.add_observer("stop",sniff.stop)
+dm.add_observer("stop",dh.stop)
+
 dh.add_observer("update_hwnd",lambda order,order_name : interface.update_order(order,order_name))
 
 interface.mainloop()
+
+dm.join()
+dh.join()
+sniff.join()

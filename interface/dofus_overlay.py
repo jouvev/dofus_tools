@@ -11,6 +11,7 @@ class DofusOverlay:
         self.perso = dict()
         self.curr_order = []
         self.lock = RLock()
+        self.order = []
         
         self.frame_perso = tk.Frame(self.overlay)
         self.frame_perso.pack(side="left",padx=0, pady=0)
@@ -34,6 +35,9 @@ class DofusOverlay:
         f.image = img
         f.pack(side="top",padx=5, pady=3)
         self.hors_combat = f
+        
+    def stop(self):
+        self.overlay.event_generate("<<Destroy>>", when="tail")
     
     def mainloop(self):
         self.overlay.mainloop()
@@ -63,6 +67,10 @@ class DofusOverlay:
 
     def update_order(self,order,order_name):
         self.lock.acquire()
+        if(self.order == order):
+            self.lock.release()
+            return
+        self.order = order
         self.perso = dict()
         lorder = len(order)
         l = lorder * 84 + 44 
