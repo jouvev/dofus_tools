@@ -83,7 +83,7 @@ class DofusManager(Thread):
                 time.sleep(0.1)
                 for _ in range(len(self.dofus_handler)-1):
                     self._switch_next_win()
-                    #time.sleep(0.1)#pause pour l'affichage
+                    time.sleep(0.05)#pause pour l'affichage
                     pyautogui.click(x,y)
                     time.sleep(0.05)#pause pour click
                 self._switch_next_win()

@@ -67,10 +67,10 @@ class DofusOverlay:
 
     def update_order(self,order,order_name):
         self.lock.acquire()
-        if(self.order == order):
+        if(self.order == order_name):
             self.lock.release()
             return
-        self.order = order
+        self.order = order_name
         self.perso = dict()
         lorder = len(order)
         l = lorder * 84 + 44 
