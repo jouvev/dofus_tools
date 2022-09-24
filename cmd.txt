@@ -1,0 +1,2 @@
+grep -ri 'protocolid' ./com/ankamagames/dofus/network/ | grep -i "request" | sed -rn "s/([^:]+)(:[^0-9]+)([0-9]+)(;)/\"\3\": \"\1\",/p" > requestid.json
+sed -r -e "s/\//\./pg" requestid.json | sed -r -e "s/\.\./\./pg" | uniq

@@ -12,6 +12,10 @@ class PacketSniffer(Thread):
         Thread.__init__(self)
         self.handler = manager.dofus_handler
         self.manager = manager
+        self.running = True
+        
+    def stop(self):
+        self.running = False
     
     def run(self):
         loop = asyncio.new_event_loop()
@@ -24,6 +28,8 @@ class PacketSniffer(Thread):
         turnlist = dict()
 
         for packet in cap.sniff_continuously():
+            if(not self.running): 
+                break
             try : 
                 packet.tcp.payload
             except:

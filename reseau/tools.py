@@ -27,3 +27,24 @@ def get_msg(input):
         rest = ""
     
     return msg , rest, complet
+
+def get_req(input):
+    l = 0
+    lentype = 0
+    
+    if len(input) >= 16:
+        lentype = int(input[14:16],base=2)*8
+    
+    if(lentype > 0 and len(input) >= 16+lentype):
+        l = int(input[16+32:16+32+lentype],base=2)*8
+    
+    if(len(input)>=l+32+lentype+16):
+        complet = True
+        msg = input[:16+32+lentype+l]
+        rest = input[16+32+lentype+l:]
+    else :
+        complet = False
+        msg = input
+        rest = ""
+    
+    return msg , rest, complet
