@@ -3,6 +3,7 @@ from interface.dofus_overlay import DofusOverlay
 from src.dofusmanager import DofusManager
 from src.listener import Listener
 from reseau.sniffer import PacketSniffer
+from reseau.requestsniffer import RequestSniffer
 import json 
 
 config = json.load(open("script/config.json"))
@@ -16,15 +17,18 @@ interface = DofusOverlay(config,dh.dofus_hwnd,dh.get_name_in_order())
 Listener(dm,interface).start()
 sniff = PacketSniffer(dm)
 sniff.start()
+#reqsniff = RequestSniffer(dm)
+#reqsniff.start()
 
 dm.add_observer("stop",interface.stop)
 dm.add_observer("stop",sniff.stop)
 dm.add_observer("stop",dh.stop)
+#dm.add_observer("stop",reqsniff.stop)
 
 dh.add_observer("update_hwnd",lambda order,order_name : interface.update_order(order,order_name))
 
-interface.mainloop()
+interface.mainloop()    
 
 dm.join()
 dh.join()
-sniff.join()
+sniff.join() 

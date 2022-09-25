@@ -85,9 +85,9 @@ class DofusManager(Thread):
                     self._switch_next_win()
                     time.sleep(0.05)#pause pour l'affichage
                     pyautogui.click(x,y)
-                    time.sleep(0.05)#pause pour click
+                    time.sleep(0.05)
                 self._switch_next_win()
-            time.sleep(0.05)#pause de la boucle
+        time.sleep(0.1)
         
 if __name__ == "__main__":
     DofusManager().run()
