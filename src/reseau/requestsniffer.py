@@ -5,7 +5,7 @@ from reseau.packet import RequestPacket
 import asyncio
 import json
 
-id_class = json.load(open("reseau/requestid.json"))
+id_class = json.load(open("ressources/requestid.json"))
 
 class RequestSniffer(Thread):
     def __init__(self,manager):

@@ -1,7 +1,7 @@
-from src.dofushandler import DofusHandler
+from dofus.dofushandler import DofusHandler
 from interface.dofus_overlay import DofusOverlay
-from src.dofusmanager import DofusManager
-from src.listener import Listener
+from dofus.dofusmanager import DofusManager
+from interface.listener import Listener
 from reseau.sniffer import PacketSniffer
 from reseau.requestsniffer import RequestSniffer
 import json 
@@ -13,7 +13,7 @@ dh.start()
 dm = DofusManager(config,dh)
 dm.start()
 
-interface = DofusOverlay(config,dh.dofus_hwnd,dh.get_name_in_order())
+interface = DofusOverlay(config,[d.hwnd for d in dh.dofus_hwnd],dh.get_name_in_order())
 Listener(dm,interface).start()
 sniff = PacketSniffer(dm)
 sniff.start()

@@ -2,10 +2,12 @@ from threading import Thread
 import keyboard
 import pyautogui
 import win32api
-from src.dofushandler import DofusHandler
+import win32con
+from src.dofus.dofushandler import DofusHandler
 import win32gui
 import time
 import win32com.client
+import random
 
 class DofusManager(Thread):
     def __init__(self,config,dofus_handler):
@@ -79,15 +81,27 @@ class DofusManager(Thread):
     def run(self):
         while self.running:
             if(self.allow_event() and self.mode=="hors_combat" and win32api.GetKeyState(0x01)<0):
-                x,y = pyautogui.position()
-                time.sleep(0.1)
-                for _ in range(len(self.dofus_handler)-1):
+                x,y = win32gui.GetCursorPos()
+                curr_h = win32gui.GetForegroundWindow()
+                realx,realy = win32gui.ScreenToClient(curr_h,(x,y))
+                time.sleep(random.random()*0.3)
+                for h in [d.hwnd for d in self.dofus_handler.dofus_hwnd]:
+                    if(h!=curr_h):
+                        my_click(h,realx,realy)
+                        time.sleep(random.random()*0.3)
+                """for _ in range(len(self.dofus_handler)-1):
                     self._switch_next_win()
                     time.sleep(0.05)#pause pour l'affichage
                     pyautogui.click(x,y)
                     time.sleep(0.05)
-                self._switch_next_win()
+                self._switch_next_win()"""
         time.sleep(0.1)
+        
+
+def my_click(hWnd,x, y):
+    lParam = win32api.MAKELONG(x, y)
+    win32gui.SendMessage(hWnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+    win32gui.SendMessage(hWnd, win32con.WM_LBUTTONUP, None, lParam)
         
 if __name__ == "__main__":
     DofusManager().run()

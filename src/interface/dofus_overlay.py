@@ -24,13 +24,13 @@ class DofusOverlay:
         frame_mode = tk.Frame(self.overlay)
         frame_mode.pack(side="left",padx=0, pady=0)
         
-        img = ImageTk.PhotoImage(Image.open("img\\combat.png").resize((30,30)))
+        img = ImageTk.PhotoImage(Image.open("ressources\\img\\combat.png").resize((30,30)))
         f = tk.Label(frame_mode,image=img)
         f.image = img
         f.pack(side="top",padx=5, pady=3)
         self.combat = f
         
-        img = ImageTk.PhotoImage(Image.open("img\\hors_combat.jpg").resize((30,30)))
+        img = ImageTk.PhotoImage(Image.open("ressources\\img\\hors_combat.jpg").resize((30,30)))
         f = tk.Label(frame_mode,image=img)
         f.image = img
         f.pack(side="top",padx=5, pady=3)

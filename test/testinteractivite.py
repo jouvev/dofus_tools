@@ -1,7 +1,7 @@
-from src.dofushandler import DofusHandler
+from src.dofus.dofushandler import DofusHandler
 from interface.dofus_overlay import DofusOverlay
-from src.dofusmanager import DofusManager
-from src.listener import Listener
+from src.dofus.dofusmanager import DofusManager
+from interface.listener import Listener
 from reseau.sniffer import PacketSniffer
 import json 
 

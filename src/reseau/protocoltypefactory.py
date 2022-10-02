@@ -11,7 +11,7 @@ import json
 
 
 class ProtocolTypeFactory:
-    id_class = json.load(open('reseau/id_protocol.json'))
+    id_class = json.load(open('ressources/id_protocol.json'))
     
     @classmethod
     def get_instance_id(cls,id,content):

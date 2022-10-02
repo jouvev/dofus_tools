@@ -13,7 +13,7 @@ class Listener(Thread):
         while self.manager.running:
             curr_hwnd = self.manager.dofus_handler.get_curr_hwnd()
             inter_hwnd = self.interface.curr_hwnd
-            if ( curr_hwnd != inter_hwnd):
+            if ( curr_hwnd != inter_hwnd): 
                 self.interface.update_perso(curr_hwnd)
                 
             curr_mode = self.manager.mode

@@ -1,11 +1,11 @@
 {
     "img" : {
-        "Nighwin" : "img\\iop.png",
-        "Syllafarmn" : "img\\sadi.jpg",
-        "Xox-elie" : "img\\elio.jpg",
-        "Jeandou" : "img\\panda.jpg",
-        "" : "img\\unknonw.jpg",
-        "El-Carnox" : "img\\hupper.jpg"
+        "Nighwin" : "ressources\\img\\iop.png",
+        "Syllafarmn" : "ressources\\img\\sadi.jpg",
+        "Xox-elie" : "ressources\\img\\elio.jpg",
+        "Jeandou" : "ressources\\img\\panda.jpg",
+        "" : "ressources\\img\\unknonw.jpg",
+        "El-Carnox" : "ressources\\img\\hupper.jpg"
     },
     "keyboard_bindings" :
     {
