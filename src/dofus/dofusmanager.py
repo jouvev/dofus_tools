@@ -6,6 +6,7 @@ import win32gui
 import time
 import win32com.client
 import random
+from concurrent.futures import ThreadPoolExecutor
 
 class DofusManager:
     def __init__(self,config,dofus_handler):
@@ -17,6 +18,7 @@ class DofusManager:
             "stop" : []
         }
         self.confirm = False
+        self.executor = ThreadPoolExecutor(4)
         
         shell = win32com.client.Dispatch("WScript.Shell")
         shell.SendKeys('%')
@@ -32,11 +34,10 @@ class DofusManager:
         if(self.allow_event() and self.mode=="hors_combat"):
             x,y = win32gui.GetCursorPos()
             curr_h = win32gui.GetForegroundWindow()
-            realx,realy = win32gui.ScreenToClient(curr_h,(x,y))
             for d in self.dofus_handler.dofus:
-                if(d.hwnd!=curr_h):
-                    time.sleep(random.random()*0.2+0.1)
-                    d.click(realx,realy)
+                if(d.hwnd != curr_h):
+                    realx,realy = win32gui.ScreenToClient(d.hwnd,(x,y))
+                    self.executor.submit(lambda dof,i,j : dof.click(i,j),d,realx,realy)
         
     def allow_event(self):
         tmp = win32gui.GetForegroundWindow()

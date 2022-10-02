@@ -3,6 +3,9 @@ import win32gui
 import win32api
 import win32con
 import psutil
+import time
+from threading import Lock
+import random
 
 class Dofus:
     def __init__(self,hwnd):
@@ -10,6 +13,8 @@ class Dofus:
         _,self.pid = win32process.GetWindowThreadProcessId(hwnd)
         self.set_name()
         self.set_port()
+        self.confirm = False
+        self.lock = Lock()
         
     def set_name(self):
         name = win32gui.GetWindowText(self.hwnd)
@@ -24,7 +29,7 @@ class Dofus:
         p = psutil.Process(self.pid)
         for conn in p.connections():
             if conn.raddr.port == 5555 :
-                self.port = conn.laddr.port
+                self.port = str(conn.laddr.port)
                 break
             
     def get_infos(self):
@@ -45,7 +50,16 @@ class Dofus:
         win32gui.SetForegroundWindow(self.hwnd)
         
     def click(self,x,y):
-        lParam = win32api.MAKELONG(x, y)
-        win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
-        win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
+        with self.lock:
+            lParam = win32api.MAKELONG(x, y)
+            ntry = 0
+            time.sleep(random.random()*0.3+0.2)
+            self.confirm = False
+            while not self.confirm and ntry < 3:
+                ntry += 1
+                win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+                win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
+                time.sleep(1)
+                if(self.confirm):
+                    break
         

@@ -3,7 +3,7 @@ import win32gui
 import win32con
 import mouse
 
-hwnd = win32gui.GetForegroundWindow()
+#hwnd = win32gui.GetForegroundWindow()
 
 mouse.on_click(lambda : my_click(hwnd,0,100))
 

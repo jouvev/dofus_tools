@@ -46,10 +46,13 @@ class RequestSniffer(Thread):
                 msg, rest, c = get_req(buffer[dst_port])
                 if(c):
                     p = RequestPacket(msg)
-                    print(p.packetid,id_class[str(p.packetid)],p.lentype,p.len,dst_port,p.id)
+                    #print(p.packetid,id_class[str(p.packetid)],p.lentype,p.len,dst_port,p.id)
                     buffer[dst_port] = buffer[dst_port][len(msg):]
-                    if("GameMapMovementRequestMessage" in id_class[str(p.packetid)] ):
-                        self.manager.comfirm = True
+                    if("GameMapMovementConfirmMessage" in id_class[str(p.packetid)] ):
+                        d = self.handler.get_dofus_by_port(dst_port)
+                        d.confirm = True
+                    elif("NpcDialog" in id_class[str(p.packetid)] ):
+                        self.handler.get_dofus_by_port(dst_port).confirm = True
         
         cap.close()
         

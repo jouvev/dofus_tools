@@ -6,6 +6,7 @@ import psutil
 from src.dofus.dofus import Dofus
 from src.tools.observer import Observer
 
+
 class DofusHandler(Thread,Observer):
     """
     Class qui gere les id des fenetres dofus (hwnd) et leur ordre
@@ -76,6 +77,11 @@ class DofusHandler(Thread,Observer):
         
     def get_index_by_hwnd(self,hwnd):
         return self.get_hwnds().index(hwnd)
+    
+    def get_dofus_by_port(self,port):
+        for d in self.dofus:
+            d.update_port()
+        return self.dofus[self.get_ports().index(port)]
         
     def get_next_dofus(self):
         curr = self.get_curr_hwnd()
