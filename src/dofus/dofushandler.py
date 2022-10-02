@@ -70,10 +70,6 @@ class DofusHandler(Thread,Observer):
     def is_dofus_window(self,hwnd):
         return hwnd in self.get_hwnds()
     
-    def get_name(self,hwnd):
-        hwnds = self.get_hwnds()
-        return self.dofus[hwnds.index(hwnd)].name
-    
     def get_hwnd_by_name(self,name):
         namelist = self.get_names()
         return self.dofus[namelist.index(name)].hwnd
@@ -81,18 +77,15 @@ class DofusHandler(Thread,Observer):
     def get_index_by_hwnd(self,hwnd):
         return self.get_hwnds().index(hwnd)
         
-    def get_hwnd(self,i):
-        return self.dofus[i].hwnd
-        
-    def get_next_hwnd(self):
+    def get_next_dofus(self):
         curr = self.get_curr_hwnd()
         i = (self.get_index_by_hwnd(curr)+1) % len(self.dofus)
-        return self.dofus[i].hwnd
+        return self.dofus[i]
     
-    def get_previous_hwnd(self):
+    def get_previous_dofus(self):
         curr = self.get_curr_hwnd()
         i = (self.get_index_by_hwnd(curr)-1) % len(self.dofus)
-        return self.dofus[i].hwnd
+        return self.dofus[i]
     
     def get_curr_hwnd(self):
         tmp = win32gui.GetForegroundWindow()
@@ -118,12 +111,10 @@ class DofusHandler(Thread,Observer):
             for hwnd in self.get_hwnds():
                 if hwnd not in hwnd_tmp:
                     self.remove_win(hwnd)
-                    print("Fenetre fermee :",hwnd)
                     
             #test si des fenetres ont été ouvertes
             for hwnd in hwnd_tmp:
-                if(self.add_win(hwnd)):
-                    print("new dofus window :",hwnd,"name :",self.get_name(hwnd))
+                self.add_win(hwnd)
 
             up = False
             for d in self.dofus:

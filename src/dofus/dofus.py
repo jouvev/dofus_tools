@@ -1,5 +1,7 @@
 import win32process
 import win32gui
+import win32api
+import win32con
 import psutil
 
 class Dofus:
@@ -37,4 +39,13 @@ class Dofus:
         tmp_port = self.port
         self.set_port()
         return tmp_port != self.port
+    
+    def open(self):
+        win32gui.ShowWindow(self.hwnd,3)
+        win32gui.SetForegroundWindow(self.hwnd)
+        
+    def click(self,x,y):
+        lParam = win32api.MAKELONG(x, y)
+        win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+        win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
         

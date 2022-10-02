@@ -1,14 +1,16 @@
 import win32api
-import pyautogui
-import time
+import win32gui
+import win32con
+import mouse
 
-while True:
-    if(win32api.GetKeyState(0x01)<0):
-        x,y = pyautogui.position()
-        for _ in range(3):
-            print('next')
-            time.sleep(0.1)
-            print("click",x,y)
-            time.sleep(0.02)
-        print("retour sur la fenetre originale")
-    time.sleep(0.1)
+hwnd = win32gui.GetForegroundWindow()
+
+mouse.on_click(lambda : my_click(hwnd,0,100))
+
+def my_click(hWnd,x, y):
+    print("click")
+    lParam = win32api.MAKELONG(x, y)
+    win32gui.SendMessage(hWnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+    win32gui.SendMessage(hWnd, win32con.WM_LBUTTONUP, None, lParam)
+    
+pause = input('Press enter to exit')
