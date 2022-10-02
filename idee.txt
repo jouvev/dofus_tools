@@ -1,0 +1,2 @@
+on click avec click sans ouvrir la fenetre 
+pool de thread pour faire les cliques

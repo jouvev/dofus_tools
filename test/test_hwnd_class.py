@@ -1,4 +1,4 @@
-from src.dofushandler import DofusHandler
+from dofushandler import DofusHandler
 
 dofus_hwnd = DofusHandler()
 

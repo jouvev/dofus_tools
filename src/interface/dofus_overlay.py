@@ -6,6 +6,10 @@ from threading import RLock
 class DofusOverlay:
     def __init__(self,config,order,order_name):
         self.overlay = OverlayFactory().make_overlay(config["overlay"]['posx'],config["overlay"]["posy"])
+        self._offsetx = 0
+        self._offsety = 0
+        self.overlay.bind('<Button-1>',self.clickwin)
+        self.overlay.bind('<B1-Motion>',self.dragwin)
         self.overlay.bind("<<Destroy>>", lambda e: self.overlay.destroy())
         self.img = config['img']
         self.perso = dict()
@@ -96,3 +100,12 @@ class DofusOverlay:
         self.update_perso(self.curr_hwnd)
         self.overlay.update()
         self.lock.release()
+        
+    def dragwin(self,event):
+        x = self.overlay.winfo_pointerx() - self._offsetx
+        y = self.overlay.winfo_pointery() - self._offsety
+        self.overlay.geometry('+{x}+{y}'.format(x=x,y=y))
+
+    def clickwin(self,event):
+        self._offsetx = event.x
+        self._offsety = event.y

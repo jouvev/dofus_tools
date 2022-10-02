@@ -3,7 +3,7 @@ import keyboard
 import pyautogui
 import win32api
 import win32con
-from src.dofus.dofushandler import DofusHandler
+from dofus.dofushandler import DofusHandler
 import win32gui
 import time
 import win32com.client
@@ -19,6 +19,7 @@ class DofusManager(Thread):
         self.observers = {
             "stop" : []
         }
+        self.confirm = False
         
         shell = win32com.client.Dispatch("WScript.Shell")
         shell.SendKeys('%')
@@ -50,20 +51,9 @@ class DofusManager(Thread):
         self._open(hwnd)
     
     def _open(self,hwnd):
-        while hwnd != self.dofus_handler.get_curr_hwnd():
-            win32gui.ShowWindow(hwnd,3)
-            win32gui.SetForegroundWindow(hwnd)
-            if(hwnd == self.dofus_handler.get_curr_hwnd()):
-                break
-            time.sleep(0.1)
-        #wait for loading
-        """color = 0
-        while color == 0 :
-            color = win32gui.GetPixel(win32gui.GetDC(hwnd), 500 , 500)
-            print("color",color)
-            time.sleep(0.25)"""
-        
-    
+        win32gui.ShowWindow(hwnd,3)
+        win32gui.SetForegroundWindow(hwnd)
+
     def _switch_next_win(self):
         if( not self.allow_event()):
             return
@@ -97,7 +87,6 @@ class DofusManager(Thread):
                 self._switch_next_win()"""
         time.sleep(0.1)
         
-
 def my_click(hWnd,x, y):
     lParam = win32api.MAKELONG(x, y)
     win32gui.SendMessage(hWnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)

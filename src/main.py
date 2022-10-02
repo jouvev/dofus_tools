@@ -13,7 +13,7 @@ dh.start()
 dm = DofusManager(config,dh)
 dm.start()
 
-interface = DofusOverlay(config,[d.hwnd for d in dh.dofus_hwnd],dh.get_name_in_order())
+interface = DofusOverlay(config,dh.get_hwnds(),dh.get_names())
 Listener(dm,interface).start()
 sniff = PacketSniffer(dm)
 sniff.start()

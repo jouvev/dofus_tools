@@ -48,7 +48,7 @@ class RequestSniffer(Thread):
                     p = RequestPacket(msg)
                     print(p.packetid,id_class[str(p.packetid)],p.lentype,p.len,dst_port,p.id)
                     buffer[dst_port] = buffer[dst_port][len(msg):]
-                    if("BasicPingMessage" in id_class[str(p.packetid)] ):
+                    if("GameMapMovementRequestMessage" in id_class[str(p.packetid)] ):
                         self.manager.comfirm = True
         
         cap.close()
