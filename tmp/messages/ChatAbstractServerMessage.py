@@ -1,0 +1,22 @@
+class ChatAbstractServerMessage:
+   def __init__(self,input):
+      self._channelFunc(input)
+      self._contentFunc(input)
+      self._timestampFunc(input)
+      self._fingerprintFunc(input)
+   
+   def _channelFunc(self,input) :
+      self.channel = input.readByte()
+      if(self.channel < 0) :
+         raise RuntimeError("Forbidden value (" + self.channel + ") on element of ChatAbstractServerMessage.channel.")
+   
+   def _contentFunc(self,input) :
+      self.content = input.readUTF()
+   
+   def _timestampFunc(self,input) :
+      self.timestamp = input.readInt()
+      if(self.timestamp < 0) :
+         raise RuntimeError("Forbidden value (" + self.timestamp + ") on element of ChatAbstractServerMessage.timestamp.")
+   
+   def _fingerprintFunc(self,input) :
+      self.fingerprint = input.readUTF()

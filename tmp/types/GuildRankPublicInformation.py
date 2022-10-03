@@ -1,0 +1,16 @@
+from tmp.types.GuildRankMinimalInformation import GuildRankMinimalInformation
+class GuildRankPublicInformation(GuildRankMinimalInformation):
+   def __init__(self,input):
+      super().__init__(input)
+      self._orderFunc(input)
+      self._gfxIdFunc(input)
+   
+   def _orderFunc(self,input) :
+      self.order = input.readVarUhInt()
+      if(self.order < 0) :
+         raise RuntimeError("Forbidden value (" + self.order + ") on element of GuildRankPublicInformation.order.")
+   
+   def _gfxIdFunc(self,input) :
+      self.gfxId = input.readVarUhInt()
+      if(self.gfxId < 0) :
+         raise RuntimeError("Forbidden value (" + self.gfxId + ") on element of GuildRankPublicInformation.gfxId.")

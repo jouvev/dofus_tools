@@ -2,7 +2,7 @@ from dofus.dofushandler import DofusHandler
 from interface.dofus_overlay import DofusOverlay
 from dofus.dofusmanager import DofusManager
 from interface.listener import Listener
-from reseau.sniffer import PacketSniffer
+from src.reseau.sniffer import PacketSniffer
 import json 
 
 config = json.load(open("script/config.json"))

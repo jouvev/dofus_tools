@@ -1,4 +1,4 @@
-from reseau.custominput import CustomInput
+from src.reseau.custominput import CustomInput
 
 class Packet:
     def __init__(self, input):

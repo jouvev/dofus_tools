@@ -1,0 +1,4 @@
+from tmp.types.TreasureHuntStep import TreasureHuntStep
+class TreasureHuntStepDig(TreasureHuntStep):
+   def __init__(self,input):
+      pass

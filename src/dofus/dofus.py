@@ -55,11 +55,10 @@ class Dofus:
             ntry = 0
             time.sleep(random.random()*0.3+0.2)
             self.confirm = False
-            while not self.confirm and ntry < 3:
+            while not self.confirm and ntry < 1:
                 ntry += 1
                 win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
                 win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
-                time.sleep(1)
                 if(self.confirm):
                     break
         

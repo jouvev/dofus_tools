@@ -1,5 +1,5 @@
-from reseau.messages.fight.GameFightSynchronizeMessage import GameFightSynchronizeMessage
-from reseau.messages.fight.GameFightTurnListMessage import GameFightTurnListMessage
+from src.reseau.messages.GameFightSynchronizeMessage import GameFightSynchronizeMessage
+from src.reseau.messages.GameFightTurnListMessage import GameFightTurnListMessage
 import json
 
 class MessageFactory:
