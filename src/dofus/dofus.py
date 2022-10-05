@@ -6,6 +6,7 @@ import psutil
 import time
 from threading import Lock
 import random
+import keyboard
 
 class Dofus:
     def __init__(self,hwnd):
@@ -53,7 +54,8 @@ class Dofus:
         with self.lock:
             lParam = win32api.MAKELONG(x, y)
             ntry = 0
-            time.sleep(random.random()*0.3+0.2)
+            if(not keyboard.is_pressed("shift")):
+                time.sleep(random.random())
             self.confirm = False
             while not self.confirm and ntry < 1:
                 ntry += 1
