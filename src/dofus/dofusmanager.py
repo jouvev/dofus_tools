@@ -1,11 +1,7 @@
 import keyboard
 import mouse
-import win32api
-import win32con
 import win32gui
-import time
 import win32com.client
-import random
 from concurrent.futures import ThreadPoolExecutor
 
 class DofusManager:
@@ -72,8 +68,3 @@ class DofusManager:
             self.mode = "hors_combat"
         elif(self.mode=="hors_combat"):
             self.mode = "combat"
-        
-def my_click(hWnd,x, y):
-    lParam = win32api.MAKELONG(x, y)
-    win32gui.SendMessage(hWnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
-    win32gui.SendMessage(hWnd, win32con.WM_LBUTTONUP, None, lParam)

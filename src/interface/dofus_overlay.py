@@ -5,7 +5,7 @@ from threading import RLock
 
 class DofusOverlay:
     def __init__(self,config,order,order_name):
-        self.overlay = OverlayFactory().make_overlay(config["overlay"]['posx'],config["overlay"]["posy"])
+        self.overlay = OverlayFactory().make_overlay()
         self._offsetx = 0
         self._offsety = 0
         self.overlay.bind('<Button-1>',self.clickwin)
