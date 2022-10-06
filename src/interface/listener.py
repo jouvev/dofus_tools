@@ -16,17 +16,12 @@ class Listener(Thread):
             if ( curr_hwnd != inter_hwnd): 
                 self.interface.update_perso(curr_hwnd)
                 
-            curr_mode = self.manager.mode
-            inter_mode = self.interface.curr_mode
-            if ( curr_mode != inter_mode):
-                self.interface.update_mode(curr_mode)
-                
             if(not self.manager.dofus_handler.is_dofus_window(win32gui.GetForegroundWindow())):
-                self.interface.overlay.withdraw()
+                self.interface.withdraw()
                 self.is_visible = False
             else:
                 if(not self.is_visible):
-                    self.interface.overlay.deiconify()
+                    self.interface.deiconify()
                 
             time.sleep(0.3)
               

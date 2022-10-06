@@ -3,16 +3,15 @@ import mouse
 import win32gui
 import win32com.client
 from concurrent.futures import ThreadPoolExecutor
+from src.tools.observer import Observer
 
-class DofusManager:
+class DofusManager(Observer):
     def __init__(self,config,dofus_handler):
+        super().__init__(["stop","update_mode"])
         self.config = config
         self.mode = "combat"
         self.dofus_handler = dofus_handler
         self.running = True
-        self.observers = {
-            "stop" : []
-        }
         self.confirm = False
         self.executor = ThreadPoolExecutor(4)
         
@@ -43,8 +42,7 @@ class DofusManager:
     def _stop(self):
         if( not self.allow_event()):
             return
-        for callback in self.observers["stop"]:
-            callback()
+        self.notify("stop")
         self.running = False
         
     def add_observer(self,event,callback):
@@ -69,3 +67,4 @@ class DofusManager:
             self.mode = "hors_combat"
         elif(self.mode=="hors_combat"):
             self.mode = "combat"
+        self.notify("update_mode",self.mode)

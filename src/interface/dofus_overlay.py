@@ -1,31 +1,27 @@
-from interface.overlay import OverlayFactory
+from interface.overlay import Overlay
 import tkinter as tk
 from PIL import Image,ImageTk
 from threading import RLock
 
-class DofusOverlay:
-    def __init__(self,config,order,order_name):
-        self.overlay = OverlayFactory().make_overlay()
-        self._offsetx = 0
-        self._offsety = 0
-        self.overlay.bind('<Button-1>',self.clickwin)
-        self.overlay.bind('<B1-Motion>',self.dragwin)
-        self.overlay.bind("<<Destroy>>", lambda e: self.overlay.destroy())
+class DofusOverlay(Overlay):
+    def __init__(self,config,order,order_name,mode):
+        super().__init__()
+        self.bind("<<Destroy>>", lambda e: self.destroy())
         self.img = config['img']
         self.perso = dict()
         self.curr_order = []
         self.lock = RLock()
         self.order = []
         
-        self.frame_perso = tk.Frame(self.overlay)
+        self.frame_perso = tk.Frame(self)
         self.frame_perso.pack(side="left",padx=0, pady=0)
         
-        self.curr_mode = ""
+        self.curr_mode = mode
         self.curr_hwnd = 0
         
         self.update_order(order,order_name)
         
-        frame_mode = tk.Frame(self.overlay)
+        frame_mode = tk.Frame(self)
         frame_mode.pack(side="left",padx=0, pady=0)
         
         img = ImageTk.PhotoImage(Image.open("ressources\\img\\combat.png").resize((30,30)))
@@ -40,11 +36,10 @@ class DofusOverlay:
         f.pack(side="top",padx=5, pady=3)
         self.hors_combat = f
         
+        self.update_mode(mode)
+        
     def stop(self):
-        self.overlay.event_generate("<<Destroy>>", when="tail")
-    
-    def mainloop(self):
-        self.overlay.mainloop()
+        self.event_generate("<<Destroy>>", when="tail")
             
     def update_perso(self,hwnd):
         self.lock.acquire()
@@ -53,7 +48,7 @@ class DofusOverlay:
                 self.perso[h].config(borderwidth=2, relief="solid")
             else:
                 self.perso[h].config(borderwidth=2, relief="flat")
-        self.overlay.update()
+        self.update()
         self.curr_hwnd = hwnd
         self.lock.release()
         
@@ -65,7 +60,7 @@ class DofusOverlay:
         else:
             self.hors_combat.config(borderwidth=2, relief="solid")
             self.combat.config(borderwidth=2, relief="flat")
-        self.overlay.update()
+        self.update()
         self.curr_mode = mode
         self.lock.release()
 
@@ -79,7 +74,7 @@ class DofusOverlay:
         lorder = len(order)
         l = lorder * 84 + 44 
         h = 84
-        self.overlay.geometry(str(l)+"x"+str(h))
+        self.geometry(str(l)+"x"+str(h))
         
         #clear
         for child in self.frame_perso.winfo_children():
@@ -98,14 +93,5 @@ class DofusOverlay:
             self.perso[hwnd] = f
         
         self.update_perso(self.curr_hwnd)
-        self.overlay.update()
+        self.update()
         self.lock.release()
-        
-    def dragwin(self,event):
-        x = self.overlay.winfo_pointerx() - self._offsetx
-        y = self.overlay.winfo_pointery() - self._offsety
-        self.overlay.geometry('+{x}+{y}'.format(x=x,y=y))
-
-    def clickwin(self,event):
-        self._offsetx = event.x
-        self._offsety = event.y
