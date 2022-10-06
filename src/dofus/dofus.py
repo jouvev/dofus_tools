@@ -50,11 +50,11 @@ class Dofus:
         win32gui.ShowWindow(self.hwnd,3)
         win32gui.SetForegroundWindow(self.hwnd)
         
-    def click(self,x,y):
+    def click(self,x,y,delay=True):
         with self.lock:
             lParam = win32api.MAKELONG(x, y)
             ntry = 0
-            if(not keyboard.is_pressed("shift")):
+            if(delay):
                 time.sleep(random.random())
             self.confirm = False
             while not self.confirm and ntry < 1:

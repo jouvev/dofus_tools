@@ -12,6 +12,7 @@
         "stop" : "ESC",
         "switch_mode" : "Ctrl",
         "next_win": "Tab",
-        "prev_win": "Shift+Tab"
+        "prev_win": "Shift+Tab",
+        "click_no_delay" : "space"
     }
 }

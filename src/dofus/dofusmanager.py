@@ -29,11 +29,12 @@ class DofusManager:
     def _click(self):
         if(self.allow_event() and self.mode=="hors_combat"):
             x,y = win32gui.GetCursorPos()
+            delay = not keyboard.is_pressed(self.config["keyboard_bindings"]['click_no_delay'])
             curr_h = win32gui.GetForegroundWindow()
             for d in self.dofus_handler.dofus:
                 if(d.hwnd != curr_h):
                     realx,realy = win32gui.ScreenToClient(d.hwnd,(x,y))
-                    self.executor.submit(lambda dof,i,j : dof.click(i,j),d,realx,realy)
+                    self.executor.submit(lambda dof,i,j,bdelay : dof.click(i,j,bdelay),d,realx,realy,delay)
         
     def allow_event(self):
         tmp = win32gui.GetForegroundWindow()
