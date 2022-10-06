@@ -14,9 +14,13 @@ class GameFightJoinMessage:
    def _timeMaxBeforeFightStartFunc(self,input) :
       self.timeMaxBeforeFightStart = input.readShort()
       if(self.timeMaxBeforeFightStart < 0) :
-         raise RuntimeError("Forbidden value (" + self.timeMaxBeforeFightStart + ") on element of GameFightJoinMessage.timeMaxBeforeFightStart.")
+         raise RuntimeError("Forbidden value (" + str(self.timeMaxBeforeFightStart) + ") on element of GameFightJoinMessage.timeMaxBeforeFightStart.")
    
    def _fightTypeFunc(self,input) :
       self.fightType = input.readByte()
       if(self.fightType < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightType + ") on element of GameFightJoinMessage.fightType.")
+         raise RuntimeError("Forbidden value (" + str(self.fightType) + ") on element of GameFightJoinMessage.fightType.")
+
+   def resume(self):
+      print("timeMaxBeforeFightStart :",self.timeMaxBeforeFightStart)
+      print("fightType :",self.fightType)

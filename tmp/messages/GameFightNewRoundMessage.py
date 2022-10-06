@@ -5,4 +5,7 @@ class GameFightNewRoundMessage:
    def _roundNumberFunc(self,input) :
       self.roundNumber = input.readVarUhInt()
       if(self.roundNumber < 0) :
-         raise RuntimeError("Forbidden value (" + self.roundNumber + ") on element of GameFightNewRoundMessage.roundNumber.")
+         raise RuntimeError("Forbidden value (" + str(self.roundNumber) + ") on element of GameFightNewRoundMessage.roundNumber.")
+
+   def resume(self):
+      print("roundNumber :",self.roundNumber)

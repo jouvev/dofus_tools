@@ -4,3 +4,6 @@ class MountHarnessColorsUpdateRequestMessage:
    
    def _useHarnessColorsFunc(self,input) :
       self.useHarnessColors = input.readBoolean()
+
+   def resume(self):
+      print("useHarnessColors :",self.useHarnessColors)

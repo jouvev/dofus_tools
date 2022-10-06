@@ -6,7 +6,11 @@ class ChannelEnablingChangeMessage:
    def _channelFunc(self,input) :
       self.channel = input.readByte()
       if(self.channel < 0) :
-         raise RuntimeError("Forbidden value (" + self.channel + ") on element of ChannelEnablingChangeMessage.channel.")
+         raise RuntimeError("Forbidden value (" + str(self.channel) + ") on element of ChannelEnablingChangeMessage.channel.")
    
    def _enableFunc(self,input) :
       self.enable = input.readBoolean()
+
+   def resume(self):
+      print("channel :",self.channel)
+      print("enable :",self.enable)

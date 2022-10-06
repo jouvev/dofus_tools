@@ -5,4 +5,7 @@ class ClientUIOpenedMessage:
    def _typeFunc(self,input) :
       self.type = input.readByte()
       if(self.type < 0) :
-         raise RuntimeError("Forbidden value (" + self.type + ") on element of ClientUIOpenedMessage.type.")
+         raise RuntimeError("Forbidden value (" + str(self.type) + ") on element of ClientUIOpenedMessage.type.")
+
+   def resume(self):
+      print("type :",self.type)

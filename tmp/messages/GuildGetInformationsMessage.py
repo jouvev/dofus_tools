@@ -5,4 +5,7 @@ class GuildGetInformationsMessage:
    def _infoTypeFunc(self,input) :
       self.infoType = input.readByte()
       if(self.infoType < 0) :
-         raise RuntimeError("Forbidden value (" + self.infoType + ") on element of GuildGetInformationsMessage.infoType.")
+         raise RuntimeError("Forbidden value (" + str(self.infoType) + ") on element of GuildGetInformationsMessage.infoType.")
+
+   def resume(self):
+      print("infoType :",self.infoType)

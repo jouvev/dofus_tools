@@ -1,5 +1,6 @@
 from tmp.messages.ChatServerCopyMessage import ChatServerCopyMessage
 from tmp.types.ObjectItem import ObjectItem
+
 class ChatServerCopyWithObjectMessage(ChatServerCopyMessage):
    def __init__(self,input):
       self.objects = []
@@ -9,3 +10,8 @@ class ChatServerCopyWithObjectMessage(ChatServerCopyMessage):
       for _i1 in range(0,_objectsLen):
          _item1 = ObjectItem(input)
          self.objects.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.objects:
+         e.resume()

@@ -6,9 +6,13 @@ class PrismFightDefenderAddMessage:
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of PrismFightDefenderAddMessage.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of PrismFightDefenderAddMessage.subAreaId.")
    
    def _fightIdFunc(self,input) :
       self.fightId = input.readVarUhShort()
       if(self.fightId < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightId + ") on element of PrismFightDefenderAddMessage.fightId.")
+         raise RuntimeError("Forbidden value (" + str(self.fightId) + ") on element of PrismFightDefenderAddMessage.fightId.")
+
+   def resume(self):
+      print("subAreaId :",self.subAreaId)
+      print("fightId :",self.fightId)

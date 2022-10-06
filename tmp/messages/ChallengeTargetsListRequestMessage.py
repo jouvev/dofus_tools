@@ -5,4 +5,7 @@ class ChallengeTargetsListRequestMessage:
    def _challengeIdFunc(self,input) :
       self.challengeId = input.readVarUhShort()
       if(self.challengeId < 0) :
-         raise RuntimeError("Forbidden value (" + self.challengeId + ") on element of ChallengeTargetsListRequestMessage.challengeId.")
+         raise RuntimeError("Forbidden value (" + str(self.challengeId) + ") on element of ChallengeTargetsListRequestMessage.challengeId.")
+
+   def resume(self):
+      print("challengeId :",self.challengeId)

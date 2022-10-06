@@ -1,6 +1,7 @@
 import tmp.TypesFactory as pf
 from tmp.types.GameContextBasicSpawnInformation import GameContextBasicSpawnInformation
 from tmp.types.GameContextActorInformations import GameContextActorInformations
+
 class GameFightFighterInformations(GameContextActorInformations):
    def __init__(self,input):
       self.previousPositions = []
@@ -20,4 +21,10 @@ class GameFightFighterInformations(GameContextActorInformations):
    def _waveFunc(self,input) :
       self.wave = input.readByte()
       if(self.wave < 0) :
-         raise RuntimeError("Forbidden value (" + self.wave + ") on element of GameFightFighterInformations.wave.")
+         raise RuntimeError("Forbidden value (" + str(self.wave) + ") on element of GameFightFighterInformations.wave.")
+
+   def resume(self):
+      super().resume()
+      print("wave :",self.wave)
+      self.spawnInfo.resum()
+      print("previousPositions :",self.previousPositions)

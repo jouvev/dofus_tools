@@ -1,5 +1,6 @@
 from tmp.types.MonsterInGroupLightInformations import MonsterInGroupLightInformations
 from tmp.types.MonsterInGroupLightInformations import MonsterInGroupLightInformations
+
 class BreachBranch:
    def __init__(self,input):
       self.bosses = []
@@ -23,20 +24,31 @@ class BreachBranch:
    def _roomFunc(self,input) :
       self.room = input.readByte()
       if(self.room < 0) :
-         raise RuntimeError("Forbidden value (" + self.room + ") on element of BreachBranch.room.")
+         raise RuntimeError("Forbidden value (" + str(self.room) + ") on element of BreachBranch.room.")
    
    def _elementFunc(self,input) :
       self.element = input.readInt()
       if(self.element < 0) :
-         raise RuntimeError("Forbidden value (" + self.element + ") on element of BreachBranch.element.")
+         raise RuntimeError("Forbidden value (" + str(self.element) + ") on element of BreachBranch.element.")
    
    def _mapFunc(self,input) :
       self.map = input.readDouble()
       if(self.map < 0 or self.map > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.map + ") on element of BreachBranch.map.")
+         raise RuntimeError("Forbidden value (" + str(self.map) + ") on element of BreachBranch.map.")
    
    def _scoreFunc(self,input) :
       self.score = input.readShort()
    
    def _relativeScoreFunc(self,input) :
       self.relativeScore = input.readShort()
+
+   def resume(self):
+      print("room :",self.room)
+      print("element :",self.element)
+      print("map :",self.map)
+      print("score :",self.score)
+      print("relativeScore :",self.relativeScore)
+      for e in self.bosses:
+         e.resume()
+      for e in self.monsters:
+         e.resume()

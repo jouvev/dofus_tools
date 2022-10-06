@@ -23,4 +23,11 @@ class RemodelingInformation:
    def _cosmeticIdFunc(self,input) :
       self.cosmeticId = input.readVarUhShort()
       if(self.cosmeticId < 0) :
-         raise RuntimeError("Forbidden value (" + self.cosmeticId + ") on element of RemodelingInformation.cosmeticId.")
+         raise RuntimeError("Forbidden value (" + str(self.cosmeticId) + ") on element of RemodelingInformation.cosmeticId.")
+
+   def resume(self):
+      print("name :",self.name)
+      print("breed :",self.breed)
+      print("sex :",self.sex)
+      print("cosmeticId :",self.cosmeticId)
+      print("colors :",self.colors)

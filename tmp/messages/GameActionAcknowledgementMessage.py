@@ -8,3 +8,7 @@ class GameActionAcknowledgementMessage:
    
    def _actionIdFunc(self,input) :
       self.actionId = input.readByte()
+
+   def resume(self):
+      print("valid :",self.valid)
+      print("actionId :",self.actionId)

@@ -4,3 +4,6 @@ class SubareaRewardRateMessage:
    
    def _subAreaRateFunc(self,input) :
       self.subAreaRate = input.readVarShort()
+
+   def resume(self):
+      print("subAreaRate :",self.subAreaRate)

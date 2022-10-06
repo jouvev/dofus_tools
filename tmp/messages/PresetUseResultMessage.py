@@ -9,4 +9,8 @@ class PresetUseResultMessage:
    def _codeFunc(self,input) :
       self.code = input.readByte()
       if(self.code < 0) :
-         raise RuntimeError("Forbidden value (" + self.code + ") on element of PresetUseResultMessage.code.")
+         raise RuntimeError("Forbidden value (" + str(self.code) + ") on element of PresetUseResultMessage.code.")
+
+   def resume(self):
+      print("presetId :",self.presetId)
+      print("code :",self.code)

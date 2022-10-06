@@ -11,4 +11,7 @@ class StartupActionFinishedMessage:
    def _actionIdFunc(self,input) :
       self.actionId = input.readInt()
       if(self.actionId < 0) :
-         raise RuntimeError("Forbidden value (" + self.actionId + ") on element of StartupActionFinishedMessage.actionId.")
+         raise RuntimeError("Forbidden value (" + str(self.actionId) + ") on element of StartupActionFinishedMessage.actionId.")
+
+   def resume(self):
+      print("actionId :",self.actionId)

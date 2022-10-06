@@ -6,7 +6,11 @@ class TrustCertificate:
    def _idFunc(self,input) :
       self.id = input.readInt()
       if(self.id < 0) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of TrustCertificate.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of TrustCertificate.id.")
    
    def _hashFunc(self,input) :
       self.hash = input.readUTF()
+
+   def resume(self):
+      print("id :",self.id)
+      print("hash :",self.hash)

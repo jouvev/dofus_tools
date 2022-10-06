@@ -9,4 +9,8 @@ class StatsUpgradeResultMessage:
    def _nbCharacBoostFunc(self,input) :
       self.nbCharacBoost = input.readVarUhShort()
       if(self.nbCharacBoost < 0) :
-         raise RuntimeError("Forbidden value (" + self.nbCharacBoost + ") on element of StatsUpgradeResultMessage.nbCharacBoost.")
+         raise RuntimeError("Forbidden value (" + str(self.nbCharacBoost) + ") on element of StatsUpgradeResultMessage.nbCharacBoost.")
+
+   def resume(self):
+      print("result :",self.result)
+      print("nbCharacBoost :",self.nbCharacBoost)

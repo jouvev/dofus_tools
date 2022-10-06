@@ -4,3 +4,6 @@ class RemoveListenerOnSynchronizedStorageMessage:
    
    def _playerFunc(self,input) :
       self.player = input.readUTF()
+
+   def resume(self):
+      print("player :",self.player)

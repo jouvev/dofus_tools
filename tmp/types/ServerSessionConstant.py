@@ -5,4 +5,7 @@ class ServerSessionConstant:
    def _idFunc(self,input) :
       self.id = input.readVarUhShort()
       if(self.id < 0) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of ServerSessionConstant.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of ServerSessionConstant.id.")
+
+   def resume(self):
+      print("id :",self.id)

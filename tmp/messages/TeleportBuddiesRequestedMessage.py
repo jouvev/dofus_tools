@@ -14,9 +14,14 @@ class TeleportBuddiesRequestedMessage:
    def _dungeonIdFunc(self,input) :
       self.dungeonId = input.readVarUhShort()
       if(self.dungeonId < 0) :
-         raise RuntimeError("Forbidden value (" + self.dungeonId + ") on element of TeleportBuddiesRequestedMessage.dungeonId.")
+         raise RuntimeError("Forbidden value (" + str(self.dungeonId) + ") on element of TeleportBuddiesRequestedMessage.dungeonId.")
    
    def _inviterIdFunc(self,input) :
       self.inviterId = input.readVarUhLong()
       if(self.inviterId < 0 or self.inviterId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.inviterId + ") on element of TeleportBuddiesRequestedMessage.inviterId.")
+         raise RuntimeError("Forbidden value (" + str(self.inviterId) + ") on element of TeleportBuddiesRequestedMessage.inviterId.")
+
+   def resume(self):
+      print("dungeonId :",self.dungeonId)
+      print("inviterId :",self.inviterId)
+      print("invalidBuddiesIds :",self.invalidBuddiesIds)

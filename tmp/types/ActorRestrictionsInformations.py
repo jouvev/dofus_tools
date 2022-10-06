@@ -26,3 +26,6 @@ class ActorRestrictionsInformations:
       self.cantSpeakToNPC = bool(bin(_box2)[2:].zfill(8)[1])
       self.cantChangeZone = bool(bin(_box2)[2:].zfill(8)[2])
       self.cantAttackMonster = bool(bin(_box2)[2:].zfill(8)[3])
+
+   def resume(self):
+      pass

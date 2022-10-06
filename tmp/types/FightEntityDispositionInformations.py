@@ -1,4 +1,5 @@
 from tmp.types.EntityDispositionInformations import EntityDispositionInformations
+
 class FightEntityDispositionInformations(EntityDispositionInformations):
    def __init__(self,input):
       super().__init__(input)
@@ -7,4 +8,8 @@ class FightEntityDispositionInformations(EntityDispositionInformations):
    def _carryingCharacterIdFunc(self,input) :
       self.carryingCharacterId = input.readDouble()
       if(self.carryingCharacterId < -9007199254740992 or self.carryingCharacterId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.carryingCharacterId + ") on element of FightEntityDispositionInformations.carryingCharacterId.")
+         raise RuntimeError("Forbidden value (" + str(self.carryingCharacterId) + ") on element of FightEntityDispositionInformations.carryingCharacterId.")
+
+   def resume(self):
+      super().resume()
+      print("carryingCharacterId :",self.carryingCharacterId)

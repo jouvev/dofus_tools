@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class IdolFightPreparationUpdateMessage:
    def __init__(self,input):
       self.idols = []
@@ -14,4 +15,9 @@ class IdolFightPreparationUpdateMessage:
    def _idolSourceFunc(self,input) :
       self.idolSource = input.readByte()
       if(self.idolSource < 0) :
-         raise RuntimeError("Forbidden value (" + self.idolSource + ") on element of IdolFightPreparationUpdateMessage.idolSource.")
+         raise RuntimeError("Forbidden value (" + str(self.idolSource) + ") on element of IdolFightPreparationUpdateMessage.idolSource.")
+
+   def resume(self):
+      print("idolSource :",self.idolSource)
+      for e in self.idols:
+         e.resume()

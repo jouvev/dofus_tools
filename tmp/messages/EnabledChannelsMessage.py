@@ -16,3 +16,7 @@ class EnabledChannelsMessage:
          if(_val2 < 0) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of disallowed.")
          self.disallowed.append(_val2)
+
+   def resume(self):
+      print("channels :",self.channels)
+      print("disallowed :",self.disallowed)

@@ -4,3 +4,6 @@ class SpouseStatusMessage:
    
    def _hasSpouseFunc(self,input) :
       self.hasSpouse = input.readBoolean()
+
+   def resume(self):
+      print("hasSpouse :",self.hasSpouse)

@@ -1,4 +1,5 @@
 from tmp.messages.CharacterSelectionMessage import CharacterSelectionMessage
+
 class CharacterFirstSelectionMessage(CharacterSelectionMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class CharacterFirstSelectionMessage(CharacterSelectionMessage):
    
    def _doTutorialFunc(self,input) :
       self.doTutorial = input.readBoolean()
+
+   def resume(self):
+      super().resume()
+      print("doTutorial :",self.doTutorial)

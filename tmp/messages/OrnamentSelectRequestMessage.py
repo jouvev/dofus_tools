@@ -5,4 +5,7 @@ class OrnamentSelectRequestMessage:
    def _ornamentIdFunc(self,input) :
       self.ornamentId = input.readVarUhShort()
       if(self.ornamentId < 0) :
-         raise RuntimeError("Forbidden value (" + self.ornamentId + ") on element of OrnamentSelectRequestMessage.ornamentId.")
+         raise RuntimeError("Forbidden value (" + str(self.ornamentId) + ") on element of OrnamentSelectRequestMessage.ornamentId.")
+
+   def resume(self):
+      print("ornamentId :",self.ornamentId)

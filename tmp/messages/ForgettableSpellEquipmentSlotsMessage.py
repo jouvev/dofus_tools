@@ -4,3 +4,6 @@ class ForgettableSpellEquipmentSlotsMessage:
    
    def _quantityFunc(self,input) :
       self.quantity = input.readVarShort()
+
+   def resume(self):
+      print("quantity :",self.quantity)

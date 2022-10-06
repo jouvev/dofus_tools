@@ -4,3 +4,6 @@ class Preset:
    
    def _idFunc(self,input) :
       self.id = input.readShort()
+
+   def resume(self):
+      print("id :",self.id)

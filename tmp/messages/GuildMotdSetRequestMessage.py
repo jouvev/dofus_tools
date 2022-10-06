@@ -1,4 +1,5 @@
 from tmp.messages.SocialNoticeSetRequestMessage import SocialNoticeSetRequestMessage
+
 class GuildMotdSetRequestMessage(SocialNoticeSetRequestMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class GuildMotdSetRequestMessage(SocialNoticeSetRequestMessage):
    
    def _contentFunc(self,input) :
       self.content = input.readUTF()
+
+   def resume(self):
+      super().resume()
+      print("content :",self.content)

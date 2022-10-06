@@ -1,4 +1,5 @@
 from tmp.types.AbstractFightDispellableEffect import AbstractFightDispellableEffect
+
 class FightTriggeredEffect(AbstractFightDispellableEffect):
    def __init__(self,input):
       super().__init__(input)
@@ -18,3 +19,10 @@ class FightTriggeredEffect(AbstractFightDispellableEffect):
    
    def _delayFunc(self,input) :
       self.delay = input.readShort()
+
+   def resume(self):
+      super().resume()
+      print("param1 :",self.param1)
+      print("param2 :",self.param2)
+      print("param3 :",self.param3)
+      print("delay :",self.delay)

@@ -8,3 +8,6 @@ class InvalidPresetsMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of presetIds.")
          self.presetIds.append(_val1)
+
+   def resume(self):
+      print("presetIds :",self.presetIds)

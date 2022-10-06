@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.FightResultFighterListEntry import FightResultFighterListEntry
+
 class FightResultPlayerListEntry(FightResultFighterListEntry):
    def __init__(self,input):
       self.additional = []
@@ -16,4 +17,10 @@ class FightResultPlayerListEntry(FightResultFighterListEntry):
    def _levelFunc(self,input) :
       self.level = input.readVarUhShort()
       if(self.level < 0) :
-         raise RuntimeError("Forbidden value (" + self.level + ") on element of FightResultPlayerListEntry.level.")
+         raise RuntimeError("Forbidden value (" + str(self.level) + ") on element of FightResultPlayerListEntry.level.")
+
+   def resume(self):
+      super().resume()
+      print("level :",self.level)
+      for e in self.additional:
+         e.resume()

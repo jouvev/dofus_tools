@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class HousePropertiesMessage:
    def __init__(self,input):
       self.doorsOnMap = []
@@ -16,4 +17,8 @@ class HousePropertiesMessage:
    def _houseIdFunc(self,input) :
       self.houseId = input.readVarUhInt()
       if(self.houseId < 0) :
-         raise RuntimeError("Forbidden value (" + self.houseId + ") on element of HousePropertiesMessage.houseId.")
+         raise RuntimeError("Forbidden value (" + str(self.houseId) + ") on element of HousePropertiesMessage.houseId.")
+
+   def resume(self):
+      print("houseId :",self.houseId)
+      print("doorsOnMap :",self.doorsOnMap)

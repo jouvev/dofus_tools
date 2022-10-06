@@ -1,5 +1,6 @@
 from tmp.types.HouseInstanceInformations import HouseInstanceInformations
 from tmp.types.HouseInformations import HouseInformations
+
 class HouseOnMapInformations(HouseInformations):
    def __init__(self,input):
       self.doorsOnMap = []
@@ -17,3 +18,9 @@ class HouseOnMapInformations(HouseInformations):
       for _i2 in range(0,_houseInstancesLen):
          _item2 = HouseInstanceInformations(input)
          self.houseInstances.append(_item2)
+
+   def resume(self):
+      super().resume()
+      print("doorsOnMap :",self.doorsOnMap)
+      for e in self.houseInstances:
+         e.resume()

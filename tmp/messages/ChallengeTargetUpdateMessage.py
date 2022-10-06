@@ -6,9 +6,13 @@ class ChallengeTargetUpdateMessage:
    def _challengeIdFunc(self,input) :
       self.challengeId = input.readVarUhShort()
       if(self.challengeId < 0) :
-         raise RuntimeError("Forbidden value (" + self.challengeId + ") on element of ChallengeTargetUpdateMessage.challengeId.")
+         raise RuntimeError("Forbidden value (" + str(self.challengeId) + ") on element of ChallengeTargetUpdateMessage.challengeId.")
    
    def _targetIdFunc(self,input) :
       self.targetId = input.readDouble()
       if(self.targetId < -9007199254740992 or self.targetId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.targetId + ") on element of ChallengeTargetUpdateMessage.targetId.")
+         raise RuntimeError("Forbidden value (" + str(self.targetId) + ") on element of ChallengeTargetUpdateMessage.targetId.")
+
+   def resume(self):
+      print("challengeId :",self.challengeId)
+      print("targetId :",self.targetId)

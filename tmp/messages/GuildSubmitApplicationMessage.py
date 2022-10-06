@@ -20,12 +20,12 @@ class GuildSubmitApplicationMessage:
    def _guildIdFunc(self,input) :
       self.guildId = input.readVarUhInt()
       if(self.guildId < 0) :
-         raise RuntimeError("Forbidden value (" + self.guildId + ") on element of GuildSubmitApplicationMessage.guildId.")
+         raise RuntimeError("Forbidden value (" + str(self.guildId) + ") on element of GuildSubmitApplicationMessage.guildId.")
    
    def _timeSpentFunc(self,input) :
       self.timeSpent = input.readVarUhInt()
       if(self.timeSpent < 0) :
-         raise RuntimeError("Forbidden value (" + self.timeSpent + ") on element of GuildSubmitApplicationMessage.timeSpent.")
+         raise RuntimeError("Forbidden value (" + str(self.timeSpent) + ") on element of GuildSubmitApplicationMessage.timeSpent.")
    
    def _filterLanguageFunc(self,input) :
       self.filterLanguage = input.readUTF()
@@ -56,3 +56,18 @@ class GuildSubmitApplicationMessage:
    
    def _filterLastSortFunc(self,input) :
       self.filterLastSort = input.readUTF()
+
+   def resume(self):
+      print("applyText :",self.applyText)
+      print("guildId :",self.guildId)
+      print("timeSpent :",self.timeSpent)
+      print("filterLanguage :",self.filterLanguage)
+      print("filterAmbiance :",self.filterAmbiance)
+      print("filterPlaytime :",self.filterPlaytime)
+      print("filterInterest :",self.filterInterest)
+      print("filterMinMaxGuildLevel :",self.filterMinMaxGuildLevel)
+      print("filterRecruitmentType :",self.filterRecruitmentType)
+      print("filterMinMaxCharacterLevel :",self.filterMinMaxCharacterLevel)
+      print("filterMinMaxAchievement :",self.filterMinMaxAchievement)
+      print("filterSearchName :",self.filterSearchName)
+      print("filterLastSort :",self.filterLastSort)

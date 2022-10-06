@@ -13,4 +13,8 @@ class DebugHighlightCellsMessage:
    def _colorFunc(self,input) :
       self.color = input.readDouble()
       if(self.color < -9007199254740992 or self.color > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.color + ") on element of DebugHighlightCellsMessage.color.")
+         raise RuntimeError("Forbidden value (" + str(self.color) + ") on element of DebugHighlightCellsMessage.color.")
+
+   def resume(self):
+      print("color :",self.color)
+      print("cells :",self.cells)

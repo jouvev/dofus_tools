@@ -16,3 +16,7 @@ class GameFightTurnListMessage:
          if(_val2 < -9007199254740992 or _val2 > 9007199254740992) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of deadsIds.")
          self.deadsIds.append(_val2)
+
+   def resume(self):
+      print("ids :",self.ids)
+      print("deadsIds :",self.deadsIds)

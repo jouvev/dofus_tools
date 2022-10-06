@@ -1,4 +1,5 @@
 from tmp.types.ItemForPreset import ItemForPreset
+
 class ItemForPresetUpdateMessage:
    def __init__(self,input):
       self._presetIdFunc(input)
@@ -6,3 +7,7 @@ class ItemForPresetUpdateMessage:
    
    def _presetIdFunc(self,input) :
       self.presetId = input.readShort()
+
+   def resume(self):
+      print("presetId :",self.presetId)
+      self.presetItem.resum()

@@ -12,7 +12,12 @@ class QuestObjectiveInformations:
    def _objectiveIdFunc(self,input) :
       self.objectiveId = input.readVarUhShort()
       if(self.objectiveId < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectiveId + ") on element of QuestObjectiveInformations.objectiveId.")
+         raise RuntimeError("Forbidden value (" + str(self.objectiveId) + ") on element of QuestObjectiveInformations.objectiveId.")
    
    def _objectiveStatusFunc(self,input) :
       self.objectiveStatus = input.readBoolean()
+
+   def resume(self):
+      print("objectiveId :",self.objectiveId)
+      print("objectiveStatus :",self.objectiveStatus)
+      print("dialogParams :",self.dialogParams)

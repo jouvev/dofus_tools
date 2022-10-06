@@ -6,9 +6,13 @@ class RecycleResultMessage:
    def _nuggetsForPrismFunc(self,input) :
       self.nuggetsForPrism = input.readVarUhInt()
       if(self.nuggetsForPrism < 0) :
-         raise RuntimeError("Forbidden value (" + self.nuggetsForPrism + ") on element of RecycleResultMessage.nuggetsForPrism.")
+         raise RuntimeError("Forbidden value (" + str(self.nuggetsForPrism) + ") on element of RecycleResultMessage.nuggetsForPrism.")
    
    def _nuggetsForPlayerFunc(self,input) :
       self.nuggetsForPlayer = input.readVarUhInt()
       if(self.nuggetsForPlayer < 0) :
-         raise RuntimeError("Forbidden value (" + self.nuggetsForPlayer + ") on element of RecycleResultMessage.nuggetsForPlayer.")
+         raise RuntimeError("Forbidden value (" + str(self.nuggetsForPlayer) + ") on element of RecycleResultMessage.nuggetsForPlayer.")
+
+   def resume(self):
+      print("nuggetsForPrism :",self.nuggetsForPrism)
+      print("nuggetsForPlayer :",self.nuggetsForPlayer)

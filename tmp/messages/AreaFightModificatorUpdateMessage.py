@@ -4,3 +4,6 @@ class AreaFightModificatorUpdateMessage:
    
    def _spellPairIdFunc(self,input) :
       self.spellPairId = input.readInt()
+
+   def resume(self):
+      print("spellPairId :",self.spellPairId)

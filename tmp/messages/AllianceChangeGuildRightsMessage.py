@@ -6,9 +6,13 @@ class AllianceChangeGuildRightsMessage:
    def _guildIdFunc(self,input) :
       self.guildId = input.readVarUhInt()
       if(self.guildId < 0) :
-         raise RuntimeError("Forbidden value (" + self.guildId + ") on element of AllianceChangeGuildRightsMessage.guildId.")
+         raise RuntimeError("Forbidden value (" + str(self.guildId) + ") on element of AllianceChangeGuildRightsMessage.guildId.")
    
    def _rightsFunc(self,input) :
       self.rights = input.readByte()
       if(self.rights < 0) :
-         raise RuntimeError("Forbidden value (" + self.rights + ") on element of AllianceChangeGuildRightsMessage.rights.")
+         raise RuntimeError("Forbidden value (" + str(self.rights) + ") on element of AllianceChangeGuildRightsMessage.rights.")
+
+   def resume(self):
+      print("guildId :",self.guildId)
+      print("rights :",self.rights)

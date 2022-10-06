@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class DebtsUpdateMessage:
    def __init__(self,input):
       self.debts = []
@@ -14,4 +15,9 @@ class DebtsUpdateMessage:
    def _actionFunc(self,input) :
       self.action = input.readByte()
       if(self.action < 0) :
-         raise RuntimeError("Forbidden value (" + self.action + ") on element of DebtsUpdateMessage.action.")
+         raise RuntimeError("Forbidden value (" + str(self.action) + ") on element of DebtsUpdateMessage.action.")
+
+   def resume(self):
+      print("action :",self.action)
+      for e in self.debts:
+         e.resume()

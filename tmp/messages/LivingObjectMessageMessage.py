@@ -8,12 +8,12 @@ class LivingObjectMessageMessage:
    def _msgIdFunc(self,input) :
       self.msgId = input.readVarUhShort()
       if(self.msgId < 0) :
-         raise RuntimeError("Forbidden value (" + self.msgId + ") on element of LivingObjectMessageMessage.msgId.")
+         raise RuntimeError("Forbidden value (" + str(self.msgId) + ") on element of LivingObjectMessageMessage.msgId.")
    
    def _timeStampFunc(self,input) :
       self.timeStamp = input.readInt()
       if(self.timeStamp < 0) :
-         raise RuntimeError("Forbidden value (" + self.timeStamp + ") on element of LivingObjectMessageMessage.timeStamp.")
+         raise RuntimeError("Forbidden value (" + str(self.timeStamp) + ") on element of LivingObjectMessageMessage.timeStamp.")
    
    def _ownerFunc(self,input) :
       self.owner = input.readUTF()
@@ -21,4 +21,10 @@ class LivingObjectMessageMessage:
    def _objectGenericIdFunc(self,input) :
       self.objectGenericId = input.readVarUhInt()
       if(self.objectGenericId < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectGenericId + ") on element of LivingObjectMessageMessage.objectGenericId.")
+         raise RuntimeError("Forbidden value (" + str(self.objectGenericId) + ") on element of LivingObjectMessageMessage.objectGenericId.")
+
+   def resume(self):
+      print("msgId :",self.msgId)
+      print("timeStamp :",self.timeStamp)
+      print("owner :",self.owner)
+      print("objectGenericId :",self.objectGenericId)

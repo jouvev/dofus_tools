@@ -9,4 +9,8 @@ class ExchangeReadyMessage:
    def _stepFunc(self,input) :
       self.step = input.readVarUhShort()
       if(self.step < 0) :
-         raise RuntimeError("Forbidden value (" + self.step + ") on element of ExchangeReadyMessage.step.")
+         raise RuntimeError("Forbidden value (" + str(self.step) + ") on element of ExchangeReadyMessage.step.")
+
+   def resume(self):
+      print("ready :",self.ready)
+      print("step :",self.step)

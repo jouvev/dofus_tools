@@ -1,4 +1,5 @@
 from tmp.types.SkillActionDescription import SkillActionDescription
+
 class SkillActionDescriptionCraft(SkillActionDescription):
    def __init__(self,input):
       super().__init__(input)
@@ -7,4 +8,8 @@ class SkillActionDescriptionCraft(SkillActionDescription):
    def _probabilityFunc(self,input) :
       self.probability = input.readByte()
       if(self.probability < 0) :
-         raise RuntimeError("Forbidden value (" + self.probability + ") on element of SkillActionDescriptionCraft.probability.")
+         raise RuntimeError("Forbidden value (" + str(self.probability) + ") on element of SkillActionDescriptionCraft.probability.")
+
+   def resume(self):
+      super().resume()
+      print("probability :",self.probability)

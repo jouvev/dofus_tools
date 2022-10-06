@@ -6,7 +6,11 @@ class NamedPartyTeam:
    def _teamIdFunc(self,input) :
       self.teamId = input.readByte()
       if(self.teamId < 0) :
-         raise RuntimeError("Forbidden value (" + self.teamId + ") on element of NamedPartyTeam.teamId.")
+         raise RuntimeError("Forbidden value (" + str(self.teamId) + ") on element of NamedPartyTeam.teamId.")
    
    def _partyNameFunc(self,input) :
       self.partyName = input.readUTF()
+
+   def resume(self):
+      print("teamId :",self.teamId)
+      print("partyName :",self.partyName)

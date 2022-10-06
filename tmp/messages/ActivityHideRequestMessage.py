@@ -5,4 +5,7 @@ class ActivityHideRequestMessage:
    def _activityIdFunc(self,input) :
       self.activityId = input.readVarUhShort()
       if(self.activityId < 0) :
-         raise RuntimeError("Forbidden value (" + self.activityId + ") on element of ActivityHideRequestMessage.activityId.")
+         raise RuntimeError("Forbidden value (" + str(self.activityId) + ") on element of ActivityHideRequestMessage.activityId.")
+
+   def resume(self):
+      print("activityId :",self.activityId)

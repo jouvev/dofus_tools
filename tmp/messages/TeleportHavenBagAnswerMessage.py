@@ -4,3 +4,6 @@ class TeleportHavenBagAnswerMessage:
    
    def _acceptFunc(self,input) :
       self.accept = input.readBoolean()
+
+   def resume(self):
+      print("accept :",self.accept)

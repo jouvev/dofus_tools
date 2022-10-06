@@ -10,9 +10,14 @@ class StatsUpgradeRequestMessage:
    def _statIdFunc(self,input) :
       self.statId = input.readByte()
       if(self.statId < 0) :
-         raise RuntimeError("Forbidden value (" + self.statId + ") on element of StatsUpgradeRequestMessage.statId.")
+         raise RuntimeError("Forbidden value (" + str(self.statId) + ") on element of StatsUpgradeRequestMessage.statId.")
    
    def _boostPointFunc(self,input) :
       self.boostPoint = input.readVarUhShort()
       if(self.boostPoint < 0) :
-         raise RuntimeError("Forbidden value (" + self.boostPoint + ") on element of StatsUpgradeRequestMessage.boostPoint.")
+         raise RuntimeError("Forbidden value (" + str(self.boostPoint) + ") on element of StatsUpgradeRequestMessage.boostPoint.")
+
+   def resume(self):
+      print("useAdditionnal :",self.useAdditionnal)
+      print("statId :",self.statId)
+      print("boostPoint :",self.boostPoint)

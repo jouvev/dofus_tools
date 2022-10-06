@@ -5,4 +5,7 @@ class SkillActionDescription:
    def _skillIdFunc(self,input) :
       self.skillId = input.readVarUhShort()
       if(self.skillId < 0) :
-         raise RuntimeError("Forbidden value (" + self.skillId + ") on element of SkillActionDescription.skillId.")
+         raise RuntimeError("Forbidden value (" + str(self.skillId) + ") on element of SkillActionDescription.skillId.")
+
+   def resume(self):
+      print("skillId :",self.skillId)

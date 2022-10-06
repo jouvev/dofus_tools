@@ -1,5 +1,6 @@
 from tmp.messages.PaginationAnswerAbstractMessage import PaginationAnswerAbstractMessage
 from tmp.types.GuildApplicationInformation import GuildApplicationInformation
+
 class GuildListApplicationAnswerMessage(PaginationAnswerAbstractMessage):
    def __init__(self,input):
       self.applies = []
@@ -9,3 +10,8 @@ class GuildListApplicationAnswerMessage(PaginationAnswerAbstractMessage):
       for _i1 in range(0,_appliesLen):
          _item1 = GuildApplicationInformation(input)
          self.applies.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.applies:
+         e.resume()

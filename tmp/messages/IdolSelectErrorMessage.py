@@ -12,9 +12,13 @@ class IdolSelectErrorMessage:
    def _reasonFunc(self,input) :
       self.reason = input.readByte()
       if(self.reason < 0) :
-         raise RuntimeError("Forbidden value (" + self.reason + ") on element of IdolSelectErrorMessage.reason.")
+         raise RuntimeError("Forbidden value (" + str(self.reason) + ") on element of IdolSelectErrorMessage.reason.")
    
    def _idolIdFunc(self,input) :
       self.idolId = input.readVarUhShort()
       if(self.idolId < 0) :
-         raise RuntimeError("Forbidden value (" + self.idolId + ") on element of IdolSelectErrorMessage.idolId.")
+         raise RuntimeError("Forbidden value (" + str(self.idolId) + ") on element of IdolSelectErrorMessage.idolId.")
+
+   def resume(self):
+      print("reason :",self.reason)
+      print("idolId :",self.idolId)

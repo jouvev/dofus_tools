@@ -10,9 +10,14 @@ class MonsterInGroupLightInformations:
    def _gradeFunc(self,input) :
       self.grade = input.readByte()
       if(self.grade < 0) :
-         raise RuntimeError("Forbidden value (" + self.grade + ") on element of MonsterInGroupLightInformations.grade.")
+         raise RuntimeError("Forbidden value (" + str(self.grade) + ") on element of MonsterInGroupLightInformations.grade.")
    
    def _levelFunc(self,input) :
       self.level = input.readShort()
       if(self.level < 0) :
-         raise RuntimeError("Forbidden value (" + self.level + ") on element of MonsterInGroupLightInformations.level.")
+         raise RuntimeError("Forbidden value (" + str(self.level) + ") on element of MonsterInGroupLightInformations.level.")
+
+   def resume(self):
+      print("genericId :",self.genericId)
+      print("grade :",self.grade)
+      print("level :",self.level)

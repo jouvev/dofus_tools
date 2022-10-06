@@ -5,4 +5,7 @@ class HavenBagPermissionsUpdateMessage:
    def _permissionsFunc(self,input) :
       self.permissions = input.readInt()
       if(self.permissions < 0) :
-         raise RuntimeError("Forbidden value (" + self.permissions + ") on element of HavenBagPermissionsUpdateMessage.permissions.")
+         raise RuntimeError("Forbidden value (" + str(self.permissions) + ") on element of HavenBagPermissionsUpdateMessage.permissions.")
+
+   def resume(self):
+      print("permissions :",self.permissions)

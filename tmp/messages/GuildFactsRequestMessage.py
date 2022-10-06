@@ -5,4 +5,7 @@ class GuildFactsRequestMessage:
    def _guildIdFunc(self,input) :
       self.guildId = input.readVarUhInt()
       if(self.guildId < 0) :
-         raise RuntimeError("Forbidden value (" + self.guildId + ") on element of GuildFactsRequestMessage.guildId.")
+         raise RuntimeError("Forbidden value (" + str(self.guildId) + ") on element of GuildFactsRequestMessage.guildId.")
+
+   def resume(self):
+      print("guildId :",self.guildId)

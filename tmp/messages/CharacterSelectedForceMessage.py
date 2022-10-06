@@ -5,4 +5,7 @@ class CharacterSelectedForceMessage:
    def _idFunc(self,input) :
       self.id = input.readInt()
       if(self.id < 1 or self.id > 2147483647) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of CharacterSelectedForceMessage.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of CharacterSelectedForceMessage.id.")
+
+   def resume(self):
+      print("id :",self.id)

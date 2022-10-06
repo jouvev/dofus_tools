@@ -1,5 +1,6 @@
 from tmp.messages.GameFightResumeMessage import GameFightResumeMessage
 from tmp.types.GameFightResumeSlaveInfo import GameFightResumeSlaveInfo
+
 class GameFightResumeWithSlavesMessage(GameFightResumeMessage):
    def __init__(self,input):
       self.slavesInfo = []
@@ -9,3 +10,8 @@ class GameFightResumeWithSlavesMessage(GameFightResumeMessage):
       for _i1 in range(0,_slavesInfoLen):
          _item1 = GameFightResumeSlaveInfo(input)
          self.slavesInfo.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.slavesInfo:
+         e.resume()

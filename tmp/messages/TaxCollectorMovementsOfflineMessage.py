@@ -1,4 +1,5 @@
 from tmp.types.TaxCollectorMovement import TaxCollectorMovement
+
 class TaxCollectorMovementsOfflineMessage:
    def __init__(self,input):
       self.movements = []
@@ -7,3 +8,7 @@ class TaxCollectorMovementsOfflineMessage:
       for _i1 in range(0,_movementsLen):
          _item1 = TaxCollectorMovement(input)
          self.movements.append(_item1)
+
+   def resume(self):
+      for e in self.movements:
+         e.resume()

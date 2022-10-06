@@ -1,4 +1,5 @@
 from tmp.messages.TreasureHuntDigRequestAnswerMessage import TreasureHuntDigRequestAnswerMessage
+
 class TreasureHuntDigRequestAnswerFailedMessage(TreasureHuntDigRequestAnswerMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -7,4 +8,8 @@ class TreasureHuntDigRequestAnswerFailedMessage(TreasureHuntDigRequestAnswerMess
    def _wrongFlagCountFunc(self,input) :
       self.wrongFlagCount = input.readByte()
       if(self.wrongFlagCount < 0) :
-         raise RuntimeError("Forbidden value (" + self.wrongFlagCount + ") on element of TreasureHuntDigRequestAnswerFailedMessage.wrongFlagCount.")
+         raise RuntimeError("Forbidden value (" + str(self.wrongFlagCount) + ") on element of TreasureHuntDigRequestAnswerFailedMessage.wrongFlagCount.")
+
+   def resume(self):
+      super().resume()
+      print("wrongFlagCount :",self.wrongFlagCount)

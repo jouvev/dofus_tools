@@ -1,4 +1,5 @@
 from tmp.types.PaddockContentInformations import PaddockContentInformations
+
 class GuildInformationsPaddocksMessage:
    def __init__(self,input):
       self.paddocksInformations = []
@@ -12,4 +13,9 @@ class GuildInformationsPaddocksMessage:
    def _nbPaddockMaxFunc(self,input) :
       self.nbPaddockMax = input.readByte()
       if(self.nbPaddockMax < 0) :
-         raise RuntimeError("Forbidden value (" + self.nbPaddockMax + ") on element of GuildInformationsPaddocksMessage.nbPaddockMax.")
+         raise RuntimeError("Forbidden value (" + str(self.nbPaddockMax) + ") on element of GuildInformationsPaddocksMessage.nbPaddockMax.")
+
+   def resume(self):
+      print("nbPaddockMax :",self.nbPaddockMax)
+      for e in self.paddocksInformations:
+         e.resume()

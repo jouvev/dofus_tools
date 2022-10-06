@@ -6,9 +6,13 @@ class ExchangeStartOkMulticraftCustomerMessage:
    def _skillIdFunc(self,input) :
       self.skillId = input.readVarUhInt()
       if(self.skillId < 0) :
-         raise RuntimeError("Forbidden value (" + self.skillId + ") on element of ExchangeStartOkMulticraftCustomerMessage.skillId.")
+         raise RuntimeError("Forbidden value (" + str(self.skillId) + ") on element of ExchangeStartOkMulticraftCustomerMessage.skillId.")
    
    def _crafterJobLevelFunc(self,input) :
       self.crafterJobLevel = input.readUnsignedByte()
       if(self.crafterJobLevel < 0 or self.crafterJobLevel > 255) :
-         raise RuntimeError("Forbidden value (" + self.crafterJobLevel + ") on element of ExchangeStartOkMulticraftCustomerMessage.crafterJobLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.crafterJobLevel) + ") on element of ExchangeStartOkMulticraftCustomerMessage.crafterJobLevel.")
+
+   def resume(self):
+      print("skillId :",self.skillId)
+      print("crafterJobLevel :",self.crafterJobLevel)

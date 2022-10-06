@@ -16,7 +16,7 @@ class BreachReward:
    def _idFunc(self,input) :
       self.id = input.readVarUhInt()
       if(self.id < 0) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of BreachReward.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of BreachReward.id.")
    
    def _buyCriterionFunc(self,input) :
       self.buyCriterion = input.readUTF()
@@ -27,4 +27,11 @@ class BreachReward:
    def _priceFunc(self,input) :
       self.price = input.readVarUhInt()
       if(self.price < 0) :
-         raise RuntimeError("Forbidden value (" + self.price + ") on element of BreachReward.price.")
+         raise RuntimeError("Forbidden value (" + str(self.price) + ") on element of BreachReward.price.")
+
+   def resume(self):
+      print("id :",self.id)
+      print("buyCriterion :",self.buyCriterion)
+      print("remainingQty :",self.remainingQty)
+      print("price :",self.price)
+      print("buyLocks :",self.buyLocks)

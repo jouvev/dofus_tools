@@ -4,3 +4,6 @@ class GameFightPauseMessage:
    
    def _isPausedFunc(self,input) :
       self.isPaused = input.readBoolean()
+
+   def resume(self):
+      print("isPaused :",self.isPaused)

@@ -8,3 +8,6 @@ class AccessoryPreviewRequestMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of genericId.")
          self.genericId.append(_val1)
+
+   def resume(self):
+      print("genericId :",self.genericId)

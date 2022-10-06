@@ -1,4 +1,5 @@
 from tmp.types.AccountTagInformation import AccountTagInformation
+
 class HouseInstanceInformations:
    def __init__(self,input):
       self.deserializeByteBoxes(input)
@@ -16,9 +17,14 @@ class HouseInstanceInformations:
    def _instanceIdFunc(self,input) :
       self.instanceId = input.readInt()
       if(self.instanceId < 0) :
-         raise RuntimeError("Forbidden value (" + self.instanceId + ") on element of HouseInstanceInformations.instanceId.")
+         raise RuntimeError("Forbidden value (" + str(self.instanceId) + ") on element of HouseInstanceInformations.instanceId.")
    
    def _priceFunc(self,input) :
       self.price = input.readVarLong()
       if(self.price < -9007199254740992 or self.price > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.price + ") on element of HouseInstanceInformations.price.")
+         raise RuntimeError("Forbidden value (" + str(self.price) + ") on element of HouseInstanceInformations.price.")
+
+   def resume(self):
+      print("instanceId :",self.instanceId)
+      print("price :",self.price)
+      self.ownerTag.resum()

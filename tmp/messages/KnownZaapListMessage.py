@@ -8,3 +8,6 @@ class KnownZaapListMessage:
          if(_val1 < 0 or _val1 > 9007199254740992) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of destinations.")
          self.destinations.append(_val1)
+
+   def resume(self):
+      print("destinations :",self.destinations)

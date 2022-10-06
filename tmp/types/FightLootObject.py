@@ -12,3 +12,8 @@ class FightLootObject:
    
    def _priorityHintFunc(self,input) :
       self.priorityHint = input.readInt()
+
+   def resume(self):
+      print("objectId :",self.objectId)
+      print("quantity :",self.quantity)
+      print("priorityHint :",self.priorityHint)

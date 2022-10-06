@@ -1,4 +1,5 @@
 from tmp.types.SpellItem import SpellItem
+
 class SpellListMessage:
    def __init__(self,input):
       self.spells = []
@@ -11,3 +12,8 @@ class SpellListMessage:
    
    def _spellPrevisualizationFunc(self,input) :
       self.spellPrevisualization = input.readBoolean()
+
+   def resume(self):
+      print("spellPrevisualization :",self.spellPrevisualization)
+      for e in self.spells:
+         e.resume()

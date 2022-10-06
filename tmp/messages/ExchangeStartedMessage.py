@@ -4,3 +4,6 @@ class ExchangeStartedMessage:
    
    def _exchangeTypeFunc(self,input) :
       self.exchangeType = input.readByte()
+
+   def resume(self):
+      print("exchangeType :",self.exchangeType)

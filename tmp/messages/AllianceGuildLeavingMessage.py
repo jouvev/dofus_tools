@@ -9,4 +9,8 @@ class AllianceGuildLeavingMessage:
    def _guildIdFunc(self,input) :
       self.guildId = input.readVarUhInt()
       if(self.guildId < 0) :
-         raise RuntimeError("Forbidden value (" + self.guildId + ") on element of AllianceGuildLeavingMessage.guildId.")
+         raise RuntimeError("Forbidden value (" + str(self.guildId) + ") on element of AllianceGuildLeavingMessage.guildId.")
+
+   def resume(self):
+      print("kicked :",self.kicked)
+      print("guildId :",self.guildId)

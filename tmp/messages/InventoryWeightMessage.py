@@ -7,14 +7,19 @@ class InventoryWeightMessage:
    def _inventoryWeightFunc(self,input) :
       self.inventoryWeight = input.readVarUhInt()
       if(self.inventoryWeight < 0) :
-         raise RuntimeError("Forbidden value (" + self.inventoryWeight + ") on element of InventoryWeightMessage.inventoryWeight.")
+         raise RuntimeError("Forbidden value (" + str(self.inventoryWeight) + ") on element of InventoryWeightMessage.inventoryWeight.")
    
    def _shopWeightFunc(self,input) :
       self.shopWeight = input.readVarUhInt()
       if(self.shopWeight < 0) :
-         raise RuntimeError("Forbidden value (" + self.shopWeight + ") on element of InventoryWeightMessage.shopWeight.")
+         raise RuntimeError("Forbidden value (" + str(self.shopWeight) + ") on element of InventoryWeightMessage.shopWeight.")
    
    def _weightMaxFunc(self,input) :
       self.weightMax = input.readVarUhInt()
       if(self.weightMax < 0) :
-         raise RuntimeError("Forbidden value (" + self.weightMax + ") on element of InventoryWeightMessage.weightMax.")
+         raise RuntimeError("Forbidden value (" + str(self.weightMax) + ") on element of InventoryWeightMessage.weightMax.")
+
+   def resume(self):
+      print("inventoryWeight :",self.inventoryWeight)
+      print("shopWeight :",self.shopWeight)
+      print("weightMax :",self.weightMax)

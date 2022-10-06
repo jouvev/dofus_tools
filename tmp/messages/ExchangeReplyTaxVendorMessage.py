@@ -6,9 +6,13 @@ class ExchangeReplyTaxVendorMessage:
    def _objectValueFunc(self,input) :
       self.objectValue = input.readVarUhLong()
       if(self.objectValue < 0 or self.objectValue > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.objectValue + ") on element of ExchangeReplyTaxVendorMessage.objectValue.")
+         raise RuntimeError("Forbidden value (" + str(self.objectValue) + ") on element of ExchangeReplyTaxVendorMessage.objectValue.")
    
    def _totalTaxValueFunc(self,input) :
       self.totalTaxValue = input.readVarUhLong()
       if(self.totalTaxValue < 0 or self.totalTaxValue > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.totalTaxValue + ") on element of ExchangeReplyTaxVendorMessage.totalTaxValue.")
+         raise RuntimeError("Forbidden value (" + str(self.totalTaxValue) + ") on element of ExchangeReplyTaxVendorMessage.totalTaxValue.")
+
+   def resume(self):
+      print("objectValue :",self.objectValue)
+      print("totalTaxValue :",self.totalTaxValue)

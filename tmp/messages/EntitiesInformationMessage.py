@@ -1,4 +1,5 @@
 from tmp.types.EntityInformation import EntityInformation
+
 class EntitiesInformationMessage:
    def __init__(self,input):
       self.entities = []
@@ -7,3 +8,7 @@ class EntitiesInformationMessage:
       for _i1 in range(0,_entitiesLen):
          _item1 = EntityInformation(input)
          self.entities.append(_item1)
+
+   def resume(self):
+      for e in self.entities:
+         e.resume()

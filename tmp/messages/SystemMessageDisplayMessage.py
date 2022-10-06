@@ -15,4 +15,9 @@ class SystemMessageDisplayMessage:
    def _msgIdFunc(self,input) :
       self.msgId = input.readVarUhShort()
       if(self.msgId < 0) :
-         raise RuntimeError("Forbidden value (" + self.msgId + ") on element of SystemMessageDisplayMessage.msgId.")
+         raise RuntimeError("Forbidden value (" + str(self.msgId) + ") on element of SystemMessageDisplayMessage.msgId.")
+
+   def resume(self):
+      print("hangUp :",self.hangUp)
+      print("msgId :",self.msgId)
+      print("parameters :",self.parameters)

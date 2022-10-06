@@ -1,4 +1,5 @@
 from tmp.messages.PartyUpdateLightMessage import PartyUpdateLightMessage
+
 class PartyEntityUpdateLightMessage(PartyUpdateLightMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -7,4 +8,8 @@ class PartyEntityUpdateLightMessage(PartyUpdateLightMessage):
    def _indexIdFunc(self,input) :
       self.indexId = input.readByte()
       if(self.indexId < 0) :
-         raise RuntimeError("Forbidden value (" + self.indexId + ") on element of PartyEntityUpdateLightMessage.indexId.")
+         raise RuntimeError("Forbidden value (" + str(self.indexId) + ") on element of PartyEntityUpdateLightMessage.indexId.")
+
+   def resume(self):
+      super().resume()
+      print("indexId :",self.indexId)

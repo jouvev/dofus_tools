@@ -10,3 +10,7 @@ class ReloginTokenStatusMessage:
    
    def _validTokenFunc(self,input) :
       self.validToken = input.readBoolean()
+
+   def resume(self):
+      print("validToken :",self.validToken)
+      print("ticket :",self.ticket)

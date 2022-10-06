@@ -18,9 +18,16 @@ class PaddockToSellFilterMessage:
    def _maxPriceFunc(self,input) :
       self.maxPrice = input.readVarUhLong()
       if(self.maxPrice < 0 or self.maxPrice > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.maxPrice + ") on element of PaddockToSellFilterMessage.maxPrice.")
+         raise RuntimeError("Forbidden value (" + str(self.maxPrice) + ") on element of PaddockToSellFilterMessage.maxPrice.")
    
    def _orderByFunc(self,input) :
       self.orderBy = input.readByte()
       if(self.orderBy < 0) :
-         raise RuntimeError("Forbidden value (" + self.orderBy + ") on element of PaddockToSellFilterMessage.orderBy.")
+         raise RuntimeError("Forbidden value (" + str(self.orderBy) + ") on element of PaddockToSellFilterMessage.orderBy.")
+
+   def resume(self):
+      print("areaId :",self.areaId)
+      print("atLeastNbMount :",self.atLeastNbMount)
+      print("atLeastNbMachine :",self.atLeastNbMachine)
+      print("maxPrice :",self.maxPrice)
+      print("orderBy :",self.orderBy)

@@ -6,9 +6,13 @@ class RemoveGuildRankRequestMessage:
    def _rankIdFunc(self,input) :
       self.rankId = input.readVarUhInt()
       if(self.rankId < 0) :
-         raise RuntimeError("Forbidden value (" + self.rankId + ") on element of RemoveGuildRankRequestMessage.rankId.")
+         raise RuntimeError("Forbidden value (" + str(self.rankId) + ") on element of RemoveGuildRankRequestMessage.rankId.")
    
    def _newRankIdFunc(self,input) :
       self.newRankId = input.readVarUhInt()
       if(self.newRankId < 0) :
-         raise RuntimeError("Forbidden value (" + self.newRankId + ") on element of RemoveGuildRankRequestMessage.newRankId.")
+         raise RuntimeError("Forbidden value (" + str(self.newRankId) + ") on element of RemoveGuildRankRequestMessage.newRankId.")
+
+   def resume(self):
+      print("rankId :",self.rankId)
+      print("newRankId :",self.newRankId)

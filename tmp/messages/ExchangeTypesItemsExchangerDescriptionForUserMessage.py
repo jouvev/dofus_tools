@@ -1,4 +1,5 @@
 from tmp.types.BidExchangerObjectInfo import BidExchangerObjectInfo
+
 class ExchangeTypesItemsExchangerDescriptionForUserMessage:
    def __init__(self,input):
       self.itemTypeDescriptions = []
@@ -13,9 +14,15 @@ class ExchangeTypesItemsExchangerDescriptionForUserMessage:
    def _objectGIDFunc(self,input) :
       self.objectGID = input.readVarUhInt()
       if(self.objectGID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectGID + ") on element of ExchangeTypesItemsExchangerDescriptionForUserMessage.objectGID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectGID) + ") on element of ExchangeTypesItemsExchangerDescriptionForUserMessage.objectGID.")
    
    def _objectTypeFunc(self,input) :
       self.objectType = input.readInt()
       if(self.objectType < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectType + ") on element of ExchangeTypesItemsExchangerDescriptionForUserMessage.objectType.")
+         raise RuntimeError("Forbidden value (" + str(self.objectType) + ") on element of ExchangeTypesItemsExchangerDescriptionForUserMessage.objectType.")
+
+   def resume(self):
+      print("objectGID :",self.objectGID)
+      print("objectType :",self.objectType)
+      for e in self.itemTypeDescriptions:
+         e.resume()

@@ -1,4 +1,5 @@
 from tmp.types.Idol import Idol
+
 class PartyIdol(Idol):
    def __init__(self,input):
       self.ownersIds = []
@@ -10,3 +11,7 @@ class PartyIdol(Idol):
          if(_val1 < 0 or _val1 > 9007199254740992) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of ownersIds.")
          self.ownersIds.append(_val1)
+
+   def resume(self):
+      super().resume()
+      print("ownersIds :",self.ownersIds)

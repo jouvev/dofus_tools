@@ -1,4 +1,5 @@
 from tmp.types.Version import Version
+
 class IdentificationMessage:
    def __init__(self,input):
       self.credentials = []
@@ -36,4 +37,12 @@ class IdentificationMessage:
    def _sessionOptionalSaltFunc(self,input) :
       self.sessionOptionalSalt = input.readVarLong()
       if(self.sessionOptionalSalt < -9007199254740992 or self.sessionOptionalSalt > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.sessionOptionalSalt + ") on element of IdentificationMessage.sessionOptionalSalt.")
+         raise RuntimeError("Forbidden value (" + str(self.sessionOptionalSalt) + ") on element of IdentificationMessage.sessionOptionalSalt.")
+
+   def resume(self):
+      print("lang :",self.lang)
+      print("serverId :",self.serverId)
+      print("sessionOptionalSalt :",self.sessionOptionalSalt)
+      self.version.resum()
+      print("credentials :",self.credentials)
+      print("failedAttempts :",self.failedAttempts)

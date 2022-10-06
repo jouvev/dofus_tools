@@ -1,4 +1,5 @@
 from tmp.types.Shortcut import Shortcut
+
 class ShortcutEmote(Shortcut):
    def __init__(self,input):
       super().__init__(input)
@@ -7,4 +8,8 @@ class ShortcutEmote(Shortcut):
    def _emoteIdFunc(self,input) :
       self.emoteId = input.readUnsignedShort()
       if(self.emoteId < 0 or self.emoteId > 65535) :
-         raise RuntimeError("Forbidden value (" + self.emoteId + ") on element of ShortcutEmote.emoteId.")
+         raise RuntimeError("Forbidden value (" + str(self.emoteId) + ") on element of ShortcutEmote.emoteId.")
+
+   def resume(self):
+      super().resume()
+      print("emoteId :",self.emoteId)

@@ -5,4 +5,7 @@ class GameContextReadyMessage:
    def _mapIdFunc(self,input) :
       self.mapId = input.readDouble()
       if(self.mapId < 0 or self.mapId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.mapId + ") on element of GameContextReadyMessage.mapId.")
+         raise RuntimeError("Forbidden value (" + str(self.mapId) + ") on element of GameContextReadyMessage.mapId.")
+
+   def resume(self):
+      print("mapId :",self.mapId)

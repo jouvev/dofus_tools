@@ -6,3 +6,6 @@ class ListenersOfSynchronizedStorageMessage:
       for _i1 in range(0,_playersLen):
          _val1 = input.readUTF()
          self.players.append(_val1)
+
+   def resume(self):
+      print("players :",self.players)

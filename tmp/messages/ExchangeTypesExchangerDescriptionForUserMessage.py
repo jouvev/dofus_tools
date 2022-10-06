@@ -13,4 +13,8 @@ class ExchangeTypesExchangerDescriptionForUserMessage:
    def _objectTypeFunc(self,input) :
       self.objectType = input.readInt()
       if(self.objectType < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectType + ") on element of ExchangeTypesExchangerDescriptionForUserMessage.objectType.")
+         raise RuntimeError("Forbidden value (" + str(self.objectType) + ") on element of ExchangeTypesExchangerDescriptionForUserMessage.objectType.")
+
+   def resume(self):
+      print("objectType :",self.objectType)
+      print("typeDescription :",self.typeDescription)

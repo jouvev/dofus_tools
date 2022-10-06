@@ -1,4 +1,5 @@
 from tmp.types.ObjectEffect import ObjectEffect
+
 class ObjectEffectString(ObjectEffect):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class ObjectEffectString(ObjectEffect):
    
    def _valueFunc(self,input) :
       self.value = input.readUTF()
+
+   def resume(self):
+      super().resume()
+      print("value :",self.value)

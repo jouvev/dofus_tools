@@ -8,19 +8,25 @@ class HaapiConfirmationRequestMessage:
    def _kamasFunc(self,input) :
       self.kamas = input.readVarUhLong()
       if(self.kamas < 0 or self.kamas > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.kamas + ") on element of HaapiConfirmationRequestMessage.kamas.")
+         raise RuntimeError("Forbidden value (" + str(self.kamas) + ") on element of HaapiConfirmationRequestMessage.kamas.")
    
    def _ogrinesFunc(self,input) :
       self.ogrines = input.readVarUhLong()
       if(self.ogrines < 0 or self.ogrines > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.ogrines + ") on element of HaapiConfirmationRequestMessage.ogrines.")
+         raise RuntimeError("Forbidden value (" + str(self.ogrines) + ") on element of HaapiConfirmationRequestMessage.ogrines.")
    
    def _rateFunc(self,input) :
       self.rate = input.readVarUhShort()
       if(self.rate < 0) :
-         raise RuntimeError("Forbidden value (" + self.rate + ") on element of HaapiConfirmationRequestMessage.rate.")
+         raise RuntimeError("Forbidden value (" + str(self.rate) + ") on element of HaapiConfirmationRequestMessage.rate.")
    
    def _actionFunc(self,input) :
       self.action = input.readByte()
       if(self.action < 0) :
-         raise RuntimeError("Forbidden value (" + self.action + ") on element of HaapiConfirmationRequestMessage.action.")
+         raise RuntimeError("Forbidden value (" + str(self.action) + ") on element of HaapiConfirmationRequestMessage.action.")
+
+   def resume(self):
+      print("kamas :",self.kamas)
+      print("ogrines :",self.ogrines)
+      print("rate :",self.rate)
+      print("action :",self.action)

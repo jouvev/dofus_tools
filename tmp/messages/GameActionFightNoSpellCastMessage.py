@@ -5,4 +5,7 @@ class GameActionFightNoSpellCastMessage:
    def _spellLevelIdFunc(self,input) :
       self.spellLevelId = input.readVarUhInt()
       if(self.spellLevelId < 0) :
-         raise RuntimeError("Forbidden value (" + self.spellLevelId + ") on element of GameActionFightNoSpellCastMessage.spellLevelId.")
+         raise RuntimeError("Forbidden value (" + str(self.spellLevelId) + ") on element of GameActionFightNoSpellCastMessage.spellLevelId.")
+
+   def resume(self):
+      print("spellLevelId :",self.spellLevelId)

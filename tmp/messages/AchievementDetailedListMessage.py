@@ -1,5 +1,6 @@
 from tmp.types.Achievement import Achievement
 from tmp.types.Achievement import Achievement
+
 class AchievementDetailedListMessage:
    def __init__(self,input):
       self.startedAchievements = []
@@ -14,3 +15,9 @@ class AchievementDetailedListMessage:
       for _i2 in range(0,_finishedAchievementsLen):
          _item2 = Achievement(input)
          self.finishedAchievements.append(_item2)
+
+   def resume(self):
+      for e in self.startedAchievements:
+         e.resume()
+      for e in self.finishedAchievements:
+         e.resume()

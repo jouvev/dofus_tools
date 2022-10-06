@@ -8,3 +8,6 @@ class TreasureHuntShowLegendaryUIMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of availableLegendaryIds.")
          self.availableLegendaryIds.append(_val1)
+
+   def resume(self):
+      print("availableLegendaryIds :",self.availableLegendaryIds)

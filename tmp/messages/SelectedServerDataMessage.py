@@ -21,10 +21,17 @@ class SelectedServerDataMessage:
    def _serverIdFunc(self,input) :
       self.serverId = input.readVarUhShort()
       if(self.serverId < 0) :
-         raise RuntimeError("Forbidden value (" + self.serverId + ") on element of SelectedServerDataMessage.serverId.")
+         raise RuntimeError("Forbidden value (" + str(self.serverId) + ") on element of SelectedServerDataMessage.serverId.")
    
    def _addressFunc(self,input) :
       self.address = input.readUTF()
    
    def _canCreateNewCharacterFunc(self,input) :
       self.canCreateNewCharacter = input.readBoolean()
+
+   def resume(self):
+      print("serverId :",self.serverId)
+      print("address :",self.address)
+      print("canCreateNewCharacter :",self.canCreateNewCharacter)
+      print("ports :",self.ports)
+      print("ticket :",self.ticket)

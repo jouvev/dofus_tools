@@ -5,4 +5,7 @@ class ObjectUseMessage:
    def _objectUIDFunc(self,input) :
       self.objectUID = input.readVarUhInt()
       if(self.objectUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectUID + ") on element of ObjectUseMessage.objectUID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectUID) + ") on element of ObjectUseMessage.objectUID.")
+
+   def resume(self):
+      print("objectUID :",self.objectUID)

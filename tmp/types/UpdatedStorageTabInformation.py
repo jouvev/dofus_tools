@@ -18,9 +18,15 @@ class UpdatedStorageTabInformation:
    def _tabNumberFunc(self,input) :
       self.tabNumber = input.readVarUhInt()
       if(self.tabNumber < 0) :
-         raise RuntimeError("Forbidden value (" + self.tabNumber + ") on element of UpdatedStorageTabInformation.tabNumber.")
+         raise RuntimeError("Forbidden value (" + str(self.tabNumber) + ") on element of UpdatedStorageTabInformation.tabNumber.")
    
    def _pictoFunc(self,input) :
       self.picto = input.readVarUhInt()
       if(self.picto < 0) :
-         raise RuntimeError("Forbidden value (" + self.picto + ") on element of UpdatedStorageTabInformation.picto.")
+         raise RuntimeError("Forbidden value (" + str(self.picto) + ") on element of UpdatedStorageTabInformation.picto.")
+
+   def resume(self):
+      print("name :",self.name)
+      print("tabNumber :",self.tabNumber)
+      print("picto :",self.picto)
+      print("dropTypeLimitation :",self.dropTypeLimitation)

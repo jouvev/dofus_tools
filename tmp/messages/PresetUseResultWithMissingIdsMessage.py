@@ -1,4 +1,5 @@
 from tmp.messages.PresetUseResultMessage import PresetUseResultMessage
+
 class PresetUseResultWithMissingIdsMessage(PresetUseResultMessage):
    def __init__(self,input):
       self.missingIds = []
@@ -10,3 +11,7 @@ class PresetUseResultWithMissingIdsMessage(PresetUseResultMessage):
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of missingIds.")
          self.missingIds.append(_val1)
+
+   def resume(self):
+      super().resume()
+      print("missingIds :",self.missingIds)

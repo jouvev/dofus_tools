@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class GuildLogbookInformationMessage:
    def __init__(self,input):
       self.globalActivities = []
@@ -17,3 +18,9 @@ class GuildLogbookInformationMessage:
          _id2 = input.readUnsignedShort()
          _item2 = pf.TypesFactory.get_instance_id(_id2,input)
          self.chestActivities.append(_item2)
+
+   def resume(self):
+      for e in self.globalActivities:
+         e.resume()
+      for e in self.chestActivities:
+         e.resume()

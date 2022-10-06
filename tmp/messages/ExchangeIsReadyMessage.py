@@ -6,7 +6,11 @@ class ExchangeIsReadyMessage:
    def _idFunc(self,input) :
       self.id = input.readDouble()
       if(self.id < -9007199254740992 or self.id > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of ExchangeIsReadyMessage.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of ExchangeIsReadyMessage.id.")
    
    def _readyFunc(self,input) :
       self.ready = input.readBoolean()
+
+   def resume(self):
+      print("id :",self.id)
+      print("ready :",self.ready)

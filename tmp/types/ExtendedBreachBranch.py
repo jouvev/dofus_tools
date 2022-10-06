@@ -1,5 +1,6 @@
 from tmp.types.BreachReward import BreachReward
 from tmp.types.BreachBranch import BreachBranch
+
 class ExtendedBreachBranch(BreachBranch):
    def __init__(self,input):
       self.rewards = []
@@ -18,4 +19,11 @@ class ExtendedBreachBranch(BreachBranch):
    def _prizeFunc(self,input) :
       self.prize = input.readVarUhInt()
       if(self.prize < 0) :
-         raise RuntimeError("Forbidden value (" + self.prize + ") on element of ExtendedBreachBranch.prize.")
+         raise RuntimeError("Forbidden value (" + str(self.prize) + ") on element of ExtendedBreachBranch.prize.")
+
+   def resume(self):
+      super().resume()
+      print("modifier :",self.modifier)
+      print("prize :",self.prize)
+      for e in self.rewards:
+         e.resume()

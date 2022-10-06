@@ -5,4 +5,7 @@ class FightTeamMemberInformations:
    def _idFunc(self,input) :
       self.id = input.readDouble()
       if(self.id < -9007199254740992 or self.id > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of FightTeamMemberInformations.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of FightTeamMemberInformations.id.")
+
+   def resume(self):
+      print("id :",self.id)

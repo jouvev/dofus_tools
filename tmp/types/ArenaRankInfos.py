@@ -1,5 +1,6 @@
 from tmp.types.ArenaRanking import ArenaRanking
 from tmp.types.ArenaLeagueRanking import ArenaLeagueRanking
+
 class ArenaRankInfos:
    def __init__(self,input):
       if(input.readByte() == 0) :
@@ -17,14 +18,21 @@ class ArenaRankInfos:
    def _victoryCountFunc(self,input) :
       self.victoryCount = input.readVarUhShort()
       if(self.victoryCount < 0) :
-         raise RuntimeError("Forbidden value (" + self.victoryCount + ") on element of ArenaRankInfos.victoryCount.")
+         raise RuntimeError("Forbidden value (" + str(self.victoryCount) + ") on element of ArenaRankInfos.victoryCount.")
    
    def _fightcountFunc(self,input) :
       self.fightcount = input.readVarUhShort()
       if(self.fightcount < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightcount + ") on element of ArenaRankInfos.fightcount.")
+         raise RuntimeError("Forbidden value (" + str(self.fightcount) + ") on element of ArenaRankInfos.fightcount.")
    
    def _numFightNeededForLadderFunc(self,input) :
       self.numFightNeededForLadder = input.readShort()
       if(self.numFightNeededForLadder < 0) :
-         raise RuntimeError("Forbidden value (" + self.numFightNeededForLadder + ") on element of ArenaRankInfos.numFightNeededForLadder.")
+         raise RuntimeError("Forbidden value (" + str(self.numFightNeededForLadder) + ") on element of ArenaRankInfos.numFightNeededForLadder.")
+
+   def resume(self):
+      print("victoryCount :",self.victoryCount)
+      print("fightcount :",self.fightcount)
+      print("numFightNeededForLadder :",self.numFightNeededForLadder)
+      self.ranking.resum()
+      self.leagueRanking.resum()

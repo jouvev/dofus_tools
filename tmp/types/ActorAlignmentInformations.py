@@ -11,14 +11,20 @@ class ActorAlignmentInformations:
    def _alignmentValueFunc(self,input) :
       self.alignmentValue = input.readByte()
       if(self.alignmentValue < 0) :
-         raise RuntimeError("Forbidden value (" + self.alignmentValue + ") on element of ActorAlignmentInformations.alignmentValue.")
+         raise RuntimeError("Forbidden value (" + str(self.alignmentValue) + ") on element of ActorAlignmentInformations.alignmentValue.")
    
    def _alignmentGradeFunc(self,input) :
       self.alignmentGrade = input.readByte()
       if(self.alignmentGrade < 0) :
-         raise RuntimeError("Forbidden value (" + self.alignmentGrade + ") on element of ActorAlignmentInformations.alignmentGrade.")
+         raise RuntimeError("Forbidden value (" + str(self.alignmentGrade) + ") on element of ActorAlignmentInformations.alignmentGrade.")
    
    def _characterPowerFunc(self,input) :
       self.characterPower = input.readDouble()
       if(self.characterPower < -9007199254740992 or self.characterPower > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.characterPower + ") on element of ActorAlignmentInformations.characterPower.")
+         raise RuntimeError("Forbidden value (" + str(self.characterPower) + ") on element of ActorAlignmentInformations.characterPower.")
+
+   def resume(self):
+      print("alignmentSide :",self.alignmentSide)
+      print("alignmentValue :",self.alignmentValue)
+      print("alignmentGrade :",self.alignmentGrade)
+      print("characterPower :",self.characterPower)

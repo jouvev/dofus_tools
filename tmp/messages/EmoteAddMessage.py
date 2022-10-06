@@ -5,4 +5,7 @@ class EmoteAddMessage:
    def _emoteIdFunc(self,input) :
       self.emoteId = input.readUnsignedShort()
       if(self.emoteId < 0 or self.emoteId > 65535) :
-         raise RuntimeError("Forbidden value (" + self.emoteId + ") on element of EmoteAddMessage.emoteId.")
+         raise RuntimeError("Forbidden value (" + str(self.emoteId) + ") on element of EmoteAddMessage.emoteId.")
+
+   def resume(self):
+      print("emoteId :",self.emoteId)

@@ -1,5 +1,6 @@
 from tmp.types.SpellForPreset import SpellForPreset
 from tmp.types.Preset import Preset
+
 class SpellsPreset(Preset):
    def __init__(self,input):
       self.spells = []
@@ -9,3 +10,8 @@ class SpellsPreset(Preset):
       for _i1 in range(0,_spellsLen):
          _item1 = SpellForPreset(input)
          self.spells.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.spells:
+         e.resume()

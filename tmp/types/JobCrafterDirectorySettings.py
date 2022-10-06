@@ -7,12 +7,17 @@ class JobCrafterDirectorySettings:
    def _jobIdFunc(self,input) :
       self.jobId = input.readByte()
       if(self.jobId < 0) :
-         raise RuntimeError("Forbidden value (" + self.jobId + ") on element of JobCrafterDirectorySettings.jobId.")
+         raise RuntimeError("Forbidden value (" + str(self.jobId) + ") on element of JobCrafterDirectorySettings.jobId.")
    
    def _minLevelFunc(self,input) :
       self.minLevel = input.readUnsignedByte()
       if(self.minLevel < 0 or self.minLevel > 255) :
-         raise RuntimeError("Forbidden value (" + self.minLevel + ") on element of JobCrafterDirectorySettings.minLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.minLevel) + ") on element of JobCrafterDirectorySettings.minLevel.")
    
    def _freeFunc(self,input) :
       self.free = input.readBoolean()
+
+   def resume(self):
+      print("jobId :",self.jobId)
+      print("minLevel :",self.minLevel)
+      print("free :",self.free)

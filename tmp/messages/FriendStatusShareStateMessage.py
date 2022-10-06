@@ -4,3 +4,6 @@ class FriendStatusShareStateMessage:
    
    def _shareFunc(self,input) :
       self.share = input.readBoolean()
+
+   def resume(self):
+      print("share :",self.share)

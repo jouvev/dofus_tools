@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.GameRolePlayNamedActorInformations import GameRolePlayNamedActorInformations
+
 class GameRolePlayMerchantInformations(GameRolePlayNamedActorInformations):
    def __init__(self,input):
       self.options = []
@@ -16,4 +17,10 @@ class GameRolePlayMerchantInformations(GameRolePlayNamedActorInformations):
    def _sellTypeFunc(self,input) :
       self.sellType = input.readByte()
       if(self.sellType < 0) :
-         raise RuntimeError("Forbidden value (" + self.sellType + ") on element of GameRolePlayMerchantInformations.sellType.")
+         raise RuntimeError("Forbidden value (" + str(self.sellType) + ") on element of GameRolePlayMerchantInformations.sellType.")
+
+   def resume(self):
+      super().resume()
+      print("sellType :",self.sellType)
+      for e in self.options:
+         e.resume()

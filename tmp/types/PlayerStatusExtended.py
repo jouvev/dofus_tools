@@ -1,4 +1,5 @@
 from tmp.types.PlayerStatus import PlayerStatus
+
 class PlayerStatusExtended(PlayerStatus):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class PlayerStatusExtended(PlayerStatus):
    
    def _messageFunc(self,input) :
       self.message = input.readUTF()
+
+   def resume(self):
+      super().resume()
+      print("message :",self.message)

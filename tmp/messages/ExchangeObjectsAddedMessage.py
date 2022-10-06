@@ -1,5 +1,6 @@
 from tmp.messages.ExchangeObjectMessage import ExchangeObjectMessage
 from tmp.types.ObjectItem import ObjectItem
+
 class ExchangeObjectsAddedMessage(ExchangeObjectMessage):
    def __init__(self,input):
       self.object = []
@@ -9,3 +10,8 @@ class ExchangeObjectsAddedMessage(ExchangeObjectMessage):
       for _i1 in range(0,_objectLen):
          _item1 = ObjectItem(input)
          self.object.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.object:
+         e.resume()

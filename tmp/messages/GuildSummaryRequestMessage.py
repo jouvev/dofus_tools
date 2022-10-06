@@ -1,4 +1,5 @@
 from tmp.messages.PaginationRequestAbstractMessage import PaginationRequestAbstractMessage
+
 class GuildSummaryRequestMessage(PaginationRequestAbstractMessage):
    def __init__(self,input):
       self.criterionFilter = []
@@ -47,34 +48,48 @@ class GuildSummaryRequestMessage(PaginationRequestAbstractMessage):
    def _minLevelFilterFunc(self,input) :
       self.minLevelFilter = input.readShort()
       if(self.minLevelFilter < 0) :
-         raise RuntimeError("Forbidden value (" + self.minLevelFilter + ") on element of GuildSummaryRequestMessage.minLevelFilter.")
+         raise RuntimeError("Forbidden value (" + str(self.minLevelFilter) + ") on element of GuildSummaryRequestMessage.minLevelFilter.")
    
    def _maxLevelFilterFunc(self,input) :
       self.maxLevelFilter = input.readShort()
       if(self.maxLevelFilter < 0) :
-         raise RuntimeError("Forbidden value (" + self.maxLevelFilter + ") on element of GuildSummaryRequestMessage.maxLevelFilter.")
+         raise RuntimeError("Forbidden value (" + str(self.maxLevelFilter) + ") on element of GuildSummaryRequestMessage.maxLevelFilter.")
    
    def _minPlayerLevelFilterFunc(self,input) :
       self.minPlayerLevelFilter = input.readShort()
       if(self.minPlayerLevelFilter < 0) :
-         raise RuntimeError("Forbidden value (" + self.minPlayerLevelFilter + ") on element of GuildSummaryRequestMessage.minPlayerLevelFilter.")
+         raise RuntimeError("Forbidden value (" + str(self.minPlayerLevelFilter) + ") on element of GuildSummaryRequestMessage.minPlayerLevelFilter.")
    
    def _maxPlayerLevelFilterFunc(self,input) :
       self.maxPlayerLevelFilter = input.readShort()
       if(self.maxPlayerLevelFilter < 0) :
-         raise RuntimeError("Forbidden value (" + self.maxPlayerLevelFilter + ") on element of GuildSummaryRequestMessage.maxPlayerLevelFilter.")
+         raise RuntimeError("Forbidden value (" + str(self.maxPlayerLevelFilter) + ") on element of GuildSummaryRequestMessage.maxPlayerLevelFilter.")
    
    def _minSuccessFilterFunc(self,input) :
       self.minSuccessFilter = input.readVarUhInt()
       if(self.minSuccessFilter < 0) :
-         raise RuntimeError("Forbidden value (" + self.minSuccessFilter + ") on element of GuildSummaryRequestMessage.minSuccessFilter.")
+         raise RuntimeError("Forbidden value (" + str(self.minSuccessFilter) + ") on element of GuildSummaryRequestMessage.minSuccessFilter.")
    
    def _maxSuccessFilterFunc(self,input) :
       self.maxSuccessFilter = input.readVarUhInt()
       if(self.maxSuccessFilter < 0) :
-         raise RuntimeError("Forbidden value (" + self.maxSuccessFilter + ") on element of GuildSummaryRequestMessage.maxSuccessFilter.")
+         raise RuntimeError("Forbidden value (" + str(self.maxSuccessFilter) + ") on element of GuildSummaryRequestMessage.maxSuccessFilter.")
    
    def _sortTypeFunc(self,input) :
       self.sortType = input.readByte()
       if(self.sortType < 0) :
-         raise RuntimeError("Forbidden value (" + self.sortType + ") on element of GuildSummaryRequestMessage.sortType.")
+         raise RuntimeError("Forbidden value (" + str(self.sortType) + ") on element of GuildSummaryRequestMessage.sortType.")
+
+   def resume(self):
+      super().resume()
+      print("nameFilter :",self.nameFilter)
+      print("minLevelFilter :",self.minLevelFilter)
+      print("maxLevelFilter :",self.maxLevelFilter)
+      print("minPlayerLevelFilter :",self.minPlayerLevelFilter)
+      print("maxPlayerLevelFilter :",self.maxPlayerLevelFilter)
+      print("minSuccessFilter :",self.minSuccessFilter)
+      print("maxSuccessFilter :",self.maxSuccessFilter)
+      print("sortType :",self.sortType)
+      print("criterionFilter :",self.criterionFilter)
+      print("languagesFilter :",self.languagesFilter)
+      print("recruitmentTypeFilter :",self.recruitmentTypeFilter)

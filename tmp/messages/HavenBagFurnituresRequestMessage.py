@@ -22,3 +22,8 @@ class HavenBagFurnituresRequestMessage:
          if(_val3 < 0) :
             raise RuntimeError("Forbidden value (" + _val3 + ") on elements of orientations.")
          self.orientations.append(_val3)
+
+   def resume(self):
+      print("cellIds :",self.cellIds)
+      print("funitureIds :",self.funitureIds)
+      print("orientations :",self.orientations)

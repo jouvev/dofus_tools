@@ -4,3 +4,6 @@ class BreachExitResponseMessage:
    
    def _exitedFunc(self,input) :
       self.exited = input.readBoolean()
+
+   def resume(self):
+      print("exited :",self.exited)

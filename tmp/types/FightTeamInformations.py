@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.AbstractFightTeamInformations import AbstractFightTeamInformations
+
 class FightTeamInformations(AbstractFightTeamInformations):
    def __init__(self,input):
       self.teamMembers = []
@@ -11,3 +12,8 @@ class FightTeamInformations(AbstractFightTeamInformations):
          _id1 = input.readUnsignedShort()
          _item1 = pf.TypesFactory.get_instance_id(_id1,input)
          self.teamMembers.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.teamMembers:
+         e.resume()

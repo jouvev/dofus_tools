@@ -6,9 +6,13 @@ class QuestObjectiveValidationMessage:
    def _questIdFunc(self,input) :
       self.questId = input.readVarUhShort()
       if(self.questId < 0) :
-         raise RuntimeError("Forbidden value (" + self.questId + ") on element of QuestObjectiveValidationMessage.questId.")
+         raise RuntimeError("Forbidden value (" + str(self.questId) + ") on element of QuestObjectiveValidationMessage.questId.")
    
    def _objectiveIdFunc(self,input) :
       self.objectiveId = input.readVarUhShort()
       if(self.objectiveId < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectiveId + ") on element of QuestObjectiveValidationMessage.objectiveId.")
+         raise RuntimeError("Forbidden value (" + str(self.objectiveId) + ") on element of QuestObjectiveValidationMessage.objectiveId.")
+
+   def resume(self):
+      print("questId :",self.questId)
+      print("objectiveId :",self.objectiveId)

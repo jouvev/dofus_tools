@@ -8,3 +8,6 @@ class FightOptionsInformations:
       self.isRestrictedToPartyOnly = bool(bin(_box0)[2:].zfill(8)[1])
       self.isClosed = bool(bin(_box0)[2:].zfill(8)[2])
       self.isAskingForHelp = bool(bin(_box0)[2:].zfill(8)[3])
+
+   def resume(self):
+      pass

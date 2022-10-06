@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.GuildInAllianceInformations import GuildInAllianceInformations
+
 class AllianceFactsMessage:
    def __init__(self,input):
       self.guilds = []
@@ -24,7 +25,14 @@ class AllianceFactsMessage:
    def _leaderCharacterIdFunc(self,input) :
       self.leaderCharacterId = input.readVarUhLong()
       if(self.leaderCharacterId < 0 or self.leaderCharacterId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.leaderCharacterId + ") on element of AllianceFactsMessage.leaderCharacterId.")
+         raise RuntimeError("Forbidden value (" + str(self.leaderCharacterId) + ") on element of AllianceFactsMessage.leaderCharacterId.")
    
    def _leaderCharacterNameFunc(self,input) :
       self.leaderCharacterName = input.readUTF()
+
+   def resume(self):
+      print("leaderCharacterId :",self.leaderCharacterId)
+      print("leaderCharacterName :",self.leaderCharacterName)
+      for e in self.guilds:
+         e.resume()
+      print("controlledSubareaIds :",self.controlledSubareaIds)

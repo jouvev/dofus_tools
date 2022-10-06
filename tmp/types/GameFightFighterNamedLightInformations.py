@@ -1,4 +1,5 @@
 from tmp.types.GameFightFighterLightInformations import GameFightFighterLightInformations
+
 class GameFightFighterNamedLightInformations(GameFightFighterLightInformations):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class GameFightFighterNamedLightInformations(GameFightFighterLightInformations):
    
    def _nameFunc(self,input) :
       self.name = input.readUTF()
+
+   def resume(self):
+      super().resume()
+      print("name :",self.name)

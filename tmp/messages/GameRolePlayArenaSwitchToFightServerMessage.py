@@ -18,3 +18,8 @@ class GameRolePlayArenaSwitchToFightServerMessage:
    
    def _addressFunc(self,input) :
       self.address = input.readUTF()
+
+   def resume(self):
+      print("address :",self.address)
+      print("ports :",self.ports)
+      print("ticket :",self.ticket)

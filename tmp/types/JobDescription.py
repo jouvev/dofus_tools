@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class JobDescription:
    def __init__(self,input):
       self.skills = []
@@ -14,4 +15,9 @@ class JobDescription:
    def _jobIdFunc(self,input) :
       self.jobId = input.readByte()
       if(self.jobId < 0) :
-         raise RuntimeError("Forbidden value (" + self.jobId + ") on element of JobDescription.jobId.")
+         raise RuntimeError("Forbidden value (" + str(self.jobId) + ") on element of JobDescription.jobId.")
+
+   def resume(self):
+      print("jobId :",self.jobId)
+      for e in self.skills:
+         e.resume()

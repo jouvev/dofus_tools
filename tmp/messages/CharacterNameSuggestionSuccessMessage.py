@@ -4,3 +4,6 @@ class CharacterNameSuggestionSuccessMessage:
    
    def _suggestionFunc(self,input) :
       self.suggestion = input.readUTF()
+
+   def resume(self):
+      print("suggestion :",self.suggestion)

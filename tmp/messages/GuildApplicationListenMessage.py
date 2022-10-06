@@ -4,3 +4,6 @@ class GuildApplicationListenMessage:
    
    def _listenFunc(self,input) :
       self.listen = input.readBoolean()
+
+   def resume(self):
+      print("listen :",self.listen)

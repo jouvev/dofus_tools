@@ -9,4 +9,8 @@ class SequenceStartMessage:
    def _authorIdFunc(self,input) :
       self.authorId = input.readDouble()
       if(self.authorId < -9007199254740992 or self.authorId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.authorId + ") on element of SequenceStartMessage.authorId.")
+         raise RuntimeError("Forbidden value (" + str(self.authorId) + ") on element of SequenceStartMessage.authorId.")
+
+   def resume(self):
+      print("sequenceType :",self.sequenceType)
+      print("authorId :",self.authorId)

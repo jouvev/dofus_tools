@@ -5,4 +5,7 @@ class AllianceFactsErrorMessage:
    def _allianceIdFunc(self,input) :
       self.allianceId = input.readVarUhInt()
       if(self.allianceId < 0) :
-         raise RuntimeError("Forbidden value (" + self.allianceId + ") on element of AllianceFactsErrorMessage.allianceId.")
+         raise RuntimeError("Forbidden value (" + str(self.allianceId) + ") on element of AllianceFactsErrorMessage.allianceId.")
+
+   def resume(self):
+      print("allianceId :",self.allianceId)

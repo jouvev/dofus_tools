@@ -5,4 +5,7 @@ class PaddockRemoveItemRequestMessage:
    def _cellIdFunc(self,input) :
       self.cellId = input.readVarUhShort()
       if(self.cellId < 0 or self.cellId > 559) :
-         raise RuntimeError("Forbidden value (" + self.cellId + ") on element of PaddockRemoveItemRequestMessage.cellId.")
+         raise RuntimeError("Forbidden value (" + str(self.cellId) + ") on element of PaddockRemoveItemRequestMessage.cellId.")
+
+   def resume(self):
+      print("cellId :",self.cellId)

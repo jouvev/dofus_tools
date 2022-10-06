@@ -26,39 +26,51 @@ class GuildInfosUpgradeMessage:
    def _maxTaxCollectorsCountFunc(self,input) :
       self.maxTaxCollectorsCount = input.readByte()
       if(self.maxTaxCollectorsCount < 0) :
-         raise RuntimeError("Forbidden value (" + self.maxTaxCollectorsCount + ") on element of GuildInfosUpgradeMessage.maxTaxCollectorsCount.")
+         raise RuntimeError("Forbidden value (" + str(self.maxTaxCollectorsCount) + ") on element of GuildInfosUpgradeMessage.maxTaxCollectorsCount.")
    
    def _taxCollectorsCountFunc(self,input) :
       self.taxCollectorsCount = input.readByte()
       if(self.taxCollectorsCount < 0) :
-         raise RuntimeError("Forbidden value (" + self.taxCollectorsCount + ") on element of GuildInfosUpgradeMessage.taxCollectorsCount.")
+         raise RuntimeError("Forbidden value (" + str(self.taxCollectorsCount) + ") on element of GuildInfosUpgradeMessage.taxCollectorsCount.")
    
    def _taxCollectorLifePointsFunc(self,input) :
       self.taxCollectorLifePoints = input.readVarUhShort()
       if(self.taxCollectorLifePoints < 0) :
-         raise RuntimeError("Forbidden value (" + self.taxCollectorLifePoints + ") on element of GuildInfosUpgradeMessage.taxCollectorLifePoints.")
+         raise RuntimeError("Forbidden value (" + str(self.taxCollectorLifePoints) + ") on element of GuildInfosUpgradeMessage.taxCollectorLifePoints.")
    
    def _taxCollectorDamagesBonusesFunc(self,input) :
       self.taxCollectorDamagesBonuses = input.readVarUhShort()
       if(self.taxCollectorDamagesBonuses < 0) :
-         raise RuntimeError("Forbidden value (" + self.taxCollectorDamagesBonuses + ") on element of GuildInfosUpgradeMessage.taxCollectorDamagesBonuses.")
+         raise RuntimeError("Forbidden value (" + str(self.taxCollectorDamagesBonuses) + ") on element of GuildInfosUpgradeMessage.taxCollectorDamagesBonuses.")
    
    def _taxCollectorPodsFunc(self,input) :
       self.taxCollectorPods = input.readVarUhShort()
       if(self.taxCollectorPods < 0) :
-         raise RuntimeError("Forbidden value (" + self.taxCollectorPods + ") on element of GuildInfosUpgradeMessage.taxCollectorPods.")
+         raise RuntimeError("Forbidden value (" + str(self.taxCollectorPods) + ") on element of GuildInfosUpgradeMessage.taxCollectorPods.")
    
    def _taxCollectorProspectingFunc(self,input) :
       self.taxCollectorProspecting = input.readVarUhShort()
       if(self.taxCollectorProspecting < 0) :
-         raise RuntimeError("Forbidden value (" + self.taxCollectorProspecting + ") on element of GuildInfosUpgradeMessage.taxCollectorProspecting.")
+         raise RuntimeError("Forbidden value (" + str(self.taxCollectorProspecting) + ") on element of GuildInfosUpgradeMessage.taxCollectorProspecting.")
    
    def _taxCollectorWisdomFunc(self,input) :
       self.taxCollectorWisdom = input.readVarUhShort()
       if(self.taxCollectorWisdom < 0) :
-         raise RuntimeError("Forbidden value (" + self.taxCollectorWisdom + ") on element of GuildInfosUpgradeMessage.taxCollectorWisdom.")
+         raise RuntimeError("Forbidden value (" + str(self.taxCollectorWisdom) + ") on element of GuildInfosUpgradeMessage.taxCollectorWisdom.")
    
    def _boostPointsFunc(self,input) :
       self.boostPoints = input.readVarUhShort()
       if(self.boostPoints < 0) :
-         raise RuntimeError("Forbidden value (" + self.boostPoints + ") on element of GuildInfosUpgradeMessage.boostPoints.")
+         raise RuntimeError("Forbidden value (" + str(self.boostPoints) + ") on element of GuildInfosUpgradeMessage.boostPoints.")
+
+   def resume(self):
+      print("maxTaxCollectorsCount :",self.maxTaxCollectorsCount)
+      print("taxCollectorsCount :",self.taxCollectorsCount)
+      print("taxCollectorLifePoints :",self.taxCollectorLifePoints)
+      print("taxCollectorDamagesBonuses :",self.taxCollectorDamagesBonuses)
+      print("taxCollectorPods :",self.taxCollectorPods)
+      print("taxCollectorProspecting :",self.taxCollectorProspecting)
+      print("taxCollectorWisdom :",self.taxCollectorWisdom)
+      print("boostPoints :",self.boostPoints)
+      print("spellId :",self.spellId)
+      print("spellLevel :",self.spellLevel)

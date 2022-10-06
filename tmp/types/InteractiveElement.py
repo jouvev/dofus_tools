@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class InteractiveElement:
    def __init__(self,input):
       self.enabledSkills = []
@@ -24,10 +25,19 @@ class InteractiveElement:
    def _elementIdFunc(self,input) :
       self.elementId = input.readInt()
       if(self.elementId < 0) :
-         raise RuntimeError("Forbidden value (" + self.elementId + ") on element of InteractiveElement.elementId.")
+         raise RuntimeError("Forbidden value (" + str(self.elementId) + ") on element of InteractiveElement.elementId.")
    
    def _elementTypeIdFunc(self,input) :
       self.elementTypeId = input.readInt()
    
    def _onCurrentMapFunc(self,input) :
       self.onCurrentMap = input.readBoolean()
+
+   def resume(self):
+      print("elementId :",self.elementId)
+      print("elementTypeId :",self.elementTypeId)
+      print("onCurrentMap :",self.onCurrentMap)
+      for e in self.enabledSkills:
+         e.resume()
+      for e in self.disabledSkills:
+         e.resume()

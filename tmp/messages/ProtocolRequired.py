@@ -4,3 +4,6 @@ class ProtocolRequired:
    
    def _versionFunc(self,input) :
       self.version = input.readUTF()
+
+   def resume(self):
+      print("version :",self.version)

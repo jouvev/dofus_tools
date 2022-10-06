@@ -1,4 +1,5 @@
 from tmp.types.CharacterCharacteristic import CharacterCharacteristic
+
 class CharacterCharacteristicDetailed(CharacterCharacteristic):
    def __init__(self,input):
       super().__init__(input)
@@ -22,3 +23,11 @@ class CharacterCharacteristicDetailed(CharacterCharacteristic):
    
    def _contextModifFunc(self,input) :
       self.contextModif = input.readVarInt()
+
+   def resume(self):
+      super().resume()
+      print("base :",self.base)
+      print("additional :",self.additional)
+      print("objectsAndMountBonus :",self.objectsAndMountBonus)
+      print("alignGiftBonus :",self.alignGiftBonus)
+      print("contextModif :",self.contextModif)

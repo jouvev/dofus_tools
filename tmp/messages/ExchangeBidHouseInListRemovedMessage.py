@@ -10,9 +10,14 @@ class ExchangeBidHouseInListRemovedMessage:
    def _objectGIDFunc(self,input) :
       self.objectGID = input.readVarUhInt()
       if(self.objectGID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectGID + ") on element of ExchangeBidHouseInListRemovedMessage.objectGID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectGID) + ") on element of ExchangeBidHouseInListRemovedMessage.objectGID.")
    
    def _objectTypeFunc(self,input) :
       self.objectType = input.readInt()
       if(self.objectType < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectType + ") on element of ExchangeBidHouseInListRemovedMessage.objectType.")
+         raise RuntimeError("Forbidden value (" + str(self.objectType) + ") on element of ExchangeBidHouseInListRemovedMessage.objectType.")
+
+   def resume(self):
+      print("itemUID :",self.itemUID)
+      print("objectGID :",self.objectGID)
+      print("objectType :",self.objectType)

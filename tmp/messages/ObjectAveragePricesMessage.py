@@ -16,3 +16,7 @@ class ObjectAveragePricesMessage:
          if(_val2 < 0 or _val2 > 9007199254740992) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of avgPrices.")
          self.avgPrices.append(_val2)
+
+   def resume(self):
+      print("ids :",self.ids)
+      print("avgPrices :",self.avgPrices)

@@ -1,4 +1,5 @@
 from tmp.types.TeleportDestination import TeleportDestination
+
 class TeleportDestinationsMessage:
    def __init__(self,input):
       self.destinations = []
@@ -12,4 +13,9 @@ class TeleportDestinationsMessage:
    def _typeFunc(self,input) :
       self.type = input.readByte()
       if(self.type < 0) :
-         raise RuntimeError("Forbidden value (" + self.type + ") on element of TeleportDestinationsMessage.type.")
+         raise RuntimeError("Forbidden value (" + str(self.type) + ") on element of TeleportDestinationsMessage.type.")
+
+   def resume(self):
+      print("type :",self.type)
+      for e in self.destinations:
+         e.resume()

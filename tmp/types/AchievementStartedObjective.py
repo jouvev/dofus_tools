@@ -1,4 +1,5 @@
 from tmp.types.AchievementObjective import AchievementObjective
+
 class AchievementStartedObjective(AchievementObjective):
    def __init__(self,input):
       super().__init__(input)
@@ -7,4 +8,8 @@ class AchievementStartedObjective(AchievementObjective):
    def _valueFunc(self,input) :
       self.value = input.readVarUhShort()
       if(self.value < 0) :
-         raise RuntimeError("Forbidden value (" + self.value + ") on element of AchievementStartedObjective.value.")
+         raise RuntimeError("Forbidden value (" + str(self.value) + ") on element of AchievementStartedObjective.value.")
+
+   def resume(self):
+      super().resume()
+      print("value :",self.value)

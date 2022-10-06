@@ -6,9 +6,13 @@ class AbstractGameActionMessage:
    def _actionIdFunc(self,input) :
       self.actionId = input.readVarUhShort()
       if(self.actionId < 0) :
-         raise RuntimeError("Forbidden value (" + self.actionId + ") on element of AbstractGameActionMessage.actionId.")
+         raise RuntimeError("Forbidden value (" + str(self.actionId) + ") on element of AbstractGameActionMessage.actionId.")
    
    def _sourceIdFunc(self,input) :
       self.sourceId = input.readDouble()
       if(self.sourceId < -9007199254740992 or self.sourceId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.sourceId + ") on element of AbstractGameActionMessage.sourceId.")
+         raise RuntimeError("Forbidden value (" + str(self.sourceId) + ") on element of AbstractGameActionMessage.sourceId.")
+
+   def resume(self):
+      print("actionId :",self.actionId)
+      print("sourceId :",self.sourceId)

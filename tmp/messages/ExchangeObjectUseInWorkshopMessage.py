@@ -6,7 +6,11 @@ class ExchangeObjectUseInWorkshopMessage:
    def _objectUIDFunc(self,input) :
       self.objectUID = input.readVarUhInt()
       if(self.objectUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectUID + ") on element of ExchangeObjectUseInWorkshopMessage.objectUID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectUID) + ") on element of ExchangeObjectUseInWorkshopMessage.objectUID.")
    
    def _quantityFunc(self,input) :
       self.quantity = input.readVarInt()
+
+   def resume(self):
+      print("objectUID :",self.objectUID)
+      print("quantity :",self.quantity)

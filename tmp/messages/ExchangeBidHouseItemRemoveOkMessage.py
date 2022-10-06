@@ -4,3 +4,6 @@ class ExchangeBidHouseItemRemoveOkMessage:
    
    def _sellerIdFunc(self,input) :
       self.sellerId = input.readInt()
+
+   def resume(self):
+      print("sellerId :",self.sellerId)

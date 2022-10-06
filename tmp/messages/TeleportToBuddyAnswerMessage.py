@@ -7,12 +7,17 @@ class TeleportToBuddyAnswerMessage:
    def _dungeonIdFunc(self,input) :
       self.dungeonId = input.readVarUhShort()
       if(self.dungeonId < 0) :
-         raise RuntimeError("Forbidden value (" + self.dungeonId + ") on element of TeleportToBuddyAnswerMessage.dungeonId.")
+         raise RuntimeError("Forbidden value (" + str(self.dungeonId) + ") on element of TeleportToBuddyAnswerMessage.dungeonId.")
    
    def _buddyIdFunc(self,input) :
       self.buddyId = input.readVarUhLong()
       if(self.buddyId < 0 or self.buddyId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.buddyId + ") on element of TeleportToBuddyAnswerMessage.buddyId.")
+         raise RuntimeError("Forbidden value (" + str(self.buddyId) + ") on element of TeleportToBuddyAnswerMessage.buddyId.")
    
    def _acceptFunc(self,input) :
       self.accept = input.readBoolean()
+
+   def resume(self):
+      print("dungeonId :",self.dungeonId)
+      print("buddyId :",self.buddyId)
+      print("accept :",self.accept)

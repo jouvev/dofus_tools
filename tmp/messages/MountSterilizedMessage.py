@@ -4,3 +4,6 @@ class MountSterilizedMessage:
    
    def _mountIdFunc(self,input) :
       self.mountId = input.readVarInt()
+
+   def resume(self):
+      print("mountId :",self.mountId)

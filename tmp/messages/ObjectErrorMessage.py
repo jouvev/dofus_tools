@@ -4,3 +4,6 @@ class ObjectErrorMessage:
    
    def _reasonFunc(self,input) :
       self.reason = input.readByte()
+
+   def resume(self):
+      print("reason :",self.reason)

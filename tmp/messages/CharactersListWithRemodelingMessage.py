@@ -1,5 +1,6 @@
 from tmp.messages.CharactersListMessage import CharactersListMessage
 from tmp.types.CharacterToRemodelInformations import CharacterToRemodelInformations
+
 class CharactersListWithRemodelingMessage(CharactersListMessage):
    def __init__(self,input):
       self.charactersToRemodel = []
@@ -9,3 +10,8 @@ class CharactersListWithRemodelingMessage(CharactersListMessage):
       for _i1 in range(0,_charactersToRemodelLen):
          _item1 = CharacterToRemodelInformations(input)
          self.charactersToRemodel.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.charactersToRemodel:
+         e.resume()

@@ -6,3 +6,6 @@ class NotificationListMessage:
       for _i1 in range(0,_flagsLen):
          _val1 = input.readVarInt()
          self.flags.append(_val1)
+
+   def resume(self):
+      print("flags :",self.flags)

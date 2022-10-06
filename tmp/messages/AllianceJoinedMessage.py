@@ -1,4 +1,5 @@
 from tmp.types.AllianceInformations import AllianceInformations
+
 class AllianceJoinedMessage:
    def __init__(self,input):
       self.allianceInfo = AllianceInformations(input)
@@ -11,4 +12,9 @@ class AllianceJoinedMessage:
    def _leadingGuildIdFunc(self,input) :
       self.leadingGuildId = input.readVarUhInt()
       if(self.leadingGuildId < 0) :
-         raise RuntimeError("Forbidden value (" + self.leadingGuildId + ") on element of AllianceJoinedMessage.leadingGuildId.")
+         raise RuntimeError("Forbidden value (" + str(self.leadingGuildId) + ") on element of AllianceJoinedMessage.leadingGuildId.")
+
+   def resume(self):
+      print("enabled :",self.enabled)
+      print("leadingGuildId :",self.leadingGuildId)
+      self.allianceInfo.resum()

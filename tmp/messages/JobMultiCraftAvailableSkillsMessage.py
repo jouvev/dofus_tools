@@ -1,4 +1,5 @@
 from tmp.messages.JobAllowMultiCraftRequestMessage import JobAllowMultiCraftRequestMessage
+
 class JobMultiCraftAvailableSkillsMessage(JobAllowMultiCraftRequestMessage):
    def __init__(self,input):
       self.skills = []
@@ -15,4 +16,9 @@ class JobMultiCraftAvailableSkillsMessage(JobAllowMultiCraftRequestMessage):
    def _playerIdFunc(self,input) :
       self.playerId = input.readVarUhLong()
       if(self.playerId < 0 or self.playerId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.playerId + ") on element of JobMultiCraftAvailableSkillsMessage.playerId.")
+         raise RuntimeError("Forbidden value (" + str(self.playerId) + ") on element of JobMultiCraftAvailableSkillsMessage.playerId.")
+
+   def resume(self):
+      super().resume()
+      print("playerId :",self.playerId)
+      print("skills :",self.skills)

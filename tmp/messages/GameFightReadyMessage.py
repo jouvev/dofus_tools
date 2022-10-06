@@ -4,3 +4,6 @@ class GameFightReadyMessage:
    
    def _isReadyFunc(self,input) :
       self.isReady = input.readBoolean()
+
+   def resume(self):
+      print("isReady :",self.isReady)

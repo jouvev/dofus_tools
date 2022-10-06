@@ -6,7 +6,11 @@ class GameRolePlayArenaFightAnswerMessage:
    def _fightIdFunc(self,input) :
       self.fightId = input.readVarUhShort()
       if(self.fightId < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightId + ") on element of GameRolePlayArenaFightAnswerMessage.fightId.")
+         raise RuntimeError("Forbidden value (" + str(self.fightId) + ") on element of GameRolePlayArenaFightAnswerMessage.fightId.")
    
    def _acceptFunc(self,input) :
       self.accept = input.readBoolean()
+
+   def resume(self):
+      print("fightId :",self.fightId)
+      print("accept :",self.accept)

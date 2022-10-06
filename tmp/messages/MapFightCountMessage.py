@@ -5,4 +5,7 @@ class MapFightCountMessage:
    def _fightCountFunc(self,input) :
       self.fightCount = input.readVarUhShort()
       if(self.fightCount < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightCount + ") on element of MapFightCountMessage.fightCount.")
+         raise RuntimeError("Forbidden value (" + str(self.fightCount) + ") on element of MapFightCountMessage.fightCount.")
+
+   def resume(self):
+      print("fightCount :",self.fightCount)

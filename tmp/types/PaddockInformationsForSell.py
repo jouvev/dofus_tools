@@ -14,17 +14,17 @@ class PaddockInformationsForSell:
    def _worldXFunc(self,input) :
       self.worldX = input.readShort()
       if(self.worldX < -255 or self.worldX > 255) :
-         raise RuntimeError("Forbidden value (" + self.worldX + ") on element of PaddockInformationsForSell.worldX.")
+         raise RuntimeError("Forbidden value (" + str(self.worldX) + ") on element of PaddockInformationsForSell.worldX.")
    
    def _worldYFunc(self,input) :
       self.worldY = input.readShort()
       if(self.worldY < -255 or self.worldY > 255) :
-         raise RuntimeError("Forbidden value (" + self.worldY + ") on element of PaddockInformationsForSell.worldY.")
+         raise RuntimeError("Forbidden value (" + str(self.worldY) + ") on element of PaddockInformationsForSell.worldY.")
    
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of PaddockInformationsForSell.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of PaddockInformationsForSell.subAreaId.")
    
    def _nbMountFunc(self,input) :
       self.nbMount = input.readByte()
@@ -35,4 +35,13 @@ class PaddockInformationsForSell:
    def _priceFunc(self,input) :
       self.price = input.readVarUhLong()
       if(self.price < 0 or self.price > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.price + ") on element of PaddockInformationsForSell.price.")
+         raise RuntimeError("Forbidden value (" + str(self.price) + ") on element of PaddockInformationsForSell.price.")
+
+   def resume(self):
+      print("guildOwner :",self.guildOwner)
+      print("worldX :",self.worldX)
+      print("worldY :",self.worldY)
+      print("subAreaId :",self.subAreaId)
+      print("nbMount :",self.nbMount)
+      print("nbObject :",self.nbObject)
+      print("price :",self.price)

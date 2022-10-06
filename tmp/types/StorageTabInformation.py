@@ -21,24 +21,33 @@ class StorageTabInformation:
    def _tabNumberFunc(self,input) :
       self.tabNumber = input.readVarUhInt()
       if(self.tabNumber < 0) :
-         raise RuntimeError("Forbidden value (" + self.tabNumber + ") on element of StorageTabInformation.tabNumber.")
+         raise RuntimeError("Forbidden value (" + str(self.tabNumber) + ") on element of StorageTabInformation.tabNumber.")
    
    def _pictoFunc(self,input) :
       self.picto = input.readVarUhInt()
       if(self.picto < 0) :
-         raise RuntimeError("Forbidden value (" + self.picto + ") on element of StorageTabInformation.picto.")
+         raise RuntimeError("Forbidden value (" + str(self.picto) + ") on element of StorageTabInformation.picto.")
    
    def _openRightFunc(self,input) :
       self.openRight = input.readVarUhInt()
       if(self.openRight < 0) :
-         raise RuntimeError("Forbidden value (" + self.openRight + ") on element of StorageTabInformation.openRight.")
+         raise RuntimeError("Forbidden value (" + str(self.openRight) + ") on element of StorageTabInformation.openRight.")
    
    def _dropRightFunc(self,input) :
       self.dropRight = input.readVarUhInt()
       if(self.dropRight < 0) :
-         raise RuntimeError("Forbidden value (" + self.dropRight + ") on element of StorageTabInformation.dropRight.")
+         raise RuntimeError("Forbidden value (" + str(self.dropRight) + ") on element of StorageTabInformation.dropRight.")
    
    def _takeRightFunc(self,input) :
       self.takeRight = input.readVarUhInt()
       if(self.takeRight < 0) :
-         raise RuntimeError("Forbidden value (" + self.takeRight + ") on element of StorageTabInformation.takeRight.")
+         raise RuntimeError("Forbidden value (" + str(self.takeRight) + ") on element of StorageTabInformation.takeRight.")
+
+   def resume(self):
+      print("name :",self.name)
+      print("tabNumber :",self.tabNumber)
+      print("picto :",self.picto)
+      print("openRight :",self.openRight)
+      print("dropRight :",self.dropRight)
+      print("takeRight :",self.takeRight)
+      print("dropTypeLimitation :",self.dropTypeLimitation)

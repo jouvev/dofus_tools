@@ -4,3 +4,6 @@ class HaapiValidationRequestMessage:
    
    def _transactionFunc(self,input) :
       self.transaction = input.readUTF()
+
+   def resume(self):
+      print("transaction :",self.transaction)

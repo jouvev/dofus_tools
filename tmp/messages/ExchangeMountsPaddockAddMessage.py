@@ -1,4 +1,5 @@
 from tmp.types.MountClientData import MountClientData
+
 class ExchangeMountsPaddockAddMessage:
    def __init__(self,input):
       self.mountDescription = []
@@ -7,3 +8,7 @@ class ExchangeMountsPaddockAddMessage:
       for _i1 in range(0,_mountDescriptionLen):
          _item1 = MountClientData(input)
          self.mountDescription.append(_item1)
+
+   def resume(self):
+      for e in self.mountDescription:
+         e.resume()

@@ -5,4 +5,7 @@ class JobCrafterDirectoryListRequestMessage:
    def _jobIdFunc(self,input) :
       self.jobId = input.readByte()
       if(self.jobId < 0) :
-         raise RuntimeError("Forbidden value (" + self.jobId + ") on element of JobCrafterDirectoryListRequestMessage.jobId.")
+         raise RuntimeError("Forbidden value (" + str(self.jobId) + ") on element of JobCrafterDirectoryListRequestMessage.jobId.")
+
+   def resume(self):
+      print("jobId :",self.jobId)

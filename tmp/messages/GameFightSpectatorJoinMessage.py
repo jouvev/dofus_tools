@@ -1,5 +1,6 @@
 from tmp.messages.GameFightJoinMessage import GameFightJoinMessage
 from tmp.types.NamedPartyTeam import NamedPartyTeam
+
 class GameFightSpectatorJoinMessage(GameFightJoinMessage):
    def __init__(self,input):
       self.namedPartyTeams = []
@@ -9,3 +10,8 @@ class GameFightSpectatorJoinMessage(GameFightJoinMessage):
       for _i1 in range(0,_namedPartyTeamsLen):
          _item1 = NamedPartyTeam(input)
          self.namedPartyTeams.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.namedPartyTeams:
+         e.resume()

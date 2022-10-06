@@ -8,3 +8,7 @@ class AccountTagInformation:
    
    def _tagNumberFunc(self,input) :
       self.tagNumber = input.readUTF()
+
+   def resume(self):
+      print("nickname :",self.nickname)
+      print("tagNumber :",self.tagNumber)

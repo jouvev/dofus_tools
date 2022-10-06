@@ -1,6 +1,7 @@
 import tmp.TypesFactory as pf
 from tmp.types.SpellItem import SpellItem
 from tmp.types.CharacterCharacteristicsInformations import CharacterCharacteristicsInformations
+
 class SlaveSwitchContextMessage:
    def __init__(self,input):
       self.slaveSpells = []
@@ -25,14 +26,24 @@ class SlaveSwitchContextMessage:
    def _masterIdFunc(self,input) :
       self.masterId = input.readDouble()
       if(self.masterId < -9007199254740992 or self.masterId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.masterId + ") on element of SlaveSwitchContextMessage.masterId.")
+         raise RuntimeError("Forbidden value (" + str(self.masterId) + ") on element of SlaveSwitchContextMessage.masterId.")
    
    def _slaveIdFunc(self,input) :
       self.slaveId = input.readDouble()
       if(self.slaveId < -9007199254740992 or self.slaveId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.slaveId + ") on element of SlaveSwitchContextMessage.slaveId.")
+         raise RuntimeError("Forbidden value (" + str(self.slaveId) + ") on element of SlaveSwitchContextMessage.slaveId.")
    
    def _slaveTurnFunc(self,input) :
       self.slaveTurn = input.readVarUhShort()
       if(self.slaveTurn < 0) :
-         raise RuntimeError("Forbidden value (" + self.slaveTurn + ") on element of SlaveSwitchContextMessage.slaveTurn.")
+         raise RuntimeError("Forbidden value (" + str(self.slaveTurn) + ") on element of SlaveSwitchContextMessage.slaveTurn.")
+
+   def resume(self):
+      print("masterId :",self.masterId)
+      print("slaveId :",self.slaveId)
+      print("slaveTurn :",self.slaveTurn)
+      self.slaveStats.resum()
+      for e in self.slaveSpells:
+         e.resume()
+      for e in self.shortcuts:
+         e.resume()

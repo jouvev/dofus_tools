@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.CharacterBaseInformations import CharacterBaseInformations
+
 class PartyMemberInformations(CharacterBaseInformations):
    def __init__(self,input):
       self.entities = []
@@ -27,27 +28,27 @@ class PartyMemberInformations(CharacterBaseInformations):
    def _lifePointsFunc(self,input) :
       self.lifePoints = input.readVarUhInt()
       if(self.lifePoints < 0) :
-         raise RuntimeError("Forbidden value (" + self.lifePoints + ") on element of PartyMemberInformations.lifePoints.")
+         raise RuntimeError("Forbidden value (" + str(self.lifePoints) + ") on element of PartyMemberInformations.lifePoints.")
    
    def _maxLifePointsFunc(self,input) :
       self.maxLifePoints = input.readVarUhInt()
       if(self.maxLifePoints < 0) :
-         raise RuntimeError("Forbidden value (" + self.maxLifePoints + ") on element of PartyMemberInformations.maxLifePoints.")
+         raise RuntimeError("Forbidden value (" + str(self.maxLifePoints) + ") on element of PartyMemberInformations.maxLifePoints.")
    
    def _prospectingFunc(self,input) :
       self.prospecting = input.readVarUhInt()
       if(self.prospecting < 0) :
-         raise RuntimeError("Forbidden value (" + self.prospecting + ") on element of PartyMemberInformations.prospecting.")
+         raise RuntimeError("Forbidden value (" + str(self.prospecting) + ") on element of PartyMemberInformations.prospecting.")
    
    def _regenRateFunc(self,input) :
       self.regenRate = input.readUnsignedByte()
       if(self.regenRate < 0 or self.regenRate > 255) :
-         raise RuntimeError("Forbidden value (" + self.regenRate + ") on element of PartyMemberInformations.regenRate.")
+         raise RuntimeError("Forbidden value (" + str(self.regenRate) + ") on element of PartyMemberInformations.regenRate.")
    
    def _initiativeFunc(self,input) :
       self.initiative = input.readVarUhInt()
       if(self.initiative < 0) :
-         raise RuntimeError("Forbidden value (" + self.initiative + ") on element of PartyMemberInformations.initiative.")
+         raise RuntimeError("Forbidden value (" + str(self.initiative) + ") on element of PartyMemberInformations.initiative.")
    
    def _alignmentSideFunc(self,input) :
       self.alignmentSide = input.readByte()
@@ -55,19 +56,34 @@ class PartyMemberInformations(CharacterBaseInformations):
    def _worldXFunc(self,input) :
       self.worldX = input.readShort()
       if(self.worldX < -255 or self.worldX > 255) :
-         raise RuntimeError("Forbidden value (" + self.worldX + ") on element of PartyMemberInformations.worldX.")
+         raise RuntimeError("Forbidden value (" + str(self.worldX) + ") on element of PartyMemberInformations.worldX.")
    
    def _worldYFunc(self,input) :
       self.worldY = input.readShort()
       if(self.worldY < -255 or self.worldY > 255) :
-         raise RuntimeError("Forbidden value (" + self.worldY + ") on element of PartyMemberInformations.worldY.")
+         raise RuntimeError("Forbidden value (" + str(self.worldY) + ") on element of PartyMemberInformations.worldY.")
    
    def _mapIdFunc(self,input) :
       self.mapId = input.readDouble()
       if(self.mapId < 0 or self.mapId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.mapId + ") on element of PartyMemberInformations.mapId.")
+         raise RuntimeError("Forbidden value (" + str(self.mapId) + ") on element of PartyMemberInformations.mapId.")
    
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of PartyMemberInformations.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of PartyMemberInformations.subAreaId.")
+
+   def resume(self):
+      super().resume()
+      print("lifePoints :",self.lifePoints)
+      print("maxLifePoints :",self.maxLifePoints)
+      print("prospecting :",self.prospecting)
+      print("regenRate :",self.regenRate)
+      print("initiative :",self.initiative)
+      print("alignmentSide :",self.alignmentSide)
+      print("worldX :",self.worldX)
+      print("worldY :",self.worldY)
+      print("mapId :",self.mapId)
+      print("subAreaId :",self.subAreaId)
+      for e in self.entities:
+         e.resume()

@@ -5,4 +5,7 @@ class ExchangeMoneyMovementInformationMessage:
    def _limitFunc(self,input) :
       self.limit = input.readVarUhLong()
       if(self.limit < 0 or self.limit > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.limit + ") on element of ExchangeMoneyMovementInformationMessage.limit.")
+         raise RuntimeError("Forbidden value (" + str(self.limit) + ") on element of ExchangeMoneyMovementInformationMessage.limit.")
+
+   def resume(self):
+      print("limit :",self.limit)

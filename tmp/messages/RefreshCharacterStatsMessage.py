@@ -1,4 +1,5 @@
 from tmp.types.GameFightCharacteristics import GameFightCharacteristics
+
 class RefreshCharacterStatsMessage:
    def __init__(self,input):
       self._fighterIdFunc(input)
@@ -7,4 +8,8 @@ class RefreshCharacterStatsMessage:
    def _fighterIdFunc(self,input) :
       self.fighterId = input.readDouble()
       if(self.fighterId < -9007199254740992 or self.fighterId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.fighterId + ") on element of RefreshCharacterStatsMessage.fighterId.")
+         raise RuntimeError("Forbidden value (" + str(self.fighterId) + ") on element of RefreshCharacterStatsMessage.fighterId.")
+
+   def resume(self):
+      print("fighterId :",self.fighterId)
+      self.stats.resum()

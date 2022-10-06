@@ -1,4 +1,5 @@
 from tmp.types.ObjectItemQuantity import ObjectItemQuantity
+
 class ObjectFeedMessage:
    def __init__(self,input):
       self.meal = []
@@ -12,4 +13,9 @@ class ObjectFeedMessage:
    def _objectUIDFunc(self,input) :
       self.objectUID = input.readVarUhInt()
       if(self.objectUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectUID + ") on element of ObjectFeedMessage.objectUID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectUID) + ") on element of ObjectFeedMessage.objectUID.")
+
+   def resume(self):
+      print("objectUID :",self.objectUID)
+      for e in self.meal:
+         e.resume()

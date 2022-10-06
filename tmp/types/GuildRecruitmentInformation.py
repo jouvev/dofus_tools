@@ -36,12 +36,12 @@ class GuildRecruitmentInformation:
    def _guildIdFunc(self,input) :
       self.guildId = input.readVarUhInt()
       if(self.guildId < 0) :
-         raise RuntimeError("Forbidden value (" + self.guildId + ") on element of GuildRecruitmentInformation.guildId.")
+         raise RuntimeError("Forbidden value (" + str(self.guildId) + ") on element of GuildRecruitmentInformation.guildId.")
    
    def _recruitmentTypeFunc(self,input) :
       self.recruitmentType = input.readByte()
       if(self.recruitmentType < 0) :
-         raise RuntimeError("Forbidden value (" + self.recruitmentType + ") on element of GuildRecruitmentInformation.recruitmentType.")
+         raise RuntimeError("Forbidden value (" + str(self.recruitmentType) + ") on element of GuildRecruitmentInformation.recruitmentType.")
    
    def _recruitmentTitleFunc(self,input) :
       self.recruitmentTitle = input.readUTF()
@@ -52,12 +52,12 @@ class GuildRecruitmentInformation:
    def _minLevelFunc(self,input) :
       self.minLevel = input.readShort()
       if(self.minLevel < 0) :
-         raise RuntimeError("Forbidden value (" + self.minLevel + ") on element of GuildRecruitmentInformation.minLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.minLevel) + ") on element of GuildRecruitmentInformation.minLevel.")
    
    def _minSuccessFunc(self,input) :
       self.minSuccess = input.readVarUhInt()
       if(self.minSuccess < 0) :
-         raise RuntimeError("Forbidden value (" + self.minSuccess + ") on element of GuildRecruitmentInformation.minSuccess.")
+         raise RuntimeError("Forbidden value (" + str(self.minSuccess) + ") on element of GuildRecruitmentInformation.minSuccess.")
    
    def _lastEditPlayerNameFunc(self,input) :
       self.lastEditPlayerName = input.readUTF()
@@ -65,4 +65,16 @@ class GuildRecruitmentInformation:
    def _lastEditDateFunc(self,input) :
       self.lastEditDate = input.readDouble()
       if(self.lastEditDate < -9007199254740992 or self.lastEditDate > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.lastEditDate + ") on element of GuildRecruitmentInformation.lastEditDate.")
+         raise RuntimeError("Forbidden value (" + str(self.lastEditDate) + ") on element of GuildRecruitmentInformation.lastEditDate.")
+
+   def resume(self):
+      print("guildId :",self.guildId)
+      print("recruitmentType :",self.recruitmentType)
+      print("recruitmentTitle :",self.recruitmentTitle)
+      print("recruitmentText :",self.recruitmentText)
+      print("minLevel :",self.minLevel)
+      print("minSuccess :",self.minSuccess)
+      print("lastEditPlayerName :",self.lastEditPlayerName)
+      print("lastEditDate :",self.lastEditDate)
+      print("selectedLanguages :",self.selectedLanguages)
+      print("selectedCriterion :",self.selectedCriterion)

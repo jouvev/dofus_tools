@@ -5,4 +5,7 @@ class GuildSelectChestTabRequestMessage:
    def _tabNumberFunc(self,input) :
       self.tabNumber = input.readVarUhInt()
       if(self.tabNumber < 0) :
-         raise RuntimeError("Forbidden value (" + self.tabNumber + ") on element of GuildSelectChestTabRequestMessage.tabNumber.")
+         raise RuntimeError("Forbidden value (" + str(self.tabNumber) + ") on element of GuildSelectChestTabRequestMessage.tabNumber.")
+
+   def resume(self):
+      print("tabNumber :",self.tabNumber)

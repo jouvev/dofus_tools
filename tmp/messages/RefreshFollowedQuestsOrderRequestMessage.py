@@ -8,3 +8,6 @@ class RefreshFollowedQuestsOrderRequestMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of quests.")
          self.quests.append(_val1)
+
+   def resume(self):
+      print("quests :",self.quests)

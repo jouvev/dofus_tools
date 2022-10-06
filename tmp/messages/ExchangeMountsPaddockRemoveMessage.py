@@ -6,3 +6,6 @@ class ExchangeMountsPaddockRemoveMessage:
       for _i1 in range(0,_mountsIdLen):
          _val1 = input.readVarInt()
          self.mountsId.append(_val1)
+
+   def resume(self):
+      print("mountsId :",self.mountsId)

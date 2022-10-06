@@ -8,12 +8,12 @@ class HouseGuildShareRequestMessage:
    def _houseIdFunc(self,input) :
       self.houseId = input.readVarUhInt()
       if(self.houseId < 0) :
-         raise RuntimeError("Forbidden value (" + self.houseId + ") on element of HouseGuildShareRequestMessage.houseId.")
+         raise RuntimeError("Forbidden value (" + str(self.houseId) + ") on element of HouseGuildShareRequestMessage.houseId.")
    
    def _instanceIdFunc(self,input) :
       self.instanceId = input.readInt()
       if(self.instanceId < 0) :
-         raise RuntimeError("Forbidden value (" + self.instanceId + ") on element of HouseGuildShareRequestMessage.instanceId.")
+         raise RuntimeError("Forbidden value (" + str(self.instanceId) + ") on element of HouseGuildShareRequestMessage.instanceId.")
    
    def _enableFunc(self,input) :
       self.enable = input.readBoolean()
@@ -21,4 +21,10 @@ class HouseGuildShareRequestMessage:
    def _rightsFunc(self,input) :
       self.rights = input.readVarUhInt()
       if(self.rights < 0) :
-         raise RuntimeError("Forbidden value (" + self.rights + ") on element of HouseGuildShareRequestMessage.rights.")
+         raise RuntimeError("Forbidden value (" + str(self.rights) + ") on element of HouseGuildShareRequestMessage.rights.")
+
+   def resume(self):
+      print("houseId :",self.houseId)
+      print("instanceId :",self.instanceId)
+      print("enable :",self.enable)
+      print("rights :",self.rights)

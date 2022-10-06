@@ -8,3 +8,7 @@ class MountRenameRequestMessage:
    
    def _mountIdFunc(self,input) :
       self.mountId = input.readVarInt()
+
+   def resume(self):
+      print("name :",self.name)
+      print("mountId :",self.mountId)

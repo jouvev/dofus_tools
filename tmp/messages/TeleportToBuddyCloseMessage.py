@@ -6,9 +6,13 @@ class TeleportToBuddyCloseMessage:
    def _dungeonIdFunc(self,input) :
       self.dungeonId = input.readVarUhShort()
       if(self.dungeonId < 0) :
-         raise RuntimeError("Forbidden value (" + self.dungeonId + ") on element of TeleportToBuddyCloseMessage.dungeonId.")
+         raise RuntimeError("Forbidden value (" + str(self.dungeonId) + ") on element of TeleportToBuddyCloseMessage.dungeonId.")
    
    def _buddyIdFunc(self,input) :
       self.buddyId = input.readVarUhLong()
       if(self.buddyId < 0 or self.buddyId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.buddyId + ") on element of TeleportToBuddyCloseMessage.buddyId.")
+         raise RuntimeError("Forbidden value (" + str(self.buddyId) + ") on element of TeleportToBuddyCloseMessage.buddyId.")
+
+   def resume(self):
+      print("dungeonId :",self.dungeonId)
+      print("buddyId :",self.buddyId)

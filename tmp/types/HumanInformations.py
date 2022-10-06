@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.ActorRestrictionsInformations import ActorRestrictionsInformations
+
 class HumanInformations:
    def __init__(self,input):
       self.options = []
@@ -15,3 +16,9 @@ class HumanInformations:
    
    def _sexFunc(self,input) :
       self.sex = input.readBoolean()
+
+   def resume(self):
+      print("sex :",self.sex)
+      self.restrictions.resum()
+      for e in self.options:
+         e.resume()

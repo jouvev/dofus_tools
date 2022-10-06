@@ -9,12 +9,12 @@ class ArenaLeagueRanking:
    def _rankFunc(self,input) :
       self.rank = input.readVarUhShort()
       if(self.rank < 0 or self.rank > 20000) :
-         raise RuntimeError("Forbidden value (" + self.rank + ") on element of ArenaLeagueRanking.rank.")
+         raise RuntimeError("Forbidden value (" + str(self.rank) + ") on element of ArenaLeagueRanking.rank.")
    
    def _leagueIdFunc(self,input) :
       self.leagueId = input.readVarUhShort()
       if(self.leagueId < 0) :
-         raise RuntimeError("Forbidden value (" + self.leagueId + ") on element of ArenaLeagueRanking.leagueId.")
+         raise RuntimeError("Forbidden value (" + str(self.leagueId) + ") on element of ArenaLeagueRanking.leagueId.")
    
    def _leaguePointsFunc(self,input) :
       self.leaguePoints = input.readVarShort()
@@ -24,3 +24,10 @@ class ArenaLeagueRanking:
    
    def _ladderPositionFunc(self,input) :
       self.ladderPosition = input.readInt()
+
+   def resume(self):
+      print("rank :",self.rank)
+      print("leagueId :",self.leagueId)
+      print("leaguePoints :",self.leaguePoints)
+      print("totalLeaguePoints :",self.totalLeaguePoints)
+      print("ladderPosition :",self.ladderPosition)

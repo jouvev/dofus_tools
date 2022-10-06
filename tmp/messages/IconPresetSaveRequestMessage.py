@@ -10,7 +10,12 @@ class IconPresetSaveRequestMessage:
    def _symbolIdFunc(self,input) :
       self.symbolId = input.readByte()
       if(self.symbolId < 0) :
-         raise RuntimeError("Forbidden value (" + self.symbolId + ") on element of IconPresetSaveRequestMessage.symbolId.")
+         raise RuntimeError("Forbidden value (" + str(self.symbolId) + ") on element of IconPresetSaveRequestMessage.symbolId.")
    
    def _updateDataFunc(self,input) :
       self.updateData = input.readBoolean()
+
+   def resume(self):
+      print("presetId :",self.presetId)
+      print("symbolId :",self.symbolId)
+      print("updateData :",self.updateData)

@@ -1,5 +1,6 @@
 from tmp.types.ObjectItemQuantityPriceDateEffects import ObjectItemQuantityPriceDateEffects
 from tmp.types.ObjectItemQuantityPriceDateEffects import ObjectItemQuantityPriceDateEffects
+
 class ExchangeOfflineSoldItemsMessage:
    def __init__(self,input):
       self.bidHouseItems = []
@@ -14,3 +15,9 @@ class ExchangeOfflineSoldItemsMessage:
       for _i2 in range(0,_merchantItemsLen):
          _item2 = ObjectItemQuantityPriceDateEffects(input)
          self.merchantItems.append(_item2)
+
+   def resume(self):
+      for e in self.bidHouseItems:
+         e.resume()
+      for e in self.merchantItems:
+         e.resume()

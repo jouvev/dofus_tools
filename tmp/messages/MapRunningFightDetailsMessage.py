@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class MapRunningFightDetailsMessage:
    def __init__(self,input):
       self.attackers = []
@@ -15,4 +16,9 @@ class MapRunningFightDetailsMessage:
    def _fightIdFunc(self,input) :
       self.fightId = input.readVarUhShort()
       if(self.fightId < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightId + ") on element of MapRunningFightDetailsMessage.fightId.")
+         raise RuntimeError("Forbidden value (" + str(self.fightId) + ") on element of MapRunningFightDetailsMessage.fightId.")
+
+   def resume(self):
+      print("fightId :",self.fightId)
+      for e in self.attackers:
+         e.resume()

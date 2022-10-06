@@ -16,3 +16,7 @@ class ObjectGroundListAddedMessage:
          if(_val2 < 0) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of referenceIds.")
          self.referenceIds.append(_val2)
+
+   def resume(self):
+      print("cells :",self.cells)
+      print("referenceIds :",self.referenceIds)

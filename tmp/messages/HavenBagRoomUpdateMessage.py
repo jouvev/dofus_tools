@@ -1,4 +1,5 @@
 from tmp.types.HavenBagRoomPreviewInformation import HavenBagRoomPreviewInformation
+
 class HavenBagRoomUpdateMessage:
    def __init__(self,input):
       self.roomsPreview = []
@@ -12,4 +13,9 @@ class HavenBagRoomUpdateMessage:
    def _actionFunc(self,input) :
       self.action = input.readByte()
       if(self.action < 0) :
-         raise RuntimeError("Forbidden value (" + self.action + ") on element of HavenBagRoomUpdateMessage.action.")
+         raise RuntimeError("Forbidden value (" + str(self.action) + ") on element of HavenBagRoomUpdateMessage.action.")
+
+   def resume(self):
+      print("action :",self.action)
+      for e in self.roomsPreview:
+         e.resume()

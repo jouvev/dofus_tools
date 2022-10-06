@@ -4,3 +4,6 @@ class CharacterCanBeCreatedResultMessage:
    
    def _yesYouCanFunc(self,input) :
       self.yesYouCan = input.readBoolean()
+
+   def resume(self):
+      print("yesYouCan :",self.yesYouCan)

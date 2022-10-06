@@ -9,4 +9,8 @@ class PresetDeleteResultMessage:
    def _codeFunc(self,input) :
       self.code = input.readByte()
       if(self.code < 0) :
-         raise RuntimeError("Forbidden value (" + self.code + ") on element of PresetDeleteResultMessage.code.")
+         raise RuntimeError("Forbidden value (" + str(self.code) + ") on element of PresetDeleteResultMessage.code.")
+
+   def resume(self):
+      print("presetId :",self.presetId)
+      print("code :",self.code)

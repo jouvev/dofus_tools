@@ -1,4 +1,5 @@
 from tmp.messages.ExchangeObjectMessage import ExchangeObjectMessage
+
 class ExchangeObjectsRemovedMessage(ExchangeObjectMessage):
    def __init__(self,input):
       self.objectUID = []
@@ -10,3 +11,7 @@ class ExchangeObjectsRemovedMessage(ExchangeObjectMessage):
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of objectUID.")
          self.objectUID.append(_val1)
+
+   def resume(self):
+      super().resume()
+      print("objectUID :",self.objectUID)

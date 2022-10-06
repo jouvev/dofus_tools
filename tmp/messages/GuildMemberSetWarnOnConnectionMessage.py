@@ -4,3 +4,6 @@ class GuildMemberSetWarnOnConnectionMessage:
    
    def _enableFunc(self,input) :
       self.enable = input.readBoolean()
+
+   def resume(self):
+      print("enable :",self.enable)

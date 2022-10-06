@@ -5,4 +5,7 @@ class ShortcutBarRemoveErrorMessage:
    def _errorFunc(self,input) :
       self.error = input.readByte()
       if(self.error < 0) :
-         raise RuntimeError("Forbidden value (" + self.error + ") on element of ShortcutBarRemoveErrorMessage.error.")
+         raise RuntimeError("Forbidden value (" + str(self.error) + ") on element of ShortcutBarRemoveErrorMessage.error.")
+
+   def resume(self):
+      print("error :",self.error)

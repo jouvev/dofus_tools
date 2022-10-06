@@ -8,3 +8,7 @@ class GameMapNoMovementMessage:
    
    def _cellYFunc(self,input) :
       self.cellY = input.readShort()
+
+   def resume(self):
+      print("cellX :",self.cellX)
+      print("cellY :",self.cellY)

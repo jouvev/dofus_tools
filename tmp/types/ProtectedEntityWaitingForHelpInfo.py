@@ -13,4 +13,9 @@ class ProtectedEntityWaitingForHelpInfo:
    def _nbPositionForDefensorsFunc(self,input) :
       self.nbPositionForDefensors = input.readByte()
       if(self.nbPositionForDefensors < 0) :
-         raise RuntimeError("Forbidden value (" + self.nbPositionForDefensors + ") on element of ProtectedEntityWaitingForHelpInfo.nbPositionForDefensors.")
+         raise RuntimeError("Forbidden value (" + str(self.nbPositionForDefensors) + ") on element of ProtectedEntityWaitingForHelpInfo.nbPositionForDefensors.")
+
+   def resume(self):
+      print("timeLeftBeforeFight :",self.timeLeftBeforeFight)
+      print("waitTimeForPlacement :",self.waitTimeForPlacement)
+      print("nbPositionForDefensors :",self.nbPositionForDefensors)

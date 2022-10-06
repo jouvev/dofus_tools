@@ -12,9 +12,14 @@ class TextInformationMessage:
    def _msgTypeFunc(self,input) :
       self.msgType = input.readByte()
       if(self.msgType < 0) :
-         raise RuntimeError("Forbidden value (" + self.msgType + ") on element of TextInformationMessage.msgType.")
+         raise RuntimeError("Forbidden value (" + str(self.msgType) + ") on element of TextInformationMessage.msgType.")
    
    def _msgIdFunc(self,input) :
       self.msgId = input.readVarUhShort()
       if(self.msgId < 0) :
-         raise RuntimeError("Forbidden value (" + self.msgId + ") on element of TextInformationMessage.msgId.")
+         raise RuntimeError("Forbidden value (" + str(self.msgId) + ") on element of TextInformationMessage.msgId.")
+
+   def resume(self):
+      print("msgType :",self.msgType)
+      print("msgId :",self.msgId)
+      print("parameters :",self.parameters)

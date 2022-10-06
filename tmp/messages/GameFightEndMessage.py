@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.NamedPartyTeamWithOutcome import NamedPartyTeamWithOutcome
+
 class GameFightEndMessage:
    def __init__(self,input):
       self.results = []
@@ -23,10 +24,19 @@ class GameFightEndMessage:
    def _durationFunc(self,input) :
       self.duration = input.readInt()
       if(self.duration < 0) :
-         raise RuntimeError("Forbidden value (" + self.duration + ") on element of GameFightEndMessage.duration.")
+         raise RuntimeError("Forbidden value (" + str(self.duration) + ") on element of GameFightEndMessage.duration.")
    
    def _rewardRateFunc(self,input) :
       self.rewardRate = input.readVarShort()
    
    def _lootShareLimitMalusFunc(self,input) :
       self.lootShareLimitMalus = input.readShort()
+
+   def resume(self):
+      print("duration :",self.duration)
+      print("rewardRate :",self.rewardRate)
+      print("lootShareLimitMalus :",self.lootShareLimitMalus)
+      for e in self.results:
+         e.resume()
+      for e in self.namedPartyTeamsOutcomes:
+         e.resume()

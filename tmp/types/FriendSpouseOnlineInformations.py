@@ -1,4 +1,5 @@
 from tmp.types.FriendSpouseInformations import FriendSpouseInformations
+
 class FriendSpouseOnlineInformations(FriendSpouseInformations):
    def __init__(self,input):
       super().__init__(input)
@@ -14,9 +15,14 @@ class FriendSpouseOnlineInformations(FriendSpouseInformations):
    def _mapIdFunc(self,input) :
       self.mapId = input.readDouble()
       if(self.mapId < 0 or self.mapId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.mapId + ") on element of FriendSpouseOnlineInformations.mapId.")
+         raise RuntimeError("Forbidden value (" + str(self.mapId) + ") on element of FriendSpouseOnlineInformations.mapId.")
    
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of FriendSpouseOnlineInformations.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of FriendSpouseOnlineInformations.subAreaId.")
+
+   def resume(self):
+      super().resume()
+      print("mapId :",self.mapId)
+      print("subAreaId :",self.subAreaId)

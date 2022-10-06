@@ -53,11 +53,11 @@ def create_factory(scripts,ressources,root_path_output,mode):
         imports.append("from tmp."+mode+"."+p.replace(".as","")+" import "+p.replace(".as",""))
     res = "\n".join(imports)
     
-    res += '\n\nid_class = ' + re.sub(r"(\"[0-9]+\": )\"([a-zA-Z0-9]+)\"(,?)",r"\1\2\3",json.dumps(ressources,indent=3),flags=re.MULTILINE)
+    res += f"class {mode.title()}Factory:\n"
+    res += '   id_class = ' + re.sub(r"(\"[0-9]+\": )\"([a-zA-Z0-9]+)\"(,?)",r"\1\2\3",json.dumps(ressources,indent=3),flags=re.MULTILINE)
     
     res += f"""
     
-class {mode.title()}Factory:
     @classmethod
     def get_instance_id(cls,id,content):
         return id_class[str(id)](content)
@@ -73,12 +73,12 @@ class {mode.title()}Factory:
 
 root_path_types = "C:\\Users\\vincent\\Desktop\\dofus source\\scripts_2\\com\\ankamagames\\dofus\\network\\types"
 root_path_messages = "C:\\Users\\vincent\\Desktop\\dofus source\\scripts_2\\com\\ankamagames\\dofus\\network\\messages"
-root_path_output = "D:\\Documents\\GitHub\\outils_dofus\\tmp"
+root_path_output = "D:\\Documents\\GitHub\\outils_dofus\\src\\reseau"
 root_path_output_types = os.path.join(root_path_output,'types')
 root_path_output_msg = os.path.join(root_path_output,'messages')
 
-shutil.rmtree(root_path_output, ignore_errors=True)
-os.mkdir(root_path_output)
+shutil.rmtree(root_path_output_types, ignore_errors=True)
+shutil.rmtree(root_path_output_msg, ignore_errors=True)
 os.mkdir(root_path_output_types)
 os.mkdir(root_path_output_msg)
 

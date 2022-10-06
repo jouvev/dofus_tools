@@ -14,9 +14,14 @@ class GameRolePlayArenaFightPropositionMessage:
    def _fightIdFunc(self,input) :
       self.fightId = input.readVarUhShort()
       if(self.fightId < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightId + ") on element of GameRolePlayArenaFightPropositionMessage.fightId.")
+         raise RuntimeError("Forbidden value (" + str(self.fightId) + ") on element of GameRolePlayArenaFightPropositionMessage.fightId.")
    
    def _durationFunc(self,input) :
       self.duration = input.readVarUhShort()
       if(self.duration < 0) :
-         raise RuntimeError("Forbidden value (" + self.duration + ") on element of GameRolePlayArenaFightPropositionMessage.duration.")
+         raise RuntimeError("Forbidden value (" + str(self.duration) + ") on element of GameRolePlayArenaFightPropositionMessage.duration.")
+
+   def resume(self):
+      print("fightId :",self.fightId)
+      print("duration :",self.duration)
+      print("alliesId :",self.alliesId)

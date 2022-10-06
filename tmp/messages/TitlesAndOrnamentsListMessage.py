@@ -22,9 +22,15 @@ class TitlesAndOrnamentsListMessage:
    def _activeTitleFunc(self,input) :
       self.activeTitle = input.readVarUhShort()
       if(self.activeTitle < 0) :
-         raise RuntimeError("Forbidden value (" + self.activeTitle + ") on element of TitlesAndOrnamentsListMessage.activeTitle.")
+         raise RuntimeError("Forbidden value (" + str(self.activeTitle) + ") on element of TitlesAndOrnamentsListMessage.activeTitle.")
    
    def _activeOrnamentFunc(self,input) :
       self.activeOrnament = input.readVarUhShort()
       if(self.activeOrnament < 0) :
-         raise RuntimeError("Forbidden value (" + self.activeOrnament + ") on element of TitlesAndOrnamentsListMessage.activeOrnament.")
+         raise RuntimeError("Forbidden value (" + str(self.activeOrnament) + ") on element of TitlesAndOrnamentsListMessage.activeOrnament.")
+
+   def resume(self):
+      print("activeTitle :",self.activeTitle)
+      print("activeOrnament :",self.activeOrnament)
+      print("titles :",self.titles)
+      print("ornaments :",self.ornaments)

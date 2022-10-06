@@ -18,7 +18,7 @@ class ServerSettingsMessage:
    def _communityFunc(self,input) :
       self.community = input.readByte()
       if(self.community < 0) :
-         raise RuntimeError("Forbidden value (" + self.community + ") on element of ServerSettingsMessage.community.")
+         raise RuntimeError("Forbidden value (" + str(self.community) + ") on element of ServerSettingsMessage.community.")
    
    def _gameTypeFunc(self,input) :
       self.gameType = input.readByte()
@@ -26,9 +26,16 @@ class ServerSettingsMessage:
    def _arenaLeaveBanTimeFunc(self,input) :
       self.arenaLeaveBanTime = input.readVarUhShort()
       if(self.arenaLeaveBanTime < 0) :
-         raise RuntimeError("Forbidden value (" + self.arenaLeaveBanTime + ") on element of ServerSettingsMessage.arenaLeaveBanTime.")
+         raise RuntimeError("Forbidden value (" + str(self.arenaLeaveBanTime) + ") on element of ServerSettingsMessage.arenaLeaveBanTime.")
    
    def _itemMaxLevelFunc(self,input) :
       self.itemMaxLevel = input.readInt()
       if(self.itemMaxLevel < 0) :
-         raise RuntimeError("Forbidden value (" + self.itemMaxLevel + ") on element of ServerSettingsMessage.itemMaxLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.itemMaxLevel) + ") on element of ServerSettingsMessage.itemMaxLevel.")
+
+   def resume(self):
+      print("lang :",self.lang)
+      print("community :",self.community)
+      print("gameType :",self.gameType)
+      print("arenaLeaveBanTime :",self.arenaLeaveBanTime)
+      print("itemMaxLevel :",self.itemMaxLevel)

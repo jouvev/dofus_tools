@@ -13,14 +13,19 @@ class HouseBuyResultMessage:
    def _houseIdFunc(self,input) :
       self.houseId = input.readVarUhInt()
       if(self.houseId < 0) :
-         raise RuntimeError("Forbidden value (" + self.houseId + ") on element of HouseBuyResultMessage.houseId.")
+         raise RuntimeError("Forbidden value (" + str(self.houseId) + ") on element of HouseBuyResultMessage.houseId.")
    
    def _instanceIdFunc(self,input) :
       self.instanceId = input.readInt()
       if(self.instanceId < 0) :
-         raise RuntimeError("Forbidden value (" + self.instanceId + ") on element of HouseBuyResultMessage.instanceId.")
+         raise RuntimeError("Forbidden value (" + str(self.instanceId) + ") on element of HouseBuyResultMessage.instanceId.")
    
    def _realPriceFunc(self,input) :
       self.realPrice = input.readVarUhLong()
       if(self.realPrice < 0 or self.realPrice > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.realPrice + ") on element of HouseBuyResultMessage.realPrice.")
+         raise RuntimeError("Forbidden value (" + str(self.realPrice) + ") on element of HouseBuyResultMessage.realPrice.")
+
+   def resume(self):
+      print("houseId :",self.houseId)
+      print("instanceId :",self.instanceId)
+      print("realPrice :",self.realPrice)

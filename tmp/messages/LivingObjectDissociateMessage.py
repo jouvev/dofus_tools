@@ -6,9 +6,13 @@ class LivingObjectDissociateMessage:
    def _livingUIDFunc(self,input) :
       self.livingUID = input.readVarUhInt()
       if(self.livingUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.livingUID + ") on element of LivingObjectDissociateMessage.livingUID.")
+         raise RuntimeError("Forbidden value (" + str(self.livingUID) + ") on element of LivingObjectDissociateMessage.livingUID.")
    
    def _livingPositionFunc(self,input) :
       self.livingPosition = input.readUnsignedByte()
       if(self.livingPosition < 0 or self.livingPosition > 255) :
-         raise RuntimeError("Forbidden value (" + self.livingPosition + ") on element of LivingObjectDissociateMessage.livingPosition.")
+         raise RuntimeError("Forbidden value (" + str(self.livingPosition) + ") on element of LivingObjectDissociateMessage.livingPosition.")
+
+   def resume(self):
+      print("livingUID :",self.livingUID)
+      print("livingPosition :",self.livingPosition)

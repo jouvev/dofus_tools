@@ -6,7 +6,11 @@ class ExchangeBidHouseSearchMessage:
    def _objectGIDFunc(self,input) :
       self.objectGID = input.readVarUhInt()
       if(self.objectGID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectGID + ") on element of ExchangeBidHouseSearchMessage.objectGID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectGID) + ") on element of ExchangeBidHouseSearchMessage.objectGID.")
    
    def _followFunc(self,input) :
       self.follow = input.readBoolean()
+
+   def resume(self):
+      print("objectGID :",self.objectGID)
+      print("follow :",self.follow)

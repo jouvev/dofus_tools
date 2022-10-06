@@ -8,3 +8,6 @@ class GameDataPlayFarmObjectAnimationMessage:
          if(_val1 < 0 or _val1 > 559) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of cellId.")
          self.cellId.append(_val1)
+
+   def resume(self):
+      print("cellId :",self.cellId)

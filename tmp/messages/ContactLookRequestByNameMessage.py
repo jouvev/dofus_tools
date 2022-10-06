@@ -1,4 +1,5 @@
 from tmp.messages.ContactLookRequestMessage import ContactLookRequestMessage
+
 class ContactLookRequestByNameMessage(ContactLookRequestMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class ContactLookRequestByNameMessage(ContactLookRequestMessage):
    
    def _playerNameFunc(self,input) :
       self.playerName = input.readUTF()
+
+   def resume(self):
+      super().resume()
+      print("playerName :",self.playerName)

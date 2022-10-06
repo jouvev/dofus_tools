@@ -5,4 +5,7 @@ class ChangeHavenBagRoomRequestMessage:
    def _roomIdFunc(self,input) :
       self.roomId = input.readByte()
       if(self.roomId < 0) :
-         raise RuntimeError("Forbidden value (" + self.roomId + ") on element of ChangeHavenBagRoomRequestMessage.roomId.")
+         raise RuntimeError("Forbidden value (" + str(self.roomId) + ") on element of ChangeHavenBagRoomRequestMessage.roomId.")
+
+   def resume(self):
+      print("roomId :",self.roomId)

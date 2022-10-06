@@ -5,4 +5,7 @@ class NotificationUpdateFlagMessage:
    def _indexFunc(self,input) :
       self.index = input.readVarUhShort()
       if(self.index < 0) :
-         raise RuntimeError("Forbidden value (" + self.index + ") on element of NotificationUpdateFlagMessage.index.")
+         raise RuntimeError("Forbidden value (" + str(self.index) + ") on element of NotificationUpdateFlagMessage.index.")
+
+   def resume(self):
+      print("index :",self.index)

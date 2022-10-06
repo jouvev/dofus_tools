@@ -8,3 +8,7 @@ class PortalInformation:
    
    def _areaIdFunc(self,input) :
       self.areaId = input.readShort()
+
+   def resume(self):
+      print("portalId :",self.portalId)
+      print("areaId :",self.areaId)

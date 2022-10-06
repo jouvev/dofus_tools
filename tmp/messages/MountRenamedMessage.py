@@ -8,3 +8,7 @@ class MountRenamedMessage:
    
    def _nameFunc(self,input) :
       self.name = input.readUTF()
+
+   def resume(self):
+      print("mountId :",self.mountId)
+      print("name :",self.name)

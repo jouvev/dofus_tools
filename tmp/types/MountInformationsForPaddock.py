@@ -7,10 +7,15 @@ class MountInformationsForPaddock:
    def _modelIdFunc(self,input) :
       self.modelId = input.readVarUhShort()
       if(self.modelId < 0) :
-         raise RuntimeError("Forbidden value (" + self.modelId + ") on element of MountInformationsForPaddock.modelId.")
+         raise RuntimeError("Forbidden value (" + str(self.modelId) + ") on element of MountInformationsForPaddock.modelId.")
    
    def _nameFunc(self,input) :
       self.name = input.readUTF()
    
    def _ownerNameFunc(self,input) :
       self.ownerName = input.readUTF()
+
+   def resume(self):
+      print("modelId :",self.modelId)
+      print("name :",self.name)
+      print("ownerName :",self.ownerName)

@@ -9,4 +9,8 @@ class LockableShowCodeDialogMessage:
    def _codeSizeFunc(self,input) :
       self.codeSize = input.readByte()
       if(self.codeSize < 0) :
-         raise RuntimeError("Forbidden value (" + self.codeSize + ") on element of LockableShowCodeDialogMessage.codeSize.")
+         raise RuntimeError("Forbidden value (" + str(self.codeSize) + ") on element of LockableShowCodeDialogMessage.codeSize.")
+
+   def resume(self):
+      print("changeOrUse :",self.changeOrUse)
+      print("codeSize :",self.codeSize)

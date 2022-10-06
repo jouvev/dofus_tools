@@ -1,4 +1,5 @@
 from tmp.types.AbstractFightDispellableEffect import AbstractFightDispellableEffect
+
 class FightTemporaryBoostEffect(AbstractFightDispellableEffect):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class FightTemporaryBoostEffect(AbstractFightDispellableEffect):
    
    def _deltaFunc(self,input) :
       self.delta = input.readInt()
+
+   def resume(self):
+      super().resume()
+      print("delta :",self.delta)

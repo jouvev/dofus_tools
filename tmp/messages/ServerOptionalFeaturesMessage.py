@@ -8,3 +8,6 @@ class ServerOptionalFeaturesMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of features.")
          self.features.append(_val1)
+
+   def resume(self):
+      print("features :",self.features)

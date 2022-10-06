@@ -1,4 +1,5 @@
 from tmp.types.JobCrafterDirectorySettings import JobCrafterDirectorySettings
+
 class JobCrafterDirectorySettingsMessage:
    def __init__(self,input):
       self.craftersSettings = []
@@ -7,3 +8,7 @@ class JobCrafterDirectorySettingsMessage:
       for _i1 in range(0,_craftersSettingsLen):
          _item1 = JobCrafterDirectorySettings(input)
          self.craftersSettings.append(_item1)
+
+   def resume(self):
+      for e in self.craftersSettings:
+         e.resume()

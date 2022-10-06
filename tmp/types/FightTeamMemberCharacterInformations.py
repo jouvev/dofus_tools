@@ -1,4 +1,5 @@
 from tmp.types.FightTeamMemberInformations import FightTeamMemberInformations
+
 class FightTeamMemberCharacterInformations(FightTeamMemberInformations):
    def __init__(self,input):
       super().__init__(input)
@@ -11,4 +12,9 @@ class FightTeamMemberCharacterInformations(FightTeamMemberInformations):
    def _levelFunc(self,input) :
       self.level = input.readVarUhShort()
       if(self.level < 0) :
-         raise RuntimeError("Forbidden value (" + self.level + ") on element of FightTeamMemberCharacterInformations.level.")
+         raise RuntimeError("Forbidden value (" + str(self.level) + ") on element of FightTeamMemberCharacterInformations.level.")
+
+   def resume(self):
+      super().resume()
+      print("name :",self.name)
+      print("level :",self.level)

@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class IgnoredListMessage:
    def __init__(self,input):
       self.ignoredList = []
@@ -9,3 +10,7 @@ class IgnoredListMessage:
          _id1 = input.readUnsignedShort()
          _item1 = pf.TypesFactory.get_instance_id(_id1,input)
          self.ignoredList.append(_item1)
+
+   def resume(self):
+      for e in self.ignoredList:
+         e.resume()

@@ -4,3 +4,6 @@ class AlmanachCalendarDateMessage:
    
    def _dateFunc(self,input) :
       self.date = input.readInt()
+
+   def resume(self):
+      print("date :",self.date)

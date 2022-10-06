@@ -8,7 +8,7 @@ class AnomalySubareaInformation:
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of AnomalySubareaInformation.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of AnomalySubareaInformation.subAreaId.")
    
    def _rewardRateFunc(self,input) :
       self.rewardRate = input.readVarShort()
@@ -19,4 +19,10 @@ class AnomalySubareaInformation:
    def _anomalyClosingTimeFunc(self,input) :
       self.anomalyClosingTime = input.readVarUhLong()
       if(self.anomalyClosingTime < 0 or self.anomalyClosingTime > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.anomalyClosingTime + ") on element of AnomalySubareaInformation.anomalyClosingTime.")
+         raise RuntimeError("Forbidden value (" + str(self.anomalyClosingTime) + ") on element of AnomalySubareaInformation.anomalyClosingTime.")
+
+   def resume(self):
+      print("subAreaId :",self.subAreaId)
+      print("rewardRate :",self.rewardRate)
+      print("hasAnomaly :",self.hasAnomaly)
+      print("anomalyClosingTime :",self.anomalyClosingTime)

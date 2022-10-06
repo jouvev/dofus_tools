@@ -10,3 +10,7 @@ class EntityMovementInformations:
    
    def _idFunc(self,input) :
       self.id = input.readInt()
+
+   def resume(self):
+      print("id :",self.id)
+      print("steps :",self.steps)

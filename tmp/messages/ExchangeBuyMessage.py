@@ -6,9 +6,13 @@ class ExchangeBuyMessage:
    def _objectToBuyIdFunc(self,input) :
       self.objectToBuyId = input.readVarUhInt()
       if(self.objectToBuyId < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectToBuyId + ") on element of ExchangeBuyMessage.objectToBuyId.")
+         raise RuntimeError("Forbidden value (" + str(self.objectToBuyId) + ") on element of ExchangeBuyMessage.objectToBuyId.")
    
    def _quantityFunc(self,input) :
       self.quantity = input.readVarUhInt()
       if(self.quantity < 0) :
-         raise RuntimeError("Forbidden value (" + self.quantity + ") on element of ExchangeBuyMessage.quantity.")
+         raise RuntimeError("Forbidden value (" + str(self.quantity) + ") on element of ExchangeBuyMessage.quantity.")
+
+   def resume(self):
+      print("objectToBuyId :",self.objectToBuyId)
+      print("quantity :",self.quantity)

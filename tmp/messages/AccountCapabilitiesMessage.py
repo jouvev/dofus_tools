@@ -14,17 +14,23 @@ class AccountCapabilitiesMessage:
    def _accountIdFunc(self,input) :
       self.accountId = input.readInt()
       if(self.accountId < 0) :
-         raise RuntimeError("Forbidden value (" + self.accountId + ") on element of AccountCapabilitiesMessage.accountId.")
+         raise RuntimeError("Forbidden value (" + str(self.accountId) + ") on element of AccountCapabilitiesMessage.accountId.")
    
    def _breedsVisibleFunc(self,input) :
       self.breedsVisible = input.readVarUhInt()
       if(self.breedsVisible < 0) :
-         raise RuntimeError("Forbidden value (" + self.breedsVisible + ") on element of AccountCapabilitiesMessage.breedsVisible.")
+         raise RuntimeError("Forbidden value (" + str(self.breedsVisible) + ") on element of AccountCapabilitiesMessage.breedsVisible.")
    
    def _breedsAvailableFunc(self,input) :
       self.breedsAvailable = input.readVarUhInt()
       if(self.breedsAvailable < 0) :
-         raise RuntimeError("Forbidden value (" + self.breedsAvailable + ") on element of AccountCapabilitiesMessage.breedsAvailable.")
+         raise RuntimeError("Forbidden value (" + str(self.breedsAvailable) + ") on element of AccountCapabilitiesMessage.breedsAvailable.")
    
    def _statusFunc(self,input) :
       self.status = input.readByte()
+
+   def resume(self):
+      print("accountId :",self.accountId)
+      print("breedsVisible :",self.breedsVisible)
+      print("breedsAvailable :",self.breedsAvailable)
+      print("status :",self.status)

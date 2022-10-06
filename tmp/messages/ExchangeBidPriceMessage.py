@@ -6,9 +6,13 @@ class ExchangeBidPriceMessage:
    def _genericIdFunc(self,input) :
       self.genericId = input.readVarUhInt()
       if(self.genericId < 0) :
-         raise RuntimeError("Forbidden value (" + self.genericId + ") on element of ExchangeBidPriceMessage.genericId.")
+         raise RuntimeError("Forbidden value (" + str(self.genericId) + ") on element of ExchangeBidPriceMessage.genericId.")
    
    def _averagePriceFunc(self,input) :
       self.averagePrice = input.readVarLong()
       if(self.averagePrice < -9007199254740992 or self.averagePrice > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.averagePrice + ") on element of ExchangeBidPriceMessage.averagePrice.")
+         raise RuntimeError("Forbidden value (" + str(self.averagePrice) + ") on element of ExchangeBidPriceMessage.averagePrice.")
+
+   def resume(self):
+      print("genericId :",self.genericId)
+      print("averagePrice :",self.averagePrice)

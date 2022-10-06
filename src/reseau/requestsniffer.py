@@ -3,9 +3,8 @@ import pyshark
 from src.reseau.tools import *
 from src.reseau.packet import RequestPacket
 import asyncio
-import json
+from src.reseau.MessagesFactory import MessagesFactory
 
-id_class = json.load(open("ressources/requestid.json"))
 
 class RequestSniffer(Thread):
     def __init__(self,manager):
@@ -48,10 +47,10 @@ class RequestSniffer(Thread):
                     p = RequestPacket(msg)
                     #print(p.packetid,id_class[str(p.packetid)],p.lentype,p.len,dst_port,p.id)
                     buffer[dst_port] = buffer[dst_port][len(msg):]
-                    if("GameMapMovementConfirmMessage" in id_class[str(p.packetid)] ):
+                    if("GameMapMovementConfirmMessage" in MessagesFactory.id_class[str(p.packetid)].__class__.__name__.lower() ):
                         d = self.handler.get_dofus_by_port(dst_port)
                         d.confirm = True
-                    elif("NpcDialog" in id_class[str(p.packetid)] ):
+                    elif("NpcDialog" in MessagesFactory.id_class[str(p.packetid)].__class__.__name__.lower() ):
                         self.handler.get_dofus_by_port(dst_port).confirm = True
         
         cap.close()

@@ -32,12 +32,12 @@ class SellerBuyerDescriptor:
    def _maxItemLevelFunc(self,input) :
       self.maxItemLevel = input.readUnsignedByte()
       if(self.maxItemLevel < 0 or self.maxItemLevel > 255) :
-         raise RuntimeError("Forbidden value (" + self.maxItemLevel + ") on element of SellerBuyerDescriptor.maxItemLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.maxItemLevel) + ") on element of SellerBuyerDescriptor.maxItemLevel.")
    
    def _maxItemPerAccountFunc(self,input) :
       self.maxItemPerAccount = input.readVarUhInt()
       if(self.maxItemPerAccount < 0) :
-         raise RuntimeError("Forbidden value (" + self.maxItemPerAccount + ") on element of SellerBuyerDescriptor.maxItemPerAccount.")
+         raise RuntimeError("Forbidden value (" + str(self.maxItemPerAccount) + ") on element of SellerBuyerDescriptor.maxItemPerAccount.")
    
    def _npcContextualIdFunc(self,input) :
       self.npcContextualId = input.readInt()
@@ -45,4 +45,14 @@ class SellerBuyerDescriptor:
    def _unsoldDelayFunc(self,input) :
       self.unsoldDelay = input.readVarUhShort()
       if(self.unsoldDelay < 0) :
-         raise RuntimeError("Forbidden value (" + self.unsoldDelay + ") on element of SellerBuyerDescriptor.unsoldDelay.")
+         raise RuntimeError("Forbidden value (" + str(self.unsoldDelay) + ") on element of SellerBuyerDescriptor.unsoldDelay.")
+
+   def resume(self):
+      print("taxPercentage :",self.taxPercentage)
+      print("taxModificationPercentage :",self.taxModificationPercentage)
+      print("maxItemLevel :",self.maxItemLevel)
+      print("maxItemPerAccount :",self.maxItemPerAccount)
+      print("npcContextualId :",self.npcContextualId)
+      print("unsoldDelay :",self.unsoldDelay)
+      print("quantities :",self.quantities)
+      print("types :",self.types)

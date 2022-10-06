@@ -4,3 +4,6 @@ class ExchangeWaitingResultMessage:
    
    def _bwaitFunc(self,input) :
       self.bwait = input.readBoolean()
+
+   def resume(self):
+      print("bwait :",self.bwait)

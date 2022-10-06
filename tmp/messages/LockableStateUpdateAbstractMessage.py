@@ -4,3 +4,6 @@ class LockableStateUpdateAbstractMessage:
    
    def _lockedFunc(self,input) :
       self.locked = input.readBoolean()
+
+   def resume(self):
+      print("locked :",self.locked)

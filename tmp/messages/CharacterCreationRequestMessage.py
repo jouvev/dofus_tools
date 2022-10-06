@@ -12,8 +12,8 @@ class CharacterCreationRequestMessage:
    
    def _breedFunc(self,input) :
       self.breed = input.readByte()
-      if(self.breed < 0 or self.breed > 18) :
-         raise RuntimeError("Forbidden value (" + self.breed + ") on element of CharacterCreationRequestMessage.breed.")
+      if(self.breed < 1 or self.breed > 18) :
+         raise RuntimeError("Forbidden value (" + str(self.breed) + ") on element of CharacterCreationRequestMessage.breed.")
    
    def _sexFunc(self,input) :
       self.sex = input.readBoolean()
@@ -21,4 +21,10 @@ class CharacterCreationRequestMessage:
    def _cosmeticIdFunc(self,input) :
       self.cosmeticId = input.readVarUhShort()
       if(self.cosmeticId < 0) :
-         raise RuntimeError("Forbidden value (" + self.cosmeticId + ") on element of CharacterCreationRequestMessage.cosmeticId.")
+         raise RuntimeError("Forbidden value (" + str(self.cosmeticId) + ") on element of CharacterCreationRequestMessage.cosmeticId.")
+
+   def resume(self):
+      print("name :",self.name)
+      print("breed :",self.breed)
+      print("sex :",self.sex)
+      print("cosmeticId :",self.cosmeticId)

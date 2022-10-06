@@ -1,5 +1,6 @@
 from tmp.messages.ChatClientMultiMessage import ChatClientMultiMessage
 from tmp.types.ObjectItem import ObjectItem
+
 class ChatClientMultiWithObjectMessage(ChatClientMultiMessage):
    def __init__(self,input):
       self.objects = []
@@ -9,3 +10,8 @@ class ChatClientMultiWithObjectMessage(ChatClientMultiMessage):
       for _i1 in range(0,_objectsLen):
          _item1 = ObjectItem(input)
          self.objects.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.objects:
+         e.resume()

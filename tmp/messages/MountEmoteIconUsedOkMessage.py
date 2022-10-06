@@ -9,4 +9,8 @@ class MountEmoteIconUsedOkMessage:
    def _reactionTypeFunc(self,input) :
       self.reactionType = input.readByte()
       if(self.reactionType < 0) :
-         raise RuntimeError("Forbidden value (" + self.reactionType + ") on element of MountEmoteIconUsedOkMessage.reactionType.")
+         raise RuntimeError("Forbidden value (" + str(self.reactionType) + ") on element of MountEmoteIconUsedOkMessage.reactionType.")
+
+   def resume(self):
+      print("mountId :",self.mountId)
+      print("reactionType :",self.reactionType)

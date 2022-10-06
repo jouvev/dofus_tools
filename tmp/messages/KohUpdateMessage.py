@@ -1,5 +1,6 @@
 from tmp.types.AllianceInformations import AllianceInformations
 from tmp.types.BasicAllianceInformations import BasicAllianceInformations
+
 class KohUpdateMessage:
    def __init__(self,input):
       self.alliances = []
@@ -45,14 +46,26 @@ class KohUpdateMessage:
    def _allianceMapWinnerScoreFunc(self,input) :
       self.allianceMapWinnerScore = input.readVarUhInt()
       if(self.allianceMapWinnerScore < 0) :
-         raise RuntimeError("Forbidden value (" + self.allianceMapWinnerScore + ") on element of KohUpdateMessage.allianceMapWinnerScore.")
+         raise RuntimeError("Forbidden value (" + str(self.allianceMapWinnerScore) + ") on element of KohUpdateMessage.allianceMapWinnerScore.")
    
    def _allianceMapMyAllianceScoreFunc(self,input) :
       self.allianceMapMyAllianceScore = input.readVarUhInt()
       if(self.allianceMapMyAllianceScore < 0) :
-         raise RuntimeError("Forbidden value (" + self.allianceMapMyAllianceScore + ") on element of KohUpdateMessage.allianceMapMyAllianceScore.")
+         raise RuntimeError("Forbidden value (" + str(self.allianceMapMyAllianceScore) + ") on element of KohUpdateMessage.allianceMapMyAllianceScore.")
    
    def _nextTickTimeFunc(self,input) :
       self.nextTickTime = input.readDouble()
       if(self.nextTickTime < 0 or self.nextTickTime > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.nextTickTime + ") on element of KohUpdateMessage.nextTickTime.")
+         raise RuntimeError("Forbidden value (" + str(self.nextTickTime) + ") on element of KohUpdateMessage.nextTickTime.")
+
+   def resume(self):
+      print("allianceMapWinnerScore :",self.allianceMapWinnerScore)
+      print("allianceMapMyAllianceScore :",self.allianceMapMyAllianceScore)
+      print("nextTickTime :",self.nextTickTime)
+      for e in self.alliances:
+         e.resume()
+      print("allianceNbMembers :",self.allianceNbMembers)
+      print("allianceRoundWeigth :",self.allianceRoundWeigth)
+      print("allianceMatchScore :",self.allianceMatchScore)
+      for e in self.allianceMapWinners:
+         e.resume()

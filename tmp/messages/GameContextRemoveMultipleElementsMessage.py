@@ -8,3 +8,6 @@ class GameContextRemoveMultipleElementsMessage:
          if(_val1 < -9007199254740992 or _val1 > 9007199254740992) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of elementsIds.")
          self.elementsIds.append(_val1)
+
+   def resume(self):
+      print("elementsIds :",self.elementsIds)

@@ -8,3 +8,6 @@ class ChatSmileyExtraPackListMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of packIds.")
          self.packIds.append(_val1)
+
+   def resume(self):
+      print("packIds :",self.packIds)

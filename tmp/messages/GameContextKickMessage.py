@@ -5,4 +5,7 @@ class GameContextKickMessage:
    def _targetIdFunc(self,input) :
       self.targetId = input.readDouble()
       if(self.targetId < -9007199254740992 or self.targetId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.targetId + ") on element of GameContextKickMessage.targetId.")
+         raise RuntimeError("Forbidden value (" + str(self.targetId) + ") on element of GameContextKickMessage.targetId.")
+
+   def resume(self):
+      print("targetId :",self.targetId)

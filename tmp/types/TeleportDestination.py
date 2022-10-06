@@ -9,24 +9,31 @@ class TeleportDestination:
    def _typeFunc(self,input) :
       self.type = input.readByte()
       if(self.type < 0) :
-         raise RuntimeError("Forbidden value (" + self.type + ") on element of TeleportDestination.type.")
+         raise RuntimeError("Forbidden value (" + str(self.type) + ") on element of TeleportDestination.type.")
    
    def _mapIdFunc(self,input) :
       self.mapId = input.readDouble()
       if(self.mapId < 0 or self.mapId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.mapId + ") on element of TeleportDestination.mapId.")
+         raise RuntimeError("Forbidden value (" + str(self.mapId) + ") on element of TeleportDestination.mapId.")
    
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of TeleportDestination.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of TeleportDestination.subAreaId.")
    
    def _levelFunc(self,input) :
       self.level = input.readVarUhShort()
       if(self.level < 0) :
-         raise RuntimeError("Forbidden value (" + self.level + ") on element of TeleportDestination.level.")
+         raise RuntimeError("Forbidden value (" + str(self.level) + ") on element of TeleportDestination.level.")
    
    def _costFunc(self,input) :
       self.cost = input.readVarUhShort()
       if(self.cost < 0) :
-         raise RuntimeError("Forbidden value (" + self.cost + ") on element of TeleportDestination.cost.")
+         raise RuntimeError("Forbidden value (" + str(self.cost) + ") on element of TeleportDestination.cost.")
+
+   def resume(self):
+      print("type :",self.type)
+      print("mapId :",self.mapId)
+      print("subAreaId :",self.subAreaId)
+      print("level :",self.level)
+      print("cost :",self.cost)

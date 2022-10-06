@@ -6,9 +6,13 @@ class ObjectMovementMessage:
    def _objectUIDFunc(self,input) :
       self.objectUID = input.readVarUhInt()
       if(self.objectUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectUID + ") on element of ObjectMovementMessage.objectUID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectUID) + ") on element of ObjectMovementMessage.objectUID.")
    
    def _positionFunc(self,input) :
       self.position = input.readShort()
       if(self.position < 0) :
-         raise RuntimeError("Forbidden value (" + self.position + ") on element of ObjectMovementMessage.position.")
+         raise RuntimeError("Forbidden value (" + str(self.position) + ") on element of ObjectMovementMessage.position.")
+
+   def resume(self):
+      print("objectUID :",self.objectUID)
+      print("position :",self.position)

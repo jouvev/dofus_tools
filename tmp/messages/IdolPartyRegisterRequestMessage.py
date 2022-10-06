@@ -4,3 +4,6 @@ class IdolPartyRegisterRequestMessage:
    
    def _registerFunc(self,input) :
       self.register = input.readBoolean()
+
+   def resume(self):
+      print("register :",self.register)

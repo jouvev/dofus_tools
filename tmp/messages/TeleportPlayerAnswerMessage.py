@@ -9,4 +9,8 @@ class TeleportPlayerAnswerMessage:
    def _requesterIdFunc(self,input) :
       self.requesterId = input.readVarUhLong()
       if(self.requesterId < 0 or self.requesterId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.requesterId + ") on element of TeleportPlayerAnswerMessage.requesterId.")
+         raise RuntimeError("Forbidden value (" + str(self.requesterId) + ") on element of TeleportPlayerAnswerMessage.requesterId.")
+
+   def resume(self):
+      print("accept :",self.accept)
+      print("requesterId :",self.requesterId)

@@ -1,4 +1,5 @@
 from tmp.types.AbstractCharacterInformation import AbstractCharacterInformation
+
 class CharacterRemodelingInformation(AbstractCharacterInformation):
    def __init__(self,input):
       self.colors = []
@@ -25,4 +26,12 @@ class CharacterRemodelingInformation(AbstractCharacterInformation):
    def _cosmeticIdFunc(self,input) :
       self.cosmeticId = input.readVarUhShort()
       if(self.cosmeticId < 0) :
-         raise RuntimeError("Forbidden value (" + self.cosmeticId + ") on element of CharacterRemodelingInformation.cosmeticId.")
+         raise RuntimeError("Forbidden value (" + str(self.cosmeticId) + ") on element of CharacterRemodelingInformation.cosmeticId.")
+
+   def resume(self):
+      super().resume()
+      print("name :",self.name)
+      print("breed :",self.breed)
+      print("sex :",self.sex)
+      print("cosmeticId :",self.cosmeticId)
+      print("colors :",self.colors)

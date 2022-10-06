@@ -1,5 +1,6 @@
 from tmp.types.AchievementObjective import AchievementObjective
 from tmp.types.AchievementStartedObjective import AchievementStartedObjective
+
 class Achievement:
    def __init__(self,input):
       self.finishedObjective = []
@@ -19,4 +20,11 @@ class Achievement:
    def _idFunc(self,input) :
       self.id = input.readVarUhShort()
       if(self.id < 0) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of Achievement.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of Achievement.id.")
+
+   def resume(self):
+      print("id :",self.id)
+      for e in self.finishedObjective:
+         e.resume()
+      for e in self.startedObjectives:
+         e.resume()

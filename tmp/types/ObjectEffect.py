@@ -5,4 +5,7 @@ class ObjectEffect:
    def _actionIdFunc(self,input) :
       self.actionId = input.readVarUhShort()
       if(self.actionId < 0) :
-         raise RuntimeError("Forbidden value (" + self.actionId + ") on element of ObjectEffect.actionId.")
+         raise RuntimeError("Forbidden value (" + str(self.actionId) + ") on element of ObjectEffect.actionId.")
+
+   def resume(self):
+      print("actionId :",self.actionId)

@@ -5,4 +5,7 @@ class GameFightPlacementSwapPositionsAcceptMessage:
    def _requestIdFunc(self,input) :
       self.requestId = input.readInt()
       if(self.requestId < 0) :
-         raise RuntimeError("Forbidden value (" + self.requestId + ") on element of GameFightPlacementSwapPositionsAcceptMessage.requestId.")
+         raise RuntimeError("Forbidden value (" + str(self.requestId) + ") on element of GameFightPlacementSwapPositionsAcceptMessage.requestId.")
+
+   def resume(self):
+      print("requestId :",self.requestId)

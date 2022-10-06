@@ -5,4 +5,7 @@ class CinematicMessage:
    def _cinematicIdFunc(self,input) :
       self.cinematicId = input.readVarUhShort()
       if(self.cinematicId < 0) :
-         raise RuntimeError("Forbidden value (" + self.cinematicId + ") on element of CinematicMessage.cinematicId.")
+         raise RuntimeError("Forbidden value (" + str(self.cinematicId) + ") on element of CinematicMessage.cinematicId.")
+
+   def resume(self):
+      print("cinematicId :",self.cinematicId)

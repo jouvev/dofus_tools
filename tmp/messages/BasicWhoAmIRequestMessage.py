@@ -4,3 +4,6 @@ class BasicWhoAmIRequestMessage:
    
    def _verboseFunc(self,input) :
       self.verbose = input.readBoolean()
+
+   def resume(self):
+      print("verbose :",self.verbose)

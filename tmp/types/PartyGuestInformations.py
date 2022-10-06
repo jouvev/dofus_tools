@@ -1,6 +1,7 @@
 import tmp.TypesFactory as pf
 from tmp.types.EntityLook import EntityLook
 from tmp.types.PartyEntityBaseInformation import PartyEntityBaseInformation
+
 class PartyGuestInformations:
    def __init__(self,input):
       self.entities = []
@@ -21,12 +22,12 @@ class PartyGuestInformations:
    def _guestIdFunc(self,input) :
       self.guestId = input.readVarUhLong()
       if(self.guestId < 0 or self.guestId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.guestId + ") on element of PartyGuestInformations.guestId.")
+         raise RuntimeError("Forbidden value (" + str(self.guestId) + ") on element of PartyGuestInformations.guestId.")
    
    def _hostIdFunc(self,input) :
       self.hostId = input.readVarUhLong()
       if(self.hostId < 0 or self.hostId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.hostId + ") on element of PartyGuestInformations.hostId.")
+         raise RuntimeError("Forbidden value (" + str(self.hostId) + ") on element of PartyGuestInformations.hostId.")
    
    def _nameFunc(self,input) :
       self.name = input.readUTF()
@@ -36,3 +37,13 @@ class PartyGuestInformations:
    
    def _sexFunc(self,input) :
       self.sex = input.readBoolean()
+
+   def resume(self):
+      print("guestId :",self.guestId)
+      print("hostId :",self.hostId)
+      print("name :",self.name)
+      print("breed :",self.breed)
+      print("sex :",self.sex)
+      self.guestLook.resum()
+      for e in self.entities:
+         e.resume()

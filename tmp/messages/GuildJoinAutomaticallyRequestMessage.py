@@ -4,3 +4,6 @@ class GuildJoinAutomaticallyRequestMessage:
    
    def _guildIdFunc(self,input) :
       self.guildId = input.readInt()
+
+   def resume(self):
+      print("guildId :",self.guildId)

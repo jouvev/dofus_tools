@@ -5,4 +5,7 @@ class TreasureHuntLegendaryRequestMessage:
    def _legendaryIdFunc(self,input) :
       self.legendaryId = input.readVarUhShort()
       if(self.legendaryId < 0) :
-         raise RuntimeError("Forbidden value (" + self.legendaryId + ") on element of TreasureHuntLegendaryRequestMessage.legendaryId.")
+         raise RuntimeError("Forbidden value (" + str(self.legendaryId) + ") on element of TreasureHuntLegendaryRequestMessage.legendaryId.")
+
+   def resume(self):
+      print("legendaryId :",self.legendaryId)

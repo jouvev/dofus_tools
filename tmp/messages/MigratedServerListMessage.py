@@ -8,3 +8,6 @@ class MigratedServerListMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of migratedServerIds.")
          self.migratedServerIds.append(_val1)
+
+   def resume(self):
+      print("migratedServerIds :",self.migratedServerIds)

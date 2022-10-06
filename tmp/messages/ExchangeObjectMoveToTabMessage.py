@@ -7,7 +7,7 @@ class ExchangeObjectMoveToTabMessage:
    def _objectUIDFunc(self,input) :
       self.objectUID = input.readVarUhInt()
       if(self.objectUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectUID + ") on element of ExchangeObjectMoveToTabMessage.objectUID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectUID) + ") on element of ExchangeObjectMoveToTabMessage.objectUID.")
    
    def _quantityFunc(self,input) :
       self.quantity = input.readVarInt()
@@ -15,4 +15,9 @@ class ExchangeObjectMoveToTabMessage:
    def _tabNumberFunc(self,input) :
       self.tabNumber = input.readVarUhInt()
       if(self.tabNumber < 0) :
-         raise RuntimeError("Forbidden value (" + self.tabNumber + ") on element of ExchangeObjectMoveToTabMessage.tabNumber.")
+         raise RuntimeError("Forbidden value (" + str(self.tabNumber) + ") on element of ExchangeObjectMoveToTabMessage.tabNumber.")
+
+   def resume(self):
+      print("objectUID :",self.objectUID)
+      print("quantity :",self.quantity)
+      print("tabNumber :",self.tabNumber)

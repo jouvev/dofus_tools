@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class BasicCharactersListMessage:
    def __init__(self,input):
       self.characters = []
@@ -9,3 +10,7 @@ class BasicCharactersListMessage:
          _id1 = input.readUnsignedShort()
          _item1 = pf.TypesFactory.get_instance_id(_id1,input)
          self.characters.append(_item1)
+
+   def resume(self):
+      for e in self.characters:
+         e.resume()

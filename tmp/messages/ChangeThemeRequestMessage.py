@@ -4,3 +4,6 @@ class ChangeThemeRequestMessage:
    
    def _themeFunc(self,input) :
       self.theme = input.readByte()
+
+   def resume(self):
+      print("theme :",self.theme)

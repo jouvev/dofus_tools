@@ -1,4 +1,5 @@
 from tmp.types.Preset import Preset
+
 class EntitiesPreset(Preset):
    def __init__(self,input):
       self.entityIds = []
@@ -15,4 +16,9 @@ class EntitiesPreset(Preset):
    def _iconIdFunc(self,input) :
       self.iconId = input.readShort()
       if(self.iconId < 0) :
-         raise RuntimeError("Forbidden value (" + self.iconId + ") on element of EntitiesPreset.iconId.")
+         raise RuntimeError("Forbidden value (" + str(self.iconId) + ") on element of EntitiesPreset.iconId.")
+
+   def resume(self):
+      super().resume()
+      print("iconId :",self.iconId)
+      print("entityIds :",self.entityIds)

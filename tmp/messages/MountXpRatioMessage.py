@@ -5,4 +5,7 @@ class MountXpRatioMessage:
    def _ratioFunc(self,input) :
       self.ratio = input.readByte()
       if(self.ratio < 0) :
-         raise RuntimeError("Forbidden value (" + self.ratio + ") on element of MountXpRatioMessage.ratio.")
+         raise RuntimeError("Forbidden value (" + str(self.ratio) + ") on element of MountXpRatioMessage.ratio.")
+
+   def resume(self):
+      print("ratio :",self.ratio)

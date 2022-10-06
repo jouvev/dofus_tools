@@ -6,3 +6,6 @@ class GameActionSpamMessage:
       for _i1 in range(0,_cellsLen):
          _val1 = input.readShort()
          self.cells.append(_val1)
+
+   def resume(self):
+      print("cells :",self.cells)

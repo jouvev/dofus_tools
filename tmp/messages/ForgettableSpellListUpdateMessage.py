@@ -1,4 +1,5 @@
 from tmp.types.ForgettableSpellItem import ForgettableSpellItem
+
 class ForgettableSpellListUpdateMessage:
    def __init__(self,input):
       self.spells = []
@@ -12,4 +13,9 @@ class ForgettableSpellListUpdateMessage:
    def _actionFunc(self,input) :
       self.action = input.readByte()
       if(self.action < 0) :
-         raise RuntimeError("Forbidden value (" + self.action + ") on element of ForgettableSpellListUpdateMessage.action.")
+         raise RuntimeError("Forbidden value (" + str(self.action) + ") on element of ForgettableSpellListUpdateMessage.action.")
+
+   def resume(self):
+      print("action :",self.action)
+      for e in self.spells:
+         e.resume()

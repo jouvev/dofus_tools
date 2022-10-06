@@ -11,4 +11,7 @@ class IdolSelectRequestMessage:
    def _idolIdFunc(self,input) :
       self.idolId = input.readVarUhShort()
       if(self.idolId < 0) :
-         raise RuntimeError("Forbidden value (" + self.idolId + ") on element of IdolSelectRequestMessage.idolId.")
+         raise RuntimeError("Forbidden value (" + str(self.idolId) + ") on element of IdolSelectRequestMessage.idolId.")
+
+   def resume(self):
+      print("idolId :",self.idolId)

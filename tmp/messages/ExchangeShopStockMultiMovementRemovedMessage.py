@@ -8,3 +8,6 @@ class ExchangeShopStockMultiMovementRemovedMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of objectIdList.")
          self.objectIdList.append(_val1)
+
+   def resume(self):
+      print("objectIdList :",self.objectIdList)

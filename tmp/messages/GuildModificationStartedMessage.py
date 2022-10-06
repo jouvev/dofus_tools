@@ -6,3 +6,6 @@ class GuildModificationStartedMessage:
       _box0 = input.readByte()
       self.canChangeName = bool(bin(_box0)[2:].zfill(8)[0])
       self.canChangeEmblem = bool(bin(_box0)[2:].zfill(8)[1])
+
+   def resume(self):
+      pass

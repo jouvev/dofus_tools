@@ -1,4 +1,5 @@
 from tmp.types.ShortcutObject import ShortcutObject
+
 class ShortcutObjectIdolsPreset(ShortcutObject):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class ShortcutObjectIdolsPreset(ShortcutObject):
    
    def _presetIdFunc(self,input) :
       self.presetId = input.readShort()
+
+   def resume(self):
+      super().resume()
+      print("presetId :",self.presetId)

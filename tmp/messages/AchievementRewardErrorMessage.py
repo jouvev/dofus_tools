@@ -4,3 +4,6 @@ class AchievementRewardErrorMessage:
    
    def _achievementIdFunc(self,input) :
       self.achievementId = input.readShort()
+
+   def resume(self):
+      print("achievementId :",self.achievementId)

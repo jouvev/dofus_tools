@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.PaddockInformations import PaddockInformations
+
 class PaddockInstancesInformations(PaddockInformations):
    def __init__(self,input):
       self.paddocks = []
@@ -11,3 +12,8 @@ class PaddockInstancesInformations(PaddockInformations):
          _id1 = input.readUnsignedShort()
          _item1 = pf.TypesFactory.get_instance_id(_id1,input)
          self.paddocks.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.paddocks:
+         e.resume()

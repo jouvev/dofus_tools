@@ -16,3 +16,7 @@ class UpdateMapPlayersAgressableStatusMessage:
          if(_val2 < 0) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of enable.")
          self.enable.append(_val2)
+
+   def resume(self):
+      print("playerIds :",self.playerIds)
+      print("enable :",self.enable)

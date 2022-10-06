@@ -1,4 +1,5 @@
 from tmp.types.AbstractFightDispellableEffect import AbstractFightDispellableEffect
+
 class FightTemporarySpellImmunityEffect(AbstractFightDispellableEffect):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class FightTemporarySpellImmunityEffect(AbstractFightDispellableEffect):
    
    def _immuneSpellIdFunc(self,input) :
       self.immuneSpellId = input.readInt()
+
+   def resume(self):
+      super().resume()
+      print("immuneSpellId :",self.immuneSpellId)

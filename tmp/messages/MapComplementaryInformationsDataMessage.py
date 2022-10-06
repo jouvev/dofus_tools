@@ -3,6 +3,7 @@ from tmp.types.StatedElement import StatedElement
 from tmp.types.MapObstacle import MapObstacle
 from tmp.types.FightCommonInformations import FightCommonInformations
 from tmp.types.FightStartingPositions import FightStartingPositions
+
 class MapComplementaryInformationsDataMessage:
    def __init__(self,input):
       self.houses = []
@@ -55,12 +56,30 @@ class MapComplementaryInformationsDataMessage:
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of MapComplementaryInformationsDataMessage.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of MapComplementaryInformationsDataMessage.subAreaId.")
    
    def _mapIdFunc(self,input) :
       self.mapId = input.readDouble()
       if(self.mapId < 0 or self.mapId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.mapId + ") on element of MapComplementaryInformationsDataMessage.mapId.")
+         raise RuntimeError("Forbidden value (" + str(self.mapId) + ") on element of MapComplementaryInformationsDataMessage.mapId.")
    
    def _hasAggressiveMonstersFunc(self,input) :
       self.hasAggressiveMonsters = input.readBoolean()
+
+   def resume(self):
+      print("subAreaId :",self.subAreaId)
+      print("mapId :",self.mapId)
+      print("hasAggressiveMonsters :",self.hasAggressiveMonsters)
+      self.fightStartPositions.resum()
+      for e in self.houses:
+         e.resume()
+      for e in self.actors:
+         e.resume()
+      for e in self.interactiveElements:
+         e.resume()
+      for e in self.statedElements:
+         e.resume()
+      for e in self.obstacles:
+         e.resume()
+      for e in self.fights:
+         e.resume()

@@ -12,3 +12,8 @@ class SimpleCharacterCharacteristicForPreset:
    
    def _additionnalFunc(self,input) :
       self.additionnal = input.readVarInt()
+
+   def resume(self):
+      print("keyword :",self.keyword)
+      print("base :",self.base)
+      print("additionnal :",self.additionnal)

@@ -1,4 +1,5 @@
 from tmp.types.SpellItem import SpellItem
+
 class ForgettableSpellItem(SpellItem):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class ForgettableSpellItem(SpellItem):
    
    def _availableFunc(self,input) :
       self.available = input.readBoolean()
+
+   def resume(self):
+      super().resume()
+      print("available :",self.available)

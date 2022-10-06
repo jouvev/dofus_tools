@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class GuildVersatileInfoListMessage:
    def __init__(self,input):
       self.guilds = []
@@ -9,3 +10,7 @@ class GuildVersatileInfoListMessage:
          _id1 = input.readUnsignedShort()
          _item1 = pf.TypesFactory.get_instance_id(_id1,input)
          self.guilds.append(_item1)
+
+   def resume(self):
+      for e in self.guilds:
+         e.resume()

@@ -21,4 +21,9 @@ class GameFightPlacementPossiblePositionsMessage:
    def _teamNumberFunc(self,input) :
       self.teamNumber = input.readByte()
       if(self.teamNumber < 0) :
-         raise RuntimeError("Forbidden value (" + self.teamNumber + ") on element of GameFightPlacementPossiblePositionsMessage.teamNumber.")
+         raise RuntimeError("Forbidden value (" + str(self.teamNumber) + ") on element of GameFightPlacementPossiblePositionsMessage.teamNumber.")
+
+   def resume(self):
+      print("teamNumber :",self.teamNumber)
+      print("positionsForChallengers :",self.positionsForChallengers)
+      print("positionsForDefenders :",self.positionsForDefenders)

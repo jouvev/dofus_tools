@@ -1,4 +1,5 @@
 from tmp.types.Idol import Idol
+
 class GameFightStartMessage:
    def __init__(self,input):
       self.idols = []
@@ -7,3 +8,7 @@ class GameFightStartMessage:
       for _i1 in range(0,_idolsLen):
          _item1 = Idol(input)
          self.idols.append(_item1)
+
+   def resume(self):
+      for e in self.idols:
+         e.resume()

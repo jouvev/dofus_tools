@@ -1,5 +1,6 @@
 from tmp.types.AlternativeMonstersInGroupLightInformations import AlternativeMonstersInGroupLightInformations
 from tmp.types.GroupMonsterStaticInformations import GroupMonsterStaticInformations
+
 class GroupMonsterStaticInformationsWithAlternatives(GroupMonsterStaticInformations):
    def __init__(self,input):
       self.alternatives = []
@@ -9,3 +10,8 @@ class GroupMonsterStaticInformationsWithAlternatives(GroupMonsterStaticInformati
       for _i1 in range(0,_alternativesLen):
          _item1 = AlternativeMonstersInGroupLightInformations(input)
          self.alternatives.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.alternatives:
+         e.resume()

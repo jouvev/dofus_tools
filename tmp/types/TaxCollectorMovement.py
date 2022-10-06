@@ -1,4 +1,5 @@
 from tmp.types.TaxCollectorBasicInformations import TaxCollectorBasicInformations
+
 class TaxCollectorMovement:
    def __init__(self,input):
       self._movementTypeFunc(input)
@@ -9,12 +10,18 @@ class TaxCollectorMovement:
    def _movementTypeFunc(self,input) :
       self.movementType = input.readByte()
       if(self.movementType < 0) :
-         raise RuntimeError("Forbidden value (" + self.movementType + ") on element of TaxCollectorMovement.movementType.")
+         raise RuntimeError("Forbidden value (" + str(self.movementType) + ") on element of TaxCollectorMovement.movementType.")
    
    def _playerIdFunc(self,input) :
       self.playerId = input.readVarUhLong()
       if(self.playerId < 0 or self.playerId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.playerId + ") on element of TaxCollectorMovement.playerId.")
+         raise RuntimeError("Forbidden value (" + str(self.playerId) + ") on element of TaxCollectorMovement.playerId.")
    
    def _playerNameFunc(self,input) :
       self.playerName = input.readUTF()
+
+   def resume(self):
+      print("movementType :",self.movementType)
+      print("playerId :",self.playerId)
+      print("playerName :",self.playerName)
+      self.basicInfos.resum()

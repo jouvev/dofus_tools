@@ -4,3 +4,6 @@ class BreachTeleportResponseMessage:
    
    def _teleportedFunc(self,input) :
       self.teleported = input.readBoolean()
+
+   def resume(self):
+      print("teleported :",self.teleported)

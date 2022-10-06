@@ -1,4 +1,5 @@
 from tmp.messages.AbstractPartyMessage import AbstractPartyMessage
+
 class PartyFollowStatusUpdateMessage(AbstractPartyMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -13,4 +14,8 @@ class PartyFollowStatusUpdateMessage(AbstractPartyMessage):
    def _followedIdFunc(self,input) :
       self.followedId = input.readVarUhLong()
       if(self.followedId < 0 or self.followedId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.followedId + ") on element of PartyFollowStatusUpdateMessage.followedId.")
+         raise RuntimeError("Forbidden value (" + str(self.followedId) + ") on element of PartyFollowStatusUpdateMessage.followedId.")
+
+   def resume(self):
+      super().resume()
+      print("followedId :",self.followedId)

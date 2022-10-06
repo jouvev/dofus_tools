@@ -10,9 +10,14 @@ class PaddockSellBuyDialogMessage:
    def _ownerIdFunc(self,input) :
       self.ownerId = input.readVarUhInt()
       if(self.ownerId < 0) :
-         raise RuntimeError("Forbidden value (" + self.ownerId + ") on element of PaddockSellBuyDialogMessage.ownerId.")
+         raise RuntimeError("Forbidden value (" + str(self.ownerId) + ") on element of PaddockSellBuyDialogMessage.ownerId.")
    
    def _priceFunc(self,input) :
       self.price = input.readVarUhLong()
       if(self.price < 0 or self.price > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.price + ") on element of PaddockSellBuyDialogMessage.price.")
+         raise RuntimeError("Forbidden value (" + str(self.price) + ") on element of PaddockSellBuyDialogMessage.price.")
+
+   def resume(self):
+      print("bsell :",self.bsell)
+      print("ownerId :",self.ownerId)
+      print("price :",self.price)

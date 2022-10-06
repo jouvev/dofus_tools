@@ -9,24 +9,31 @@ class JobExperience:
    def _jobIdFunc(self,input) :
       self.jobId = input.readByte()
       if(self.jobId < 0) :
-         raise RuntimeError("Forbidden value (" + self.jobId + ") on element of JobExperience.jobId.")
+         raise RuntimeError("Forbidden value (" + str(self.jobId) + ") on element of JobExperience.jobId.")
    
    def _jobLevelFunc(self,input) :
       self.jobLevel = input.readUnsignedByte()
       if(self.jobLevel < 0 or self.jobLevel > 255) :
-         raise RuntimeError("Forbidden value (" + self.jobLevel + ") on element of JobExperience.jobLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.jobLevel) + ") on element of JobExperience.jobLevel.")
    
    def _jobXPFunc(self,input) :
       self.jobXP = input.readVarUhLong()
       if(self.jobXP < 0 or self.jobXP > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.jobXP + ") on element of JobExperience.jobXP.")
+         raise RuntimeError("Forbidden value (" + str(self.jobXP) + ") on element of JobExperience.jobXP.")
    
    def _jobXpLevelFloorFunc(self,input) :
       self.jobXpLevelFloor = input.readVarUhLong()
       if(self.jobXpLevelFloor < 0 or self.jobXpLevelFloor > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.jobXpLevelFloor + ") on element of JobExperience.jobXpLevelFloor.")
+         raise RuntimeError("Forbidden value (" + str(self.jobXpLevelFloor) + ") on element of JobExperience.jobXpLevelFloor.")
    
    def _jobXpNextLevelFloorFunc(self,input) :
       self.jobXpNextLevelFloor = input.readVarUhLong()
       if(self.jobXpNextLevelFloor < 0 or self.jobXpNextLevelFloor > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.jobXpNextLevelFloor + ") on element of JobExperience.jobXpNextLevelFloor.")
+         raise RuntimeError("Forbidden value (" + str(self.jobXpNextLevelFloor) + ") on element of JobExperience.jobXpNextLevelFloor.")
+
+   def resume(self):
+      print("jobId :",self.jobId)
+      print("jobLevel :",self.jobLevel)
+      print("jobXP :",self.jobXP)
+      print("jobXpLevelFloor :",self.jobXpLevelFloor)
+      print("jobXpNextLevelFloor :",self.jobXpNextLevelFloor)

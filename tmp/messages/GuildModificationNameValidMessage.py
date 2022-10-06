@@ -4,3 +4,6 @@ class GuildModificationNameValidMessage:
    
    def _guildNameFunc(self,input) :
       self.guildName = input.readUTF()
+
+   def resume(self):
+      print("guildName :",self.guildName)

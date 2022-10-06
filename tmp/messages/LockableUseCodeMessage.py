@@ -4,3 +4,6 @@ class LockableUseCodeMessage:
    
    def _codeFunc(self,input) :
       self.code = input.readUTF()
+
+   def resume(self):
+      print("code :",self.code)

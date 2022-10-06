@@ -14,3 +14,8 @@ class GameRolePlayArenaSwitchToGameServerMessage:
    
    def _homeServerIdFunc(self,input) :
       self.homeServerId = input.readShort()
+
+   def resume(self):
+      print("validToken :",self.validToken)
+      print("homeServerId :",self.homeServerId)
+      print("ticket :",self.ticket)

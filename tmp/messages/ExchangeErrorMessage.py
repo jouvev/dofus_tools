@@ -4,3 +4,6 @@ class ExchangeErrorMessage:
    
    def _errorTypeFunc(self,input) :
       self.errorType = input.readByte()
+
+   def resume(self):
+      print("errorType :",self.errorType)

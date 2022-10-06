@@ -5,4 +5,7 @@ class HouseBuyRequestMessage:
    def _proposedPriceFunc(self,input) :
       self.proposedPrice = input.readVarUhLong()
       if(self.proposedPrice < 0 or self.proposedPrice > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.proposedPrice + ") on element of HouseBuyRequestMessage.proposedPrice.")
+         raise RuntimeError("Forbidden value (" + str(self.proposedPrice) + ") on element of HouseBuyRequestMessage.proposedPrice.")
+
+   def resume(self):
+      print("proposedPrice :",self.proposedPrice)

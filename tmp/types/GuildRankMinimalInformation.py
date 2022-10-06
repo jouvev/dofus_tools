@@ -6,7 +6,11 @@ class GuildRankMinimalInformation:
    def _idFunc(self,input) :
       self.id = input.readVarUhInt()
       if(self.id < 0) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of GuildRankMinimalInformation.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of GuildRankMinimalInformation.id.")
    
    def _nameFunc(self,input) :
       self.name = input.readUTF()
+
+   def resume(self):
+      print("id :",self.id)
+      print("name :",self.name)

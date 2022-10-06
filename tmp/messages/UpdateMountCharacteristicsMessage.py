@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class UpdateMountCharacteristicsMessage:
    def __init__(self,input):
       self.boostToUpdateList = []
@@ -13,3 +14,8 @@ class UpdateMountCharacteristicsMessage:
    
    def _rideIdFunc(self,input) :
       self.rideId = input.readVarInt()
+
+   def resume(self):
+      print("rideId :",self.rideId)
+      for e in self.boostToUpdateList:
+         e.resume()

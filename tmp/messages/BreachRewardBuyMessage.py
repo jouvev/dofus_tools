@@ -5,4 +5,7 @@ class BreachRewardBuyMessage:
    def _idFunc(self,input) :
       self.id = input.readVarUhInt()
       if(self.id < 0) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of BreachRewardBuyMessage.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of BreachRewardBuyMessage.id.")
+
+   def resume(self):
+      print("id :",self.id)

@@ -4,3 +4,6 @@ class ExchangeCraftCountModifiedMessage:
    
    def _countFunc(self,input) :
       self.count = input.readVarInt()
+
+   def resume(self):
+      print("count :",self.count)

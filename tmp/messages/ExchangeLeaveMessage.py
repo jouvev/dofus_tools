@@ -1,4 +1,5 @@
 from tmp.messages.LeaveDialogMessage import LeaveDialogMessage
+
 class ExchangeLeaveMessage(LeaveDialogMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class ExchangeLeaveMessage(LeaveDialogMessage):
    
    def _successFunc(self,input) :
       self.success = input.readBoolean()
+
+   def resume(self):
+      super().resume()
+      print("success :",self.success)

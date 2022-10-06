@@ -5,4 +5,7 @@ class CompassResetMessage:
    def _typeFunc(self,input) :
       self.type = input.readByte()
       if(self.type < 0) :
-         raise RuntimeError("Forbidden value (" + self.type + ") on element of CompassResetMessage.type.")
+         raise RuntimeError("Forbidden value (" + str(self.type) + ") on element of CompassResetMessage.type.")
+
+   def resume(self):
+      print("type :",self.type)

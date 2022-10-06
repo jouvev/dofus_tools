@@ -6,9 +6,13 @@ class RecycledItem:
    def _idFunc(self,input) :
       self.id = input.readVarUhInt()
       if(self.id < 0) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of RecycledItem.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of RecycledItem.id.")
    
    def _qtyFunc(self,input) :
       self.qty = input.readUnsignedInt()
       if(self.qty < 0 or self.qty > 4294967295) :
-         raise RuntimeError("Forbidden value (" + self.qty + ") on element of RecycledItem.qty.")
+         raise RuntimeError("Forbidden value (" + str(self.qty) + ") on element of RecycledItem.qty.")
+
+   def resume(self):
+      print("id :",self.id)
+      print("qty :",self.qty)

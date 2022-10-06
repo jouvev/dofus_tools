@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class GameRolePlayShowMultipleActorsMessage:
    def __init__(self,input):
       self.informationsList = []
@@ -9,3 +10,7 @@ class GameRolePlayShowMultipleActorsMessage:
          _id1 = input.readUnsignedShort()
          _item1 = pf.TypesFactory.get_instance_id(_id1,input)
          self.informationsList.append(_item1)
+
+   def resume(self):
+      for e in self.informationsList:
+         e.resume()

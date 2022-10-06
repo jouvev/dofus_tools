@@ -16,3 +16,7 @@ class FightStartingPositions:
          if(_val2 < 0 or _val2 > 559) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of positionsForDefenders.")
          self.positionsForDefenders.append(_val2)
+
+   def resume(self):
+      print("positionsForChallengers :",self.positionsForChallengers)
+      print("positionsForDefenders :",self.positionsForDefenders)

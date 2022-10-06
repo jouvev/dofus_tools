@@ -5,4 +5,7 @@ class CharacterLevelUpMessage:
    def _newLevelFunc(self,input) :
       self.newLevel = input.readVarUhShort()
       if(self.newLevel < 0) :
-         raise RuntimeError("Forbidden value (" + self.newLevel + ") on element of CharacterLevelUpMessage.newLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.newLevel) + ") on element of CharacterLevelUpMessage.newLevel.")
+
+   def resume(self):
+      print("newLevel :",self.newLevel)

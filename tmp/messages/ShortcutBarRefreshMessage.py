@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class ShortcutBarRefreshMessage:
    def __init__(self,input):
       self._barTypeFunc(input)
@@ -8,4 +9,7 @@ class ShortcutBarRefreshMessage:
    def _barTypeFunc(self,input) :
       self.barType = input.readByte()
       if(self.barType < 0) :
-         raise RuntimeError("Forbidden value (" + self.barType + ") on element of ShortcutBarRefreshMessage.barType.")
+         raise RuntimeError("Forbidden value (" + str(self.barType) + ") on element of ShortcutBarRefreshMessage.barType.")
+
+   def resume(self):
+      print("barType :",self.barType)

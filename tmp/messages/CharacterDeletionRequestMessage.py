@@ -6,7 +6,11 @@ class CharacterDeletionRequestMessage:
    def _characterIdFunc(self,input) :
       self.characterId = input.readVarUhLong()
       if(self.characterId < 0 or self.characterId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.characterId + ") on element of CharacterDeletionRequestMessage.characterId.")
+         raise RuntimeError("Forbidden value (" + str(self.characterId) + ") on element of CharacterDeletionRequestMessage.characterId.")
    
    def _secretAnswerHashFunc(self,input) :
       self.secretAnswerHash = input.readUTF()
+
+   def resume(self):
+      print("characterId :",self.characterId)
+      print("secretAnswerHash :",self.secretAnswerHash)

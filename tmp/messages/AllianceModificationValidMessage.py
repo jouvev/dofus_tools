@@ -1,4 +1,5 @@
 from tmp.types.GuildEmblem import GuildEmblem
+
 class AllianceModificationValidMessage:
    def __init__(self,input):
       self._allianceNameFunc(input)
@@ -10,3 +11,8 @@ class AllianceModificationValidMessage:
    
    def _allianceTagFunc(self,input) :
       self.allianceTag = input.readUTF()
+
+   def resume(self):
+      print("allianceName :",self.allianceName)
+      print("allianceTag :",self.allianceTag)
+      self.Alliancemblem.resum()

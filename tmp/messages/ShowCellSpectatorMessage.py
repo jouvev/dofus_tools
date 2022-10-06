@@ -1,4 +1,5 @@
 from tmp.messages.ShowCellMessage import ShowCellMessage
+
 class ShowCellSpectatorMessage(ShowCellMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -6,3 +7,7 @@ class ShowCellSpectatorMessage(ShowCellMessage):
    
    def _playerNameFunc(self,input) :
       self.playerName = input.readUTF()
+
+   def resume(self):
+      super().resume()
+      print("playerName :",self.playerName)

@@ -9,4 +9,8 @@ class AdditionalTaxCollectorInformations:
    def _dateFunc(self,input) :
       self.date = input.readInt()
       if(self.date < 0) :
-         raise RuntimeError("Forbidden value (" + self.date + ") on element of AdditionalTaxCollectorInformations.date.")
+         raise RuntimeError("Forbidden value (" + str(self.date) + ") on element of AdditionalTaxCollectorInformations.date.")
+
+   def resume(self):
+      print("collectorCallerName :",self.collectorCallerName)
+      print("date :",self.date)

@@ -5,4 +5,7 @@ class TreasureHuntDigRequestMessage:
    def _questTypeFunc(self,input) :
       self.questType = input.readByte()
       if(self.questType < 0) :
-         raise RuntimeError("Forbidden value (" + self.questType + ") on element of TreasureHuntDigRequestMessage.questType.")
+         raise RuntimeError("Forbidden value (" + str(self.questType) + ") on element of TreasureHuntDigRequestMessage.questType.")
+
+   def resume(self):
+      print("questType :",self.questType)

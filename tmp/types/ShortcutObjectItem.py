@@ -1,4 +1,5 @@
 from tmp.types.ShortcutObject import ShortcutObject
+
 class ShortcutObjectItem(ShortcutObject):
    def __init__(self,input):
       super().__init__(input)
@@ -10,3 +11,8 @@ class ShortcutObjectItem(ShortcutObject):
    
    def _itemGIDFunc(self,input) :
       self.itemGID = input.readInt()
+
+   def resume(self):
+      super().resume()
+      print("itemUID :",self.itemUID)
+      print("itemGID :",self.itemGID)

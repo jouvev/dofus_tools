@@ -1,5 +1,6 @@
 from tmp.messages.GameFightSpectateMessage import GameFightSpectateMessage
 from tmp.types.GameFightSpellCooldown import GameFightSpellCooldown
+
 class GameFightResumeMessage(GameFightSpectateMessage):
    def __init__(self,input):
       self.spellCooldowns = []
@@ -15,9 +16,16 @@ class GameFightResumeMessage(GameFightSpectateMessage):
    def _summonCountFunc(self,input) :
       self.summonCount = input.readByte()
       if(self.summonCount < 0) :
-         raise RuntimeError("Forbidden value (" + self.summonCount + ") on element of GameFightResumeMessage.summonCount.")
+         raise RuntimeError("Forbidden value (" + str(self.summonCount) + ") on element of GameFightResumeMessage.summonCount.")
    
    def _bombCountFunc(self,input) :
       self.bombCount = input.readByte()
       if(self.bombCount < 0) :
-         raise RuntimeError("Forbidden value (" + self.bombCount + ") on element of GameFightResumeMessage.bombCount.")
+         raise RuntimeError("Forbidden value (" + str(self.bombCount) + ") on element of GameFightResumeMessage.bombCount.")
+
+   def resume(self):
+      super().resume()
+      print("summonCount :",self.summonCount)
+      print("bombCount :",self.bombCount)
+      for e in self.spellCooldowns:
+         e.resume()

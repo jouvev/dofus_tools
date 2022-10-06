@@ -8,3 +8,6 @@ class ExchangeStartOkJobIndexMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of jobs.")
          self.jobs.append(_val1)
+
+   def resume(self):
+      print("jobs :",self.jobs)

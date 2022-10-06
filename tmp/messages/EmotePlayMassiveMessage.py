@@ -1,4 +1,5 @@
 from tmp.messages.EmotePlayAbstractMessage import EmotePlayAbstractMessage
+
 class EmotePlayMassiveMessage(EmotePlayAbstractMessage):
    def __init__(self,input):
       self.actorIds = []
@@ -10,3 +11,7 @@ class EmotePlayMassiveMessage(EmotePlayAbstractMessage):
          if(_val1 < -9007199254740992 or _val1 > 9007199254740992) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of actorIds.")
          self.actorIds.append(_val1)
+
+   def resume(self):
+      super().resume()
+      print("actorIds :",self.actorIds)

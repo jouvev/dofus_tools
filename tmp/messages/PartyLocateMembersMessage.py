@@ -1,5 +1,6 @@
 from tmp.messages.AbstractPartyMessage import AbstractPartyMessage
 from tmp.types.PartyMemberGeoPosition import PartyMemberGeoPosition
+
 class PartyLocateMembersMessage(AbstractPartyMessage):
    def __init__(self,input):
       self.geopositions = []
@@ -9,3 +10,8 @@ class PartyLocateMembersMessage(AbstractPartyMessage):
       for _i1 in range(0,_geopositionsLen):
          _item1 = PartyMemberGeoPosition(input)
          self.geopositions.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.geopositions:
+         e.resume()

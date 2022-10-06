@@ -5,4 +5,7 @@ class ExchangeStartOkMulticraftCrafterMessage:
    def _skillIdFunc(self,input) :
       self.skillId = input.readVarUhInt()
       if(self.skillId < 0) :
-         raise RuntimeError("Forbidden value (" + self.skillId + ") on element of ExchangeStartOkMulticraftCrafterMessage.skillId.")
+         raise RuntimeError("Forbidden value (" + str(self.skillId) + ") on element of ExchangeStartOkMulticraftCrafterMessage.skillId.")
+
+   def resume(self):
+      print("skillId :",self.skillId)

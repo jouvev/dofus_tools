@@ -4,3 +4,6 @@ class ExchangeMultiCraftSetCrafterCanUseHisRessourcesMessage:
    
    def _allowFunc(self,input) :
       self.allow = input.readBoolean()
+
+   def resume(self):
+      print("allow :",self.allow)

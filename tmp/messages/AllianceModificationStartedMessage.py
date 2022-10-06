@@ -7,3 +7,6 @@ class AllianceModificationStartedMessage:
       self.canChangeName = bool(bin(_box0)[2:].zfill(8)[0])
       self.canChangeTag = bool(bin(_box0)[2:].zfill(8)[1])
       self.canChangeEmblem = bool(bin(_box0)[2:].zfill(8)[2])
+
+   def resume(self):
+      pass

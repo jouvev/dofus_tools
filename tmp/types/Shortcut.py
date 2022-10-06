@@ -5,4 +5,7 @@ class Shortcut:
    def _slotFunc(self,input) :
       self.slot = input.readByte()
       if(self.slot < 0 or self.slot > 99) :
-         raise RuntimeError("Forbidden value (" + self.slot + ") on element of Shortcut.slot.")
+         raise RuntimeError("Forbidden value (" + str(self.slot) + ") on element of Shortcut.slot.")
+
+   def resume(self):
+      print("slot :",self.slot)

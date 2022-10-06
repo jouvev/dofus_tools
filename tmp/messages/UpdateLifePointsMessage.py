@@ -6,9 +6,13 @@ class UpdateLifePointsMessage:
    def _lifePointsFunc(self,input) :
       self.lifePoints = input.readVarUhInt()
       if(self.lifePoints < 0) :
-         raise RuntimeError("Forbidden value (" + self.lifePoints + ") on element of UpdateLifePointsMessage.lifePoints.")
+         raise RuntimeError("Forbidden value (" + str(self.lifePoints) + ") on element of UpdateLifePointsMessage.lifePoints.")
    
    def _maxLifePointsFunc(self,input) :
       self.maxLifePoints = input.readVarUhInt()
       if(self.maxLifePoints < 0) :
-         raise RuntimeError("Forbidden value (" + self.maxLifePoints + ") on element of UpdateLifePointsMessage.maxLifePoints.")
+         raise RuntimeError("Forbidden value (" + str(self.maxLifePoints) + ") on element of UpdateLifePointsMessage.maxLifePoints.")
+
+   def resume(self):
+      print("lifePoints :",self.lifePoints)
+      print("maxLifePoints :",self.maxLifePoints)

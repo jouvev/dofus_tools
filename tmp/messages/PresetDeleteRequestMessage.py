@@ -4,3 +4,6 @@ class PresetDeleteRequestMessage:
    
    def _presetIdFunc(self,input) :
       self.presetId = input.readShort()
+
+   def resume(self):
+      print("presetId :",self.presetId)

@@ -5,4 +5,7 @@ class ObjectDeletedMessage:
    def _objectUIDFunc(self,input) :
       self.objectUID = input.readVarUhInt()
       if(self.objectUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectUID + ") on element of ObjectDeletedMessage.objectUID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectUID) + ") on element of ObjectDeletedMessage.objectUID.")
+
+   def resume(self):
+      print("objectUID :",self.objectUID)

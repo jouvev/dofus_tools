@@ -16,3 +16,7 @@ class ActivitySuggestionsMessage:
          if(_val2 < 0) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of unlockedActivitiesIds.")
          self.unlockedActivitiesIds.append(_val2)
+
+   def resume(self):
+      print("lockedActivitiesIds :",self.lockedActivitiesIds)
+      print("unlockedActivitiesIds :",self.unlockedActivitiesIds)

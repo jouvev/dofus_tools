@@ -1,4 +1,5 @@
 from tmp.types.Preset import Preset
+
 class IdolsPreset(Preset):
    def __init__(self,input):
       self.idolIds = []
@@ -15,4 +16,9 @@ class IdolsPreset(Preset):
    def _iconIdFunc(self,input) :
       self.iconId = input.readShort()
       if(self.iconId < 0) :
-         raise RuntimeError("Forbidden value (" + self.iconId + ") on element of IdolsPreset.iconId.")
+         raise RuntimeError("Forbidden value (" + str(self.iconId) + ") on element of IdolsPreset.iconId.")
+
+   def resume(self):
+      super().resume()
+      print("iconId :",self.iconId)
+      print("idolIds :",self.idolIds)

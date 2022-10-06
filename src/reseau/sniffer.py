@@ -2,7 +2,7 @@ from threading import Thread
 import pyshark
 from src.reseau.tools import *
 from src.reseau.packet import Packet
-from src.reseau.messagefactory import MessageFactory
+from src.reseau.MessagesFactory import MessagesFactory
 import asyncio
 
 
@@ -50,15 +50,15 @@ class PacketSniffer(Thread):
                 if(c):
                     p = Packet(msg)
                     #print(MessageFactory.id_class[str(p.packetid)],dst_port)
-                    if("GameFightSynchronizeMessage".lower() in MessageFactory.id_class[str(p.packetid)].lower()):
+                    if("GameFightSynchronizeMessage".lower() in MessagesFactory.id_class[str(p.packetid)].__class__.__name__.lower()):
                         
                         content = p.get_content()
-                        inst = MessageFactory.get_instance_id(p.packetid,content)
+                        inst = MessagesFactory.get_instance_id(p.packetid,content)
                         gamesynchro[dst_port] = inst    
-                    elif("GameFightTurnListMessage".lower() in MessageFactory.id_class[str(p.packetid)].lower()):
+                    elif("GameFightTurnListMessage".lower() in MessagesFactory.id_class[str(p.packetid)].__class__.__name__.lower()):
                         
                         content = p.get_content()
-                        inst = MessageFactory.get_instance_id(p.packetid,content)
+                        inst = MessagesFactory.get_instance_id(p.packetid,content)
                         turnlist[dst_port] = inst
                                         
 

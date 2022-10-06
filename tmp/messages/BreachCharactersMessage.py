@@ -8,3 +8,6 @@ class BreachCharactersMessage:
          if(_val1 < 0 or _val1 > 9007199254740992) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of characters.")
          self.characters.append(_val1)
+
+   def resume(self):
+      print("characters :",self.characters)

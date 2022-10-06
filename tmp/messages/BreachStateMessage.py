@@ -1,5 +1,6 @@
 from tmp.types.CharacterMinimalInformations import CharacterMinimalInformations
 from tmp.types.ObjectEffectInteger import ObjectEffectInteger
+
 class BreachStateMessage:
    def __init__(self,input):
       self.bonuses = []
@@ -15,7 +16,14 @@ class BreachStateMessage:
    def _bugdetFunc(self,input) :
       self.bugdet = input.readVarUhInt()
       if(self.bugdet < 0) :
-         raise RuntimeError("Forbidden value (" + self.bugdet + ") on element of BreachStateMessage.bugdet.")
+         raise RuntimeError("Forbidden value (" + str(self.bugdet) + ") on element of BreachStateMessage.bugdet.")
    
    def _savedFunc(self,input) :
       self.saved = input.readBoolean()
+
+   def resume(self):
+      print("bugdet :",self.bugdet)
+      print("saved :",self.saved)
+      self.owner.resum()
+      for e in self.bonuses:
+         e.resume()

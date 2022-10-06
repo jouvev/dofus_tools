@@ -6,9 +6,13 @@ class MoodSmileyResultMessage:
    def _resultCodeFunc(self,input) :
       self.resultCode = input.readByte()
       if(self.resultCode < 0) :
-         raise RuntimeError("Forbidden value (" + self.resultCode + ") on element of MoodSmileyResultMessage.resultCode.")
+         raise RuntimeError("Forbidden value (" + str(self.resultCode) + ") on element of MoodSmileyResultMessage.resultCode.")
    
    def _smileyIdFunc(self,input) :
       self.smileyId = input.readVarUhShort()
       if(self.smileyId < 0) :
-         raise RuntimeError("Forbidden value (" + self.smileyId + ") on element of MoodSmileyResultMessage.smileyId.")
+         raise RuntimeError("Forbidden value (" + str(self.smileyId) + ") on element of MoodSmileyResultMessage.smileyId.")
+
+   def resume(self):
+      print("resultCode :",self.resultCode)
+      print("smileyId :",self.smileyId)

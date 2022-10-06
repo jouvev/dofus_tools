@@ -1,5 +1,6 @@
 from tmp.types.PlayerStatus import PlayerStatus
 from tmp.types.GameFightFighterInformations import GameFightFighterInformations
+
 class GameFightFighterNamedInformations(GameFightFighterInformations):
    def __init__(self,input):
       super().__init__(input)
@@ -20,3 +21,11 @@ class GameFightFighterNamedInformations(GameFightFighterInformations):
    
    def _hiddenInPrefightFunc(self,input) :
       self.hiddenInPrefight = input.readBoolean()
+
+   def resume(self):
+      super().resume()
+      print("name :",self.name)
+      print("leagueId :",self.leagueId)
+      print("ladderPosition :",self.ladderPosition)
+      print("hiddenInPrefight :",self.hiddenInPrefight)
+      self.status.resum()

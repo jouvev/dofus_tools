@@ -12,3 +12,7 @@ class ExchangeHandleMountsMessage:
    
    def _actionTypeFunc(self,input) :
       self.actionType = input.readByte()
+
+   def resume(self):
+      print("actionType :",self.actionType)
+      print("ridesId :",self.ridesId)

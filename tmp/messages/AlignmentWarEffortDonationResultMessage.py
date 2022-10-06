@@ -4,3 +4,6 @@ class AlignmentWarEffortDonationResultMessage:
    
    def _resultFunc(self,input) :
       self.result = input.readByte()
+
+   def resume(self):
+      print("result :",self.result)

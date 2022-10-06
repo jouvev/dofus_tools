@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class PresetsMessage:
    def __init__(self,input):
       self.presets = []
@@ -9,3 +10,7 @@ class PresetsMessage:
          _id1 = input.readUnsignedShort()
          _item1 = pf.TypesFactory.get_instance_id(_id1,input)
          self.presets.append(_item1)
+
+   def resume(self):
+      for e in self.presets:
+         e.resume()

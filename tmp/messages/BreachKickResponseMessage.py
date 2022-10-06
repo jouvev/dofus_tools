@@ -1,4 +1,5 @@
 from tmp.types.CharacterMinimalInformations import CharacterMinimalInformations
+
 class BreachKickResponseMessage:
    def __init__(self,input):
       self.target = CharacterMinimalInformations(input)
@@ -6,3 +7,7 @@ class BreachKickResponseMessage:
    
    def _kickedFunc(self,input) :
       self.kicked = input.readBoolean()
+
+   def resume(self):
+      print("kicked :",self.kicked)
+      self.target.resum()

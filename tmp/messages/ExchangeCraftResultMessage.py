@@ -5,4 +5,7 @@ class ExchangeCraftResultMessage:
    def _craftResultFunc(self,input) :
       self.craftResult = input.readByte()
       if(self.craftResult < 0) :
-         raise RuntimeError("Forbidden value (" + self.craftResult + ") on element of ExchangeCraftResultMessage.craftResult.")
+         raise RuntimeError("Forbidden value (" + str(self.craftResult) + ") on element of ExchangeCraftResultMessage.craftResult.")
+
+   def resume(self):
+      print("craftResult :",self.craftResult)

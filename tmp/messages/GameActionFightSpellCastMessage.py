@@ -1,4 +1,5 @@
 from tmp.messages.AbstractGameActionFightTargetedAbilityMessage import AbstractGameActionFightTargetedAbilityMessage
+
 class GameActionFightSpellCastMessage(AbstractGameActionFightTargetedAbilityMessage):
    def __init__(self,input):
       self.portalsIds = []
@@ -14,9 +15,15 @@ class GameActionFightSpellCastMessage(AbstractGameActionFightTargetedAbilityMess
    def _spellIdFunc(self,input) :
       self.spellId = input.readVarUhShort()
       if(self.spellId < 0) :
-         raise RuntimeError("Forbidden value (" + self.spellId + ") on element of GameActionFightSpellCastMessage.spellId.")
+         raise RuntimeError("Forbidden value (" + str(self.spellId) + ") on element of GameActionFightSpellCastMessage.spellId.")
    
    def _spellLevelFunc(self,input) :
       self.spellLevel = input.readShort()
       if(self.spellLevel < 1 or self.spellLevel > 32767) :
-         raise RuntimeError("Forbidden value (" + self.spellLevel + ") on element of GameActionFightSpellCastMessage.spellLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.spellLevel) + ") on element of GameActionFightSpellCastMessage.spellLevel.")
+
+   def resume(self):
+      super().resume()
+      print("spellId :",self.spellId)
+      print("spellLevel :",self.spellLevel)
+      print("portalsIds :",self.portalsIds)

@@ -4,3 +4,6 @@ class ChatCommunityChannelSetCommunityRequestMessage:
    
    def _communityIdFunc(self,input) :
       self.communityId = input.readShort()
+
+   def resume(self):
+      print("communityId :",self.communityId)

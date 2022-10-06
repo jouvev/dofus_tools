@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.GameRolePlayGroupMonsterInformations import GameRolePlayGroupMonsterInformations
+
 class GameRolePlayGroupMonsterWaveInformations(GameRolePlayGroupMonsterInformations):
    def __init__(self,input):
       self.alternatives = []
@@ -16,4 +17,10 @@ class GameRolePlayGroupMonsterWaveInformations(GameRolePlayGroupMonsterInformati
    def _nbWavesFunc(self,input) :
       self.nbWaves = input.readByte()
       if(self.nbWaves < 0) :
-         raise RuntimeError("Forbidden value (" + self.nbWaves + ") on element of GameRolePlayGroupMonsterWaveInformations.nbWaves.")
+         raise RuntimeError("Forbidden value (" + str(self.nbWaves) + ") on element of GameRolePlayGroupMonsterWaveInformations.nbWaves.")
+
+   def resume(self):
+      super().resume()
+      print("nbWaves :",self.nbWaves)
+      for e in self.alternatives:
+         e.resume()

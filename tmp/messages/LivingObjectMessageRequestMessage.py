@@ -12,9 +12,14 @@ class LivingObjectMessageRequestMessage:
    def _msgIdFunc(self,input) :
       self.msgId = input.readVarUhShort()
       if(self.msgId < 0) :
-         raise RuntimeError("Forbidden value (" + self.msgId + ") on element of LivingObjectMessageRequestMessage.msgId.")
+         raise RuntimeError("Forbidden value (" + str(self.msgId) + ") on element of LivingObjectMessageRequestMessage.msgId.")
    
    def _livingObjectFunc(self,input) :
       self.livingObject = input.readVarUhInt()
       if(self.livingObject < 0) :
-         raise RuntimeError("Forbidden value (" + self.livingObject + ") on element of LivingObjectMessageRequestMessage.livingObject.")
+         raise RuntimeError("Forbidden value (" + str(self.livingObject) + ") on element of LivingObjectMessageRequestMessage.livingObject.")
+
+   def resume(self):
+      print("msgId :",self.msgId)
+      print("livingObject :",self.livingObject)
+      print("parameters :",self.parameters)

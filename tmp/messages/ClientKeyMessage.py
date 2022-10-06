@@ -4,3 +4,6 @@ class ClientKeyMessage:
    
    def _keyFunc(self,input) :
       self.key = input.readUTF()
+
+   def resume(self):
+      print("key :",self.key)

@@ -1,4 +1,5 @@
 from tmp.types.MonsterInGroupLightInformations import MonsterInGroupLightInformations
+
 class AlternativeMonstersInGroupLightInformations:
    def __init__(self,input):
       self.monsters = []
@@ -11,3 +12,8 @@ class AlternativeMonstersInGroupLightInformations:
    
    def _playerCountFunc(self,input) :
       self.playerCount = input.readInt()
+
+   def resume(self):
+      print("playerCount :",self.playerCount)
+      for e in self.monsters:
+         e.resume()

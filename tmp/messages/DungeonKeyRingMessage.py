@@ -16,3 +16,7 @@ class DungeonKeyRingMessage:
          if(_val2 < 0) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of unavailables.")
          self.unavailables.append(_val2)
+
+   def resume(self):
+      print("availables :",self.availables)
+      print("unavailables :",self.unavailables)

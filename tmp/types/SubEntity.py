@@ -1,4 +1,5 @@
 import tmp.types.EntityLook as et
+
 class SubEntity:
    def __init__(self,input):
       self._bindingPointCategoryFunc(input)
@@ -8,9 +9,13 @@ class SubEntity:
    def _bindingPointCategoryFunc(self,input) :
       self.bindingPointCategory = input.readByte()
       if(self.bindingPointCategory < 0) :
-         raise RuntimeError("Forbidden value (" + self.bindingPointCategory + ") on element of SubEntity.bindingPointCategory.")
+         raise RuntimeError("Forbidden value (" + str(self.bindingPointCategory) + ") on element of SubEntity.bindingPointCategory.")
    
    def _bindingPointIndexFunc(self,input) :
       self.bindingPointIndex = input.readByte()
       if(self.bindingPointIndex < 0) :
-         raise RuntimeError("Forbidden value (" + self.bindingPointIndex + ") on element of SubEntity.bindingPointIndex.")
+         raise RuntimeError("Forbidden value (" + str(self.bindingPointIndex) + ") on element of SubEntity.bindingPointIndex.")
+
+   def resume(self):
+      print("bindingPointCategory :",self.bindingPointCategory)
+      print("bindingPointIndex :",self.bindingPointIndex)

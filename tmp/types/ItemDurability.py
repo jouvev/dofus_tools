@@ -8,3 +8,7 @@ class ItemDurability:
    
    def _durabilityMaxFunc(self,input) :
       self.durabilityMax = input.readShort()
+
+   def resume(self):
+      print("durability :",self.durability)
+      print("durabilityMax :",self.durabilityMax)

@@ -1,4 +1,5 @@
 from tmp.types.ObjectEffectInteger import ObjectEffectInteger
+
 class MountClientData:
    def __init__(self,input):
       self.ancestor = []
@@ -62,12 +63,12 @@ class MountClientData:
    def _idFunc(self,input) :
       self.id = input.readDouble()
       if(self.id < -9007199254740992 or self.id > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of MountClientData.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of MountClientData.id.")
    
    def _modelFunc(self,input) :
       self.model = input.readVarUhInt()
       if(self.model < 0) :
-         raise RuntimeError("Forbidden value (" + self.model + ") on element of MountClientData.model.")
+         raise RuntimeError("Forbidden value (" + str(self.model) + ") on element of MountClientData.model.")
    
    def _nameFunc(self,input) :
       self.name = input.readUTF()
@@ -75,62 +76,62 @@ class MountClientData:
    def _ownerIdFunc(self,input) :
       self.ownerId = input.readInt()
       if(self.ownerId < 0) :
-         raise RuntimeError("Forbidden value (" + self.ownerId + ") on element of MountClientData.ownerId.")
+         raise RuntimeError("Forbidden value (" + str(self.ownerId) + ") on element of MountClientData.ownerId.")
    
    def _experienceFunc(self,input) :
       self.experience = input.readVarUhLong()
       if(self.experience < 0 or self.experience > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experience + ") on element of MountClientData.experience.")
+         raise RuntimeError("Forbidden value (" + str(self.experience) + ") on element of MountClientData.experience.")
    
    def _experienceForLevelFunc(self,input) :
       self.experienceForLevel = input.readVarUhLong()
       if(self.experienceForLevel < 0 or self.experienceForLevel > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experienceForLevel + ") on element of MountClientData.experienceForLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.experienceForLevel) + ") on element of MountClientData.experienceForLevel.")
    
    def _experienceForNextLevelFunc(self,input) :
       self.experienceForNextLevel = input.readDouble()
       if(self.experienceForNextLevel < -9007199254740992 or self.experienceForNextLevel > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experienceForNextLevel + ") on element of MountClientData.experienceForNextLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.experienceForNextLevel) + ") on element of MountClientData.experienceForNextLevel.")
    
    def _levelFunc(self,input) :
       self.level = input.readByte()
       if(self.level < 0) :
-         raise RuntimeError("Forbidden value (" + self.level + ") on element of MountClientData.level.")
+         raise RuntimeError("Forbidden value (" + str(self.level) + ") on element of MountClientData.level.")
    
    def _maxPodsFunc(self,input) :
       self.maxPods = input.readVarUhInt()
       if(self.maxPods < 0) :
-         raise RuntimeError("Forbidden value (" + self.maxPods + ") on element of MountClientData.maxPods.")
+         raise RuntimeError("Forbidden value (" + str(self.maxPods) + ") on element of MountClientData.maxPods.")
    
    def _staminaFunc(self,input) :
       self.stamina = input.readVarUhInt()
       if(self.stamina < 0) :
-         raise RuntimeError("Forbidden value (" + self.stamina + ") on element of MountClientData.stamina.")
+         raise RuntimeError("Forbidden value (" + str(self.stamina) + ") on element of MountClientData.stamina.")
    
    def _staminaMaxFunc(self,input) :
       self.staminaMax = input.readVarUhInt()
       if(self.staminaMax < 0) :
-         raise RuntimeError("Forbidden value (" + self.staminaMax + ") on element of MountClientData.staminaMax.")
+         raise RuntimeError("Forbidden value (" + str(self.staminaMax) + ") on element of MountClientData.staminaMax.")
    
    def _maturityFunc(self,input) :
       self.maturity = input.readVarUhInt()
       if(self.maturity < 0) :
-         raise RuntimeError("Forbidden value (" + self.maturity + ") on element of MountClientData.maturity.")
+         raise RuntimeError("Forbidden value (" + str(self.maturity) + ") on element of MountClientData.maturity.")
    
    def _maturityForAdultFunc(self,input) :
       self.maturityForAdult = input.readVarUhInt()
       if(self.maturityForAdult < 0) :
-         raise RuntimeError("Forbidden value (" + self.maturityForAdult + ") on element of MountClientData.maturityForAdult.")
+         raise RuntimeError("Forbidden value (" + str(self.maturityForAdult) + ") on element of MountClientData.maturityForAdult.")
    
    def _energyFunc(self,input) :
       self.energy = input.readVarUhInt()
       if(self.energy < 0) :
-         raise RuntimeError("Forbidden value (" + self.energy + ") on element of MountClientData.energy.")
+         raise RuntimeError("Forbidden value (" + str(self.energy) + ") on element of MountClientData.energy.")
    
    def _energyMaxFunc(self,input) :
       self.energyMax = input.readVarUhInt()
       if(self.energyMax < 0) :
-         raise RuntimeError("Forbidden value (" + self.energyMax + ") on element of MountClientData.energyMax.")
+         raise RuntimeError("Forbidden value (" + str(self.energyMax) + ") on element of MountClientData.energyMax.")
    
    def _serenityFunc(self,input) :
       self.serenity = input.readInt()
@@ -141,17 +142,17 @@ class MountClientData:
    def _serenityMaxFunc(self,input) :
       self.serenityMax = input.readVarUhInt()
       if(self.serenityMax < 0) :
-         raise RuntimeError("Forbidden value (" + self.serenityMax + ") on element of MountClientData.serenityMax.")
+         raise RuntimeError("Forbidden value (" + str(self.serenityMax) + ") on element of MountClientData.serenityMax.")
    
    def _loveFunc(self,input) :
       self.love = input.readVarUhInt()
       if(self.love < 0) :
-         raise RuntimeError("Forbidden value (" + self.love + ") on element of MountClientData.love.")
+         raise RuntimeError("Forbidden value (" + str(self.love) + ") on element of MountClientData.love.")
    
    def _loveMaxFunc(self,input) :
       self.loveMax = input.readVarUhInt()
       if(self.loveMax < 0) :
-         raise RuntimeError("Forbidden value (" + self.loveMax + ") on element of MountClientData.loveMax.")
+         raise RuntimeError("Forbidden value (" + str(self.loveMax) + ") on element of MountClientData.loveMax.")
    
    def _fecondationTimeFunc(self,input) :
       self.fecondationTime = input.readInt()
@@ -159,12 +160,12 @@ class MountClientData:
    def _boostLimiterFunc(self,input) :
       self.boostLimiter = input.readInt()
       if(self.boostLimiter < 0) :
-         raise RuntimeError("Forbidden value (" + self.boostLimiter + ") on element of MountClientData.boostLimiter.")
+         raise RuntimeError("Forbidden value (" + str(self.boostLimiter) + ") on element of MountClientData.boostLimiter.")
    
    def _boostMaxFunc(self,input) :
       self.boostMax = input.readDouble()
       if(self.boostMax < -9007199254740992 or self.boostMax > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.boostMax + ") on element of MountClientData.boostMax.")
+         raise RuntimeError("Forbidden value (" + str(self.boostMax) + ") on element of MountClientData.boostMax.")
    
    def _reproductionCountFunc(self,input) :
       self.reproductionCount = input.readInt()
@@ -172,9 +173,41 @@ class MountClientData:
    def _reproductionCountMaxFunc(self,input) :
       self.reproductionCountMax = input.readVarUhInt()
       if(self.reproductionCountMax < 0) :
-         raise RuntimeError("Forbidden value (" + self.reproductionCountMax + ") on element of MountClientData.reproductionCountMax.")
+         raise RuntimeError("Forbidden value (" + str(self.reproductionCountMax) + ") on element of MountClientData.reproductionCountMax.")
    
    def _harnessGIDFunc(self,input) :
       self.harnessGID = input.readVarUhInt()
       if(self.harnessGID < 0) :
-         raise RuntimeError("Forbidden value (" + self.harnessGID + ") on element of MountClientData.harnessGID.")
+         raise RuntimeError("Forbidden value (" + str(self.harnessGID) + ") on element of MountClientData.harnessGID.")
+
+   def resume(self):
+      print("id :",self.id)
+      print("model :",self.model)
+      print("name :",self.name)
+      print("ownerId :",self.ownerId)
+      print("experience :",self.experience)
+      print("experienceForLevel :",self.experienceForLevel)
+      print("experienceForNextLevel :",self.experienceForNextLevel)
+      print("level :",self.level)
+      print("maxPods :",self.maxPods)
+      print("stamina :",self.stamina)
+      print("staminaMax :",self.staminaMax)
+      print("maturity :",self.maturity)
+      print("maturityForAdult :",self.maturityForAdult)
+      print("energy :",self.energy)
+      print("energyMax :",self.energyMax)
+      print("serenity :",self.serenity)
+      print("aggressivityMax :",self.aggressivityMax)
+      print("serenityMax :",self.serenityMax)
+      print("love :",self.love)
+      print("loveMax :",self.loveMax)
+      print("fecondationTime :",self.fecondationTime)
+      print("boostLimiter :",self.boostLimiter)
+      print("boostMax :",self.boostMax)
+      print("reproductionCount :",self.reproductionCount)
+      print("reproductionCountMax :",self.reproductionCountMax)
+      print("harnessGID :",self.harnessGID)
+      print("ancestor :",self.ancestor)
+      print("behaviors :",self.behaviors)
+      for e in self.effectList:
+         e.resume()

@@ -8,3 +8,6 @@ class DungeonPartyFinderRegisterRequestMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of dungeonIds.")
          self.dungeonIds.append(_val1)
+
+   def resume(self):
+      print("dungeonIds :",self.dungeonIds)

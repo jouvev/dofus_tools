@@ -5,4 +5,7 @@ class ServerExperienceModificatorMessage:
    def _experiencePercentFunc(self,input) :
       self.experiencePercent = input.readVarUhShort()
       if(self.experiencePercent < 0) :
-         raise RuntimeError("Forbidden value (" + self.experiencePercent + ") on element of ServerExperienceModificatorMessage.experiencePercent.")
+         raise RuntimeError("Forbidden value (" + str(self.experiencePercent) + ") on element of ServerExperienceModificatorMessage.experiencePercent.")
+
+   def resume(self):
+      print("experiencePercent :",self.experiencePercent)

@@ -1,5 +1,6 @@
 from tmp.types.AllianceInformations import AllianceInformations
 from tmp.types.HumanOption import HumanOption
+
 class HumanOptionAlliance(HumanOption):
    def __init__(self,input):
       super().__init__(input)
@@ -9,4 +10,9 @@ class HumanOptionAlliance(HumanOption):
    def _aggressableFunc(self,input) :
       self.aggressable = input.readByte()
       if(self.aggressable < 0) :
-         raise RuntimeError("Forbidden value (" + self.aggressable + ") on element of HumanOptionAlliance.aggressable.")
+         raise RuntimeError("Forbidden value (" + str(self.aggressable) + ") on element of HumanOptionAlliance.aggressable.")
+
+   def resume(self):
+      super().resume()
+      print("aggressable :",self.aggressable)
+      self.allianceInformations.resum()

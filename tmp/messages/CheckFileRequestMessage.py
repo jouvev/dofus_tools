@@ -9,4 +9,8 @@ class CheckFileRequestMessage:
    def _typeFunc(self,input) :
       self.type = input.readByte()
       if(self.type < 0) :
-         raise RuntimeError("Forbidden value (" + self.type + ") on element of CheckFileRequestMessage.type.")
+         raise RuntimeError("Forbidden value (" + str(self.type) + ") on element of CheckFileRequestMessage.type.")
+
+   def resume(self):
+      print("filename :",self.filename)
+      print("type :",self.type)

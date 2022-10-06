@@ -5,4 +5,7 @@ class ExchangeShopStockMovementRemovedMessage:
    def _objectIdFunc(self,input) :
       self.objectId = input.readVarUhInt()
       if(self.objectId < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectId + ") on element of ExchangeShopStockMovementRemovedMessage.objectId.")
+         raise RuntimeError("Forbidden value (" + str(self.objectId) + ") on element of ExchangeShopStockMovementRemovedMessage.objectId.")
+
+   def resume(self):
+      print("objectId :",self.objectId)

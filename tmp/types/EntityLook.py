@@ -1,4 +1,5 @@
 from tmp.types.SubEntity import SubEntity
+
 class EntityLook:
    def __init__(self,input):
       self.skins = []
@@ -32,4 +33,12 @@ class EntityLook:
    def _bonesIdFunc(self,input) :
       self.bonesId = input.readVarUhShort()
       if(self.bonesId < 0) :
-         raise RuntimeError("Forbidden value (" + self.bonesId + ") on element of EntityLook.bonesId.")
+         raise RuntimeError("Forbidden value (" + str(self.bonesId) + ") on element of EntityLook.bonesId.")
+
+   def resume(self):
+      print("bonesId :",self.bonesId)
+      print("skins :",self.skins)
+      print("indexedColors :",self.indexedColors)
+      print("scales :",self.scales)
+      for e in self.subentities:
+         e.resume()

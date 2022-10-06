@@ -8,3 +8,6 @@ class EmoteListMessage:
          if(_val1 < 0 or _val1 > 65535) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of emoteIds.")
          self.emoteIds.append(_val1)
+
+   def resume(self):
+      print("emoteIds :",self.emoteIds)

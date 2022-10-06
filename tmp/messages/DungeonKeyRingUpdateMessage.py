@@ -6,7 +6,11 @@ class DungeonKeyRingUpdateMessage:
    def _dungeonIdFunc(self,input) :
       self.dungeonId = input.readVarUhShort()
       if(self.dungeonId < 0) :
-         raise RuntimeError("Forbidden value (" + self.dungeonId + ") on element of DungeonKeyRingUpdateMessage.dungeonId.")
+         raise RuntimeError("Forbidden value (" + str(self.dungeonId) + ") on element of DungeonKeyRingUpdateMessage.dungeonId.")
    
    def _availableFunc(self,input) :
       self.available = input.readBoolean()
+
+   def resume(self):
+      print("dungeonId :",self.dungeonId)
+      print("available :",self.available)

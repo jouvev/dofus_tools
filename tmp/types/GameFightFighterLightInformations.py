@@ -14,17 +14,23 @@ class GameFightFighterLightInformations:
    def _idFunc(self,input) :
       self.id = input.readDouble()
       if(self.id < -9007199254740992 or self.id > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of GameFightFighterLightInformations.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of GameFightFighterLightInformations.id.")
    
    def _waveFunc(self,input) :
       self.wave = input.readByte()
       if(self.wave < 0) :
-         raise RuntimeError("Forbidden value (" + self.wave + ") on element of GameFightFighterLightInformations.wave.")
+         raise RuntimeError("Forbidden value (" + str(self.wave) + ") on element of GameFightFighterLightInformations.wave.")
    
    def _levelFunc(self,input) :
       self.level = input.readVarUhShort()
       if(self.level < 0) :
-         raise RuntimeError("Forbidden value (" + self.level + ") on element of GameFightFighterLightInformations.level.")
+         raise RuntimeError("Forbidden value (" + str(self.level) + ") on element of GameFightFighterLightInformations.level.")
    
    def _breedFunc(self,input) :
       self.breed = input.readByte()
+
+   def resume(self):
+      print("id :",self.id)
+      print("wave :",self.wave)
+      print("level :",self.level)
+      print("breed :",self.breed)

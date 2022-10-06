@@ -8,3 +8,6 @@ class StorageObjectsRemoveMessage:
          if(_val1 < 0) :
             raise RuntimeError("Forbidden value (" + _val1 + ") on elements of objectUIDList.")
          self.objectUIDList.append(_val1)
+
+   def resume(self):
+      print("objectUIDList :",self.objectUIDList)

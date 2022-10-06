@@ -1,4 +1,5 @@
 from tmp.messages.PartyInvitationMessage import PartyInvitationMessage
+
 class PartyInvitationDungeonMessage(PartyInvitationMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -7,4 +8,8 @@ class PartyInvitationDungeonMessage(PartyInvitationMessage):
    def _dungeonIdFunc(self,input) :
       self.dungeonId = input.readVarUhShort()
       if(self.dungeonId < 0) :
-         raise RuntimeError("Forbidden value (" + self.dungeonId + ") on element of PartyInvitationDungeonMessage.dungeonId.")
+         raise RuntimeError("Forbidden value (" + str(self.dungeonId) + ") on element of PartyInvitationDungeonMessage.dungeonId.")
+
+   def resume(self):
+      super().resume()
+      print("dungeonId :",self.dungeonId)

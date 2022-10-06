@@ -5,4 +5,7 @@ class CharacterReplayRequestMessage:
    def _characterIdFunc(self,input) :
       self.characterId = input.readVarUhLong()
       if(self.characterId < 0 or self.characterId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.characterId + ") on element of CharacterReplayRequestMessage.characterId.")
+         raise RuntimeError("Forbidden value (" + str(self.characterId) + ") on element of CharacterReplayRequestMessage.characterId.")
+
+   def resume(self):
+      print("characterId :",self.characterId)

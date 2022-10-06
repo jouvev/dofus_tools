@@ -4,3 +4,6 @@ class MountInformationInPaddockRequestMessage:
    
    def _mapRideIdFunc(self,input) :
       self.mapRideId = input.readVarInt()
+
+   def resume(self):
+      print("mapRideId :",self.mapRideId)

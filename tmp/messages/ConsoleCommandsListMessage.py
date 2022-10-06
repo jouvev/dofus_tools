@@ -18,3 +18,8 @@ class ConsoleCommandsListMessage:
       for _i3 in range(0,_descriptionsLen):
          _val3 = input.readUTF()
          self.descriptions.append(_val3)
+
+   def resume(self):
+      print("aliases :",self.aliases)
+      print("args :",self.args)
+      print("descriptions :",self.descriptions)

@@ -5,4 +5,7 @@ class AllianceKickRequestMessage:
    def _kickedIdFunc(self,input) :
       self.kickedId = input.readVarUhInt()
       if(self.kickedId < 0) :
-         raise RuntimeError("Forbidden value (" + self.kickedId + ") on element of AllianceKickRequestMessage.kickedId.")
+         raise RuntimeError("Forbidden value (" + str(self.kickedId) + ") on element of AllianceKickRequestMessage.kickedId.")
+
+   def resume(self):
+      print("kickedId :",self.kickedId)

@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.GameRolePlayActorInformations import GameRolePlayActorInformations
+
 class GameRolePlayTaxCollectorInformations(GameRolePlayActorInformations):
    def __init__(self,input):
       super().__init__(input)
@@ -11,7 +12,12 @@ class GameRolePlayTaxCollectorInformations(GameRolePlayActorInformations):
    def _guildLevelFunc(self,input) :
       self.guildLevel = input.readUnsignedByte()
       if(self.guildLevel < 0 or self.guildLevel > 255) :
-         raise RuntimeError("Forbidden value (" + self.guildLevel + ") on element of GameRolePlayTaxCollectorInformations.guildLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.guildLevel) + ") on element of GameRolePlayTaxCollectorInformations.guildLevel.")
    
    def _taxCollectorAttackFunc(self,input) :
       self.taxCollectorAttack = input.readInt()
+
+   def resume(self):
+      super().resume()
+      print("guildLevel :",self.guildLevel)
+      print("taxCollectorAttack :",self.taxCollectorAttack)

@@ -6,9 +6,13 @@ class UpdateSelfAgressableStatusMessage:
    def _statusFunc(self,input) :
       self.status = input.readByte()
       if(self.status < 0) :
-         raise RuntimeError("Forbidden value (" + self.status + ") on element of UpdateSelfAgressableStatusMessage.status.")
+         raise RuntimeError("Forbidden value (" + str(self.status) + ") on element of UpdateSelfAgressableStatusMessage.status.")
    
    def _probationTimeFunc(self,input) :
       self.probationTime = input.readInt()
       if(self.probationTime < 0) :
-         raise RuntimeError("Forbidden value (" + self.probationTime + ") on element of UpdateSelfAgressableStatusMessage.probationTime.")
+         raise RuntimeError("Forbidden value (" + str(self.probationTime) + ") on element of UpdateSelfAgressableStatusMessage.probationTime.")
+
+   def resume(self):
+      print("status :",self.status)
+      print("probationTime :",self.probationTime)

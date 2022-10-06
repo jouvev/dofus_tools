@@ -5,4 +5,7 @@ class GameRolePlayRemoveChallengeMessage:
    def _fightIdFunc(self,input) :
       self.fightId = input.readVarUhShort()
       if(self.fightId < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightId + ") on element of GameRolePlayRemoveChallengeMessage.fightId.")
+         raise RuntimeError("Forbidden value (" + str(self.fightId) + ") on element of GameRolePlayRemoveChallengeMessage.fightId.")
+
+   def resume(self):
+      print("fightId :",self.fightId)

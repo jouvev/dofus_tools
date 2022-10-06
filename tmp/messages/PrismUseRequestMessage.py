@@ -5,4 +5,7 @@ class PrismUseRequestMessage:
    def _moduleToUseFunc(self,input) :
       self.moduleToUse = input.readByte()
       if(self.moduleToUse < 0) :
-         raise RuntimeError("Forbidden value (" + self.moduleToUse + ") on element of PrismUseRequestMessage.moduleToUse.")
+         raise RuntimeError("Forbidden value (" + str(self.moduleToUse) + ") on element of PrismUseRequestMessage.moduleToUse.")
+
+   def resume(self):
+      print("moduleToUse :",self.moduleToUse)

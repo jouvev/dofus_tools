@@ -6,9 +6,13 @@ class PrismFightSwapRequestMessage:
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of PrismFightSwapRequestMessage.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of PrismFightSwapRequestMessage.subAreaId.")
    
    def _targetIdFunc(self,input) :
       self.targetId = input.readVarUhLong()
       if(self.targetId < 0 or self.targetId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.targetId + ") on element of PrismFightSwapRequestMessage.targetId.")
+         raise RuntimeError("Forbidden value (" + str(self.targetId) + ") on element of PrismFightSwapRequestMessage.targetId.")
+
+   def resume(self):
+      print("subAreaId :",self.subAreaId)
+      print("targetId :",self.targetId)

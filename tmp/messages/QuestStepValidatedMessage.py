@@ -6,9 +6,13 @@ class QuestStepValidatedMessage:
    def _questIdFunc(self,input) :
       self.questId = input.readVarUhShort()
       if(self.questId < 0) :
-         raise RuntimeError("Forbidden value (" + self.questId + ") on element of QuestStepValidatedMessage.questId.")
+         raise RuntimeError("Forbidden value (" + str(self.questId) + ") on element of QuestStepValidatedMessage.questId.")
    
    def _stepIdFunc(self,input) :
       self.stepId = input.readVarUhShort()
       if(self.stepId < 0) :
-         raise RuntimeError("Forbidden value (" + self.stepId + ") on element of QuestStepValidatedMessage.stepId.")
+         raise RuntimeError("Forbidden value (" + str(self.stepId) + ") on element of QuestStepValidatedMessage.stepId.")
+
+   def resume(self):
+      print("questId :",self.questId)
+      print("stepId :",self.stepId)

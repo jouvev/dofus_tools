@@ -1,4 +1,5 @@
 from tmp.types.GameServerInformations import GameServerInformations
+
 class ServersListMessage:
    def __init__(self,input):
       self.servers = []
@@ -11,3 +12,8 @@ class ServersListMessage:
    
    def _canCreateNewCharacterFunc(self,input) :
       self.canCreateNewCharacter = input.readBoolean()
+
+   def resume(self):
+      print("canCreateNewCharacter :",self.canCreateNewCharacter)
+      for e in self.servers:
+         e.resume()

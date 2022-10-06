@@ -4,3 +4,6 @@ class NicknameChoiceRequestMessage:
    
    def _nicknameFunc(self,input) :
       self.nickname = input.readUTF()
+
+   def resume(self):
+      print("nickname :",self.nickname)

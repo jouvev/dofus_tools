@@ -17,4 +17,9 @@ class GameRolePlayArenaPlayerBehavioursMessage:
    def _banDurationFunc(self,input) :
       self.banDuration = input.readInt()
       if(self.banDuration < 0) :
-         raise RuntimeError("Forbidden value (" + self.banDuration + ") on element of GameRolePlayArenaPlayerBehavioursMessage.banDuration.")
+         raise RuntimeError("Forbidden value (" + str(self.banDuration) + ") on element of GameRolePlayArenaPlayerBehavioursMessage.banDuration.")
+
+   def resume(self):
+      print("banDuration :",self.banDuration)
+      print("flags :",self.flags)
+      print("sanctions :",self.sanctions)

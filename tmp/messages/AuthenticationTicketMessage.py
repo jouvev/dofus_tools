@@ -8,3 +8,7 @@ class AuthenticationTicketMessage:
    
    def _ticketFunc(self,input) :
       self.ticket = input.readUTF()
+
+   def resume(self):
+      print("lang :",self.lang)
+      print("ticket :",self.ticket)

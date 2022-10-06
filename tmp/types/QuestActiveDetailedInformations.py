@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.QuestActiveInformations import QuestActiveInformations
+
 class QuestActiveDetailedInformations(QuestActiveInformations):
    def __init__(self,input):
       self.objectives = []
@@ -16,4 +17,10 @@ class QuestActiveDetailedInformations(QuestActiveInformations):
    def _stepIdFunc(self,input) :
       self.stepId = input.readVarUhShort()
       if(self.stepId < 0) :
-         raise RuntimeError("Forbidden value (" + self.stepId + ") on element of QuestActiveDetailedInformations.stepId.")
+         raise RuntimeError("Forbidden value (" + str(self.stepId) + ") on element of QuestActiveDetailedInformations.stepId.")
+
+   def resume(self):
+      super().resume()
+      print("stepId :",self.stepId)
+      for e in self.objectives:
+         e.resume()

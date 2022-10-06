@@ -5,4 +5,7 @@ class DungeonPartyFinderListenRequestMessage:
    def _dungeonIdFunc(self,input) :
       self.dungeonId = input.readVarUhShort()
       if(self.dungeonId < 0) :
-         raise RuntimeError("Forbidden value (" + self.dungeonId + ") on element of DungeonPartyFinderListenRequestMessage.dungeonId.")
+         raise RuntimeError("Forbidden value (" + str(self.dungeonId) + ") on element of DungeonPartyFinderListenRequestMessage.dungeonId.")
+
+   def resume(self):
+      print("dungeonId :",self.dungeonId)

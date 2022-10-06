@@ -5,4 +5,7 @@ class StorageObjectRemoveMessage:
    def _objectUIDFunc(self,input) :
       self.objectUID = input.readVarUhInt()
       if(self.objectUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectUID + ") on element of StorageObjectRemoveMessage.objectUID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectUID) + ") on element of StorageObjectRemoveMessage.objectUID.")
+
+   def resume(self):
+      print("objectUID :",self.objectUID)

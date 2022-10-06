@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.GameRolePlayActorInformations import GameRolePlayActorInformations
+
 class GameRolePlayGroupMonsterInformations(GameRolePlayActorInformations):
    def __init__(self,input):
       super().__init__(input)
@@ -18,7 +19,12 @@ class GameRolePlayGroupMonsterInformations(GameRolePlayActorInformations):
    def _lootShareFunc(self,input) :
       self.lootShare = input.readByte()
       if(self.lootShare < -1 or self.lootShare > 8) :
-         raise RuntimeError("Forbidden value (" + self.lootShare + ") on element of GameRolePlayGroupMonsterInformations.lootShare.")
+         raise RuntimeError("Forbidden value (" + str(self.lootShare) + ") on element of GameRolePlayGroupMonsterInformations.lootShare.")
    
    def _alignmentSideFunc(self,input) :
       self.alignmentSide = input.readByte()
+
+   def resume(self):
+      super().resume()
+      print("lootShare :",self.lootShare)
+      print("alignmentSide :",self.alignmentSide)

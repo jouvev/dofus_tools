@@ -1,5 +1,6 @@
 from tmp.types.MonsterBoosts import MonsterBoosts
 from tmp.types.MonsterBoosts import MonsterBoosts
+
 class GameRefreshMonsterBoostsMessage:
    def __init__(self,input):
       self.monsterBoosts = []
@@ -14,3 +15,9 @@ class GameRefreshMonsterBoostsMessage:
       for _i2 in range(0,_familyBoostsLen):
          _item2 = MonsterBoosts(input)
          self.familyBoosts.append(_item2)
+
+   def resume(self):
+      for e in self.monsterBoosts:
+         e.resume()
+      for e in self.familyBoosts:
+         e.resume()

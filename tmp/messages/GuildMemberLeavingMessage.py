@@ -9,4 +9,8 @@ class GuildMemberLeavingMessage:
    def _memberIdFunc(self,input) :
       self.memberId = input.readVarUhLong()
       if(self.memberId < 0 or self.memberId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.memberId + ") on element of GuildMemberLeavingMessage.memberId.")
+         raise RuntimeError("Forbidden value (" + str(self.memberId) + ") on element of GuildMemberLeavingMessage.memberId.")
+
+   def resume(self):
+      print("kicked :",self.kicked)
+      print("memberId :",self.memberId)

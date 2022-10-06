@@ -5,4 +5,7 @@ class TitleSelectedMessage:
    def _titleIdFunc(self,input) :
       self.titleId = input.readVarUhShort()
       if(self.titleId < 0) :
-         raise RuntimeError("Forbidden value (" + self.titleId + ") on element of TitleSelectedMessage.titleId.")
+         raise RuntimeError("Forbidden value (" + str(self.titleId) + ") on element of TitleSelectedMessage.titleId.")
+
+   def resume(self):
+      print("titleId :",self.titleId)

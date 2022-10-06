@@ -1,4 +1,5 @@
 from tmp.types.GuildRankMinimalInformation import GuildRankMinimalInformation
+
 class GuildRankInformation(GuildRankMinimalInformation):
    def __init__(self,input):
       self.rights = []
@@ -17,12 +18,19 @@ class GuildRankInformation(GuildRankMinimalInformation):
    def _orderFunc(self,input) :
       self.order = input.readVarUhInt()
       if(self.order < 0) :
-         raise RuntimeError("Forbidden value (" + self.order + ") on element of GuildRankInformation.order.")
+         raise RuntimeError("Forbidden value (" + str(self.order) + ") on element of GuildRankInformation.order.")
    
    def _gfxIdFunc(self,input) :
       self.gfxId = input.readVarUhInt()
       if(self.gfxId < 0) :
-         raise RuntimeError("Forbidden value (" + self.gfxId + ") on element of GuildRankInformation.gfxId.")
+         raise RuntimeError("Forbidden value (" + str(self.gfxId) + ") on element of GuildRankInformation.gfxId.")
    
    def _modifiableFunc(self,input) :
       self.modifiable = input.readBoolean()
+
+   def resume(self):
+      super().resume()
+      print("order :",self.order)
+      print("gfxId :",self.gfxId)
+      print("modifiable :",self.modifiable)
+      print("rights :",self.rights)

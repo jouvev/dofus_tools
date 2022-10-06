@@ -5,4 +5,7 @@ class NpcDialogReplyMessage:
    def _replyIdFunc(self,input) :
       self.replyId = input.readVarUhInt()
       if(self.replyId < 0) :
-         raise RuntimeError("Forbidden value (" + self.replyId + ") on element of NpcDialogReplyMessage.replyId.")
+         raise RuntimeError("Forbidden value (" + str(self.replyId) + ") on element of NpcDialogReplyMessage.replyId.")
+
+   def resume(self):
+      print("replyId :",self.replyId)

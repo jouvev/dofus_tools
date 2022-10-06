@@ -1,4 +1,5 @@
 from tmp.types.ObjectItem import ObjectItem
+
 class InventoryContentMessage:
    def __init__(self,input):
       self.objects = []
@@ -12,4 +13,9 @@ class InventoryContentMessage:
    def _kamasFunc(self,input) :
       self.kamas = input.readVarUhLong()
       if(self.kamas < 0 or self.kamas > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.kamas + ") on element of InventoryContentMessage.kamas.")
+         raise RuntimeError("Forbidden value (" + str(self.kamas) + ") on element of InventoryContentMessage.kamas.")
+
+   def resume(self):
+      print("kamas :",self.kamas)
+      for e in self.objects:
+         e.resume()

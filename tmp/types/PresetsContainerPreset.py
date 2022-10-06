@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.Preset import Preset
+
 class PresetsContainerPreset(Preset):
    def __init__(self,input):
       self.presets = []
@@ -11,3 +12,8 @@ class PresetsContainerPreset(Preset):
          _id1 = input.readUnsignedShort()
          _item1 = pf.TypesFactory.get_instance_id(_id1,input)
          self.presets.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.presets:
+         e.resume()

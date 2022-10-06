@@ -13,4 +13,8 @@ class UpdateGuildRightsMessage:
    def _rankIdFunc(self,input) :
       self.rankId = input.readVarUhInt()
       if(self.rankId < 0) :
-         raise RuntimeError("Forbidden value (" + self.rankId + ") on element of UpdateGuildRightsMessage.rankId.")
+         raise RuntimeError("Forbidden value (" + str(self.rankId) + ") on element of UpdateGuildRightsMessage.rankId.")
+
+   def resume(self):
+      print("rankId :",self.rankId)
+      print("rights :",self.rights)

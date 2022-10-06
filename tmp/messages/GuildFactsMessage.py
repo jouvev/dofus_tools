@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.CharacterMinimalGuildPublicInformations import CharacterMinimalGuildPublicInformations
+
 class GuildFactsMessage:
    def __init__(self,input):
       self.members = []
@@ -16,9 +17,15 @@ class GuildFactsMessage:
    def _creationDateFunc(self,input) :
       self.creationDate = input.readInt()
       if(self.creationDate < 0) :
-         raise RuntimeError("Forbidden value (" + self.creationDate + ") on element of GuildFactsMessage.creationDate.")
+         raise RuntimeError("Forbidden value (" + str(self.creationDate) + ") on element of GuildFactsMessage.creationDate.")
    
    def _nbTaxCollectorsFunc(self,input) :
       self.nbTaxCollectors = input.readVarUhShort()
       if(self.nbTaxCollectors < 0) :
-         raise RuntimeError("Forbidden value (" + self.nbTaxCollectors + ") on element of GuildFactsMessage.nbTaxCollectors.")
+         raise RuntimeError("Forbidden value (" + str(self.nbTaxCollectors) + ") on element of GuildFactsMessage.nbTaxCollectors.")
+
+   def resume(self):
+      print("creationDate :",self.creationDate)
+      print("nbTaxCollectors :",self.nbTaxCollectors)
+      for e in self.members:
+         e.resume()

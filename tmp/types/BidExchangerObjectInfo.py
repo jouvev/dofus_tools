@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class BidExchangerObjectInfo:
    def __init__(self,input):
       self.effects = []
@@ -24,14 +25,22 @@ class BidExchangerObjectInfo:
    def _objectUIDFunc(self,input) :
       self.objectUID = input.readVarUhInt()
       if(self.objectUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectUID + ") on element of BidExchangerObjectInfo.objectUID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectUID) + ") on element of BidExchangerObjectInfo.objectUID.")
    
    def _objectGIDFunc(self,input) :
       self.objectGID = input.readVarUhInt()
       if(self.objectGID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectGID + ") on element of BidExchangerObjectInfo.objectGID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectGID) + ") on element of BidExchangerObjectInfo.objectGID.")
    
    def _objectTypeFunc(self,input) :
       self.objectType = input.readInt()
       if(self.objectType < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectType + ") on element of BidExchangerObjectInfo.objectType.")
+         raise RuntimeError("Forbidden value (" + str(self.objectType) + ") on element of BidExchangerObjectInfo.objectType.")
+
+   def resume(self):
+      print("objectUID :",self.objectUID)
+      print("objectGID :",self.objectGID)
+      print("objectType :",self.objectType)
+      for e in self.effects:
+         e.resume()
+      print("prices :",self.prices)

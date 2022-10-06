@@ -6,9 +6,13 @@ class PaddockMoveItemRequestMessage:
    def _oldCellIdFunc(self,input) :
       self.oldCellId = input.readVarUhShort()
       if(self.oldCellId < 0 or self.oldCellId > 559) :
-         raise RuntimeError("Forbidden value (" + self.oldCellId + ") on element of PaddockMoveItemRequestMessage.oldCellId.")
+         raise RuntimeError("Forbidden value (" + str(self.oldCellId) + ") on element of PaddockMoveItemRequestMessage.oldCellId.")
    
    def _newCellIdFunc(self,input) :
       self.newCellId = input.readVarUhShort()
       if(self.newCellId < 0 or self.newCellId > 559) :
-         raise RuntimeError("Forbidden value (" + self.newCellId + ") on element of PaddockMoveItemRequestMessage.newCellId.")
+         raise RuntimeError("Forbidden value (" + str(self.newCellId) + ") on element of PaddockMoveItemRequestMessage.newCellId.")
+
+   def resume(self):
+      print("oldCellId :",self.oldCellId)
+      print("newCellId :",self.newCellId)

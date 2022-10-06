@@ -10,3 +10,7 @@ class HelloConnectMessage:
    
    def _saltFunc(self,input) :
       self.salt = input.readUTF()
+
+   def resume(self):
+      print("salt :",self.salt)
+      print("key :",self.key)

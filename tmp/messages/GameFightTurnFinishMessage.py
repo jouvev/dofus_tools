@@ -4,3 +4,6 @@ class GameFightTurnFinishMessage:
    
    def _isAfkFunc(self,input) :
       self.isAfk = input.readBoolean()
+
+   def resume(self):
+      print("isAfk :",self.isAfk)

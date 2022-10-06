@@ -6,7 +6,11 @@ class TaxCollectorStateUpdateMessage:
    def _uniqueIdFunc(self,input) :
       self.uniqueId = input.readDouble()
       if(self.uniqueId < 0 or self.uniqueId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.uniqueId + ") on element of TaxCollectorStateUpdateMessage.uniqueId.")
+         raise RuntimeError("Forbidden value (" + str(self.uniqueId) + ") on element of TaxCollectorStateUpdateMessage.uniqueId.")
    
    def _stateFunc(self,input) :
       self.state = input.readByte()
+
+   def resume(self):
+      print("uniqueId :",self.uniqueId)
+      print("state :",self.state)

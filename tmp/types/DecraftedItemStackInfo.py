@@ -23,10 +23,17 @@ class DecraftedItemStackInfo:
    def _objectUIDFunc(self,input) :
       self.objectUID = input.readVarUhInt()
       if(self.objectUID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectUID + ") on element of DecraftedItemStackInfo.objectUID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectUID) + ") on element of DecraftedItemStackInfo.objectUID.")
    
    def _bonusMinFunc(self,input) :
       self.bonusMin = input.readFloat()
    
    def _bonusMaxFunc(self,input) :
       self.bonusMax = input.readFloat()
+
+   def resume(self):
+      print("objectUID :",self.objectUID)
+      print("bonusMin :",self.bonusMin)
+      print("bonusMax :",self.bonusMax)
+      print("runesId :",self.runesId)
+      print("runesQty :",self.runesQty)

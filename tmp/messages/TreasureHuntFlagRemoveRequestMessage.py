@@ -6,9 +6,13 @@ class TreasureHuntFlagRemoveRequestMessage:
    def _questTypeFunc(self,input) :
       self.questType = input.readByte()
       if(self.questType < 0) :
-         raise RuntimeError("Forbidden value (" + self.questType + ") on element of TreasureHuntFlagRemoveRequestMessage.questType.")
+         raise RuntimeError("Forbidden value (" + str(self.questType) + ") on element of TreasureHuntFlagRemoveRequestMessage.questType.")
    
    def _indexFunc(self,input) :
       self.index = input.readByte()
       if(self.index < 0) :
-         raise RuntimeError("Forbidden value (" + self.index + ") on element of TreasureHuntFlagRemoveRequestMessage.index.")
+         raise RuntimeError("Forbidden value (" + str(self.index) + ") on element of TreasureHuntFlagRemoveRequestMessage.index.")
+
+   def resume(self):
+      print("questType :",self.questType)
+      print("index :",self.index)

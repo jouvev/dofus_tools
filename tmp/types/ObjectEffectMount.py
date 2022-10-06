@@ -1,5 +1,6 @@
 from tmp.types.ObjectEffectInteger import ObjectEffectInteger
 from tmp.types.ObjectEffect import ObjectEffect
+
 class ObjectEffectMount(ObjectEffect):
    def __init__(self,input):
       self.effects = []
@@ -37,17 +38,17 @@ class ObjectEffectMount(ObjectEffect):
    def _idFunc(self,input) :
       self.id = input.readVarUhLong()
       if(self.id < 0 or self.id > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of ObjectEffectMount.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of ObjectEffectMount.id.")
    
    def _expirationDateFunc(self,input) :
       self.expirationDate = input.readVarUhLong()
       if(self.expirationDate < 0 or self.expirationDate > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.expirationDate + ") on element of ObjectEffectMount.expirationDate.")
+         raise RuntimeError("Forbidden value (" + str(self.expirationDate) + ") on element of ObjectEffectMount.expirationDate.")
    
    def _modelFunc(self,input) :
       self.model = input.readVarUhInt()
       if(self.model < 0) :
-         raise RuntimeError("Forbidden value (" + self.model + ") on element of ObjectEffectMount.model.")
+         raise RuntimeError("Forbidden value (" + str(self.model) + ") on element of ObjectEffectMount.model.")
    
    def _nameFunc(self,input) :
       self.name = input.readUTF()
@@ -58,7 +59,7 @@ class ObjectEffectMount(ObjectEffect):
    def _levelFunc(self,input) :
       self.level = input.readByte()
       if(self.level < 0) :
-         raise RuntimeError("Forbidden value (" + self.level + ") on element of ObjectEffectMount.level.")
+         raise RuntimeError("Forbidden value (" + str(self.level) + ") on element of ObjectEffectMount.level.")
    
    def _reproductionCountFunc(self,input) :
       self.reproductionCount = input.readVarInt()
@@ -66,4 +67,18 @@ class ObjectEffectMount(ObjectEffect):
    def _reproductionCountMaxFunc(self,input) :
       self.reproductionCountMax = input.readVarUhInt()
       if(self.reproductionCountMax < 0) :
-         raise RuntimeError("Forbidden value (" + self.reproductionCountMax + ") on element of ObjectEffectMount.reproductionCountMax.")
+         raise RuntimeError("Forbidden value (" + str(self.reproductionCountMax) + ") on element of ObjectEffectMount.reproductionCountMax.")
+
+   def resume(self):
+      super().resume()
+      print("id :",self.id)
+      print("expirationDate :",self.expirationDate)
+      print("model :",self.model)
+      print("name :",self.name)
+      print("owner :",self.owner)
+      print("level :",self.level)
+      print("reproductionCount :",self.reproductionCount)
+      print("reproductionCountMax :",self.reproductionCountMax)
+      for e in self.effects:
+         e.resume()
+      print("capacities :",self.capacities)

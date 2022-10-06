@@ -1,4 +1,5 @@
 from tmp.types.ObjectItemToSell import ObjectItemToSell
+
 class ObjectItemToSellInBid(ObjectItemToSell):
    def __init__(self,input):
       super().__init__(input)
@@ -7,4 +8,8 @@ class ObjectItemToSellInBid(ObjectItemToSell):
    def _unsoldDelayFunc(self,input) :
       self.unsoldDelay = input.readInt()
       if(self.unsoldDelay < 0) :
-         raise RuntimeError("Forbidden value (" + self.unsoldDelay + ") on element of ObjectItemToSellInBid.unsoldDelay.")
+         raise RuntimeError("Forbidden value (" + str(self.unsoldDelay) + ") on element of ObjectItemToSellInBid.unsoldDelay.")
+
+   def resume(self):
+      super().resume()
+      print("unsoldDelay :",self.unsoldDelay)

@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class IdolListMessage:
    def __init__(self,input):
       self.chosenIdols = []
@@ -25,3 +26,9 @@ class IdolListMessage:
          _id3 = input.readUnsignedShort()
          _item3 = pf.TypesFactory.get_instance_id(_id3,input)
          self.partyIdols.append(_item3)
+
+   def resume(self):
+      print("chosenIdols :",self.chosenIdols)
+      print("partyChosenIdols :",self.partyChosenIdols)
+      for e in self.partyIdols:
+         e.resume()

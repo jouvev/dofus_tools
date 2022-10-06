@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class SetUpdateMessage:
    def __init__(self,input):
       self.setObjects = []
@@ -22,4 +23,10 @@ class SetUpdateMessage:
    def _setIdFunc(self,input) :
       self.setId = input.readVarUhShort()
       if(self.setId < 0) :
-         raise RuntimeError("Forbidden value (" + self.setId + ") on element of SetUpdateMessage.setId.")
+         raise RuntimeError("Forbidden value (" + str(self.setId) + ") on element of SetUpdateMessage.setId.")
+
+   def resume(self):
+      print("setId :",self.setId)
+      print("setObjects :",self.setObjects)
+      for e in self.setEffects:
+         e.resume()

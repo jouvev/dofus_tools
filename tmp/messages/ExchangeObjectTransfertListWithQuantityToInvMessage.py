@@ -16,3 +16,7 @@ class ExchangeObjectTransfertListWithQuantityToInvMessage:
          if(_val2 < 0) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of qtys.")
          self.qtys.append(_val2)
+
+   def resume(self):
+      print("ids :",self.ids)
+      print("qtys :",self.qtys)

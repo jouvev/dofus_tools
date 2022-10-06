@@ -1,4 +1,5 @@
 from tmp.messages.ExchangeBidPriceMessage import ExchangeBidPriceMessage
+
 class ExchangeBidPriceForSellerMessage(ExchangeBidPriceMessage):
    def __init__(self,input):
       self.minimalPrices = []
@@ -14,3 +15,8 @@ class ExchangeBidPriceForSellerMessage(ExchangeBidPriceMessage):
    
    def _allIdenticalFunc(self,input) :
       self.allIdentical = input.readBoolean()
+
+   def resume(self):
+      super().resume()
+      print("allIdentical :",self.allIdentical)
+      print("minimalPrices :",self.minimalPrices)

@@ -5,4 +5,7 @@ class PaddockToSellListRequestMessage:
    def _pageIndexFunc(self,input) :
       self.pageIndex = input.readVarUhShort()
       if(self.pageIndex < 0) :
-         raise RuntimeError("Forbidden value (" + self.pageIndex + ") on element of PaddockToSellListRequestMessage.pageIndex.")
+         raise RuntimeError("Forbidden value (" + str(self.pageIndex) + ") on element of PaddockToSellListRequestMessage.pageIndex.")
+
+   def resume(self):
+      print("pageIndex :",self.pageIndex)

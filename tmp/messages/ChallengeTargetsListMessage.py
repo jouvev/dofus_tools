@@ -16,3 +16,7 @@ class ChallengeTargetsListMessage:
          if(_val2 < -1 or _val2 > 559) :
             raise RuntimeError("Forbidden value (" + _val2 + ") on elements of targetCells.")
          self.targetCells.append(_val2)
+
+   def resume(self):
+      print("targetIds :",self.targetIds)
+      print("targetCells :",self.targetCells)

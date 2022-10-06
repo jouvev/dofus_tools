@@ -5,4 +5,7 @@ class CurrentServerStatusUpdateMessage:
    def _statusFunc(self,input) :
       self.status = input.readByte()
       if(self.status < 0) :
-         raise RuntimeError("Forbidden value (" + self.status + ") on element of CurrentServerStatusUpdateMessage.status.")
+         raise RuntimeError("Forbidden value (" + str(self.status) + ") on element of CurrentServerStatusUpdateMessage.status.")
+
+   def resume(self):
+      print("status :",self.status)

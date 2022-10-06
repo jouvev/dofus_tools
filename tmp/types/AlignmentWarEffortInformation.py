@@ -9,4 +9,8 @@ class AlignmentWarEffortInformation:
    def _alignmentWarEffortFunc(self,input) :
       self.alignmentWarEffort = input.readVarUhLong()
       if(self.alignmentWarEffort < 0 or self.alignmentWarEffort > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.alignmentWarEffort + ") on element of AlignmentWarEffortInformation.alignmentWarEffort.")
+         raise RuntimeError("Forbidden value (" + str(self.alignmentWarEffort) + ") on element of AlignmentWarEffortInformation.alignmentWarEffort.")
+
+   def resume(self):
+      print("alignmentSide :",self.alignmentSide)
+      print("alignmentWarEffort :",self.alignmentWarEffort)

@@ -2,6 +2,7 @@ from tmp.types.FightDispellableEffectExtendedInformations import FightDispellabl
 from tmp.types.GameActionMark import GameActionMark
 from tmp.types.Idol import Idol
 from tmp.types.GameFightEffectTriggerCount import GameFightEffectTriggerCount
+
 class GameFightSpectateMessage:
    def __init__(self,input):
       self.effects = []
@@ -34,9 +35,21 @@ class GameFightSpectateMessage:
    def _gameTurnFunc(self,input) :
       self.gameTurn = input.readVarUhShort()
       if(self.gameTurn < 0) :
-         raise RuntimeError("Forbidden value (" + self.gameTurn + ") on element of GameFightSpectateMessage.gameTurn.")
+         raise RuntimeError("Forbidden value (" + str(self.gameTurn) + ") on element of GameFightSpectateMessage.gameTurn.")
    
    def _fightStartFunc(self,input) :
       self.fightStart = input.readInt()
       if(self.fightStart < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightStart + ") on element of GameFightSpectateMessage.fightStart.")
+         raise RuntimeError("Forbidden value (" + str(self.fightStart) + ") on element of GameFightSpectateMessage.fightStart.")
+
+   def resume(self):
+      print("gameTurn :",self.gameTurn)
+      print("fightStart :",self.fightStart)
+      for e in self.effects:
+         e.resume()
+      for e in self.marks:
+         e.resume()
+      for e in self.idols:
+         e.resume()
+      for e in self.fxTriggerCounts:
+         e.resume()

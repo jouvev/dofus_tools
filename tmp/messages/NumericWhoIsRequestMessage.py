@@ -5,4 +5,7 @@ class NumericWhoIsRequestMessage:
    def _playerIdFunc(self,input) :
       self.playerId = input.readVarUhLong()
       if(self.playerId < 0 or self.playerId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.playerId + ") on element of NumericWhoIsRequestMessage.playerId.")
+         raise RuntimeError("Forbidden value (" + str(self.playerId) + ") on element of NumericWhoIsRequestMessage.playerId.")
+
+   def resume(self):
+      print("playerId :",self.playerId)

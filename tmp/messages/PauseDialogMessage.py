@@ -5,4 +5,7 @@ class PauseDialogMessage:
    def _dialogTypeFunc(self,input) :
       self.dialogType = input.readByte()
       if(self.dialogType < 0) :
-         raise RuntimeError("Forbidden value (" + self.dialogType + ") on element of PauseDialogMessage.dialogType.")
+         raise RuntimeError("Forbidden value (" + str(self.dialogType) + ") on element of PauseDialogMessage.dialogType.")
+
+   def resume(self):
+      print("dialogType :",self.dialogType)

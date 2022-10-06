@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class IgnoredAddRequestMessage:
    def __init__(self,input):
       _id1 = input.readUnsignedShort()
@@ -7,3 +8,6 @@ class IgnoredAddRequestMessage:
    
    def _sessionFunc(self,input) :
       self.session = input.readBoolean()
+
+   def resume(self):
+      print("session :",self.session)

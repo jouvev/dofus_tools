@@ -5,4 +5,7 @@ class PortalUseRequestMessage:
    def _portalIdFunc(self,input) :
       self.portalId = input.readVarUhInt()
       if(self.portalId < 0) :
-         raise RuntimeError("Forbidden value (" + self.portalId + ") on element of PortalUseRequestMessage.portalId.")
+         raise RuntimeError("Forbidden value (" + str(self.portalId) + ") on element of PortalUseRequestMessage.portalId.")
+
+   def resume(self):
+      print("portalId :",self.portalId)

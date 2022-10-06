@@ -1,4 +1,5 @@
 from tmp.types.FightResultAdditionalData import FightResultAdditionalData
+
 class FightResultExperienceData(FightResultAdditionalData):
    def __init__(self,input):
       super().__init__(input)
@@ -24,34 +25,44 @@ class FightResultExperienceData(FightResultAdditionalData):
    def _experienceFunc(self,input) :
       self.experience = input.readVarUhLong()
       if(self.experience < 0 or self.experience > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experience + ") on element of FightResultExperienceData.experience.")
+         raise RuntimeError("Forbidden value (" + str(self.experience) + ") on element of FightResultExperienceData.experience.")
    
    def _experienceLevelFloorFunc(self,input) :
       self.experienceLevelFloor = input.readVarUhLong()
       if(self.experienceLevelFloor < 0 or self.experienceLevelFloor > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experienceLevelFloor + ") on element of FightResultExperienceData.experienceLevelFloor.")
+         raise RuntimeError("Forbidden value (" + str(self.experienceLevelFloor) + ") on element of FightResultExperienceData.experienceLevelFloor.")
    
    def _experienceNextLevelFloorFunc(self,input) :
       self.experienceNextLevelFloor = input.readVarUhLong()
       if(self.experienceNextLevelFloor < 0 or self.experienceNextLevelFloor > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experienceNextLevelFloor + ") on element of FightResultExperienceData.experienceNextLevelFloor.")
+         raise RuntimeError("Forbidden value (" + str(self.experienceNextLevelFloor) + ") on element of FightResultExperienceData.experienceNextLevelFloor.")
    
    def _experienceFightDeltaFunc(self,input) :
       self.experienceFightDelta = input.readVarUhLong()
       if(self.experienceFightDelta < 0 or self.experienceFightDelta > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experienceFightDelta + ") on element of FightResultExperienceData.experienceFightDelta.")
+         raise RuntimeError("Forbidden value (" + str(self.experienceFightDelta) + ") on element of FightResultExperienceData.experienceFightDelta.")
    
    def _experienceForGuildFunc(self,input) :
       self.experienceForGuild = input.readVarUhLong()
       if(self.experienceForGuild < 0 or self.experienceForGuild > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experienceForGuild + ") on element of FightResultExperienceData.experienceForGuild.")
+         raise RuntimeError("Forbidden value (" + str(self.experienceForGuild) + ") on element of FightResultExperienceData.experienceForGuild.")
    
    def _experienceForMountFunc(self,input) :
       self.experienceForMount = input.readVarUhLong()
       if(self.experienceForMount < 0 or self.experienceForMount > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experienceForMount + ") on element of FightResultExperienceData.experienceForMount.")
+         raise RuntimeError("Forbidden value (" + str(self.experienceForMount) + ") on element of FightResultExperienceData.experienceForMount.")
    
    def _rerollExperienceMulFunc(self,input) :
       self.rerollExperienceMul = input.readByte()
       if(self.rerollExperienceMul < 0) :
-         raise RuntimeError("Forbidden value (" + self.rerollExperienceMul + ") on element of FightResultExperienceData.rerollExperienceMul.")
+         raise RuntimeError("Forbidden value (" + str(self.rerollExperienceMul) + ") on element of FightResultExperienceData.rerollExperienceMul.")
+
+   def resume(self):
+      super().resume()
+      print("experience :",self.experience)
+      print("experienceLevelFloor :",self.experienceLevelFloor)
+      print("experienceNextLevelFloor :",self.experienceNextLevelFloor)
+      print("experienceFightDelta :",self.experienceFightDelta)
+      print("experienceForGuild :",self.experienceForGuild)
+      print("experienceForMount :",self.experienceForMount)
+      print("rerollExperienceMul :",self.rerollExperienceMul)

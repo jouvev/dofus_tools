@@ -1,4 +1,5 @@
 from tmp.types.GuildEmblem import GuildEmblem
+
 class GuildModificationValidMessage:
    def __init__(self,input):
       self._guildNameFunc(input)
@@ -6,3 +7,7 @@ class GuildModificationValidMessage:
    
    def _guildNameFunc(self,input) :
       self.guildName = input.readUTF()
+
+   def resume(self):
+      print("guildName :",self.guildName)
+      self.guildEmblem.resum()

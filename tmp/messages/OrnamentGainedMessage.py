@@ -5,4 +5,7 @@ class OrnamentGainedMessage:
    def _ornamentIdFunc(self,input) :
       self.ornamentId = input.readShort()
       if(self.ornamentId < 0) :
-         raise RuntimeError("Forbidden value (" + self.ornamentId + ") on element of OrnamentGainedMessage.ornamentId.")
+         raise RuntimeError("Forbidden value (" + str(self.ornamentId) + ") on element of OrnamentGainedMessage.ornamentId.")
+
+   def resume(self):
+      print("ornamentId :",self.ornamentId)

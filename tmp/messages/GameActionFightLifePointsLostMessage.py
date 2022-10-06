@@ -1,4 +1,5 @@
 from tmp.messages.AbstractGameActionMessage import AbstractGameActionMessage
+
 class GameActionFightLifePointsLostMessage(AbstractGameActionMessage):
    def __init__(self,input):
       super().__init__(input)
@@ -10,17 +11,24 @@ class GameActionFightLifePointsLostMessage(AbstractGameActionMessage):
    def _targetIdFunc(self,input) :
       self.targetId = input.readDouble()
       if(self.targetId < -9007199254740992 or self.targetId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.targetId + ") on element of GameActionFightLifePointsLostMessage.targetId.")
+         raise RuntimeError("Forbidden value (" + str(self.targetId) + ") on element of GameActionFightLifePointsLostMessage.targetId.")
    
    def _lossFunc(self,input) :
       self.loss = input.readVarUhInt()
       if(self.loss < 0) :
-         raise RuntimeError("Forbidden value (" + self.loss + ") on element of GameActionFightLifePointsLostMessage.loss.")
+         raise RuntimeError("Forbidden value (" + str(self.loss) + ") on element of GameActionFightLifePointsLostMessage.loss.")
    
    def _permanentDamagesFunc(self,input) :
       self.permanentDamages = input.readVarUhInt()
       if(self.permanentDamages < 0) :
-         raise RuntimeError("Forbidden value (" + self.permanentDamages + ") on element of GameActionFightLifePointsLostMessage.permanentDamages.")
+         raise RuntimeError("Forbidden value (" + str(self.permanentDamages) + ") on element of GameActionFightLifePointsLostMessage.permanentDamages.")
    
    def _elementIdFunc(self,input) :
       self.elementId = input.readVarInt()
+
+   def resume(self):
+      super().resume()
+      print("targetId :",self.targetId)
+      print("loss :",self.loss)
+      print("permanentDamages :",self.permanentDamages)
+      print("elementId :",self.elementId)

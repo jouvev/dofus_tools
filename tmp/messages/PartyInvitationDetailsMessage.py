@@ -1,6 +1,7 @@
 import tmp.TypesFactory as pf
 from tmp.messages.AbstractPartyMessage import AbstractPartyMessage
 from tmp.types.PartyGuestInformations import PartyGuestInformations
+
 class PartyInvitationDetailsMessage(AbstractPartyMessage):
    def __init__(self,input):
       self.members = []
@@ -27,7 +28,7 @@ class PartyInvitationDetailsMessage(AbstractPartyMessage):
    def _partyTypeFunc(self,input) :
       self.partyType = input.readByte()
       if(self.partyType < 0) :
-         raise RuntimeError("Forbidden value (" + self.partyType + ") on element of PartyInvitationDetailsMessage.partyType.")
+         raise RuntimeError("Forbidden value (" + str(self.partyType) + ") on element of PartyInvitationDetailsMessage.partyType.")
    
    def _partyNameFunc(self,input) :
       self.partyName = input.readUTF()
@@ -35,7 +36,7 @@ class PartyInvitationDetailsMessage(AbstractPartyMessage):
    def _fromIdFunc(self,input) :
       self.fromId = input.readVarUhLong()
       if(self.fromId < 0 or self.fromId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.fromId + ") on element of PartyInvitationDetailsMessage.fromId.")
+         raise RuntimeError("Forbidden value (" + str(self.fromId) + ") on element of PartyInvitationDetailsMessage.fromId.")
    
    def _fromNameFunc(self,input) :
       self.fromName = input.readUTF()
@@ -43,4 +44,16 @@ class PartyInvitationDetailsMessage(AbstractPartyMessage):
    def _leaderIdFunc(self,input) :
       self.leaderId = input.readVarUhLong()
       if(self.leaderId < 0 or self.leaderId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.leaderId + ") on element of PartyInvitationDetailsMessage.leaderId.")
+         raise RuntimeError("Forbidden value (" + str(self.leaderId) + ") on element of PartyInvitationDetailsMessage.leaderId.")
+
+   def resume(self):
+      super().resume()
+      print("partyType :",self.partyType)
+      print("partyName :",self.partyName)
+      print("fromId :",self.fromId)
+      print("fromName :",self.fromName)
+      print("leaderId :",self.leaderId)
+      for e in self.members:
+         e.resume()
+      for e in self.guests:
+         e.resume()

@@ -1,5 +1,6 @@
 from tmp.types.SimpleCharacterCharacteristicForPreset import SimpleCharacterCharacteristicForPreset
 from tmp.types.Preset import Preset
+
 class StatsPreset(Preset):
    def __init__(self,input):
       self.stats = []
@@ -9,3 +10,8 @@ class StatsPreset(Preset):
       for _i1 in range(0,_statsLen):
          _item1 = SimpleCharacterCharacteristicForPreset(input)
          self.stats.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.stats:
+         e.resume()

@@ -4,3 +4,6 @@ class BasicPongMessage:
    
    def _quietFunc(self,input) :
       self.quiet = input.readBoolean()
+
+   def resume(self):
+      print("quiet :",self.quiet)

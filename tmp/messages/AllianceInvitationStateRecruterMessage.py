@@ -9,4 +9,8 @@ class AllianceInvitationStateRecruterMessage:
    def _invitationStateFunc(self,input) :
       self.invitationState = input.readByte()
       if(self.invitationState < 0) :
-         raise RuntimeError("Forbidden value (" + self.invitationState + ") on element of AllianceInvitationStateRecruterMessage.invitationState.")
+         raise RuntimeError("Forbidden value (" + str(self.invitationState) + ") on element of AllianceInvitationStateRecruterMessage.invitationState.")
+
+   def resume(self):
+      print("recrutedName :",self.recrutedName)
+      print("invitationState :",self.invitationState)

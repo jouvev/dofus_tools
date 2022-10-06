@@ -12,7 +12,12 @@ class NotificationByServerMessage:
    def _idFunc(self,input) :
       self.id = input.readVarUhShort()
       if(self.id < 0) :
-         raise RuntimeError("Forbidden value (" + self.id + ") on element of NotificationByServerMessage.id.")
+         raise RuntimeError("Forbidden value (" + str(self.id) + ") on element of NotificationByServerMessage.id.")
    
    def _forceOpenFunc(self,input) :
       self.forceOpen = input.readBoolean()
+
+   def resume(self):
+      print("id :",self.id)
+      print("forceOpen :",self.forceOpen)
+      print("parameters :",self.parameters)

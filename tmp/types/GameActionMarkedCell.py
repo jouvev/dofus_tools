@@ -8,7 +8,7 @@ class GameActionMarkedCell:
    def _cellIdFunc(self,input) :
       self.cellId = input.readVarUhShort()
       if(self.cellId < 0 or self.cellId > 559) :
-         raise RuntimeError("Forbidden value (" + self.cellId + ") on element of GameActionMarkedCell.cellId.")
+         raise RuntimeError("Forbidden value (" + str(self.cellId) + ") on element of GameActionMarkedCell.cellId.")
    
    def _zoneSizeFunc(self,input) :
       self.zoneSize = input.readByte()
@@ -18,3 +18,9 @@ class GameActionMarkedCell:
    
    def _cellsTypeFunc(self,input) :
       self.cellsType = input.readByte()
+
+   def resume(self):
+      print("cellId :",self.cellId)
+      print("zoneSize :",self.zoneSize)
+      print("cellColor :",self.cellColor)
+      print("cellsType :",self.cellsType)

@@ -1,6 +1,7 @@
 import tmp.TypesFactory as pf
 from tmp.types.AllianceFactSheetInformations import AllianceFactSheetInformations
 from tmp.types.GuildInsiderFactSheetInformations import GuildInsiderFactSheetInformations
+
 class AllianceInsiderInfoMessage:
    def __init__(self,input):
       self.guilds = []
@@ -18,3 +19,10 @@ class AllianceInsiderInfoMessage:
          _id3 = input.readUnsignedShort()
          _item3 = pf.TypesFactory.get_instance_id(_id3,input)
          self.prisms.append(_item3)
+
+   def resume(self):
+      self.allianceInfos.resum()
+      for e in self.guilds:
+         e.resume()
+      for e in self.prisms:
+         e.resume()

@@ -5,4 +5,7 @@ class UpdateMountCharacteristic:
    def _typeFunc(self,input) :
       self.type = input.readByte()
       if(self.type < 0) :
-         raise RuntimeError("Forbidden value (" + self.type + ") on element of UpdateMountCharacteristic.type.")
+         raise RuntimeError("Forbidden value (" + str(self.type) + ") on element of UpdateMountCharacteristic.type.")
+
+   def resume(self):
+      print("type :",self.type)

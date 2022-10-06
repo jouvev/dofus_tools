@@ -13,4 +13,9 @@ class DisplayNumericalValuePaddockMessage:
    def _typeFunc(self,input) :
       self.type = input.readByte()
       if(self.type < 0) :
-         raise RuntimeError("Forbidden value (" + self.type + ") on element of DisplayNumericalValuePaddockMessage.type.")
+         raise RuntimeError("Forbidden value (" + str(self.type) + ") on element of DisplayNumericalValuePaddockMessage.type.")
+
+   def resume(self):
+      print("rideId :",self.rideId)
+      print("value :",self.value)
+      print("type :",self.type)

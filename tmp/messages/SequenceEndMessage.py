@@ -7,12 +7,17 @@ class SequenceEndMessage:
    def _actionIdFunc(self,input) :
       self.actionId = input.readVarUhShort()
       if(self.actionId < 0) :
-         raise RuntimeError("Forbidden value (" + self.actionId + ") on element of SequenceEndMessage.actionId.")
+         raise RuntimeError("Forbidden value (" + str(self.actionId) + ") on element of SequenceEndMessage.actionId.")
    
    def _authorIdFunc(self,input) :
       self.authorId = input.readDouble()
       if(self.authorId < -9007199254740992 or self.authorId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.authorId + ") on element of SequenceEndMessage.authorId.")
+         raise RuntimeError("Forbidden value (" + str(self.authorId) + ") on element of SequenceEndMessage.authorId.")
    
    def _sequenceTypeFunc(self,input) :
       self.sequenceType = input.readByte()
+
+   def resume(self):
+      print("actionId :",self.actionId)
+      print("authorId :",self.authorId)
+      print("sequenceType :",self.sequenceType)

@@ -5,4 +5,7 @@ class TaxCollectorMovementRemoveMessage:
    def _collectorIdFunc(self,input) :
       self.collectorId = input.readDouble()
       if(self.collectorId < 0 or self.collectorId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.collectorId + ") on element of TaxCollectorMovementRemoveMessage.collectorId.")
+         raise RuntimeError("Forbidden value (" + str(self.collectorId) + ") on element of TaxCollectorMovementRemoveMessage.collectorId.")
+
+   def resume(self):
+      print("collectorId :",self.collectorId)

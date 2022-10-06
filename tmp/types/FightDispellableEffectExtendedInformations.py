@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class FightDispellableEffectExtendedInformations:
    def __init__(self,input):
       self._actionIdFunc(input)
@@ -9,9 +10,13 @@ class FightDispellableEffectExtendedInformations:
    def _actionIdFunc(self,input) :
       self.actionId = input.readVarUhShort()
       if(self.actionId < 0) :
-         raise RuntimeError("Forbidden value (" + self.actionId + ") on element of FightDispellableEffectExtendedInformations.actionId.")
+         raise RuntimeError("Forbidden value (" + str(self.actionId) + ") on element of FightDispellableEffectExtendedInformations.actionId.")
    
    def _sourceIdFunc(self,input) :
       self.sourceId = input.readDouble()
       if(self.sourceId < -9007199254740992 or self.sourceId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.sourceId + ") on element of FightDispellableEffectExtendedInformations.sourceId.")
+         raise RuntimeError("Forbidden value (" + str(self.sourceId) + ") on element of FightDispellableEffectExtendedInformations.sourceId.")
+
+   def resume(self):
+      print("actionId :",self.actionId)
+      print("sourceId :",self.sourceId)

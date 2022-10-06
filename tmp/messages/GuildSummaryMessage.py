@@ -1,5 +1,6 @@
 from tmp.messages.PaginationAnswerAbstractMessage import PaginationAnswerAbstractMessage
 from tmp.types.GuildFactSheetInformations import GuildFactSheetInformations
+
 class GuildSummaryMessage(PaginationAnswerAbstractMessage):
    def __init__(self,input):
       self.guilds = []
@@ -9,3 +10,8 @@ class GuildSummaryMessage(PaginationAnswerAbstractMessage):
       for _i1 in range(0,_guildsLen):
          _item1 = GuildFactSheetInformations(input)
          self.guilds.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.guilds:
+         e.resume()

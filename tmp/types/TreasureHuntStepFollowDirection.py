@@ -1,4 +1,5 @@
 from tmp.types.TreasureHuntStep import TreasureHuntStep
+
 class TreasureHuntStepFollowDirection(TreasureHuntStep):
    def __init__(self,input):
       super().__init__(input)
@@ -8,9 +9,14 @@ class TreasureHuntStepFollowDirection(TreasureHuntStep):
    def _directionFunc(self,input) :
       self.direction = input.readByte()
       if(self.direction < 0) :
-         raise RuntimeError("Forbidden value (" + self.direction + ") on element of TreasureHuntStepFollowDirection.direction.")
+         raise RuntimeError("Forbidden value (" + str(self.direction) + ") on element of TreasureHuntStepFollowDirection.direction.")
    
    def _mapCountFunc(self,input) :
       self.mapCount = input.readVarUhShort()
       if(self.mapCount < 0) :
-         raise RuntimeError("Forbidden value (" + self.mapCount + ") on element of TreasureHuntStepFollowDirection.mapCount.")
+         raise RuntimeError("Forbidden value (" + str(self.mapCount) + ") on element of TreasureHuntStepFollowDirection.mapCount.")
+
+   def resume(self):
+      super().resume()
+      print("direction :",self.direction)
+      print("mapCount :",self.mapCount)

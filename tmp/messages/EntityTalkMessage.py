@@ -12,9 +12,14 @@ class EntityTalkMessage:
    def _entityIdFunc(self,input) :
       self.entityId = input.readDouble()
       if(self.entityId < -9007199254740992 or self.entityId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.entityId + ") on element of EntityTalkMessage.entityId.")
+         raise RuntimeError("Forbidden value (" + str(self.entityId) + ") on element of EntityTalkMessage.entityId.")
    
    def _textIdFunc(self,input) :
       self.textId = input.readVarUhShort()
       if(self.textId < 0) :
-         raise RuntimeError("Forbidden value (" + self.textId + ") on element of EntityTalkMessage.textId.")
+         raise RuntimeError("Forbidden value (" + str(self.textId) + ") on element of EntityTalkMessage.textId.")
+
+   def resume(self):
+      print("entityId :",self.entityId)
+      print("textId :",self.textId)
+      print("parameters :",self.parameters)

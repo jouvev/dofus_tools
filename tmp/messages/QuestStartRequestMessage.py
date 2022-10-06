@@ -5,4 +5,7 @@ class QuestStartRequestMessage:
    def _questIdFunc(self,input) :
       self.questId = input.readVarUhShort()
       if(self.questId < 0) :
-         raise RuntimeError("Forbidden value (" + self.questId + ") on element of QuestStartRequestMessage.questId.")
+         raise RuntimeError("Forbidden value (" + str(self.questId) + ") on element of QuestStartRequestMessage.questId.")
+
+   def resume(self):
+      print("questId :",self.questId)

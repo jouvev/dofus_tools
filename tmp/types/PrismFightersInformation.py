@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.ProtectedEntityWaitingForHelpInfo import ProtectedEntityWaitingForHelpInfo
+
 class PrismFightersInformation:
    def __init__(self,input):
       self.allyCharactersInformations = []
@@ -24,4 +25,12 @@ class PrismFightersInformation:
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of PrismFightersInformation.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of PrismFightersInformation.subAreaId.")
+
+   def resume(self):
+      print("subAreaId :",self.subAreaId)
+      self.waitingForHelpInfo.resum()
+      for e in self.allyCharactersInformations:
+         e.resume()
+      for e in self.enemyCharactersInformations:
+         e.resume()

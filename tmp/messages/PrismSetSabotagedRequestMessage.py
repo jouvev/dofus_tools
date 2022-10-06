@@ -5,4 +5,7 @@ class PrismSetSabotagedRequestMessage:
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of PrismSetSabotagedRequestMessage.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of PrismSetSabotagedRequestMessage.subAreaId.")
+
+   def resume(self):
+      print("subAreaId :",self.subAreaId)

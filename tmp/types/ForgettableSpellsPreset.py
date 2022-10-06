@@ -1,6 +1,7 @@
 from tmp.types.SpellsPreset import SpellsPreset
 from tmp.types.SpellForPreset import SpellForPreset
 from tmp.types.Preset import Preset
+
 class ForgettableSpellsPreset(Preset):
    def __init__(self,input):
       self.forgettableSpells = []
@@ -11,3 +12,9 @@ class ForgettableSpellsPreset(Preset):
       for _i2 in range(0,_forgettableSpellsLen):
          _item2 = SpellForPreset(input)
          self.forgettableSpells.append(_item2)
+
+   def resume(self):
+      super().resume()
+      self.baseSpellsPreset.resum()
+      for e in self.forgettableSpells:
+         e.resume()

@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class ExchangeBidHouseInListAddedMessage:
    def __init__(self,input):
       self.effects = []
@@ -27,9 +28,17 @@ class ExchangeBidHouseInListAddedMessage:
    def _objectGIDFunc(self,input) :
       self.objectGID = input.readVarUhInt()
       if(self.objectGID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectGID + ") on element of ExchangeBidHouseInListAddedMessage.objectGID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectGID) + ") on element of ExchangeBidHouseInListAddedMessage.objectGID.")
    
    def _objectTypeFunc(self,input) :
       self.objectType = input.readInt()
       if(self.objectType < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectType + ") on element of ExchangeBidHouseInListAddedMessage.objectType.")
+         raise RuntimeError("Forbidden value (" + str(self.objectType) + ") on element of ExchangeBidHouseInListAddedMessage.objectType.")
+
+   def resume(self):
+      print("itemUID :",self.itemUID)
+      print("objectGID :",self.objectGID)
+      print("objectType :",self.objectType)
+      for e in self.effects:
+         e.resume()
+      print("prices :",self.prices)

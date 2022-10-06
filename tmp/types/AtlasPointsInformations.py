@@ -1,4 +1,5 @@
 from tmp.types.MapCoordinatesExtended import MapCoordinatesExtended
+
 class AtlasPointsInformations:
    def __init__(self,input):
       self.coords = []
@@ -12,4 +13,9 @@ class AtlasPointsInformations:
    def _typeFunc(self,input) :
       self.type = input.readByte()
       if(self.type < 0) :
-         raise RuntimeError("Forbidden value (" + self.type + ") on element of AtlasPointsInformations.type.")
+         raise RuntimeError("Forbidden value (" + str(self.type) + ") on element of AtlasPointsInformations.type.")
+
+   def resume(self):
+      print("type :",self.type)
+      for e in self.coords:
+         e.resume()

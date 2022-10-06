@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class QuestListMessage:
    def __init__(self,input):
       self.finishedQuestsIds = []
@@ -33,3 +34,10 @@ class QuestListMessage:
          if(_val4 < 0) :
             raise RuntimeError("Forbidden value (" + _val4 + ") on elements of reinitDoneQuestsIds.")
          self.reinitDoneQuestsIds.append(_val4)
+
+   def resume(self):
+      print("finishedQuestsIds :",self.finishedQuestsIds)
+      print("finishedQuestsCounts :",self.finishedQuestsCounts)
+      for e in self.activeQuests:
+         e.resume()
+      print("reinitDoneQuestsIds :",self.reinitDoneQuestsIds)

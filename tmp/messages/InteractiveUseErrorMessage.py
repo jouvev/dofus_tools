@@ -6,9 +6,13 @@ class InteractiveUseErrorMessage:
    def _elemIdFunc(self,input) :
       self.elemId = input.readVarUhInt()
       if(self.elemId < 0) :
-         raise RuntimeError("Forbidden value (" + self.elemId + ") on element of InteractiveUseErrorMessage.elemId.")
+         raise RuntimeError("Forbidden value (" + str(self.elemId) + ") on element of InteractiveUseErrorMessage.elemId.")
    
    def _skillInstanceUidFunc(self,input) :
       self.skillInstanceUid = input.readVarUhInt()
       if(self.skillInstanceUid < 0) :
-         raise RuntimeError("Forbidden value (" + self.skillInstanceUid + ") on element of InteractiveUseErrorMessage.skillInstanceUid.")
+         raise RuntimeError("Forbidden value (" + str(self.skillInstanceUid) + ") on element of InteractiveUseErrorMessage.skillInstanceUid.")
+
+   def resume(self):
+      print("elemId :",self.elemId)
+      print("skillInstanceUid :",self.skillInstanceUid)

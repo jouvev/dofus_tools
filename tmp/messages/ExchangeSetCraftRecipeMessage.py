@@ -5,4 +5,7 @@ class ExchangeSetCraftRecipeMessage:
    def _objectGIDFunc(self,input) :
       self.objectGID = input.readVarUhInt()
       if(self.objectGID < 0) :
-         raise RuntimeError("Forbidden value (" + self.objectGID + ") on element of ExchangeSetCraftRecipeMessage.objectGID.")
+         raise RuntimeError("Forbidden value (" + str(self.objectGID) + ") on element of ExchangeSetCraftRecipeMessage.objectGID.")
+
+   def resume(self):
+      print("objectGID :",self.objectGID)

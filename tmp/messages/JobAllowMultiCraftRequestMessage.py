@@ -4,3 +4,6 @@ class JobAllowMultiCraftRequestMessage:
    
    def _enabledFunc(self,input) :
       self.enabled = input.readBoolean()
+
+   def resume(self):
+      print("enabled :",self.enabled)

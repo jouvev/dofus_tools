@@ -1,4 +1,5 @@
 from tmp.types.AbstractFightTeamInformations import AbstractFightTeamInformations
+
 class FightTeamLightInformations(AbstractFightTeamInformations):
    def __init__(self,input):
       super().__init__(input)
@@ -17,9 +18,14 @@ class FightTeamLightInformations(AbstractFightTeamInformations):
    def _teamMembersCountFunc(self,input) :
       self.teamMembersCount = input.readByte()
       if(self.teamMembersCount < 0) :
-         raise RuntimeError("Forbidden value (" + self.teamMembersCount + ") on element of FightTeamLightInformations.teamMembersCount.")
+         raise RuntimeError("Forbidden value (" + str(self.teamMembersCount) + ") on element of FightTeamLightInformations.teamMembersCount.")
    
    def _meanLevelFunc(self,input) :
       self.meanLevel = input.readVarUhInt()
       if(self.meanLevel < 0) :
-         raise RuntimeError("Forbidden value (" + self.meanLevel + ") on element of FightTeamLightInformations.meanLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.meanLevel) + ") on element of FightTeamLightInformations.meanLevel.")
+
+   def resume(self):
+      super().resume()
+      print("teamMembersCount :",self.teamMembersCount)
+      print("meanLevel :",self.meanLevel)

@@ -4,3 +4,6 @@ class ExchangeObjectMessage:
    
    def _remoteFunc(self,input) :
       self.remote = input.readBoolean()
+
+   def resume(self):
+      print("remote :",self.remote)

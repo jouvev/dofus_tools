@@ -1,5 +1,6 @@
 from tmp.types.EntityLook import EntityLook
 from tmp.types.CharacterMinimalInformations import CharacterMinimalInformations
+
 class CharacterMinimalPlusLookInformations(CharacterMinimalInformations):
    def __init__(self,input):
       super().__init__(input)
@@ -8,3 +9,8 @@ class CharacterMinimalPlusLookInformations(CharacterMinimalInformations):
    
    def _breedFunc(self,input) :
       self.breed = input.readByte()
+
+   def resume(self):
+      super().resume()
+      print("breed :",self.breed)
+      self.entityLook.resum()

@@ -1,4 +1,5 @@
 from tmp.types.PaddockItem import PaddockItem
+
 class GameDataPaddockObjectListAddMessage:
    def __init__(self,input):
       self.paddockItemDescription = []
@@ -7,3 +8,7 @@ class GameDataPaddockObjectListAddMessage:
       for _i1 in range(0,_paddockItemDescriptionLen):
          _item1 = PaddockItem(input)
          self.paddockItemDescription.append(_item1)
+
+   def resume(self):
+      for e in self.paddockItemDescription:
+         e.resume()

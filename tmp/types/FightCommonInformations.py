@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.FightOptionsInformations import FightOptionsInformations
+
 class FightCommonInformations:
    def __init__(self,input):
       self.fightTeams = []
@@ -30,9 +31,18 @@ class FightCommonInformations:
    def _fightIdFunc(self,input) :
       self.fightId = input.readVarUhShort()
       if(self.fightId < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightId + ") on element of FightCommonInformations.fightId.")
+         raise RuntimeError("Forbidden value (" + str(self.fightId) + ") on element of FightCommonInformations.fightId.")
    
    def _fightTypeFunc(self,input) :
       self.fightType = input.readByte()
       if(self.fightType < 0) :
-         raise RuntimeError("Forbidden value (" + self.fightType + ") on element of FightCommonInformations.fightType.")
+         raise RuntimeError("Forbidden value (" + str(self.fightType) + ") on element of FightCommonInformations.fightType.")
+
+   def resume(self):
+      print("fightId :",self.fightId)
+      print("fightType :",self.fightType)
+      for e in self.fightTeams:
+         e.resume()
+      print("fightTeamsPositions :",self.fightTeamsPositions)
+      for e in self.fightTeamsOptions:
+         e.resume()

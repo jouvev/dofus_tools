@@ -4,3 +4,6 @@ class PrismInfoJoinLeaveRequestMessage:
    
    def _joinFunc(self,input) :
       self.join = input.readBoolean()
+
+   def resume(self):
+      print("join :",self.join)

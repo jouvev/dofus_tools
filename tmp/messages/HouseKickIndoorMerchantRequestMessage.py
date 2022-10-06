@@ -5,4 +5,7 @@ class HouseKickIndoorMerchantRequestMessage:
    def _cellIdFunc(self,input) :
       self.cellId = input.readVarUhShort()
       if(self.cellId < 0 or self.cellId > 559) :
-         raise RuntimeError("Forbidden value (" + self.cellId + ") on element of HouseKickIndoorMerchantRequestMessage.cellId.")
+         raise RuntimeError("Forbidden value (" + str(self.cellId) + ") on element of HouseKickIndoorMerchantRequestMessage.cellId.")
+
+   def resume(self):
+      print("cellId :",self.cellId)

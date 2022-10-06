@@ -5,4 +5,7 @@ class GuildCreationResultMessage:
    def _resultFunc(self,input) :
       self.result = input.readByte()
       if(self.result < 0) :
-         raise RuntimeError("Forbidden value (" + self.result + ") on element of GuildCreationResultMessage.result.")
+         raise RuntimeError("Forbidden value (" + str(self.result) + ") on element of GuildCreationResultMessage.result.")
+
+   def resume(self):
+      print("result :",self.result)

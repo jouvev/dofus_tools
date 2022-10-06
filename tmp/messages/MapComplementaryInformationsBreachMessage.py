@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.messages.MapComplementaryInformationsDataMessage import MapComplementaryInformationsDataMessage
+
 class MapComplementaryInformationsBreachMessage(MapComplementaryInformationsDataMessage):
    def __init__(self,input):
       self.branches = []
@@ -18,14 +19,22 @@ class MapComplementaryInformationsBreachMessage(MapComplementaryInformationsData
    def _floorFunc(self,input) :
       self.floor = input.readVarUhInt()
       if(self.floor < 0) :
-         raise RuntimeError("Forbidden value (" + self.floor + ") on element of MapComplementaryInformationsBreachMessage.floor.")
+         raise RuntimeError("Forbidden value (" + str(self.floor) + ") on element of MapComplementaryInformationsBreachMessage.floor.")
    
    def _roomFunc(self,input) :
       self.room = input.readByte()
       if(self.room < 0) :
-         raise RuntimeError("Forbidden value (" + self.room + ") on element of MapComplementaryInformationsBreachMessage.room.")
+         raise RuntimeError("Forbidden value (" + str(self.room) + ") on element of MapComplementaryInformationsBreachMessage.room.")
    
    def _infinityModeFunc(self,input) :
       self.infinityMode = input.readShort()
       if(self.infinityMode < 0) :
-         raise RuntimeError("Forbidden value (" + self.infinityMode + ") on element of MapComplementaryInformationsBreachMessage.infinityMode.")
+         raise RuntimeError("Forbidden value (" + str(self.infinityMode) + ") on element of MapComplementaryInformationsBreachMessage.infinityMode.")
+
+   def resume(self):
+      super().resume()
+      print("floor :",self.floor)
+      print("room :",self.room)
+      print("infinityMode :",self.infinityMode)
+      for e in self.branches:
+         e.resume()

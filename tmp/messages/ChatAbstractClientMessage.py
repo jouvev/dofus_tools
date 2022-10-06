@@ -4,3 +4,6 @@ class ChatAbstractClientMessage:
    
    def _contentFunc(self,input) :
       self.content = input.readUTF()
+
+   def resume(self):
+      print("content :",self.content)

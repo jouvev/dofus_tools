@@ -5,4 +5,7 @@ class ExchangeCrafterJobLevelupMessage:
    def _crafterJobLevelFunc(self,input) :
       self.crafterJobLevel = input.readUnsignedByte()
       if(self.crafterJobLevel < 0 or self.crafterJobLevel > 255) :
-         raise RuntimeError("Forbidden value (" + self.crafterJobLevel + ") on element of ExchangeCrafterJobLevelupMessage.crafterJobLevel.")
+         raise RuntimeError("Forbidden value (" + str(self.crafterJobLevel) + ") on element of ExchangeCrafterJobLevelupMessage.crafterJobLevel.")
+
+   def resume(self):
+      print("crafterJobLevel :",self.crafterJobLevel)

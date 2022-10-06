@@ -1,4 +1,5 @@
 from tmp.types.AlterationInfo import AlterationInfo
+
 class AlterationsMessage:
    def __init__(self,input):
       self.alterations = []
@@ -7,3 +8,7 @@ class AlterationsMessage:
       for _i1 in range(0,_alterationsLen):
          _item1 = AlterationInfo(input)
          self.alterations.append(_item1)
+
+   def resume(self):
+      for e in self.alterations:
+         e.resume()

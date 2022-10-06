@@ -6,3 +6,6 @@ class TrustStatusMessage:
       _box0 = input.readByte()
       self.trusted = bool(bin(_box0)[2:].zfill(8)[0])
       self.certified = bool(bin(_box0)[2:].zfill(8)[1])
+
+   def resume(self):
+      pass

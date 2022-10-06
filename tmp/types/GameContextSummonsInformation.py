@@ -1,5 +1,6 @@
 import tmp.TypesFactory as pf
 from tmp.types.EntityLook import EntityLook
+
 class GameContextSummonsInformation:
    def __init__(self,input):
       self.summons = []
@@ -20,4 +21,10 @@ class GameContextSummonsInformation:
    def _waveFunc(self,input) :
       self.wave = input.readByte()
       if(self.wave < 0) :
-         raise RuntimeError("Forbidden value (" + self.wave + ") on element of GameContextSummonsInformation.wave.")
+         raise RuntimeError("Forbidden value (" + str(self.wave) + ") on element of GameContextSummonsInformation.wave.")
+
+   def resume(self):
+      print("wave :",self.wave)
+      self.look.resum()
+      for e in self.summons:
+         e.resume()

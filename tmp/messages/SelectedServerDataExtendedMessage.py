@@ -1,5 +1,6 @@
 from tmp.messages.SelectedServerDataMessage import SelectedServerDataMessage
 from tmp.types.GameServerInformations import GameServerInformations
+
 class SelectedServerDataExtendedMessage(SelectedServerDataMessage):
    def __init__(self,input):
       self.servers = []
@@ -9,3 +10,8 @@ class SelectedServerDataExtendedMessage(SelectedServerDataMessage):
       for _i1 in range(0,_serversLen):
          _item1 = GameServerInformations(input)
          self.servers.append(_item1)
+
+   def resume(self):
+      super().resume()
+      for e in self.servers:
+         e.resume()

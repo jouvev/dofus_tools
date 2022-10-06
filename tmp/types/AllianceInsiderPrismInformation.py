@@ -1,5 +1,6 @@
 from tmp.types.ObjectItem import ObjectItem
 from tmp.types.PrismInformation import PrismInformation
+
 class AllianceInsiderPrismInformation(PrismInformation):
    def __init__(self,input):
       self.modulesObjects = []
@@ -17,17 +18,26 @@ class AllianceInsiderPrismInformation(PrismInformation):
    def _lastTimeSlotModificationDateFunc(self,input) :
       self.lastTimeSlotModificationDate = input.readInt()
       if(self.lastTimeSlotModificationDate < 0) :
-         raise RuntimeError("Forbidden value (" + self.lastTimeSlotModificationDate + ") on element of AllianceInsiderPrismInformation.lastTimeSlotModificationDate.")
+         raise RuntimeError("Forbidden value (" + str(self.lastTimeSlotModificationDate) + ") on element of AllianceInsiderPrismInformation.lastTimeSlotModificationDate.")
    
    def _lastTimeSlotModificationAuthorGuildIdFunc(self,input) :
       self.lastTimeSlotModificationAuthorGuildId = input.readVarUhInt()
       if(self.lastTimeSlotModificationAuthorGuildId < 0) :
-         raise RuntimeError("Forbidden value (" + self.lastTimeSlotModificationAuthorGuildId + ") on element of AllianceInsiderPrismInformation.lastTimeSlotModificationAuthorGuildId.")
+         raise RuntimeError("Forbidden value (" + str(self.lastTimeSlotModificationAuthorGuildId) + ") on element of AllianceInsiderPrismInformation.lastTimeSlotModificationAuthorGuildId.")
    
    def _lastTimeSlotModificationAuthorIdFunc(self,input) :
       self.lastTimeSlotModificationAuthorId = input.readVarUhLong()
       if(self.lastTimeSlotModificationAuthorId < 0 or self.lastTimeSlotModificationAuthorId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.lastTimeSlotModificationAuthorId + ") on element of AllianceInsiderPrismInformation.lastTimeSlotModificationAuthorId.")
+         raise RuntimeError("Forbidden value (" + str(self.lastTimeSlotModificationAuthorId) + ") on element of AllianceInsiderPrismInformation.lastTimeSlotModificationAuthorId.")
    
    def _lastTimeSlotModificationAuthorNameFunc(self,input) :
       self.lastTimeSlotModificationAuthorName = input.readUTF()
+
+   def resume(self):
+      super().resume()
+      print("lastTimeSlotModificationDate :",self.lastTimeSlotModificationDate)
+      print("lastTimeSlotModificationAuthorGuildId :",self.lastTimeSlotModificationAuthorGuildId)
+      print("lastTimeSlotModificationAuthorId :",self.lastTimeSlotModificationAuthorId)
+      print("lastTimeSlotModificationAuthorName :",self.lastTimeSlotModificationAuthorName)
+      for e in self.modulesObjects:
+         e.resume()

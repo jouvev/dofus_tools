@@ -4,3 +4,6 @@ class CharacterCharacteristic:
    
    def _characteristicIdFunc(self,input) :
       self.characteristicId = input.readShort()
+
+   def resume(self):
+      print("characteristicId :",self.characteristicId)

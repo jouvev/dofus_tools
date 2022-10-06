@@ -1,6 +1,7 @@
 from tmp.types.ItemForPreset import ItemForPreset
 from tmp.types.EntityLook import EntityLook
 from tmp.types.Preset import Preset
+
 class ItemsPreset(Preset):
    def __init__(self,input):
       self.items = []
@@ -15,3 +16,10 @@ class ItemsPreset(Preset):
    
    def _mountEquippedFunc(self,input) :
       self.mountEquipped = input.readBoolean()
+
+   def resume(self):
+      super().resume()
+      print("mountEquipped :",self.mountEquipped)
+      self.look.resum()
+      for e in self.items:
+         e.resume()

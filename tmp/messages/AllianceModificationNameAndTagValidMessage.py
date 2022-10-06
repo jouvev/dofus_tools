@@ -8,3 +8,7 @@ class AllianceModificationNameAndTagValidMessage:
    
    def _allianceTagFunc(self,input) :
       self.allianceTag = input.readUTF()
+
+   def resume(self):
+      print("allianceName :",self.allianceName)
+      print("allianceTag :",self.allianceTag)

@@ -1,4 +1,5 @@
 import tmp.TypesFactory as pf
+
 class PresetSavedMessage:
    def __init__(self,input):
       self._presetIdFunc(input)
@@ -7,3 +8,6 @@ class PresetSavedMessage:
    
    def _presetIdFunc(self,input) :
       self.presetId = input.readShort()
+
+   def resume(self):
+      print("presetId :",self.presetId)

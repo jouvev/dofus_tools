@@ -5,4 +5,7 @@ class CharacterCapabilitiesMessage:
    def _guildEmblemSymbolCategoriesFunc(self,input) :
       self.guildEmblemSymbolCategories = input.readVarUhInt()
       if(self.guildEmblemSymbolCategories < 0) :
-         raise RuntimeError("Forbidden value (" + self.guildEmblemSymbolCategories + ") on element of CharacterCapabilitiesMessage.guildEmblemSymbolCategories.")
+         raise RuntimeError("Forbidden value (" + str(self.guildEmblemSymbolCategories) + ") on element of CharacterCapabilitiesMessage.guildEmblemSymbolCategories.")
+
+   def resume(self):
+      print("guildEmblemSymbolCategories :",self.guildEmblemSymbolCategories)

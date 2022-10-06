@@ -1,4 +1,5 @@
 from tmp.types.ObjectItemGenericQuantity import ObjectItemGenericQuantity
+
 class ExchangeGuildTaxCollectorGetMessage:
    def __init__(self,input):
       self.objectsInfos = []
@@ -24,22 +25,22 @@ class ExchangeGuildTaxCollectorGetMessage:
    def _worldXFunc(self,input) :
       self.worldX = input.readShort()
       if(self.worldX < -255 or self.worldX > 255) :
-         raise RuntimeError("Forbidden value (" + self.worldX + ") on element of ExchangeGuildTaxCollectorGetMessage.worldX.")
+         raise RuntimeError("Forbidden value (" + str(self.worldX) + ") on element of ExchangeGuildTaxCollectorGetMessage.worldX.")
    
    def _worldYFunc(self,input) :
       self.worldY = input.readShort()
       if(self.worldY < -255 or self.worldY > 255) :
-         raise RuntimeError("Forbidden value (" + self.worldY + ") on element of ExchangeGuildTaxCollectorGetMessage.worldY.")
+         raise RuntimeError("Forbidden value (" + str(self.worldY) + ") on element of ExchangeGuildTaxCollectorGetMessage.worldY.")
    
    def _mapIdFunc(self,input) :
       self.mapId = input.readDouble()
       if(self.mapId < 0 or self.mapId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.mapId + ") on element of ExchangeGuildTaxCollectorGetMessage.mapId.")
+         raise RuntimeError("Forbidden value (" + str(self.mapId) + ") on element of ExchangeGuildTaxCollectorGetMessage.mapId.")
    
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
-         raise RuntimeError("Forbidden value (" + self.subAreaId + ") on element of ExchangeGuildTaxCollectorGetMessage.subAreaId.")
+         raise RuntimeError("Forbidden value (" + str(self.subAreaId) + ") on element of ExchangeGuildTaxCollectorGetMessage.subAreaId.")
    
    def _userNameFunc(self,input) :
       self.userName = input.readUTF()
@@ -47,7 +48,7 @@ class ExchangeGuildTaxCollectorGetMessage:
    def _callerIdFunc(self,input) :
       self.callerId = input.readVarUhLong()
       if(self.callerId < 0 or self.callerId > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.callerId + ") on element of ExchangeGuildTaxCollectorGetMessage.callerId.")
+         raise RuntimeError("Forbidden value (" + str(self.callerId) + ") on element of ExchangeGuildTaxCollectorGetMessage.callerId.")
    
    def _callerNameFunc(self,input) :
       self.callerName = input.readUTF()
@@ -55,9 +56,23 @@ class ExchangeGuildTaxCollectorGetMessage:
    def _experienceFunc(self,input) :
       self.experience = input.readDouble()
       if(self.experience < -9007199254740992 or self.experience > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + self.experience + ") on element of ExchangeGuildTaxCollectorGetMessage.experience.")
+         raise RuntimeError("Forbidden value (" + str(self.experience) + ") on element of ExchangeGuildTaxCollectorGetMessage.experience.")
    
    def _podsFunc(self,input) :
       self.pods = input.readVarUhShort()
       if(self.pods < 0) :
-         raise RuntimeError("Forbidden value (" + self.pods + ") on element of ExchangeGuildTaxCollectorGetMessage.pods.")
+         raise RuntimeError("Forbidden value (" + str(self.pods) + ") on element of ExchangeGuildTaxCollectorGetMessage.pods.")
+
+   def resume(self):
+      print("collectorName :",self.collectorName)
+      print("worldX :",self.worldX)
+      print("worldY :",self.worldY)
+      print("mapId :",self.mapId)
+      print("subAreaId :",self.subAreaId)
+      print("userName :",self.userName)
+      print("callerId :",self.callerId)
+      print("callerName :",self.callerName)
+      print("experience :",self.experience)
+      print("pods :",self.pods)
+      for e in self.objectsInfos:
+         e.resume()
