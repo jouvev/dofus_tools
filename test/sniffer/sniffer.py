@@ -1,8 +1,7 @@
 import pyshark
 from src.reseau.tools import *
 from src.reseau.packet import Packet
-from tmp.MessagesFactory import MessagesFactory
-import json
+from src.reseau.MessagesFactory import MessagesFactory
 
 cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555')
 
@@ -10,8 +9,6 @@ buffer = dict()
 
 gamesynchro = dict()
 turnlist = dict()
-
-id_class = json.load(open("tmp/msg.json"))
 
 for packet in cap.sniff_continuously():
     try : 
@@ -33,7 +30,7 @@ for packet in cap.sniff_continuously():
         msg, rest, c = get_msg(buffer[dst_port])
         if(c):
             p = Packet(msg)
-            print(p.packetid,id_class[str(p.packetid)],p.lentype,p.len,dst_port)
+            print(p.packetid,MessagesFactory.id_class[str(p.packetid)].__name__,p.lentype,p.len,dst_port)
             buffer[dst_port] = buffer[dst_port][len(msg):]
             MessagesFactory.get_instance_id(p.packetid,p.get_content())
 

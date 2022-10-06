@@ -6,7 +6,7 @@ class Observer:
         if(event_type in self.observers):
             self.observers[event_type].append(callback)
         else:
-            raise RuntimeError("Event type not found :",event_type,"in",self.__class__.__name__)
+            raise RuntimeError("Event type not found :",event_type,"in",self.__name__)
         
     def notify(self,event_type,*args):
         for f in self.observers[event_type]:

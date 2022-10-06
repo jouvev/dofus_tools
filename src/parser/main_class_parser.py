@@ -50,17 +50,18 @@ def create_factory(scripts,ressources,root_path_output,mode):
     imports = []
     for path in scripts:
         p = path.split("\\")[-1]
-        imports.append("from tmp."+mode+"."+p.replace(".as","")+" import "+p.replace(".as",""))
+        imports.append("from src.reseau."+mode+"."+p.replace(".as","")+" import "+p.replace(".as",""))
     res = "\n".join(imports)
     
-    res += f"class {mode.title()}Factory:\n"
-    res += '   id_class = ' + re.sub(r"(\"[0-9]+\": )\"([a-zA-Z0-9]+)\"(,?)",r"\1\2\3",json.dumps(ressources,indent=3),flags=re.MULTILINE)
+    res += f"\nclass {mode.title()}Factory:\n"
+    res += '    id_class = ' + re.sub(r"(\"[0-9]+\": )\"([a-zA-Z0-9]+)\"(,?)",r"\1\2\3",json.dumps(ressources,indent=4),flags=re.MULTILINE)
+    res = re.sub(r"^\}","    }",res,flags=re.MULTILINE)
     
     res += f"""
     
     @classmethod
     def get_instance_id(cls,id,content):
-        return id_class[str(id)](content)
+        return cls.id_class[str(id)](content)
     """
     
     with open(os.path.join(root_path_output,f"{mode.title()}Factory.py"),"w") as f:
@@ -87,10 +88,8 @@ parse_all(root_path_messages,root_path_output_msg,"messages")
 
 types_scripts = get_all_scripts(root_path_types)
 types_ressources = get_resources(types_scripts)
-json.dump(types_ressources,open(os.path.join(root_path_output,"types.json"),"w"),indent=4)
 create_factory(types_scripts,types_ressources,root_path_output,"types")
 
 msg_scripts = get_all_scripts(root_path_messages)
 msg_ressources = get_resources(msg_scripts)
-json.dump(msg_ressources,open(os.path.join(root_path_output,"msg.json"),"w"),indent=4)
 create_factory(msg_scripts,msg_ressources,root_path_output,"messages")

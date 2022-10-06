@@ -50,12 +50,12 @@ class PacketSniffer(Thread):
                 if(c):
                     p = Packet(msg)
                     #print(MessageFactory.id_class[str(p.packetid)],dst_port)
-                    if("GameFightSynchronizeMessage".lower() in MessagesFactory.id_class[str(p.packetid)].__class__.__name__.lower()):
+                    if("GameFightSynchronizeMessage".lower() in MessagesFactory.id_class[str(p.packetid)].__name__.lower()):
                         
                         content = p.get_content()
                         inst = MessagesFactory.get_instance_id(p.packetid,content)
                         gamesynchro[dst_port] = inst    
-                    elif("GameFightTurnListMessage".lower() in MessagesFactory.id_class[str(p.packetid)].__class__.__name__.lower()):
+                    elif("GameFightTurnListMessage".lower() in MessagesFactory.id_class[str(p.packetid)].__name__.lower()):
                         
                         content = p.get_content()
                         inst = MessagesFactory.get_instance_id(p.packetid,content)
@@ -73,7 +73,7 @@ class PacketSniffer(Thread):
                             hwnd = self.handler.get_hwnd_by_name(f.name)
                         except :
                             continue
-                        id_hwnd[f.contextualid] = hwnd
+                        id_hwnd[f.contextualId] = hwnd
                         
                     orderlist = [id_hwnd[conid] for conid in turnlist[dst_port].ids if conid in id_hwnd]
                     self.handler.update_order(orderlist)
