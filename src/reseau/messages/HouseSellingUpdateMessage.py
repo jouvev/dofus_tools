@@ -31,4 +31,4 @@ class HouseSellingUpdateMessage:
       print("instanceId :",self.instanceId)
       print("secondHand :",self.secondHand)
       print("realPrice :",self.realPrice)
-      self.buyerTag.resum()
+      self.buyerTag.resume()

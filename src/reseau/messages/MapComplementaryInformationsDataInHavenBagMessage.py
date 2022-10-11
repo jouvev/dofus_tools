@@ -27,4 +27,4 @@ class MapComplementaryInformationsDataInHavenBagMessage(MapComplementaryInformat
       print("theme :",self.theme)
       print("roomId :",self.roomId)
       print("maxRoomId :",self.maxRoomId)
-      self.ownerInformations.resum()
+      self.ownerInformations.resume()

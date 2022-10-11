@@ -8,4 +8,4 @@ class GuildInformations(BasicGuildInformations):
 
    def resume(self):
       super().resume()
-      self.guildEmblem.resum()
+      self.guildEmblem.resume()

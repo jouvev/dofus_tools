@@ -5,4 +5,4 @@ class UpdateGuildRankRequestMessage:
       self.rank = GuildRankInformation(input)
 
    def resume(self):
-      self.rank.resum()
+      self.rank.resume()

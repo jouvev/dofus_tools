@@ -8,4 +8,4 @@ class IdentificationFailedForBadVersionMessage(IdentificationFailedMessage):
 
    def resume(self):
       super().resume()
-      self.requiredVersion.resum()
+      self.requiredVersion.resume()

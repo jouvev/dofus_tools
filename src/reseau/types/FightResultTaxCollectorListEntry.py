@@ -20,4 +20,4 @@ class FightResultTaxCollectorListEntry(FightResultFighterListEntry):
       super().resume()
       print("level :",self.level)
       print("experienceForGuild :",self.experienceForGuild)
-      self.guildInfo.resum()
+      self.guildInfo.resume()

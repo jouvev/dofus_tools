@@ -5,4 +5,4 @@ class StatedElementUpdatedMessage:
       self.statedElement = StatedElement(input)
 
    def resume(self):
-      self.statedElement.resum()
+      self.statedElement.resume()

@@ -8,4 +8,4 @@ class PartyMemberInStandardFightMessage(AbstractPartyMemberInFightMessage):
 
    def resume(self):
       super().resume()
-      self.fightMap.resum()
+      self.fightMap.resume()

@@ -28,4 +28,4 @@ class GameFightFighterNamedInformations(GameFightFighterInformations):
       print("leagueId :",self.leagueId)
       print("ladderPosition :",self.ladderPosition)
       print("hiddenInPrefight :",self.hiddenInPrefight)
-      self.status.resum()
+      self.status.resume()

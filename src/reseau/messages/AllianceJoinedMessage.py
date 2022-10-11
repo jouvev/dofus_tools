@@ -17,4 +17,4 @@ class AllianceJoinedMessage:
    def resume(self):
       print("enabled :",self.enabled)
       print("leadingGuildId :",self.leadingGuildId)
-      self.allianceInfo.resum()
+      self.allianceInfo.resume()

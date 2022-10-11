@@ -34,5 +34,5 @@ class ArenaRankInfos:
       print("victoryCount :",self.victoryCount)
       print("fightcount :",self.fightcount)
       print("numFightNeededForLadder :",self.numFightNeededForLadder)
-      self.ranking.resum()
-      self.leagueRanking.resum()
+      self.ranking.resume()
+      self.leagueRanking.resume()

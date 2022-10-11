@@ -48,5 +48,5 @@ class FriendSpouseInformations:
       print("breed :",self.breed)
       print("sex :",self.sex)
       print("alignmentSide :",self.alignmentSide)
-      self.spouseEntityLook.resum()
-      self.guildInfo.resum()
+      self.spouseEntityLook.resume()
+      self.guildInfo.resume()

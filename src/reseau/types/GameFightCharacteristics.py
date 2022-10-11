@@ -24,4 +24,4 @@ class GameFightCharacteristics:
       print("summoner :",self.summoner)
       print("summoned :",self.summoned)
       print("invisibilityState :",self.invisibilityState)
-      self.characteristics.resum()
+      self.characteristics.resume()

@@ -15,4 +15,4 @@ class AllianceModificationValidMessage:
    def resume(self):
       print("allianceName :",self.allianceName)
       print("allianceTag :",self.allianceTag)
-      self.Alliancemblem.resum()
+      self.Alliancemblem.resume()

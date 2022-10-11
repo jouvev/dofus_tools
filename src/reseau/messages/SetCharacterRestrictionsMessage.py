@@ -12,4 +12,4 @@ class SetCharacterRestrictionsMessage:
 
    def resume(self):
       print("actorId :",self.actorId)
-      self.restrictions.resum()
+      self.restrictions.resume()

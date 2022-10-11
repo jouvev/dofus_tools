@@ -17,4 +17,4 @@ class AllianceInvitedMessage:
    def resume(self):
       print("recruterId :",self.recruterId)
       print("recruterName :",self.recruterName)
-      self.allianceInfo.resum()
+      self.allianceInfo.resume()

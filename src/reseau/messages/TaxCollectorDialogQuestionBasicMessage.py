@@ -5,4 +5,4 @@ class TaxCollectorDialogQuestionBasicMessage:
       self.guildInfo = BasicGuildInformations(input)
 
    def resume(self):
-      self.guildInfo.resum()
+      self.guildInfo.resume()

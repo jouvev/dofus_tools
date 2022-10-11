@@ -5,4 +5,4 @@ class AllianceModificationEmblemValidMessage:
       self.Alliancemblem = GuildEmblem(input)
 
    def resume(self):
-      self.Alliancemblem.resum()
+      self.Alliancemblem.resume()

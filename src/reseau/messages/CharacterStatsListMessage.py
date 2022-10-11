@@ -5,4 +5,4 @@ class CharacterStatsListMessage:
       self.stats = CharacterCharacteristicsInformations(input)
 
    def resume(self):
-      self.stats.resum()
+      self.stats.resume()

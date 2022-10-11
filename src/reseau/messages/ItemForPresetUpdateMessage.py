@@ -10,4 +10,4 @@ class ItemForPresetUpdateMessage:
 
    def resume(self):
       print("presetId :",self.presetId)
-      self.presetItem.resum()
+      self.presetItem.resume()

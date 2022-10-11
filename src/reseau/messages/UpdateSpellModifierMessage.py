@@ -12,4 +12,4 @@ class UpdateSpellModifierMessage:
 
    def resume(self):
       print("actorId :",self.actorId)
-      self.spellModifier.resum()
+      self.spellModifier.resume()

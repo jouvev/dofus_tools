@@ -36,4 +36,4 @@ class GuildFactSheetInformations(GuildInformations):
       print("nbMembers :",self.nbMembers)
       print("lastActivityDay :",self.lastActivityDay)
       print("nbPendingApply :",self.nbPendingApply)
-      self.recruitment.resum()
+      self.recruitment.resume()

@@ -8,4 +8,4 @@ class MonsterInGroupInformations(MonsterInGroupLightInformations):
 
    def resume(self):
       super().resume()
-      self.look.resum()
+      self.look.resume()

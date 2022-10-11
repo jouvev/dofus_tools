@@ -12,4 +12,4 @@ class ObjectAddedMessage:
 
    def resume(self):
       print("origin :",self.origin)
-      self.object.resum()
+      self.object.resume()

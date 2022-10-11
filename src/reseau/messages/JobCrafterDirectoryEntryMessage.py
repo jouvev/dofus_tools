@@ -14,7 +14,7 @@ class JobCrafterDirectoryEntryMessage:
       self.playerLook = EntityLook(input)
 
    def resume(self):
-      self.playerInfo.resum()
-      self.playerLook.resum()
+      self.playerInfo.resume()
+      self.playerLook.resume()
       for e in self.jobInfoList:
          e.resume()

@@ -15,4 +15,4 @@ class GameActionFightChangeLookMessage(AbstractGameActionMessage):
    def resume(self):
       super().resume()
       print("targetId :",self.targetId)
-      self.entityLook.resum()
+      self.entityLook.resume()

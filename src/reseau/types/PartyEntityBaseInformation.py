@@ -19,4 +19,4 @@ class PartyEntityBaseInformation:
    def resume(self):
       print("indexId :",self.indexId)
       print("entityModelId :",self.entityModelId)
-      self.entityLook.resum()
+      self.entityLook.resume()

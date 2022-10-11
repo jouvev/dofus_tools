@@ -8,4 +8,4 @@ class GuildInAllianceFactsMessage(GuildFactsMessage):
 
    def resume(self):
       super().resume()
-      self.allianceInfos.resum()
+      self.allianceInfos.resume()

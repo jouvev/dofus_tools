@@ -10,4 +10,4 @@ class BreachKickResponseMessage:
 
    def resume(self):
       print("kicked :",self.kicked)
-      self.target.resum()
+      self.target.resume()

@@ -8,4 +8,4 @@ class FightTeamMemberWithAllianceCharacterInformations(FightTeamMemberCharacterI
 
    def resume(self):
       super().resume()
-      self.allianceInfos.resum()
+      self.allianceInfos.resume()

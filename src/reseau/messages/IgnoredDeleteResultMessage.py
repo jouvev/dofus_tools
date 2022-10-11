@@ -11,4 +11,4 @@ class IgnoredDeleteResultMessage:
       self.session = bool(bin(_box0)[2:].zfill(8)[1])
 
    def resume(self):
-      self.tag.resum()
+      self.tag.resume()

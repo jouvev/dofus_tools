@@ -5,4 +5,4 @@ class AccessoryPreviewMessage:
       self.look = EntityLook(input)
 
    def resume(self):
-      self.look.resum()
+      self.look.resume()

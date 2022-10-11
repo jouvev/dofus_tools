@@ -5,4 +5,4 @@ class EntityInformationMessage:
       self.entity = EntityInformation(input)
 
    def resume(self):
-      self.entity.resum()
+      self.entity.resume()

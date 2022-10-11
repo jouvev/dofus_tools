@@ -8,4 +8,4 @@ class ExchangeObjectModifiedInBagMessage(ExchangeObjectMessage):
 
    def resume(self):
       super().resume()
-      self.object.resum()
+      self.object.resume()

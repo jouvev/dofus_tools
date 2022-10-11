@@ -66,6 +66,6 @@ class BasicWhoIsMessage:
       print("serverId :",self.serverId)
       print("originServerId :",self.originServerId)
       print("playerState :",self.playerState)
-      self.accountTag.resum()
+      self.accountTag.resume()
       for e in self.socialGroups:
          e.resume()

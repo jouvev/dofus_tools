@@ -15,6 +15,6 @@ class ForgettableSpellsPreset(Preset):
 
    def resume(self):
       super().resume()
-      self.baseSpellsPreset.resum()
+      self.baseSpellsPreset.resume()
       for e in self.forgettableSpells:
          e.resume()

@@ -5,4 +5,4 @@ class MimicryObjectPreviewMessage:
       self.result = ObjectItem(input)
 
    def resume(self):
-      self.result.resum()
+      self.result.resume()

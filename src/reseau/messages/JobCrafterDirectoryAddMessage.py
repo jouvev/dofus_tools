@@ -5,4 +5,4 @@ class JobCrafterDirectoryAddMessage:
       self.listEntry = JobCrafterDirectoryListEntry(input)
 
    def resume(self):
-      self.listEntry.resum()
+      self.listEntry.resume()

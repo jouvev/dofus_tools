@@ -12,4 +12,4 @@ class BreachInvitationOfferMessage:
 
    def resume(self):
       print("timeLeftBeforeCancel :",self.timeLeftBeforeCancel)
-      self.host.resum()
+      self.host.resume()

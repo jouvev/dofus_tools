@@ -5,4 +5,4 @@ class GuildUpdateChestTabRequestMessage:
       self.tab = UpdatedStorageTabInformation(input)
 
    def resume(self):
-      self.tab.resum()
+      self.tab.resume()

@@ -10,4 +10,4 @@ class CharacterSelectedSuccessMessage:
 
    def resume(self):
       print("isCollectingStats :",self.isCollectingStats)
-      self.infos.resum()
+      self.infos.resume()

@@ -10,5 +10,5 @@ class GuildPlayerApplicationInformationMessage(GuildPlayerApplicationAbstractMes
 
    def resume(self):
       super().resume()
-      self.guildInformation.resum()
-      self.apply.resum()
+      self.guildInformation.resume()
+      self.apply.resume()

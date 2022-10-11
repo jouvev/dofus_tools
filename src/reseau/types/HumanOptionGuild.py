@@ -8,4 +8,4 @@ class HumanOptionGuild(HumanOption):
 
    def resume(self):
       super().resume()
-      self.guildInformations.resum()
+      self.guildInformations.resume()

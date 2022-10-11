@@ -5,4 +5,4 @@ class AtlasPointInformationsMessage:
       self.type = AtlasPointsInformations(input)
 
    def resume(self):
-      self.type.resum()
+      self.type.resume()

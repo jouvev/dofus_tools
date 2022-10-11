@@ -10,5 +10,5 @@ class GameRolePlayArenaUpdatePlayerInfosAllQueuesMessage(GameRolePlayArenaUpdate
 
    def resume(self):
       super().resume()
-      self.team.resum()
-      self.duel.resum()
+      self.team.resume()
+      self.duel.resume()

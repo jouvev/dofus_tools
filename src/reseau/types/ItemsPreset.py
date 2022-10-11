@@ -20,6 +20,6 @@ class ItemsPreset(Preset):
    def resume(self):
       super().resume()
       print("mountEquipped :",self.mountEquipped)
-      self.look.resum()
+      self.look.resume()
       for e in self.items:
          e.resume()

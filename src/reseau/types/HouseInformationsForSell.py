@@ -83,5 +83,5 @@ class HouseInformationsForSell:
       print("nbChest :",self.nbChest)
       print("isLocked :",self.isLocked)
       print("price :",self.price)
-      self.ownerTag.resum()
+      self.ownerTag.resume()
       print("skillListIds :",self.skillListIds)

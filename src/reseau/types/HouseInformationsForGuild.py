@@ -61,5 +61,5 @@ class HouseInformationsForGuild(HouseInformations):
       print("mapId :",self.mapId)
       print("subAreaId :",self.subAreaId)
       print("guildshareParams :",self.guildshareParams)
-      self.ownerTag.resum()
+      self.ownerTag.resume()
       print("skillListIds :",self.skillListIds)

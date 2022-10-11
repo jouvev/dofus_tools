@@ -10,4 +10,4 @@ class InviteInHavenBagOfferMessage:
 
    def resume(self):
       print("timeLeftBeforeCancel :",self.timeLeftBeforeCancel)
-      self.hostInformations.resum()
+      self.hostInformations.resume()

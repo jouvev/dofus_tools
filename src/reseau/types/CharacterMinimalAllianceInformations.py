@@ -8,4 +8,4 @@ class CharacterMinimalAllianceInformations(CharacterMinimalGuildInformations):
 
    def resume(self):
       super().resume()
-      self.alliance.resum()
+      self.alliance.resume()

@@ -21,7 +21,7 @@ class AllianceInsiderInfoMessage:
          self.prisms.append(_item3)
 
    def resume(self):
-      self.allianceInfos.resum()
+      self.allianceInfos.resume()
       for e in self.guilds:
          e.resume()
       for e in self.prisms:

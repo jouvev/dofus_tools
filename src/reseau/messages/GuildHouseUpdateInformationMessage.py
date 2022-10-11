@@ -5,4 +5,4 @@ class GuildHouseUpdateInformationMessage:
       self.housesInformations = HouseInformationsForGuild(input)
 
    def resume(self):
-      self.housesInformations.resum()
+      self.housesInformations.resume()

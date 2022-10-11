@@ -10,4 +10,4 @@ class BreachInvitationResponseMessage:
 
    def resume(self):
       print("accept :",self.accept)
-      self.guest.resum()
+      self.guest.resume()

@@ -65,4 +65,4 @@ class IdentificationSuccessMessage:
       print("subscriptionElapsedDuration :",self.subscriptionElapsedDuration)
       print("subscriptionEndDate :",self.subscriptionEndDate)
       print("havenbagAvailableRoom :",self.havenbagAvailableRoom)
-      self.accountTag.resum()
+      self.accountTag.resume()

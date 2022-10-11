@@ -8,4 +8,4 @@ class TaxCollectorStaticExtendedInformations(TaxCollectorStaticInformations):
 
    def resume(self):
       super().resume()
-      self.allianceIdentity.resum()
+      self.allianceIdentity.resume()

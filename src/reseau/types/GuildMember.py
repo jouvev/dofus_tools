@@ -88,4 +88,4 @@ class GuildMember(CharacterMinimalInformations):
       print("moodSmileyId :",self.moodSmileyId)
       print("accountId :",self.accountId)
       print("achievementPoints :",self.achievementPoints)
-      self.note.resum()
+      self.note.resume()

@@ -5,4 +5,4 @@ class MountDataMessage:
       self.mountData = MountClientData(input)
 
    def resume(self):
-      self.mountData.resum()
+      self.mountData.resume()

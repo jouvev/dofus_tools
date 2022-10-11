@@ -5,4 +5,4 @@ class AlterationRemovedMessage:
       self.alteration = AlterationInfo(input)
 
    def resume(self):
-      self.alteration.resum()
+      self.alteration.resume()

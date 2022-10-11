@@ -48,4 +48,4 @@ class GuildLogbookChestActivity(GuildLogbookEntryBasicInformation):
       print("quantity :",self.quantity)
       print("sourceTabId :",self.sourceTabId)
       print("destinationTabId :",self.destinationTabId)
-      self.object.resum()
+      self.object.resume()

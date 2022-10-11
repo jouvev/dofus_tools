@@ -5,4 +5,4 @@ class ArenaFighterLeaveMessage:
       self.leaver = CharacterBasicMinimalInformations(input)
 
    def resume(self):
-      self.leaver.resum()
+      self.leaver.resume()

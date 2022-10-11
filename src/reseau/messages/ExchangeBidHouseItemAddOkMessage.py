@@ -5,4 +5,4 @@ class ExchangeBidHouseItemAddOkMessage:
       self.itemInfo = ObjectItemToSellInBid(input)
 
    def resume(self):
-      self.itemInfo.resum()
+      self.itemInfo.resume()

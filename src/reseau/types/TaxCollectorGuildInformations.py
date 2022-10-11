@@ -8,4 +8,4 @@ class TaxCollectorGuildInformations(TaxCollectorComplementaryInformations):
 
    def resume(self):
       super().resume()
-      self.guild.resum()
+      self.guild.resume()

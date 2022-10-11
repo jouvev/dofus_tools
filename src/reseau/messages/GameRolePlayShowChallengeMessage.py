@@ -5,4 +5,4 @@ class GameRolePlayShowChallengeMessage:
       self.commonsInfos = FightCommonInformations(input)
 
    def resume(self):
-      self.commonsInfos.resum()
+      self.commonsInfos.resume()

@@ -5,4 +5,4 @@ class GameDataPaddockObjectAddMessage:
       self.paddockItemDescription = PaddockItem(input)
 
    def resume(self):
-      self.paddockItemDescription.resum()
+      self.paddockItemDescription.resume()

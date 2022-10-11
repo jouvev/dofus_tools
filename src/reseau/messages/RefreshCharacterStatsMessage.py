@@ -12,4 +12,4 @@ class RefreshCharacterStatsMessage:
 
    def resume(self):
       print("fighterId :",self.fighterId)
-      self.stats.resum()
+      self.stats.resume()

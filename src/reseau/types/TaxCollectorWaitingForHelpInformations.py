@@ -8,4 +8,4 @@ class TaxCollectorWaitingForHelpInformations(TaxCollectorComplementaryInformatio
 
    def resume(self):
       super().resume()
-      self.waitingForHelpInfo.resum()
+      self.waitingForHelpInfo.resume()

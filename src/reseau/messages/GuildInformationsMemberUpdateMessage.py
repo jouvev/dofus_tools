@@ -5,4 +5,4 @@ class GuildInformationsMemberUpdateMessage:
       self.member = GuildMember(input)
 
    def resume(self):
-      self.member.resum()
+      self.member.resume()

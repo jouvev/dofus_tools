@@ -12,4 +12,4 @@ class GameContextRefreshEntityLookMessage:
 
    def resume(self):
       print("id :",self.id)
-      self.look.resum()
+      self.look.resume()

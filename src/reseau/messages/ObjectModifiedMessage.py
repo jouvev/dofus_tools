@@ -5,4 +5,4 @@ class ObjectModifiedMessage:
       self.object = ObjectItem(input)
 
    def resume(self):
-      self.object.resum()
+      self.object.resume()

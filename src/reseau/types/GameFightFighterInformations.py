@@ -26,5 +26,5 @@ class GameFightFighterInformations(GameContextActorInformations):
    def resume(self):
       super().resume()
       print("wave :",self.wave)
-      self.spawnInfo.resum()
+      self.spawnInfo.resume()
       print("previousPositions :",self.previousPositions)

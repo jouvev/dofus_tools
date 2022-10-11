@@ -8,4 +8,4 @@ class ExchangeCraftResultWithObjectDescMessage(ExchangeCraftResultMessage):
 
    def resume(self):
       super().resume()
-      self.objectInfo.resum()
+      self.objectInfo.resume()

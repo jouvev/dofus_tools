@@ -8,4 +8,4 @@ class CharacterSelectionWithRemodelMessage(CharacterSelectionMessage):
 
    def resume(self):
       super().resume()
-      self.remodel.resum()
+      self.remodel.resume()

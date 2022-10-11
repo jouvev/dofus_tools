@@ -5,4 +5,4 @@ class StartupActionAddMessage:
       self.newAction = StartupActionAddObject(input)
 
    def resume(self):
-      self.newAction.resum()
+      self.newAction.resume()

@@ -30,8 +30,11 @@ for packet in cap.sniff_continuously():
         msg, rest, c = get_msg(buffer[dst_port])
         if(c):
             p = Packet(msg)
-            print(p.packetid,MessagesFactory.id_class[str(p.packetid)].__name__,p.lentype,p.len,dst_port)
+            pname = MessagesFactory.id_class[str(p.packetid)].__name__
             buffer[dst_port] = buffer[dst_port][len(msg):]
-            MessagesFactory.get_instance_id(p.packetid,p.get_content())
+            if("Exchange".lower() in pname.lower() or "inventory".lower() in pname.lower() or "storage".lower() in pname.lower() or "object".lower() in pname.lower()):
+                print(p.packetid,pname,p.lentype,p.len,dst_port)
+                msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
+                #msg.resume()
 
             

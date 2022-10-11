@@ -12,6 +12,6 @@ class ExchangeStartedBidSellerMessage:
          self.objectsInfos.append(_item2)
 
    def resume(self):
-      self.sellerDescriptor.resum()
+      self.sellerDescriptor.resume()
       for e in self.objectsInfos:
          e.resume()

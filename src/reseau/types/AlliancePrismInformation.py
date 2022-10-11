@@ -8,4 +8,4 @@ class AlliancePrismInformation(PrismInformation):
 
    def resume(self):
       super().resume()
-      self.alliance.resum()
+      self.alliance.resume()

@@ -19,6 +19,6 @@ class HumanInformations:
 
    def resume(self):
       print("sex :",self.sex)
-      self.restrictions.resum()
+      self.restrictions.resume()
       for e in self.options:
          e.resume()

@@ -8,4 +8,4 @@ class GameRolePlayNpcWithQuestInformations(GameRolePlayNpcInformations):
 
    def resume(self):
       super().resume()
-      self.questFlag.resum()
+      self.questFlag.resume()

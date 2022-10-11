@@ -5,4 +5,4 @@ class AchievementFinishedMessage:
       self.achievement = AchievementAchievedRewardable(input)
 
    def resume(self):
-      self.achievement.resum()
+      self.achievement.resume()

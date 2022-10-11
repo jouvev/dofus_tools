@@ -8,4 +8,4 @@ class PartyNewGuestMessage(AbstractPartyEventMessage):
 
    def resume(self):
       super().resume()
-      self.guest.resum()
+      self.guest.resume()

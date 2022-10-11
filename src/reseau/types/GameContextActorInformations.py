@@ -8,4 +8,4 @@ class GameContextActorInformations(GameContextActorPositionInformations):
 
    def resume(self):
       super().resume()
-      self.look.resum()
+      self.look.resume()

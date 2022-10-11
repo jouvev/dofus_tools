@@ -12,4 +12,4 @@ class NamedPartyTeamWithOutcome:
 
    def resume(self):
       print("outcome :",self.outcome)
-      self.team.resum()
+      self.team.resume()

@@ -5,4 +5,4 @@ class BreachBonusMessage:
       self.bonus = ObjectEffectInteger(input)
 
    def resume(self):
-      self.bonus.resum()
+      self.bonus.resume()

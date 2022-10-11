@@ -19,4 +19,4 @@ class FightResultListEntry:
    def resume(self):
       print("outcome :",self.outcome)
       print("wave :",self.wave)
-      self.rewards.resum()
+      self.rewards.resume()

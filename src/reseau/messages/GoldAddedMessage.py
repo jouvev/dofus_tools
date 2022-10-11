@@ -5,4 +5,4 @@ class GoldAddedMessage:
       self.gold = GoldItem(input)
 
    def resume(self):
-      self.gold.resum()
+      self.gold.resume()

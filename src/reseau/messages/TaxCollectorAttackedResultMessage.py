@@ -12,5 +12,5 @@ class TaxCollectorAttackedResultMessage:
 
    def resume(self):
       print("deadOrAlive :",self.deadOrAlive)
-      self.basicInfos.resum()
-      self.guild.resum()
+      self.basicInfos.resume()
+      self.guild.resume()

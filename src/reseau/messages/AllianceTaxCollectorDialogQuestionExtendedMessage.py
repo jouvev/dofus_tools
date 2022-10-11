@@ -8,4 +8,4 @@ class AllianceTaxCollectorDialogQuestionExtendedMessage(TaxCollectorDialogQuesti
 
    def resume(self):
       super().resume()
-      self.alliance.resum()
+      self.alliance.resume()

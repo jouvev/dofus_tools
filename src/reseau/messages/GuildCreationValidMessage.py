@@ -10,4 +10,4 @@ class GuildCreationValidMessage:
 
    def resume(self):
       print("guildName :",self.guildName)
-      self.guildEmblem.resum()
+      self.guildEmblem.resume()

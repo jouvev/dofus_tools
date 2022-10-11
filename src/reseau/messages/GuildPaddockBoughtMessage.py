@@ -5,4 +5,4 @@ class GuildPaddockBoughtMessage:
       self.paddockInfo = PaddockContentInformations(input)
 
    def resume(self):
-      self.paddockInfo.resum()
+      self.paddockInfo.resume()

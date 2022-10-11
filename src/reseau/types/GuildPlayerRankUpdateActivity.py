@@ -32,4 +32,4 @@ class GuildPlayerRankUpdateActivity(GuildLogbookEntryBasicInformation):
       print("targetPlayerId :",self.targetPlayerId)
       print("sourcePlayerName :",self.sourcePlayerName)
       print("targetPlayerName :",self.targetPlayerName)
-      self.guildRankMinimalInfos.resum()
+      self.guildRankMinimalInfos.resume()

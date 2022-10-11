@@ -12,4 +12,4 @@ class IndexedEntityLook:
 
    def resume(self):
       print("index :",self.index)
-      self.look.resum()
+      self.look.resume()

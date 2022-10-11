@@ -5,4 +5,4 @@ class ServerStatusUpdateMessage:
       self.server = GameServerInformations(input)
 
    def resume(self):
-      self.server.resum()
+      self.server.resume()

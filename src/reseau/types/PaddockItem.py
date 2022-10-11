@@ -8,4 +8,4 @@ class PaddockItem(ObjectItemInRolePlay):
 
    def resume(self):
       super().resume()
-      self.durability.resum()
+      self.durability.resume()

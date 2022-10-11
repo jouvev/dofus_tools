@@ -5,4 +5,4 @@ class AcquaintanceSearchMessage:
       self.tag = AccountTagInformation(input)
 
    def resume(self):
-      self.tag.resum()
+      self.tag.resume()

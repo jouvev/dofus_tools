@@ -5,4 +5,4 @@ class PaddockPropertiesMessage:
       self.properties = PaddockInstancesInformations(input)
 
    def resume(self):
-      self.properties.resum()
+      self.properties.resume()

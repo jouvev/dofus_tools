@@ -8,4 +8,4 @@ class HouseGuildedInformations(HouseInstanceInformations):
 
    def resume(self):
       super().resume()
-      self.guildInfo.resum()
+      self.guildInfo.resume()

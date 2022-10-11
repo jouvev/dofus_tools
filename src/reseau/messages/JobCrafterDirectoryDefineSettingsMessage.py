@@ -5,4 +5,4 @@ class JobCrafterDirectoryDefineSettingsMessage:
       self.settings = JobCrafterDirectorySettings(input)
 
    def resume(self):
-      self.settings.resum()
+      self.settings.resume()

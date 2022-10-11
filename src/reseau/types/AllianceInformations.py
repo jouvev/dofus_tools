@@ -8,4 +8,4 @@ class AllianceInformations(BasicNamedAllianceInformations):
 
    def resume(self):
       super().resume()
-      self.allianceEmblem.resum()
+      self.allianceEmblem.resume()

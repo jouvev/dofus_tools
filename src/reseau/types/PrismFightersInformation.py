@@ -29,7 +29,7 @@ class PrismFightersInformation:
 
    def resume(self):
       print("subAreaId :",self.subAreaId)
-      self.waitingForHelpInfo.resum()
+      self.waitingForHelpInfo.resume()
       for e in self.allyCharactersInformations:
          e.resume()
       for e in self.enemyCharactersInformations:

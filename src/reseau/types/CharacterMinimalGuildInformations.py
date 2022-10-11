@@ -8,4 +8,4 @@ class CharacterMinimalGuildInformations(CharacterMinimalPlusLookInformations):
 
    def resume(self):
       super().resume()
-      self.guild.resum()
+      self.guild.resume()

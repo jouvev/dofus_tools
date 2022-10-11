@@ -5,4 +5,4 @@ class IdolPartyRefreshMessage:
       self.partyIdol = PartyIdol(input)
 
    def resume(self):
-      self.partyIdol.resum()
+      self.partyIdol.resume()

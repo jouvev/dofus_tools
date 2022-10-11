@@ -15,4 +15,4 @@ class GuildRankActivity(GuildLogbookEntryBasicInformation):
    def resume(self):
       super().resume()
       print("rankActivityType :",self.rankActivityType)
-      self.guildRankMinimalInfos.resum()
+      self.guildRankMinimalInfos.resume()

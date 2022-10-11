@@ -10,4 +10,4 @@ class FriendDeleteResultMessage:
 
    def resume(self):
       print("success :",self.success)
-      self.tag.resum()
+      self.tag.resume()

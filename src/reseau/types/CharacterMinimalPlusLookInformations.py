@@ -13,4 +13,4 @@ class CharacterMinimalPlusLookInformations(CharacterMinimalInformations):
    def resume(self):
       super().resume()
       print("breed :",self.breed)
-      self.entityLook.resum()
+      self.entityLook.resume()

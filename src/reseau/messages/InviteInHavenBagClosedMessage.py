@@ -5,4 +5,4 @@ class InviteInHavenBagClosedMessage:
       self.hostInformations = CharacterMinimalInformations(input)
 
    def resume(self):
-      self.hostInformations.resum()
+      self.hostInformations.resume()

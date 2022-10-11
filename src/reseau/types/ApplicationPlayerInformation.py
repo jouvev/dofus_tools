@@ -53,4 +53,4 @@ class ApplicationPlayerInformation:
       print("accountId :",self.accountId)
       print("accountTag :",self.accountTag)
       print("accountNickname :",self.accountNickname)
-      self.status.resum()
+      self.status.resume()

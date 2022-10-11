@@ -12,4 +12,4 @@ class DumpedEntityStatsMessage:
 
    def resume(self):
       print("actorId :",self.actorId)
-      self.stats.resum()
+      self.stats.resume()

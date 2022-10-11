@@ -44,6 +44,6 @@ class PartyGuestInformations:
       print("name :",self.name)
       print("breed :",self.breed)
       print("sex :",self.sex)
-      self.guestLook.resum()
+      self.guestLook.resume()
       for e in self.entities:
          e.resume()

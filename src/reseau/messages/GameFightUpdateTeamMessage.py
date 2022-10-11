@@ -12,4 +12,4 @@ class GameFightUpdateTeamMessage:
 
    def resume(self):
       print("fightId :",self.fightId)
-      self.team.resum()
+      self.team.resume()

@@ -17,4 +17,4 @@ class GuildInvitedMessage:
    def resume(self):
       print("recruterId :",self.recruterId)
       print("recruterName :",self.recruterName)
-      self.guildInfo.resum()
+      self.guildInfo.resume()

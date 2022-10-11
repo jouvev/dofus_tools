@@ -22,4 +22,4 @@ class ObjectItemQuantityPriceDateEffects(ObjectItemGenericQuantity):
       super().resume()
       print("price :",self.price)
       print("date :",self.date)
-      self.effects.resum()
+      self.effects.resume()

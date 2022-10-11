@@ -131,7 +131,7 @@ def def_resume(res):
     #variable objet
     vars = re.findall(r"(self.\w+) = \w+\(input\)",res)
     for v in vars:
-        f_resume += f"      {v}.resum()\n"
+        f_resume += f"      {v}.resume()\n"
         
     #list
     vars = re.findall(r"(self.\w+) = \[\]",res)

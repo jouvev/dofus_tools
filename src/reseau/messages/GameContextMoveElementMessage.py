@@ -5,4 +5,4 @@ class GameContextMoveElementMessage:
       self.movement = EntityMovementInformations(input)
 
    def resume(self):
-      self.movement.resum()
+      self.movement.resume()

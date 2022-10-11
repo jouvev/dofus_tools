@@ -31,4 +31,4 @@ class HouseGuildRightsMessage:
       print("instanceId :",self.instanceId)
       print("secondHand :",self.secondHand)
       print("rights :",self.rights)
-      self.guildInfo.resum()
+      self.guildInfo.resume()

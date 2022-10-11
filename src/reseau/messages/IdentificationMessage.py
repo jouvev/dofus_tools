@@ -43,6 +43,6 @@ class IdentificationMessage:
       print("lang :",self.lang)
       print("serverId :",self.serverId)
       print("sessionOptionalSalt :",self.sessionOptionalSalt)
-      self.version.resum()
+      self.version.resume()
       print("credentials :",self.credentials)
       print("failedAttempts :",self.failedAttempts)

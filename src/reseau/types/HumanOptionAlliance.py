@@ -15,4 +15,4 @@ class HumanOptionAlliance(HumanOption):
    def resume(self):
       super().resume()
       print("aggressable :",self.aggressable)
-      self.allianceInformations.resum()
+      self.allianceInformations.resume()

@@ -5,4 +5,4 @@ class PrismFightAddedMessage:
       self.fight = PrismFightersInformation(input)
 
    def resume(self):
-      self.fight.resum()
+      self.fight.resume()

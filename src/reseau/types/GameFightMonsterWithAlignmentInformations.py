@@ -8,4 +8,4 @@ class GameFightMonsterWithAlignmentInformations(GameFightMonsterInformations):
 
    def resume(self):
       super().resume()
-      self.alignmentInfos.resum()
+      self.alignmentInfos.resume()

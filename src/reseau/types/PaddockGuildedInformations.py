@@ -13,4 +13,4 @@ class PaddockGuildedInformations(PaddockBuyableInformations):
    def resume(self):
       super().resume()
       print("deserted :",self.deserted)
-      self.guildInfo.resum()
+      self.guildInfo.resume()

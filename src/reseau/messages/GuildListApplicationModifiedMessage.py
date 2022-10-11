@@ -19,4 +19,4 @@ class GuildListApplicationModifiedMessage:
    def resume(self):
       print("state :",self.state)
       print("playerId :",self.playerId)
-      self.apply.resum()
+      self.apply.resume()

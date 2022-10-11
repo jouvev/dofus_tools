@@ -70,7 +70,7 @@ class CharacterCharacteristicsInformations:
       print("kamas :",self.kamas)
       print("criticalHitWeapon :",self.criticalHitWeapon)
       print("probationTime :",self.probationTime)
-      self.alignmentInfos.resum()
+      self.alignmentInfos.resume()
       for e in self.characteristics:
          e.resume()
       for e in self.spellModifications:

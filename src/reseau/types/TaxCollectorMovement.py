@@ -24,4 +24,4 @@ class TaxCollectorMovement:
       print("movementType :",self.movementType)
       print("playerId :",self.playerId)
       print("playerName :",self.playerName)
-      self.basicInfos.resum()
+      self.basicInfos.resume()

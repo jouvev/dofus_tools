@@ -55,4 +55,4 @@ class FriendOnlineInformations(FriendInformations):
       print("alignmentSide :",self.alignmentSide)
       print("breed :",self.breed)
       print("moodSmileyId :",self.moodSmileyId)
-      self.guildInfo.resum()
+      self.guildInfo.resume()

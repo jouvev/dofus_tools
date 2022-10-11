@@ -8,4 +8,4 @@ class MapComplementaryInformationsDataInHouseMessage(MapComplementaryInformation
 
    def resume(self):
       super().resume()
-      self.currentHouse.resum()
+      self.currentHouse.resume()

@@ -24,4 +24,4 @@ class ContactLookMessage:
       print("requestId :",self.requestId)
       print("playerName :",self.playerName)
       print("playerId :",self.playerId)
-      self.look.resum()
+      self.look.resume()

@@ -10,4 +10,4 @@ class InviteInHavenBagMessage:
 
    def resume(self):
       print("accept :",self.accept)
-      self.guestInformations.resum()
+      self.guestInformations.resume()

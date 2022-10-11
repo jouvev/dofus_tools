@@ -12,4 +12,4 @@ class GuildJoinedMessage:
 
    def resume(self):
       print("rankId :",self.rankId)
-      self.guildInfo.resum()
+      self.guildInfo.resume()

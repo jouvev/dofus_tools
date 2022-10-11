@@ -5,4 +5,4 @@ class GameMapChangeOrientationMessage:
       self.orientation = ActorOrientation(input)
 
    def resume(self):
-      self.orientation.resum()
+      self.orientation.resume()

@@ -17,4 +17,4 @@ class GuildApplicationInformation:
    def resume(self):
       print("applyText :",self.applyText)
       print("creationDate :",self.creationDate)
-      self.playerInfo.resum()
+      self.playerInfo.resume()

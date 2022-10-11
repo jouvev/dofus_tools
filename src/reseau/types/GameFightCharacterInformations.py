@@ -25,4 +25,4 @@ class GameFightCharacterInformations(GameFightFighterNamedInformations):
       print("level :",self.level)
       print("breed :",self.breed)
       print("sex :",self.sex)
-      self.alignmentInfos.resum()
+      self.alignmentInfos.resume()

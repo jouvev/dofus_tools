@@ -12,6 +12,6 @@ class GroupMonsterStaticInformations:
          self.underlings.append(_item2)
 
    def resume(self):
-      self.mainCreatureLightInfos.resum()
+      self.mainCreatureLightInfos.resume()
       for e in self.underlings:
          e.resume()

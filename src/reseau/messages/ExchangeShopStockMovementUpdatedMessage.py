@@ -5,4 +5,4 @@ class ExchangeShopStockMovementUpdatedMessage:
       self.objectInfo = ObjectItemToSell(input)
 
    def resume(self):
-      self.objectInfo.resum()
+      self.objectInfo.resume()

@@ -65,7 +65,7 @@ class TaxCollectorInformations:
       print("worldY :",self.worldY)
       print("subAreaId :",self.subAreaId)
       print("state :",self.state)
-      self.additionalInfos.resum()
-      self.look.resum()
+      self.additionalInfos.resume()
+      self.look.resume()
       for e in self.complements:
          e.resume()

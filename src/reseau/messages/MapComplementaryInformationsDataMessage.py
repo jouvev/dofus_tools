@@ -70,7 +70,7 @@ class MapComplementaryInformationsDataMessage:
       print("subAreaId :",self.subAreaId)
       print("mapId :",self.mapId)
       print("hasAggressiveMonsters :",self.hasAggressiveMonsters)
-      self.fightStartPositions.resum()
+      self.fightStartPositions.resume()
       for e in self.houses:
          e.resume()
       for e in self.actors:

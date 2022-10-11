@@ -8,4 +8,4 @@ class GameRolePlayCharacterInformations(GameRolePlayHumanoidInformations):
 
    def resume(self):
       super().resume()
-      self.alignmentInfos.resum()
+      self.alignmentInfos.resume()

@@ -8,4 +8,4 @@ class PlayerSearchTagInformation(AbstractPlayerSearchInformation):
 
    def resume(self):
       super().resume()
-      self.tag.resum()
+      self.tag.resume()

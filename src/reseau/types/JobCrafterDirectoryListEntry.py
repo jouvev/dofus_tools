@@ -7,5 +7,5 @@ class JobCrafterDirectoryListEntry:
       self.jobInfo = JobCrafterDirectoryEntryJobInfo(input)
 
    def resume(self):
-      self.playerInfo.resum()
-      self.jobInfo.resum()
+      self.playerInfo.resume()
+      self.jobInfo.resume()

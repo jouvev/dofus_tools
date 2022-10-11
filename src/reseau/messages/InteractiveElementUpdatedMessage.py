@@ -5,4 +5,4 @@ class InteractiveElementUpdatedMessage:
       self.interactiveElement = InteractiveElement(input)
 
    def resume(self):
-      self.interactiveElement.resum()
+      self.interactiveElement.resume()

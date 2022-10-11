@@ -47,4 +47,4 @@ class TaxCollectorAttackedMessage:
       print("worldY :",self.worldY)
       print("mapId :",self.mapId)
       print("subAreaId :",self.subAreaId)
-      self.guild.resum()
+      self.guild.resume()

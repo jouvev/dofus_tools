@@ -12,4 +12,4 @@ class AbstractContactInformations:
 
    def resume(self):
       print("accountId :",self.accountId)
-      self.accountTag.resum()
+      self.accountTag.resume()

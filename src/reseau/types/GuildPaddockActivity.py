@@ -34,4 +34,4 @@ class GuildPaddockActivity(GuildLogbookEntryBasicInformation):
       print("playerName :",self.playerName)
       print("farmId :",self.farmId)
       print("paddockEventType :",self.paddockEventType)
-      self.paddockCoordinates.resum()
+      self.paddockCoordinates.resume()

@@ -5,4 +5,4 @@ class BreachInvitationCloseMessage:
       self.host = CharacterMinimalInformations(input)
 
    def resume(self):
-      self.host.resum()
+      self.host.resume()

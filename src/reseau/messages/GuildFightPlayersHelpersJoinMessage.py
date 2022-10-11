@@ -12,4 +12,4 @@ class GuildFightPlayersHelpersJoinMessage:
 
    def resume(self):
       print("fightId :",self.fightId)
-      self.playerInfo.resum()
+      self.playerInfo.resume()

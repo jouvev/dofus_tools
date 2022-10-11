@@ -19,4 +19,4 @@ class CharacterSpellModification:
    def resume(self):
       print("modificationType :",self.modificationType)
       print("spellId :",self.spellId)
-      self.value.resum()
+      self.value.resume()

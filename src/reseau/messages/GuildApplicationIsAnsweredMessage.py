@@ -10,4 +10,4 @@ class GuildApplicationIsAnsweredMessage:
 
    def resume(self):
       print("accepted :",self.accepted)
-      self.guildInformation.resum()
+      self.guildInformation.resume()

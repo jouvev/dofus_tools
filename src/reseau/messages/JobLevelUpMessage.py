@@ -12,4 +12,4 @@ class JobLevelUpMessage:
 
    def resume(self):
       print("newLevel :",self.newLevel)
-      self.jobsDescription.resum()
+      self.jobsDescription.resume()

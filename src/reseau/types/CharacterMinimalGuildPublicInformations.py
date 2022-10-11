@@ -8,4 +8,4 @@ class CharacterMinimalGuildPublicInformations(CharacterMinimalInformations):
 
    def resume(self):
       super().resume()
-      self.rank.resum()
+      self.rank.resume()

@@ -27,4 +27,4 @@ class HouseInstanceInformations:
    def resume(self):
       print("instanceId :",self.instanceId)
       print("price :",self.price)
-      self.ownerTag.resum()
+      self.ownerTag.resume()

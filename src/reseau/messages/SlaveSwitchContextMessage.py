@@ -42,7 +42,7 @@ class SlaveSwitchContextMessage:
       print("masterId :",self.masterId)
       print("slaveId :",self.slaveId)
       print("slaveTurn :",self.slaveTurn)
-      self.slaveStats.resum()
+      self.slaveStats.resume()
       for e in self.slaveSpells:
          e.resume()
       for e in self.shortcuts:

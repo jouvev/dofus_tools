@@ -8,4 +8,4 @@ class GameActionFightMarkCellsMessage(AbstractGameActionMessage):
 
    def resume(self):
       super().resume()
-      self.mark.resum()
+      self.mark.resume()

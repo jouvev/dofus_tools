@@ -5,4 +5,4 @@ class JobExperienceUpdateMessage:
       self.experiencesUpdate = JobExperience(input)
 
    def resume(self):
-      self.experiencesUpdate.resum()
+      self.experiencesUpdate.resume()

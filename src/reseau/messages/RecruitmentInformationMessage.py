@@ -5,4 +5,4 @@ class RecruitmentInformationMessage:
       self.recruitmentData = GuildRecruitmentInformation(input)
 
    def resume(self):
-      self.recruitmentData.resum()
+      self.recruitmentData.resume()

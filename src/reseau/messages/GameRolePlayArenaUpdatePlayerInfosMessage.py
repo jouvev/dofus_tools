@@ -5,4 +5,4 @@ class GameRolePlayArenaUpdatePlayerInfosMessage:
       self.solo = ArenaRankInfos(input)
 
    def resume(self):
-      self.solo.resum()
+      self.solo.resume()

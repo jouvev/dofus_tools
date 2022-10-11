@@ -26,4 +26,4 @@ class TaxCollectorStaticInformations:
       print("firstNameId :",self.firstNameId)
       print("lastNameId :",self.lastNameId)
       print("callerId :",self.callerId)
-      self.guildIdentity.resum()
+      self.guildIdentity.resume()

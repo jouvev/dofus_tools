@@ -13,6 +13,7 @@ class DofusOverlay(Overlay):
         self.lock = RLock()
         self.order = []
         
+        #perso
         self.frame_perso = tk.Frame(self)
         self.frame_perso.pack(side="left",padx=0, pady=0)
         
@@ -21,6 +22,7 @@ class DofusOverlay(Overlay):
         
         self.update_order(order,order_name)
         
+        #mode
         frame_mode = tk.Frame(self)
         frame_mode.pack(side="left",padx=0, pady=0)
         

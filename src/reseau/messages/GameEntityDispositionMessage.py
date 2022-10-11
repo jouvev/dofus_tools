@@ -5,4 +5,4 @@ class GameEntityDispositionMessage:
       self.disposition = IdentifiedEntityDispositionInformations(input)
 
    def resume(self):
-      self.disposition.resum()
+      self.disposition.resume()

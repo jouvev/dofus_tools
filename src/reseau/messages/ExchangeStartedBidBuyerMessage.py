@@ -5,4 +5,4 @@ class ExchangeStartedBidBuyerMessage:
       self.buyerDescriptor = SellerBuyerDescriptor(input)
 
    def resume(self):
-      self.buyerDescriptor.resum()
+      self.buyerDescriptor.resume()

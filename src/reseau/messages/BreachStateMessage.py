@@ -24,6 +24,6 @@ class BreachStateMessage:
    def resume(self):
       print("bugdet :",self.bugdet)
       print("saved :",self.saved)
-      self.owner.resum()
+      self.owner.resume()
       for e in self.bonuses:
          e.resume()

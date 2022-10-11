@@ -7,6 +7,7 @@ import time
 from threading import Lock
 import random
 import keyboard
+import pyautogui
 
 class Dofus:
     def __init__(self,hwnd):
@@ -53,14 +54,20 @@ class Dofus:
     def click(self,x,y,delay=True):
         with self.lock:
             lParam = win32api.MAKELONG(x, y)
-            ntry = 0
             if(delay):
                 time.sleep(random.random())
-            self.confirm = False
-            while not self.confirm and ntry < 1:
-                ntry += 1
-                win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
-                win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
-                if(self.confirm):
-                    break
+            win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+            win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
         
+    def cmd_zaap(self,dest):
+        print("go to",dest)
+        self.open()
+        time.sleep(1)
+        keyboard.send('h')
+        time.sleep(1)
+        pyautogui.click(x=560, y=432)
+        time.sleep(1)
+        for k in dest:
+            keyboard.send(k)
+        time.sleep(1)
+        pyautogui.doubleClick(x=742, y=323)

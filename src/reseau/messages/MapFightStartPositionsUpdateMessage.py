@@ -12,4 +12,4 @@ class MapFightStartPositionsUpdateMessage:
 
    def resume(self):
       print("mapId :",self.mapId)
-      self.fightStartPositions.resum()
+      self.fightStartPositions.resume()
