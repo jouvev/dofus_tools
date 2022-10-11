@@ -34,6 +34,20 @@ class Dofus:
                 self.port = str(conn.laddr.port)
                 break
             
+    def change_map(self,direction):
+        if(direction == "left"):
+            realx,realy = win32gui.ScreenToClient(self.hwnd,(280,426))
+            self.click(realx,realy)
+        elif(direction == "right"):
+            realx,realy = win32gui.ScreenToClient(self.hwnd,(1617,614))
+            self.click(realx,realy)
+        elif(direction == "down"):
+            realx,realy = win32gui.ScreenToClient(self.hwnd,(844,915))
+            self.click(realx,realy)
+        elif(direction == "up"):
+            realx,realy = win32gui.ScreenToClient(self.hwnd,(866,28))
+            self.click(realx,realy)
+            
     def get_infos(self):
         return self.hwnd, self.pid, self.name, self.port
     

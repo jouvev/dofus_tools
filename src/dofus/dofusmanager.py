@@ -23,7 +23,31 @@ class DofusManager(Observer):
         keyboard.add_hotkey(config["keyboard_bindings"]['next_win'], lambda : self._switch_next_win())
         keyboard.add_hotkey(config["keyboard_bindings"]['prev_win'], lambda : self._switch_previous_win())
         keyboard.add_hotkey(config["keyboard_bindings"]['stop'], lambda : self._stop())
+        keyboard.add_hotkey(config["keyboard_bindings"]['left'], lambda : self.left())
+        keyboard.add_hotkey(config["keyboard_bindings"]['right'], lambda : self.right())
+        keyboard.add_hotkey(config["keyboard_bindings"]['up'], lambda : self.up())
+        keyboard.add_hotkey(config["keyboard_bindings"]['down'], lambda : self.down())
         mouse.on_click(lambda : self._click())
+        
+    def left(self):
+        if(self.allow_event()):
+            for d in self.dofus_handler.dofus:
+                d.change_map("left")
+                
+    def right(self):
+        if(self.allow_event()):
+            for d in self.dofus_handler.dofus:
+                d.change_map("right")
+                
+    def up(self):
+        if(self.allow_event()):
+            for d in self.dofus_handler.dofus:
+                d.change_map("up")
+                
+    def down(self):
+        if(self.allow_event()):
+            for d in self.dofus_handler.dofus:
+                d.change_map("down")
         
     def _click(self):
         if(self.allow_event() and self.mode=="hors_combat"):
