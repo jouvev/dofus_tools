@@ -1,19 +1,20 @@
 import pyshark
+from pytools import F
 from src.reseau.tools import *
-from src.reseau.packet import Packet
+from src.reseau.packet import RequestPacket
 from src.reseau.MessagesFactory import MessagesFactory
-import json
+import time
+import mouse
 
-mappostmp = json.load(open("ressources/MapPositions.json","r"))
-mappos = dict()
-for m in mappostmp:
-    mapid = m["id"]
-    x,y = m["posX"],m["posY"]
-    mappos[mapid] = (x,y)
+s = 0 
+
+def get_time():
+    global s 
+    s = time.time()
     
-idtotext = json.load(open("ressources/i18n_fr.json","r",encoding="latin-1"))
+mouse.on_click(lambda : get_time())
 
-cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555')
+cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp dst port 5555')
 
 buffer = dict()
 
@@ -21,11 +22,12 @@ gamesynchro = dict()
 turnlist = dict()
 
 for packet in cap.sniff_continuously():
+    f=time.time()
     try : 
         p = packet.tcp.payload
     except:
         continue 
-    dst_port = packet.tcp.dstport
+    dst_port = packet.tcp.srcport
     
     content = hexa_to_bin(packet)
     
@@ -37,14 +39,16 @@ for packet in cap.sniff_continuously():
     rest = " "
     
     while(len(rest)>0):
-        msg, rest, c = get_msg(buffer[dst_port])
+        msg, rest, c = get_req(buffer[dst_port])
         if(c):
-            p = Packet(msg)
+            p = RequestPacket(msg)
             pname = MessagesFactory.id_class[str(p.packetid)].__name__
             buffer[dst_port] = buffer[dst_port][len(msg):]
-            if("TreasureHuntMessage".lower() in pname.lower()):
+            if("GameMapMovementRequestMessage".lower() in pname.lower()):
+                print(p.packetid,pname,p.lentype,p.len,dst_port)
+                print("req",f-s)
+                #print(f-s)
                 msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
                 msg.resume()
-                print("pos",mappos[msg.startMapId])
 
             
