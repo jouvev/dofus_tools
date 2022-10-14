@@ -4,6 +4,8 @@ from src.parser.class_parser import parse
 import json
 import re
 
+DECOMP = True
+
 def get_all_scripts(root_path):
     script_path = []
     for root, dirs, files in os.walk(root_path): 
@@ -72,8 +74,13 @@ def create_factory(scripts,ressources,root_path_output,mode):
 ################# MAIN #################
 ########################################
 
-root_path_types = "C:\\Users\\vincent\\Desktop\\dofus source\\scripts_2\\com\\ankamagames\\dofus\\network\\types"
-root_path_messages = "C:\\Users\\vincent\\Desktop\\dofus source\\scripts_2\\com\\ankamagames\\dofus\\network\\messages"
+if(DECOMP):
+    shutil.rmtree("C:\\Users\\vincent\\Desktop\\dofus_source\\scripts", ignore_errors=True)
+    os.system('ffdec.bat -selectclass com.ankamagames.dofus.network.types.++,com.ankamagames.dofus.network.messages.++ \
+        -export script "C:\\Users\\vincent\\Desktop\\dofus_source" "C:\\Users\\vincent\\AppData\\Local\\Ankama\\zaap\\Dofus\\DofusInvoker.swf"')
+
+root_path_types = "C:\\Users\\vincent\\Desktop\\dofus_source\\scripts\\com\\ankamagames\\dofus\\network\\types"
+root_path_messages = "C:\\Users\\vincent\\Desktop\\dofus_source\\scripts\\com\\ankamagames\\dofus\\network\\messages"
 root_path_output = "D:\\Documents\\GitHub\\outils_dofus\\src\\reseau"
 root_path_output_types = os.path.join(root_path_output,'types')
 root_path_output_msg = os.path.join(root_path_output,'messages')
