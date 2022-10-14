@@ -93,6 +93,10 @@ class DofusHandler(Thread,Observer):
         i = (self.get_index_by_hwnd(curr)-1) % len(self.dofus)
         return self.dofus[i]
     
+    def get_current_dofus(self):
+        hwnd = self.get_curr_hwnd()
+        return self.dofus[self.get_index_by_hwnd(hwnd)]
+    
     def get_curr_hwnd(self):
         tmp = win32gui.GetForegroundWindow()
         if(self.is_dofus_window(tmp)):

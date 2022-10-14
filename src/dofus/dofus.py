@@ -4,7 +4,6 @@ import win32api
 import win32con
 import psutil
 import time
-from threading import Lock
 import random
 import keyboard
 import pyautogui
@@ -16,7 +15,6 @@ class Dofus:
         self.set_name()
         self.set_port()
         self.confirm = False
-        self.lock = Lock()
         
     def set_name(self):
         name = win32gui.GetWindowText(self.hwnd)
@@ -66,12 +64,11 @@ class Dofus:
         win32gui.SetForegroundWindow(self.hwnd)
         
     def click(self,x,y,delay=True):
-        with self.lock:
-            lParam = win32api.MAKELONG(x, y)
-            if(delay):
-                time.sleep(random.random())
-            win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
-            win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
+        lParam = win32api.MAKELONG(x, y)
+        if(delay):
+            time.sleep(random.random())
+        win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+        win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
         
     def cmd_zaap(self,dest):
         print("go to",dest)
