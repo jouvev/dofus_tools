@@ -1,4 +1,5 @@
 @echo off
 set PYTHONPATH=%PYTHONPATH%;.
 cd ..
-python src/main.py
+python src/main.py --nodebug
+pause

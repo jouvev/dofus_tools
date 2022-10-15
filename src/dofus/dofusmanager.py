@@ -23,19 +23,19 @@ class DofusManager(Observer):
         keyboard.add_hotkey(config["keyboard_bindings"]['next_win'], lambda : self._switch_next_win())
         keyboard.add_hotkey(config["keyboard_bindings"]['prev_win'], lambda : self._switch_previous_win())
         keyboard.add_hotkey(config["keyboard_bindings"]['stop'], lambda : self._stop())
-        keyboard.add_hotkey(config["keyboard_bindings"]['left'], lambda : self.change_map("left"))
-        keyboard.add_hotkey(config["keyboard_bindings"]['right'], lambda : self.change_map("right"))
-        keyboard.add_hotkey(config["keyboard_bindings"]['up'], lambda : self.change_map("up"))
-        keyboard.add_hotkey(config["keyboard_bindings"]['down'], lambda : self.change_map("down"))
+        keyboard.on_press_key(config["keyboard_bindings"]['left'], lambda e: self.change_map("left",e))
+        keyboard.on_press_key(config["keyboard_bindings"]['right'], lambda e: self.change_map("right",e))
+        keyboard.on_press_key(config["keyboard_bindings"]['up'], lambda e: self.change_map("up",e))
+        keyboard.on_press_key(config["keyboard_bindings"]['down'], lambda e: self.change_map("down",e))
         mouse.on_click(lambda : self._click())
         
-    def change_map(self,dir):
-        if(self.allow_event()):
+    def change_map(self,dir,e):
+        if(self.allow_event() and not e.is_keypad):
             if(self.mode=="hors_combat"):
                 for d in self.dofus_handler.dofus:
                     self.executor.submit(lambda dof : dof.change_map(dir),d)
             else:
-                self.get_current_dofus().change_map(dir)
+                self.dofus_handler.get_current_dofus().change_map(dir)
         
     def _click(self):
         if(self.allow_event() and self.mode=="hors_combat"):

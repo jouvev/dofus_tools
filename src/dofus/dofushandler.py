@@ -5,6 +5,7 @@ import win32process
 import psutil
 from src.dofus.dofus import Dofus
 from src.tools.observer import Observer
+import logging
 
 
 class DofusHandler(Thread,Observer):
@@ -19,6 +20,8 @@ class DofusHandler(Thread,Observer):
         self.curr_hwnd = 0
         self.running = True
         self.dofus = [Dofus(hwnd) for hwnd in self._get_win()]
+        for d in self.dofus:
+            d.add_observer("fight",self.update_order)
         self.lock = Lock()
         self.name_order = []
         
@@ -57,11 +60,13 @@ class DofusHandler(Thread,Observer):
     
     def add_win(self,hwnd):
         self.lock.acquire()
-        
         if hwnd not in self.get_hwnds():
-            self.dofus.append(Dofus(hwnd))
+            d = Dofus(hwnd)
+            self.dofus.append(d)
+            d.add_observer("fight",self.update_order)
             
             self.lock.release()
+            logging.info("new dofus window detected")
             self.notify("update_hwnd",self.get_hwnds(),self.get_names())
             return True
         
@@ -108,6 +113,7 @@ class DofusHandler(Thread,Observer):
     
     def remove_win(self,hwnd):
         self.lock.acquire()
+        logging.info("dofus window removed")
         i = self.get_index_by_hwnd(hwnd)
         self.dofus.pop(i)
         self.lock.release()

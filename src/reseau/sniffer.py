@@ -5,8 +5,6 @@ from src.reseau.packet import Packet
 from src.reseau.MessagesFactory import MessagesFactory
 import asyncio
 
-
-
 class PacketSniffer(Thread):
     def __init__(self,manager):
         Thread.__init__(self)

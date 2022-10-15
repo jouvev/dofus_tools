@@ -42,9 +42,10 @@ for packet in cap.sniff_continuously():
             p = Packet(msg)
             pname = MessagesFactory.id_class[str(p.packetid)].__name__
             buffer[dst_port] = buffer[dst_port][len(msg):]
-            if("TreasureHuntMessage".lower() in pname.lower()):
+            if("currentmap".lower() in pname.lower()):
+                print(pname)
                 msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
                 msg.resume()
-                print("pos",mappos[msg.startMapId])
+                print("pos",mappos[msg.mapId])
 
             
