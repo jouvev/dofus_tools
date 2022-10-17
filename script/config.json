@@ -13,6 +13,7 @@
         "switch_mode" : "Ctrl",
         "next_win": "Tab",
         "prev_win": "Shift+Tab",
+        "open_console" : "²",
         "click_no_delay" : "space",
         "left":"left",
         "right":"right",

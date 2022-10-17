@@ -93,23 +93,21 @@ class Dofus(Observer):
             inst = MessagesFactory.get_instance_id(p.packetid,content)
             self.turnlist = inst
         if(self.gamesynchro is not None and self.turnlist is not None):
-            logging.info(f"{self.name} : fight started")
-            id_hwnd = dict()
+            idtoname = dict()
             for f in self.gamesynchro.fighters:
                 try:
-                    hwnd = self.handler.get_hwnd_by_name(f.name)
+                    idtoname[f.contextualId] = f.name
                 except :
                     continue
-                id_hwnd[f.contextualId] = hwnd
-                
-            orderlist = [id_hwnd[conid] for conid in self.turnlist.ids if conid in id_hwnd]
+            orderlist = [idtoname[id] for id in self.turnlist.ids if id in idtoname]
             self.notify("fight",orderlist)
+            logging.info(f"{self.name} : fight started {orderlist}")
             self.gamesynchro = None
             self.turnlist = None
             
     def packet_received(self,p):
         msgname = MessagesFactory.id_class[str(p.packetid)].__name__
-        logging.info(f"{self.name} received {msgname}")
+        #logging.info(f"{self.name} received {msgname}")
         
         if("GameFightSynchronizeMessage".lower() in msgname.lower() or "GameFightTurnListMessage".lower() in msgname.lower()):
             self.fight(msgname,p)
@@ -132,3 +130,6 @@ class Dofus(Observer):
             time.sleep(random.random())
         win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
         win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
+        
+    def goto(self,x,y):
+        print(f"{self.name} goto {x} {y}")

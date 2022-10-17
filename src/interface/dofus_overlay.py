@@ -1,3 +1,4 @@
+from interface.commandinterface import CommandInterface
 from interface.overlay import Overlay
 import tkinter as tk
 from PIL import Image,ImageTk
@@ -5,7 +6,7 @@ from threading import RLock
 
 class DofusOverlay(Overlay):
     def __init__(self,config,order,order_name,mode):
-        super().__init__()
+        Overlay.__init__(self)
         self.bind("<<Destroy>>", lambda e: self.destroy())
         self.img = config['img']
         self.perso = dict()
@@ -97,3 +98,8 @@ class DofusOverlay(Overlay):
         self.update_perso(self.curr_hwnd)
         self.update()
         self.lock.release()
+        
+    def open_console(self,cmdobject):
+        self.console = CommandInterface(self,cmdobject)
+        self.console.deiconify()
+        

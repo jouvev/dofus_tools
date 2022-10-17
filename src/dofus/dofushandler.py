@@ -17,7 +17,7 @@ class DofusHandler(Thread,Observer):
     def __init__(self):
         Thread.__init__(self)
         Observer.__init__(self,["update_hwnd"])  
-        self.curr_hwnd = 0
+        self.curr_hwnd = None
         self.running = True
         self.dofus = [Dofus(hwnd) for hwnd in self._get_win()]
         for d in self.dofus:
@@ -43,7 +43,7 @@ class DofusHandler(Thread,Observer):
     def update_order(self,order):
         self.lock.acquire()
         
-        new_order = [self.dofus[self.get_index_by_hwnd(hwnd)] for hwnd in order]
+        new_order = [self.dofus[self.get_index_by_name(name)] for name in order if name in self.get_names()]
         #ajoute les fenetres qui n'ont pas été ajoutées
         for d in self.dofus:
             if d.hwnd not in [d.hwnd for d in new_order]:
@@ -82,6 +82,10 @@ class DofusHandler(Thread,Observer):
         
     def get_index_by_hwnd(self,hwnd):
         return self.get_hwnds().index(hwnd)
+
+    def get_index_by_name(self,name):
+        namelist = self.get_names()
+        return namelist.index(name)
     
     def get_dofus_by_port(self,port):
         for d in self.dofus:
@@ -100,6 +104,8 @@ class DofusHandler(Thread,Observer):
     
     def get_current_dofus(self):
         hwnd = self.get_curr_hwnd()
+        if(hwnd is None):
+            return None
         return self.dofus[self.get_index_by_hwnd(hwnd)]
     
     def get_curr_hwnd(self):
@@ -146,6 +152,16 @@ class DofusHandler(Thread,Observer):
                 self.name_order = self.get_names()
 
             time.sleep(0.3)
+    
+    def execute(self,cmd,arg):
+        logging.info(f"execute cmd : {cmd}, args : {arg}")
+        if(cmd == "goto"):
+            curr_dof = self.get_current_dofus()
+            if(curr_dof):
+                return curr_dof.goto(*arg)
+            else:
+                return "no dofus window selected"
+        
             
 def dofusEnumerationHandler(hwnd, top_windows):
     name = win32gui.GetWindowText(hwnd)

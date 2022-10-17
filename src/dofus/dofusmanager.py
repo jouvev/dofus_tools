@@ -4,15 +4,17 @@ import win32gui
 import win32com.client
 from concurrent.futures import ThreadPoolExecutor
 from src.tools.observer import Observer
+from src.command.command import Command
 
 class DofusManager(Observer):
     def __init__(self,config,dofus_handler):
-        super().__init__(["stop","update_mode"])
+        super().__init__(["stop","update_mode","open_console"])
         self.config = config
         self.mode = "combat"
         self.dofus_handler = dofus_handler
         self.running = True
         self.confirm = False
+        self.cmdobject = Command(self.dofus_handler)
         self.executor = ThreadPoolExecutor(4)
         
         shell = win32com.client.Dispatch("WScript.Shell")
@@ -23,11 +25,15 @@ class DofusManager(Observer):
         keyboard.add_hotkey(config["keyboard_bindings"]['next_win'], lambda : self._switch_next_win())
         keyboard.add_hotkey(config["keyboard_bindings"]['prev_win'], lambda : self._switch_previous_win())
         keyboard.add_hotkey(config["keyboard_bindings"]['stop'], lambda : self._stop())
+        keyboard.add_hotkey(config["keyboard_bindings"]['open_console'], lambda : self.open_console())
         keyboard.on_press_key(config["keyboard_bindings"]['left'], lambda e: self.change_map("left",e))
         keyboard.on_press_key(config["keyboard_bindings"]['right'], lambda e: self.change_map("right",e))
         keyboard.on_press_key(config["keyboard_bindings"]['up'], lambda e: self.change_map("up",e))
         keyboard.on_press_key(config["keyboard_bindings"]['down'], lambda e: self.change_map("down",e))
         mouse.on_click(lambda : self._click())
+        
+    def open_console(self):
+        self.notify("open_console",self.cmdobject)
         
     def change_map(self,dir,e):
         if(self.allow_event() and not e.is_keypad):
