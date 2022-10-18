@@ -23,7 +23,7 @@ class Traveler(Thread):
         
     def run(self):
         for a in self.a:
-            self.dofus.change_map(a)
+            self.dofus.change_map(a,delay=False)
             with self.condition:
                 self.condition.wait()
             time.sleep(random.random()*0.3+0.5) 

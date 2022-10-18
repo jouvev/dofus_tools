@@ -45,19 +45,19 @@ class Dofus(Observer):
                 self.port = str(conn.laddr.port)
                 break
             
-    def change_map(self,direction):
+    def change_map(self,direction,delay=True):
         if(direction == "left"):
             realx,realy = win32gui.ScreenToClient(self.hwnd,(280,426))
-            self.click(realx,realy)
+            self.click(realx,realy,delay)
         elif(direction == "right"):
             realx,realy = win32gui.ScreenToClient(self.hwnd,(1617,614))
-            self.click(realx,realy)
+            self.click(realx,realy,delay)
         elif(direction == "down"):
             realx,realy = win32gui.ScreenToClient(self.hwnd,(844,915))
-            self.click(realx,realy)
+            self.click(realx,realy,delay)
         elif(direction == "up"):
             realx,realy = win32gui.ScreenToClient(self.hwnd,(866,28))
-            self.click(realx,realy)
+            self.click(realx,realy,delay)
             
     def get_infos(self):
         return self.hwnd, self.pid, self.name, self.port

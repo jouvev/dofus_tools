@@ -1,6 +1,7 @@
 import json 
 
 class MapPosition:
+    mapinfo = json.load(open(f"ressources/maps.json","r"))
     mappostmp = json.load(open("ressources/MapPositions.json","r"))
     mappos = dict()
     posmap = dict()
@@ -32,8 +33,7 @@ class MapPosition:
     @classmethod
     def get_linkedzone(cls,mapid,cellid):
         try :
-            mapinfo = json.load(open(f"ressources/maps/{int(mapid)}.json","r"))
-            linkedzone = int(mapinfo['cells'][int(cellid)]['_linkedZone'])
+            linkedzone = int(cls.mapinfo[str(mapid)][str(cellid)]['_linkedZone'])
             return (linkedzone & 240) >> 4
         except:
             raise RuntimeError(f"Error when you tried to got linkedzone on map {mapid}")
