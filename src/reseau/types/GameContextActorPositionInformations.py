@@ -13,3 +13,4 @@ class GameContextActorPositionInformations:
 
    def resume(self):
       print("contextualId :",self.contextualId)
+      self.disposition.resume()

@@ -20,3 +20,4 @@ class PrismFightAttackerAddMessage:
    def resume(self):
       print("subAreaId :",self.subAreaId)
       print("fightId :",self.fightId)
+      self.attacker.resume()

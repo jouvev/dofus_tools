@@ -9,3 +9,4 @@ class PartyUpdateMessage(AbstractPartyEventMessage):
 
    def resume(self):
       super().resume()
+      self.memberInformations.resume()

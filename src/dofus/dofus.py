@@ -9,16 +9,18 @@ import random
 from src.reseau.dofussniffer import PacketSniffer
 from src.reseau.MessagesFactory import MessagesFactory
 from src.tools.observer import Observer
-from src.dofus.map import Map
+from src.dofus.mapposition import MapPosition
+from src.dofus.traveler import Traveler
 
 class Dofus(Observer):
     def __init__(self,hwnd):
-        super().__init__(["fight"])
+        super().__init__(["fight","newmap"])
         self.hwnd = hwnd
         _,self.pid = win32process.GetWindowThreadProcessId(hwnd)
         self.set_name()
         self.set_port()
-        self.currentpos = None
+        self.currentmapid = None
+        self.cellid = None
         
         self.dofusSniffer = None
         if not (self.port == ""):
@@ -107,18 +109,31 @@ class Dofus(Observer):
             
     def packet_received(self,p):
         msgname = MessagesFactory.id_class[str(p.packetid)].__name__
-        #logging.info(f"{self.name} received {msgname}")
+        logging.info(f"{self.name} received {msgname}")
         
         if("GameFightSynchronizeMessage".lower() in msgname.lower() or "GameFightTurnListMessage".lower() in msgname.lower()):
             self.fight(msgname,p)
         elif("CurrentMapMessage".lower() in msgname.lower()):
             self.currentmap(msgname,p)
-        #elif("HuntMessage".lower() in msgname.lower()):
-    
+        elif("MapComplementaryInformationsDataMessage".lower() in msgname.lower()):
+            self.mapinfos(msgname,p)
             
+    def mapinfos(self,msgname,p):
+        inst = MessagesFactory.get_instance_id(p.packetid,p.get_content())
+        for a in inst.actors:
+            try : 
+                name = a.name
+            except:
+                continue
+            if(name == self.name):
+                self.cellid = a.disposition.cellId
+                break
+        
+      
     def currentmap(self,msgname,p):
         inst = MessagesFactory.get_instance_id(p.packetid,p.get_content())
-        self.currentpos = Map.get_pos(inst.mapId)
+        self.currentmapid = inst.mapId
+        self.notify("newmap")
     
     def open(self):
         win32gui.ShowWindow(self.hwnd,3)
@@ -132,4 +147,12 @@ class Dofus(Observer):
         win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
         
     def goto(self,x,y):
-        print(f"{self.name} goto {x} {y}")
+        src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
+        worldsrc = MapPosition.get_worldmap(src[0])
+        dst = MapPosition.get_mapid(x,y,worldsrc),1.0
+        travel = Traveler(self,src,dst)
+        self.add_observer("newmap",travel.next_action)
+        travel.start()
+        travel.join()
+        self.remove_observer("newmap",travel.next_action)
+        return "finish"

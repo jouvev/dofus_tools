@@ -6,4 +6,4 @@ class GameFightRefreshFighterMessage:
       self.informations = pf.TypesFactory.get_instance_id(_id1,input)
 
    def resume(self):
-      pass
+      self.informations.resume()

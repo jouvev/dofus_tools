@@ -16,3 +16,4 @@ class GameRolePlayHumanoidInformations(GameRolePlayNamedActorInformations):
    def resume(self):
       super().resume()
       print("accountId :",self.accountId)
+      self.humanoidInfo.resume()

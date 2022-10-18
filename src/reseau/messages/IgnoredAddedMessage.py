@@ -11,3 +11,4 @@ class IgnoredAddedMessage:
 
    def resume(self):
       print("session :",self.session)
+      self.ignoreAdded.resume()

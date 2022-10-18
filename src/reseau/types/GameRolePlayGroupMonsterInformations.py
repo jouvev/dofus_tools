@@ -28,3 +28,4 @@ class GameRolePlayGroupMonsterInformations(GameRolePlayActorInformations):
       super().resume()
       print("lootShare :",self.lootShare)
       print("alignmentSide :",self.alignmentSide)
+      self.staticInfos.resume()

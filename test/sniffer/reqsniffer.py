@@ -1,5 +1,4 @@
 import pyshark
-from pytools import F
 from src.reseau.tools import *
 from src.reseau.packet import RequestPacket
 from src.reseau.MessagesFactory import MessagesFactory
@@ -44,10 +43,8 @@ for packet in cap.sniff_continuously():
             p = RequestPacket(msg)
             pname = MessagesFactory.id_class[str(p.packetid)].__name__
             buffer[dst_port] = buffer[dst_port][len(msg):]
-            if("GameMapMovementRequestMessage".lower() in pname.lower()):
-                print(p.packetid,pname,p.lentype,p.len,dst_port)
-                print("req",f-s)
-                #print(f-s)
+            if("".lower() in pname.lower()):
+                print("###### =>",pname)
                 msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
                 msg.resume()
 

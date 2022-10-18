@@ -9,3 +9,4 @@ class GameActionFightDispellableEffectMessage(AbstractGameActionMessage):
 
    def resume(self):
       super().resume()
+      self.effect.resume()

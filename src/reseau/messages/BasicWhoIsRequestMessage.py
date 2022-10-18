@@ -11,3 +11,4 @@ class BasicWhoIsRequestMessage:
 
    def resume(self):
       print("verbose :",self.verbose)
+      self.target.resume()

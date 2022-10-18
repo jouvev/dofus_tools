@@ -37,3 +37,4 @@ class AccountHouseInformations(HouseInformations):
       print("worldY :",self.worldY)
       print("mapId :",self.mapId)
       print("subAreaId :",self.subAreaId)
+      self.houseInfos.resume()

@@ -50,6 +50,14 @@ class CustomInput:
                             ])
         return res
     
+    def readUTFBytes(self,length):
+        bits = self.read_next_bit(length*8)
+        res = "".join([chr(int(x,2)) for x in [bits[i:i+8] 
+                                for i in range(0,len(bits), 8)
+                                ]
+                            ])
+        return res
+    
     def readDouble(self):
         bits = self.read_next_bit(64)
         signe = -1 if bits[0]=="1" else 1

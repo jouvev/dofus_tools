@@ -9,3 +9,4 @@ class GameRolePlayPrismInformations(GameRolePlayActorInformations):
 
    def resume(self):
       super().resume()
+      self.prism.resume()

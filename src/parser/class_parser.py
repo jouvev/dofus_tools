@@ -129,7 +129,7 @@ def def_resume(res):
         f_resume += f"      print(\"{v.split('.')[-1]} :\",{v})\n"
         
     #variable objet
-    vars = re.findall(r"(self.\w+) = \w+\(input\)",res)
+    vars = re.findall(r"(self.\w+) = \w+\(input\)",res) + re.findall(r"(self.\w+) = pf\.TypesFactory\.get_instance_id\([^\)]+\)",res)
     for v in vars:
         f_resume += f"      {v}.resume()\n"
         

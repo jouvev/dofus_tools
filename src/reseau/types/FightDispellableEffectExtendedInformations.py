@@ -20,3 +20,4 @@ class FightDispellableEffectExtendedInformations:
    def resume(self):
       print("actionId :",self.actionId)
       print("sourceId :",self.sourceId)
+      self.effect.resume()

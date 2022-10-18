@@ -28,3 +28,4 @@ class AcquaintanceOnlineInformation(AcquaintanceInformation):
       print("playerId :",self.playerId)
       print("playerName :",self.playerName)
       print("moodSmileyId :",self.moodSmileyId)
+      self.status.resume()

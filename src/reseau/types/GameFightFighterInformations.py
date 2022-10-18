@@ -27,4 +27,5 @@ class GameFightFighterInformations(GameContextActorInformations):
       super().resume()
       print("wave :",self.wave)
       self.spawnInfo.resume()
+      self.stats.resume()
       print("previousPositions :",self.previousPositions)

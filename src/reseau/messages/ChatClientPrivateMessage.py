@@ -9,3 +9,4 @@ class ChatClientPrivateMessage(ChatAbstractClientMessage):
 
    def resume(self):
       super().resume()
+      self.receiver.resume()

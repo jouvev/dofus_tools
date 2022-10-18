@@ -21,3 +21,4 @@ class GameRolePlayTaxCollectorInformations(GameRolePlayActorInformations):
       super().resume()
       print("guildLevel :",self.guildLevel)
       print("taxCollectorAttack :",self.taxCollectorAttack)
+      self.identification.resume()

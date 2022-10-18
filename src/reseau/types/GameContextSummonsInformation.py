@@ -26,5 +26,7 @@ class GameContextSummonsInformation:
    def resume(self):
       print("wave :",self.wave)
       self.look.resume()
+      self.spawnInformation.resume()
+      self.stats.resume()
       for e in self.summons:
          e.resume()

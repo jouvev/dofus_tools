@@ -9,3 +9,4 @@ class GameRolePlayPortalInformations(GameRolePlayActorInformations):
 
    def resume(self):
       super().resume()
+      self.portal.resume()

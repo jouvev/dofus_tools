@@ -33,6 +33,7 @@ class AllianceFactsMessage:
    def resume(self):
       print("leaderCharacterId :",self.leaderCharacterId)
       print("leaderCharacterName :",self.leaderCharacterName)
+      self.infos.resume()
       for e in self.guilds:
          e.resume()
       print("controlledSubareaIds :",self.controlledSubareaIds)

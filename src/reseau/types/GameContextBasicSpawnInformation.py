@@ -18,3 +18,4 @@ class GameContextBasicSpawnInformation:
    def resume(self):
       print("teamId :",self.teamId)
       print("alive :",self.alive)
+      self.informations.resume()

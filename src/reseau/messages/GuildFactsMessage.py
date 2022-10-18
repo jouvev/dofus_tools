@@ -27,5 +27,6 @@ class GuildFactsMessage:
    def resume(self):
       print("creationDate :",self.creationDate)
       print("nbTaxCollectors :",self.nbTaxCollectors)
+      self.infos.resume()
       for e in self.members:
          e.resume()

@@ -89,3 +89,4 @@ class GuildMember(CharacterMinimalInformations):
       print("accountId :",self.accountId)
       print("achievementPoints :",self.achievementPoints)
       self.note.resume()
+      self.status.resume()

@@ -20,3 +20,4 @@ class PlayerStatusUpdateMessage:
    def resume(self):
       print("accountId :",self.accountId)
       print("playerId :",self.playerId)
+      self.status.resume()

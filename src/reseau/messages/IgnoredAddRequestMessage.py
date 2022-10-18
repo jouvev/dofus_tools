@@ -11,3 +11,4 @@ class IgnoredAddRequestMessage:
 
    def resume(self):
       print("session :",self.session)
+      self.target.resume()

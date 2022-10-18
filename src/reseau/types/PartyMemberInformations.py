@@ -85,5 +85,6 @@ class PartyMemberInformations(CharacterBaseInformations):
       print("worldY :",self.worldY)
       print("mapId :",self.mapId)
       print("subAreaId :",self.subAreaId)
+      self.status.resume()
       for e in self.entities:
          e.resume()

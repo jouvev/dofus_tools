@@ -30,3 +30,4 @@ class PrismGeolocalizedInformation(PrismSubareaEmptyInfo):
       print("worldX :",self.worldX)
       print("worldY :",self.worldY)
       print("mapId :",self.mapId)
+      self.prism.resume()

@@ -23,3 +23,4 @@ class HouseInformationsInside(HouseInformations):
       super().resume()
       print("worldX :",self.worldX)
       print("worldY :",self.worldY)
+      self.houseInfos.resume()

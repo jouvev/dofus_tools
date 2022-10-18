@@ -56,3 +56,4 @@ class FriendOnlineInformations(FriendInformations):
       print("breed :",self.breed)
       print("moodSmileyId :",self.moodSmileyId)
       self.guildInfo.resume()
+      self.status.resume()

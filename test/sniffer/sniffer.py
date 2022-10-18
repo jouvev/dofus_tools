@@ -2,6 +2,7 @@ import pyshark
 from src.reseau.tools import *
 from src.reseau.packet import Packet
 from src.reseau.MessagesFactory import MessagesFactory
+from src.dofus.mapposition import MapPosition
 import json
 
 mappostmp = json.load(open("ressources/MapPositions.json","r"))
@@ -13,7 +14,7 @@ for m in mappostmp:
     
 idtotext = json.load(open("ressources/i18n_fr.json","r",encoding="latin-1"))
 
-cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555')
+cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555 and dst port 1855')
 
 buffer = dict()
 
@@ -42,10 +43,18 @@ for packet in cap.sniff_continuously():
             p = Packet(msg)
             pname = MessagesFactory.id_class[str(p.packetid)].__name__
             buffer[dst_port] = buffer[dst_port][len(msg):]
-            print("###### =>",pname)
-            if("".lower() in pname.lower()):
+            if("MapComplementaryInformationsDataMessage".lower() in pname.lower()):
+                print("###### =>",pname,p.len)
                 msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
-                msg.resume()
-                #print("pos",mappos[msg.mapId])
+                for a in msg.actors:
+                    try : 
+                        name = a.name
+                    except:
+                        continue
+                    if(name == "Nighwin"):
+                        cellid = a.disposition.cellId
+                        break
+                print(msg.mapId,cellid,MapPosition.get_linkedzone(msg.mapId,cellid))
+                    
 
             

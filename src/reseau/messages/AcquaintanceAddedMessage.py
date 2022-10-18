@@ -6,4 +6,4 @@ class AcquaintanceAddedMessage:
       self.acquaintanceAdded = pf.TypesFactory.get_instance_id(_id1,input)
 
    def resume(self):
-      pass
+      self.acquaintanceAdded.resume()

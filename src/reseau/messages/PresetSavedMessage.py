@@ -11,3 +11,4 @@ class PresetSavedMessage:
 
    def resume(self):
       print("presetId :",self.presetId)
+      self.preset.resume()

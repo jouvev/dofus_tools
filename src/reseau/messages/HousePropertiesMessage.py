@@ -21,4 +21,5 @@ class HousePropertiesMessage:
 
    def resume(self):
       print("houseId :",self.houseId)
+      self.properties.resume()
       print("doorsOnMap :",self.doorsOnMap)

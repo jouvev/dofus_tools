@@ -13,3 +13,4 @@ class ShortcutBarReplacedMessage:
 
    def resume(self):
       print("barType :",self.barType)
+      self.shortcut.resume()

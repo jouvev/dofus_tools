@@ -13,3 +13,4 @@ class CompassUpdateMessage:
 
    def resume(self):
       print("type :",self.type)
+      self.coords.resume()

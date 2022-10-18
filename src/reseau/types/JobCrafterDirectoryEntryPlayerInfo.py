@@ -73,3 +73,4 @@ class JobCrafterDirectoryEntryPlayerInfo:
       print("mapId :",self.mapId)
       print("subAreaId :",self.subAreaId)
       print("canCraftLegendary :",self.canCraftLegendary)
+      self.status.resume()
