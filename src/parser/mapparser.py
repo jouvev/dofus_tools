@@ -26,11 +26,14 @@ for i,p in enumerate(allpath):
         mapid = res["mapId"]
         cellstmp = res["cells"]
         cells = dict()
+        nolinkedzone = True
         for j,ctmp in enumerate(cellstmp):
             if("_linkedZone" in ctmp):
                 c = dict()
                 c["_linkedZone"] = ctmp["_linkedZone"]
                 cells[j] = c
-        finalres[mapid] = cells
+                nolinkedzone = False
+        if not nolinkedzone:
+            finalres[mapid] = cells
         
 json.dump(finalres,open("D:\\Documents\\GitHub\\outils_dofus\\ressources\\maps.json","w"))
