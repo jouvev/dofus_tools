@@ -158,7 +158,16 @@ class DofusHandler(Thread,Observer):
         if(cmd == "goto"):
             curr_dof = self.get_current_dofus()
             if(curr_dof):
-                return curr_dof.goto(*arg)
+                try:
+                    return curr_dof.goto(*arg)
+                except :
+                    return "impossible travel"
+            else:
+                return "no dofus window selected"
+        if(cmd == "stoptravel"):
+            curr_dof = self.get_current_dofus()
+            if(curr_dof):
+                return curr_dof.stoptravel()
             else:
                 return "no dofus window selected"
         

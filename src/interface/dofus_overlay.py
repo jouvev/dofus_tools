@@ -102,4 +102,5 @@ class DofusOverlay(Overlay):
     def open_console(self,cmdobject):
         self.console = CommandInterface(self,cmdobject)
         self.console.deiconify()
+        self.console.entry.focus_set()
         

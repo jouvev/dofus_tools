@@ -43,9 +43,8 @@ for packet in cap.sniff_continuously():
             p = RequestPacket(msg)
             pname = MessagesFactory.id_class[str(p.packetid)].__name__
             buffer[dst_port] = buffer[dst_port][len(msg):]
-            if("".lower() in pname.lower()):
-                print("###### =>",pname)
-                msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
-                msg.resume()
+            print("###### =>",pname,p.len)
+            if("GameMapMovementRequestMessage".lower() in pname.lower()):
+                print("time : ",f-s)
 
             

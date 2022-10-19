@@ -2,11 +2,13 @@ from threading import Thread,Condition
 from src.dofus.world import World
 import time 
 import random
+from src.tools.observer import Observer
 
 
-class Traveler(Thread):
+class Traveler(Thread,Observer):
     def __init__(self, dofus, src, dest):
         Thread.__init__(self)
+        Observer.__init__(self, ["finished"])
         w = World()
         w.deserialize()
         path = w.findpath(src, dest)
@@ -17,16 +19,24 @@ class Traveler(Thread):
         self.dofus = dofus
         self.condition = Condition()
         
+    def interrupt(self):
+        self.stopped = True
+        
     def next_action(self):
         with self.condition:
             self.condition.notify()
         
     def run(self):
+        self.stopped = False
+        self.add_observer("finished",self.dofus.travel_finished)
         for a in self.a:
             self.dofus.change_map(a,delay=False)
             with self.condition:
                 self.condition.wait()
-            time.sleep(random.random()*0.3+0.5) 
+            time.sleep(random.random()*0.3+1)
+            if(self.stopped):
+                break
+        self.notify("finished")
             
         
     

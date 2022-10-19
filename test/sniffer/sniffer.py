@@ -14,7 +14,7 @@ for m in mappostmp:
     
 idtotext = json.load(open("ressources/i18n_fr.json","r",encoding="latin-1"))
 
-cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555 and dst port 1855')
+cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555')
 
 buffer = dict()
 
@@ -43,18 +43,9 @@ for packet in cap.sniff_continuously():
             p = Packet(msg)
             pname = MessagesFactory.id_class[str(p.packetid)].__name__
             buffer[dst_port] = buffer[dst_port][len(msg):]
-            if("MapComplementaryInformationsDataMessage".lower() in pname.lower()):
+            if("".lower() in pname.lower()):
                 print("###### =>",pname,p.len)
-                msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
-                for a in msg.actors:
-                    try : 
-                        name = a.name
-                    except:
-                        continue
-                    if(name == "Nighwin"):
-                        cellid = a.disposition.cellId
-                        break
-                print(msg.mapId,cellid,MapPosition.get_linkedzone(msg.mapId,cellid))
+                
                     
 
             

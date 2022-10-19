@@ -21,6 +21,7 @@ class Dofus(Observer):
         self.set_port()
         self.currentmapid = None
         self.cellid = None
+        self.travel = None
         
         self.dofusSniffer = None
         if not (self.port == ""):
@@ -146,13 +147,22 @@ class Dofus(Observer):
         win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
         win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
         
+    def travel_finished(self):
+        self.remove_observer("newmap",self.travel.next_action)
+        self.travel = None
+        logging.info("travel finished")
+        
+    def stoptravel(self):
+        if(self.travel):
+            self.travel.interrupt()
+            return "travel interrupted"
+        return "no travel to stop"
+        
     def goto(self,x,y):
         src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
         worldsrc = MapPosition.get_worldmap(src[0])
         dst = MapPosition.get_mapid(x,y,worldsrc),1.0
-        travel = Traveler(self,src,dst)
-        self.add_observer("newmap",travel.next_action)
-        travel.start()
-        travel.join()
-        self.remove_observer("newmap",travel.next_action)
-        return "finish"
+        self.travel = Traveler(self,src,dst)
+        self.add_observer("newmap",self.travel.next_action)
+        self.travel.start()
+        return f"travel from {MapPosition.get_pos(src[0])} to {MapPosition.get_pos(dst[0])}"

@@ -33,7 +33,7 @@ class MapPosition:
     @classmethod
     def get_linkedzone(cls,mapid,cellid):
         try :
-            linkedzone = int(cls.mapinfo[str(mapid)][str(cellid)]['_linkedZone'])
+            linkedzone = int(cls.mapinfo[str(mapid)[:-2]][str(cellid)]['_linkedZone'])
             return (linkedzone & 240) >> 4
         except:
             raise RuntimeError(f"Error when you tried to got linkedzone on map {mapid}")
