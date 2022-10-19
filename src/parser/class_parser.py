@@ -66,7 +66,6 @@ def parse(path,mode):
     res = re.sub(r"BooleanByteWrapper.getFlag\(([^,]+),([0-9])\)",r"bool(bin(\1)[2:].zfill(8)[\2])",res)
     res = re.sub(r"PlayableBreedEnum.Feca",r"1",res)
     res = re.sub(r"PlayableBreedEnum.Ouginak",r"18",res)
-    res = re.sub(r"PlayableBreedEnum.Ouginak",r"18",res)
     res = re.sub(r"input.readBytes\(([a-zA-Z\.0-9_]+),([0-9]+),([a-zA-Z\.0-9_]+)\)",r"\1 = input.readBytes(\2,\3)",res)
     res = re.sub(r"^[^=]+ = ByteArray\([^\)]+\)\n",r"",res,flags=re.MULTILINE)
     res = re.sub(r"^[^\.]+.uncompress\(\)\n",r"",res,flags=re.MULTILINE)
