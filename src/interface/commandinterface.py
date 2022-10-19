@@ -1,11 +1,12 @@
 from tkinter import *
+from src.tools.observer import Observer
 
-class CommandInterface(Toplevel):
+class CommandInterface(Toplevel,Observer):
     def __init__(self, master, cmdobject):
         Toplevel.__init__(self, master)
+        Observer.__init__(self,["destroy"])
         self.cmdobject = cmdobject
         self.title("Command")
-        #self.geometry("700x400")
         self.wm_resizable(False, False)
         self.create_widgets()
         self.bind('<Return>', lambda e : self.cmd())
@@ -24,8 +25,7 @@ class CommandInterface(Toplevel):
         
         self.main.pack(fill="both",expand=True)
         self.text.config(state = "disabled")
-
-        
+    
     def cmd(self):
         self.text.config(state = "normal")
         inp = self.textvar.get()
@@ -36,10 +36,7 @@ class CommandInterface(Toplevel):
         self.text.see(END)
         self.text.config(state = "disabled")
         
-if __name__ == "__main__":
-    root = Tk()
-    root.geometry("800x600")
-    root.wm_resizable(False, False)
-    root.title("Test")
-    app = CommandInterface(root,None)
-    root.mainloop()
+    def destroy(self):
+        super().destroy()
+        self.notify("destroy")
+        

@@ -13,6 +13,7 @@ class DofusOverlay(Overlay):
         self.curr_order = []
         self.lock = RLock()
         self.order = []
+        self.console = None
         
         #perso
         self.frame_perso = tk.Frame(self)
@@ -99,8 +100,13 @@ class DofusOverlay(Overlay):
         self.update()
         self.lock.release()
         
+    def close_console(self):
+        self.console = None
+        
     def open_console(self,cmdobject):
-        self.console = CommandInterface(self,cmdobject)
+        if(self.console is None):
+            self.console = CommandInterface(self,cmdobject)
+            self.console.add_observer("destroy",self.close_console)
         self.console.deiconify()
         self.console.entry.focus_set()
         
