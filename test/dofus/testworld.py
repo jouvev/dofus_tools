@@ -1,11 +1,16 @@
 from src.dofus.world import World
 from src.dofus.mapposition import MapPosition
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 w = World()
 w.deserialize()
 
 dep = (185860609.0,1.0)
 arr = (185861634.0,1.0)
+
+print(w[dep])
 
 posdep = MapPosition.get_pos(dep[0])
 posarr = MapPosition.get_pos(arr[0])
