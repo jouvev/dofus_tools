@@ -40,7 +40,8 @@ class PhorreurSeacher(Thread):
             self.nbmap += 1
             with self.newMapCond:
                 self.newMapCond.wait()
-                
+        
+        logging.info(f"Chasse: phorreur {self.npcid} terminated")
         if(self.nbmap > 10):
             logging.info("Chasse: phorreur not found")
             

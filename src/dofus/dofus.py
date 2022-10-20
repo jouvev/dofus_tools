@@ -27,20 +27,24 @@ class Dofus(Observer):
         
         self.dofusSniffer = None
         if not (self.port == ""):
-            self.dofusSniffer = self.sniffer_attach()
+            self.sniffer_attach()
             
         self.gamesynchro = None
         self.turnlist = None
         
     def stop(self):
         if( self.dofusSniffer is not None):
+            logging.info(f"{self.name} : stop sniffer")
             self.dofusSniffer.stop()
             self.dofusSniffer.join()
             self.dofusSniffer = None
-        if(self.travel is not None):
+        if(self.travel):
+            logging.info(f"{self.name} : stop travel")
             self.travel.interrupt()
-        
-            
+        if(self.chasseObject):
+            logging.info(f"{self.name} : stop chasse")
+            self.chasseObject.notify_cond_end()
+             
     def set_name(self):
         name = win32gui.GetWindowText(self.hwnd)
         lname = name.split(" - ")

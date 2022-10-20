@@ -86,6 +86,7 @@ class Chasse(Thread):
                 self.dofus.goto(self.xdst,self.ydst)
             logging.info("Chasse: start map reached")
         if(self.xdst and self.ydst and self.xdst == currx and self.ydst == curry):
+            self.dofus.stoptravel()
             self.click_on_flag()
             
     def notify_cond_end(self):

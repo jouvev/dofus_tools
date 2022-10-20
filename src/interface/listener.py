@@ -1,4 +1,5 @@
 from threading import Thread
+import logging
 import time
 import win32gui
 
@@ -22,8 +23,9 @@ class Listener(Thread):
             else:
                 if(not self.is_visible):
                     self.interface.deiconify()
-                
+            
             time.sleep(0.3)
+        logging.info("Listener stopped")
               
         
                

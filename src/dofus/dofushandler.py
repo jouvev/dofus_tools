@@ -155,6 +155,8 @@ class DofusHandler(Thread,Observer):
                 self.name_order = self.get_names()
 
             time.sleep(0.3)
+            
+        logging.info("dofus window handler stopped")
     
     def execute(self,cmd,arg):
         logging.info(f"execute cmd : {cmd}, args : {arg}")
@@ -180,12 +182,12 @@ class DofusHandler(Thread,Observer):
             for d in self.dofus:
                 rep += d.stoptravel()+"\n"
             return rep
-
-        
-            
+       
 def dofusEnumerationHandler(hwnd, top_windows):
     name = win32gui.GetWindowText(hwnd)
     _,pid = win32process.GetWindowThreadProcessId(hwnd)
+    if pid < 0:
+        return
     exe = psutil.Process(pid).exe()
     visible = win32gui.IsWindowVisible(hwnd)
     if("dofus 2" in name.lower() and "dofus.exe" in exe.lower() and visible):

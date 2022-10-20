@@ -25,6 +25,8 @@ class Traveler(Thread,Observer):
     def next_action(self,msg):
         with self.condition:
             self.condition.notify()
+            with self.condition:
+                self.condition.notify()
         
     def run(self):
         self.stopped = False

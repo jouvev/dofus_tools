@@ -3,8 +3,10 @@ from interface.dofus_overlay import DofusOverlay
 from dofus.dofusmanager import DofusManager
 from interface.listener import Listener
 import json 
+import time
 import logging
 import argparse
+import threading
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--nodebug', action='store_false')
@@ -31,3 +33,8 @@ dm.add_observer("open_console",interface.open_console)
 dh.add_observer("update_hwnd",lambda order,order_name : interface.update_order(order,order_name))
 
 interface.mainloop()
+
+time.sleep(3)
+
+for thread in threading.enumerate(): 
+    print(thread.name, "running")
