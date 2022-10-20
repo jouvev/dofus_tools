@@ -27,8 +27,7 @@ for packet in cap.sniff_continuously():
     except:
         continue 
     dst_port = packet.tcp.dstport
-    
-    content = hexa_to_bin(packet)
+    content = hexa_to_bin(p)
     
     if( dst_port in buffer):
         buffer[dst_port] += content
@@ -43,10 +42,10 @@ for packet in cap.sniff_continuously():
             p = Packet(msg)
             pname = MessagesFactory.id_class[str(p.packetid)].__name__
             buffer[dst_port] = buffer[dst_port][len(msg):]
-            if("treasure".lower() in pname.lower()):
+            if("".lower() in pname.lower()):
                 print("###### =>",pname,p.len)
-                msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
-                msg.resume()
+                #msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
+                #msg.resume()
                 
                 
                     

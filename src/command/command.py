@@ -3,7 +3,7 @@ import re
 class Command:
     def __init__(self,dofhandler):
         self.dofhandler = dofhandler
-        self.cmd_valid = ["help","goto","stoptravel"]
+        self.cmd_valid = ["help","goto","stoptravel","gotos","stoptravels"]
         
     def help(self):
         res = "command list :\n"

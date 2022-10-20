@@ -27,10 +27,10 @@ class World:
         path = []
         find = False
         
+        dejavu.add(q[0])
         #parcour en largeur
         while len(q) > 0:
             cur = q.pop(0)
-            dejavu.add(cur)
             if cur == dst:
                 find = True
                 break
@@ -38,6 +38,7 @@ class World:
                 for n in self.graph[cur]:
                     if(n not in dejavu):
                         q.append(n)
+                        dejavu.add(n)
                         pred[n] = cur
                         
         if(not find):

@@ -1,46 +1,26 @@
-from threading import Thread
-import pyshark
+from scapy.all import AsyncSniffer, Raw
 from src.reseau.tools import *
 from src.reseau.packet import Packet
-import asyncio
-import logging
 
-class PacketSniffer(Thread):
-    def __init__(self,dofus):
-        Thread.__init__(self)
-        self.running = True
-        self.port = dofus.port
+class PacketSniffer(AsyncSniffer):
+    def __init__(self, dofus):
+        AsyncSniffer.__init__(self, iface="Ethernet", filter=f"tcp src port 5555 and tcp dst port {dofus.port}", prn=self.packet_callback)
+        self.buffer = ""
         self.dofus = dofus
         
-    def stop(self):
-        self.running = False
-    
-    def run(self):
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        
-        cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter=f'tcp src port 5555 and dst port {self.port}')
-        buffer = ""
-
-        for packet in cap.sniff_continuously():
-            if(not self.running):
-                break
-            
-            try : 
-                packet.tcp.payload
-            except:
-                continue 
-
-            payload = hexa_to_bin(packet)
-            buffer += payload
-            rest = " "
-            
-            while(len(rest)>0):
-                msg, rest, c = get_msg(buffer)
-                if(c):
-                    p = Packet(msg)
-                    self.dofus.packet_received(p)
-                    buffer = buffer[len(msg):]
-        
-        cap.close()
-        
+    def packet_callback(self,packet):
+        v = bytes(packet["TCP"].payload).hex(":")
+        if v == "00:00:00:00:00:00" or v == '':
+            return
+        data = hexa_to_bin(v)
+        self.buffer += data
+        rest = ' '
+        while(len(rest) > 0) :
+            msg, rest, c = get_msg(self.buffer)
+            if(int(msg) == 0):
+                    self.buffer = self.buffer[len(msg):]
+                    continue
+            if(c):
+                p = Packet(msg)
+                self.dofus.packet_received(p)
+                self.buffer = self.buffer[len(msg):]

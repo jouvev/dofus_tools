@@ -13,19 +13,21 @@ def get_time():
     
 mouse.on_click(lambda : get_time())
 
-cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp dst port 5555')
+cap = pyshark.LiveCapture(interface='Ethernet')
 
 buffer = dict()
 
 gamesynchro = dict()
 turnlist = dict()
 
-for packet in cap.sniff_continuously():
+def parse_packet(packet):
     f=time.time()
-    try : 
+    try :
+        if(packet.tcp.dstport != "5555"):
+            return
         p = packet.tcp.payload
     except:
-        continue 
+        return
     dst_port = packet.tcp.srcport
     
     content = hexa_to_bin(packet)
@@ -45,6 +47,12 @@ for packet in cap.sniff_continuously():
             buffer[dst_port] = buffer[dst_port][len(msg):]
             print("###### =>",pname,p.len)
             if("GameMapMovementRequestMessage".lower() in pname.lower()):
+                t = packet.sniff_timestamp
+                f2 = time.time()
+                print("time : ",float(t)-s)
                 print("time : ",f-s)
+                print("time : ",f2-s)
+                print("time : ",f2-f)
 
+cap.apply_on_packets(lambda p : parse_packet(p))
             

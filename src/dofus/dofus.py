@@ -31,6 +31,15 @@ class Dofus(Observer):
             
         self.gamesynchro = None
         self.turnlist = None
+        
+    def stop(self):
+        if( self.dofusSniffer is not None):
+            self.dofusSniffer.stop()
+            self.dofusSniffer.join()
+            self.dofusSniffer = None
+        if(self.travel is not None):
+            self.travel.interrupt()
+        
             
     def set_name(self):
         name = win32gui.GetWindowText(self.hwnd)
@@ -82,8 +91,8 @@ class Dofus(Observer):
     def sniffer_attach(self):
         if(self.dofusSniffer is not None):
             self.dofusSniffer.stop()
-            #faudrait le kill quoi qu'il arrive sinon reste bloqué dans sniff continouisly
-            #self.dofusSniffer.join()
+            self.dofusSniffer.join()
+            self.dofusSniffer = None
         if(self.port != ""):
             logging.info(f"sniffer create to {self.name}")
             self.dofusSniffer = PacketSniffer(self)
@@ -121,12 +130,9 @@ class Dofus(Observer):
             self.mapinfos(msgname,p)
         elif("TreasureHuntMessage".lower() in msgname.lower()):
             self.chasse(msgname,p)
-        """elif("TreasureHuntDigRequestAnswerMessage".lower() in msgname.lower()):
-            self.endchasse(msgname,p)"""
             
-    def endchasse(self,msgname,p):
+    def endchasse(self):
         if(self.chasseObject):
-            self.chasseObject.notify_cond_end()
             self.chasseObject = None
             
     def chasse(self,msgname,p):
@@ -140,9 +146,6 @@ class Dofus(Observer):
         inst = MessagesFactory.get_instance_id(p.packetid,p.get_content())
         
         self.currentmapid = inst.mapId
-        self.notify("newmap")
-        if(self.chasseObject):
-            self.chasseObject.newcurrentmap(self.currentmapid)
         
         for a in inst.actors:
             try : 
@@ -152,6 +155,9 @@ class Dofus(Observer):
             if(name == self.name):
                 self.cellid = a.disposition.cellId
                 break
+        self.notify("newmap",inst)
+        if(self.chasseObject):
+            self.chasseObject.newcurrentmap(self.currentmapid)
     
     def open(self):
         win32gui.ShowWindow(self.hwnd,3)
@@ -167,15 +173,13 @@ class Dofus(Observer):
     def travel_finished(self):
         self.remove_observer("newmap",self.travel.next_action)
         self.travel = None
-        if(self.chasseObject):
-            self.chasseObject.endtravel()
         logging.info("travel finished")
         
     def stoptravel(self):
         if(self.travel):
             self.travel.interrupt()
-            return "travel interrupted"
-        return "no travel to stop"
+            return f"{self.name} : travel interrupted"
+        return f"{self.name} : no travel to stop"
         
     def goto(self,x,y):
         logging.info(f"goto {x},{y}")
@@ -185,4 +189,4 @@ class Dofus(Observer):
         self.travel = Traveler(self,src,dst)
         self.add_observer("newmap",self.travel.next_action)
         self.travel.start()
-        return f"travel from {MapPosition.get_pos(src[0])} to {MapPosition.get_pos(dst[0])}"
+        return f"{self.name} : travel from {MapPosition.get_pos(src[0])} to {MapPosition.get_pos(dst[0])}"

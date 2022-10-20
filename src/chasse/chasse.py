@@ -2,6 +2,7 @@ from threading import Thread, Condition
 from src.dofus.mapposition import MapPosition
 from src.chasse.dofusdb import DofusDB
 from src.dofus.direction import Direction
+from src.chasse.phorreursearcher import PhorreurSeacher
 import logging
 import json
 import win32gui 
@@ -15,6 +16,7 @@ class Chasse(Thread):
         self.endCond = Condition()
         self.startCond = Condition()
         self.startmap = -1000.0
+        self.xdst,self.ydst = None,None
         
     def read_chasse_msg(self,msg):
         listindice = msg.knownStepsList
@@ -29,22 +31,28 @@ class Chasse(Thread):
             return
         
         try:
-            indice = self.poitoindice[str(msg.knownStepsList[-1].poiLabelId)]
+            self.indice = self.poitoindice[str(msg.knownStepsList[-1].poiLabelId)]
         except:
-            indice = "Phorreur"
-            logging.info(f"Chasse: Phorreur npcid {msg.knownStepsList[-1].npcId}")
+            self.indice = "Phorreur"
+            self.npcid = msg.knownStepsList[-1].npcId
         
-        dir = Direction(msg.knownStepsList[-1].direction).name
+        self.direction = Direction(msg.knownStepsList[-1].direction).name
         checkpoint = msg.checkPointCurrent
         
         if(checkpoint != 0 or len(listindice) > 1):
             #attention si phorreur
-            if("Phorreur".lower() in indice.lower()):
+            if("Phorreur".lower() in self.indice.lower()):
+                logging.info(f"Chasse: Phorreur npcid {self.npcid}")
+                search = PhorreurSeacher(self.npcid,self,self.direction)
+                search.start()
                 return 
             #sinon goto indice
-            xsrc,ysrc = MapPosition.get_pos(self.dofus.currentmapid)
+            if(self.indicevalide > 0):
+                xsrc,ysrc = MapPosition.get_pos(msg.flags[-1].mapId)
+            else:
+                xsrc,ysrc = MapPosition.get_pos(msg.startMapId)
             try:
-                self.xdst,self.ydst = self.get_pos_indice(xsrc,ysrc,indice,dir)
+                self.xdst,self.ydst = self.get_pos_indice(xsrc,ysrc,self.indice,self.direction)
             except KeyError:
                 logging.info("Chasse: indice not found")
                 return 
@@ -53,33 +61,38 @@ class Chasse(Thread):
             self.startmap = msg.startMapId
             self.xstart,self.ystart = MapPosition.get_pos(self.startmap)
             logging.info("Chasse: start position {} {}".format(self.xstart,self.ystart))
+            if("Phorreur".lower() in self.indice.lower()):
+                return
             try:
-                self.xdst,self.ydst = self.get_pos_indice(self.xstart,self.ystart,indice,dir)
+                self.xdst,self.ydst = self.get_pos_indice(self.xstart,self.ystart,self.indice,self.direction)
             except KeyError:
                 logging.info("Chasse: indice not found")
                 return
-        logging.info("Chasse: {} {} at pos {} {}".format(indice,dir,self.xdst,self.ydst))
+        logging.info("Chasse: {} {} at pos {} {}".format(self.indice,self.direction,self.xdst,self.ydst))
             
-    def get_pos_indice(self,xsrc,ysrc,indice,dir):
-        indiceslist = self.ddb.get_hints(xsrc,ysrc,dir)
+    def get_pos_indice(self,xsrc,ysrc,indice,direction):
+        indiceslist = self.ddb.get_hints(xsrc,ysrc,direction)
         xdst,ydst = indiceslist[indice]
         return xdst,ydst
     
     def newcurrentmap(self,mapid):
+        currx,curry = MapPosition.get_pos(mapid)
         if(mapid == self.startmap):
-            self.notify_cond_start()
+            if("Phorreur".lower() in self.indice.lower()):
+                logging.info(f"Chasse: Phorreur npcid {self.npcid}")
+                search = PhorreurSeacher(self.npcid,self,self.direction)
+                search.start()
+            else:
+                self.dofus.goto(self.xdst,self.ydst)
             logging.info("Chasse: start map reached")
-    
-    def notify_cond_start(self):
-        with self.startCond:
-            self.startCond.notify()
+        if(self.xdst and self.ydst and self.xdst == currx and self.ydst == curry):
+            self.click_on_flag()
             
     def notify_cond_end(self):
         with self.endCond:
             self.endCond.notify()
-            self.ddb.driver.close()
             
-    def endtravel(self):
+    def click_on_flag(self):
         y = 670 + self.indicevalide * 30
         realx,realy = win32gui.ScreenToClient(self.dofus.hwnd,(309,y))
         self.dofus.click(realx,realy,False)
@@ -92,9 +105,8 @@ class Chasse(Thread):
         logging.info("Chasse: click on next step")
             
     def run(self):
-        with self.startCond:
-            self.startCond.wait()
-        self.dofus.goto(self.xdst,self.ydst)
         with self.endCond:
             self.endCond.wait()
+        self.ddb.driver.close()
+        self.dofus.endchasse()
         logging.info("Chasse: end of chasse")

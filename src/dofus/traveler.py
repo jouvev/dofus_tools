@@ -22,7 +22,7 @@ class Traveler(Thread,Observer):
     def interrupt(self):
         self.stopped = True
         
-    def next_action(self):
+    def next_action(self,msg):
         with self.condition:
             self.condition.notify()
         

@@ -39,6 +39,8 @@ class DofusHandler(Thread,Observer):
         
     def stop(self):
         self.running = False
+        for d in self.dofus:
+            d.stop()
         
     def update_order(self,order):
         self.lock.acquire()
@@ -140,9 +142,9 @@ class DofusHandler(Thread,Observer):
 
             up = False
             for d in self.dofus:
-                d.update_port()
                 if(d.update_name()):
                     up = True
+                d.update_port()
             if(up):
                 logging.info(f"dofus window name updated {self.get_names()}")
                 self.notify("update_hwnd",self.get_hwnds(),self.get_names())
@@ -162,12 +164,23 @@ class DofusHandler(Thread,Observer):
                 return curr_dof.goto(*arg)
             else:
                 return "no dofus window selected"
-        if(cmd == "stoptravel"):
+        elif(cmd == "stoptravel"):
             curr_dof = self.get_current_dofus()
             if(curr_dof):
                 return curr_dof.stoptravel()
             else:
                 return "no dofus window selected"
+        elif(cmd == "gotos"):
+            rep = ""
+            for d in self.dofus:
+                rep += d.goto(*arg)+"\n"
+            return rep
+        elif(cmd == "stoptravels"):
+            rep = ""
+            for d in self.dofus:
+                rep += d.stoptravel()+"\n"
+            return rep
+
         
             
 def dofusEnumerationHandler(hwnd, top_windows):

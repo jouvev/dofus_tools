@@ -1,6 +1,6 @@
 def hexa_to_bin(packet):
-    content = str(packet.tcp.payload).replace(':','')
-    content = bin(int(str(packet.tcp.payload).replace(':',''),base=16))[2:].zfill(4*len(str(packet.tcp.payload).replace(':','')))
+    content = str(packet).replace(':','')
+    content = bin(int(str(packet).replace(':',''),base=16))[2:].zfill(4*len(str(packet).replace(':','')))
     return content
 
 def read_next_bit(content,n):
