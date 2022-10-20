@@ -29,11 +29,12 @@ class Traveler(Thread,Observer):
     def run(self):
         self.stopped = False
         self.add_observer("finished",self.dofus.travel_finished)
-        for a in self.a:
+        for i,a in enumerate(self.a):
             self.dofus.change_map(a,delay=False)
             with self.condition:
                 self.condition.wait()
-            time.sleep(random.random()*0.3+1)
+            if(i != len(self.a)-1):
+                time.sleep(random.random()*0.3+1)
             if(self.stopped):
                 break
         self.notify("finished")

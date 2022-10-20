@@ -11,6 +11,7 @@ from src.reseau.MessagesFactory import MessagesFactory
 from src.tools.observer import Observer
 from src.dofus.mapposition import MapPosition
 from src.dofus.traveler import Traveler
+from src.chasse.chasse import Chasse
 
 class Dofus(Observer):
     def __init__(self,hwnd):
@@ -22,6 +23,7 @@ class Dofus(Observer):
         self.currentmapid = None
         self.cellid = None
         self.travel = None
+        self.chasseObject = None
         
         self.dofusSniffer = None
         if not (self.port == ""):
@@ -78,11 +80,12 @@ class Dofus(Observer):
         return change
     
     def sniffer_attach(self):
-        logging.info(f"sniffer create to {self.name}")
         if(self.dofusSniffer is not None):
             self.dofusSniffer.stop()
-            self.dofusSniffer.join()
+            #faudrait le kill quoi qu'il arrive sinon reste bloqué dans sniff continouisly
+            #self.dofusSniffer.join()
         if(self.port != ""):
+            logging.info(f"sniffer create to {self.name}")
             self.dofusSniffer = PacketSniffer(self)
             self.dofusSniffer.start()
         
@@ -110,17 +113,37 @@ class Dofus(Observer):
             
     def packet_received(self,p):
         msgname = MessagesFactory.id_class[str(p.packetid)].__name__
-        logging.info(f"{self.name} received {msgname}")
+        logging.debug(f"{self.name} received {msgname}")
         
         if("GameFightSynchronizeMessage".lower() in msgname.lower() or "GameFightTurnListMessage".lower() in msgname.lower()):
             self.fight(msgname,p)
-        elif("CurrentMapMessage".lower() in msgname.lower()):
-            self.currentmap(msgname,p)
         elif("MapComplementaryInformationsDataMessage".lower() in msgname.lower()):
             self.mapinfos(msgname,p)
+        elif("TreasureHuntMessage".lower() in msgname.lower()):
+            self.chasse(msgname,p)
+        """elif("TreasureHuntDigRequestAnswerMessage".lower() in msgname.lower()):
+            self.endchasse(msgname,p)"""
+            
+    def endchasse(self,msgname,p):
+        if(self.chasseObject):
+            self.chasseObject.notify_cond_end()
+            self.chasseObject = None
+            
+    def chasse(self,msgname,p):
+        msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
+        if(self.chasseObject is None):
+            self.chasseObject = Chasse(self)
+            self.chasseObject.start()
+        self.chasseObject.read_chasse_msg(msg)
             
     def mapinfos(self,msgname,p):
         inst = MessagesFactory.get_instance_id(p.packetid,p.get_content())
+        
+        self.currentmapid = inst.mapId
+        self.notify("newmap")
+        if(self.chasseObject):
+            self.chasseObject.newcurrentmap(self.currentmapid)
+        
         for a in inst.actors:
             try : 
                 name = a.name
@@ -129,12 +152,6 @@ class Dofus(Observer):
             if(name == self.name):
                 self.cellid = a.disposition.cellId
                 break
-        
-      
-    def currentmap(self,msgname,p):
-        inst = MessagesFactory.get_instance_id(p.packetid,p.get_content())
-        self.currentmapid = inst.mapId
-        self.notify("newmap")
     
     def open(self):
         win32gui.ShowWindow(self.hwnd,3)
@@ -150,6 +167,8 @@ class Dofus(Observer):
     def travel_finished(self):
         self.remove_observer("newmap",self.travel.next_action)
         self.travel = None
+        if(self.chasseObject):
+            self.chasseObject.endtravel()
         logging.info("travel finished")
         
     def stoptravel(self):
@@ -159,6 +178,7 @@ class Dofus(Observer):
         return "no travel to stop"
         
     def goto(self,x,y):
+        logging.info(f"goto {x},{y}")
         src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
         worldsrc = MapPosition.get_worldmap(src[0])
         dst = MapPosition.get_mapid(x,y,worldsrc),1.0

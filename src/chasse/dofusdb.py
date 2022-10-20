@@ -6,13 +6,13 @@ Tad overcomplicated as they implement captcha verifications.
 import json
 from selenium import webdriver
 from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import logging
 
 SITE_URL = 'https://dofusdb.fr/fr/tools/treasure-hunt'
 RESPONSE_METHOD = 'Network.responseReceived'
@@ -39,6 +39,7 @@ class DofusDB:
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
         self.driver = Chrome(options=options,desired_capabilities=capabilities)
+        self.driver.minimize_window()
         self.wait = WebDriverWait(self.driver, 2)
         self.driver.get(SITE_URL)
 
@@ -76,10 +77,17 @@ class DofusDB:
         """
         valid_hints = {}
         hints = json.loads(hints)
+        distancedict = {}
         
         for h in hints['data']:
             for o in h['pois']:
-                valid_hints[o['name']['fr']]= (h['posX'],h['posY'])
+                if(o['name']['fr'] in valid_hints):
+                    if(distancedict[o['name']['fr']] > h['distance']):
+                        distancedict[o['name']['fr']] = h['distance']
+                        valid_hints[o['name']['fr']]= (h['posX'],h['posY'])
+                else:
+                    distancedict[o['name']['fr']] = h['distance']
+                    valid_hints[o['name']['fr']]= (h['posX'],h['posY'])
 
         return valid_hints
 
@@ -102,9 +110,9 @@ class DofusDB:
                 self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, I_CLASS)))
                 good = True
             except:
-                ddb.driver.refresh()
+                self.driver.refresh()
                 time.sleep(1)
-                print("retry")
+                logging.info("Retrying to find hints")
         
 
         # Get the network logs to find the results
@@ -121,9 +129,3 @@ class DofusDB:
                         {'requestId': l['params']['requestId']})['body'])
             except:
                 pass
-            
-if __name__ == '__main__':
-    ddb = DofusDB()
-    hints = ddb.get_hints(-2, -3, 'right')
-    print(hints)
-    ddb.driver.quit()

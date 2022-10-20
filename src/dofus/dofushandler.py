@@ -144,6 +144,7 @@ class DofusHandler(Thread,Observer):
                 if(d.update_name()):
                     up = True
             if(up):
+                logging.info(f"dofus window name updated {self.get_names()}")
                 self.notify("update_hwnd",self.get_hwnds(),self.get_names())
             
             tmp_name_order = self.get_names()
@@ -158,10 +159,7 @@ class DofusHandler(Thread,Observer):
         if(cmd == "goto"):
             curr_dof = self.get_current_dofus()
             if(curr_dof):
-                try:
-                    return curr_dof.goto(*arg)
-                except :
-                    return "impossible travel"
+                return curr_dof.goto(*arg)
             else:
                 return "no dofus window selected"
         if(cmd == "stoptravel"):

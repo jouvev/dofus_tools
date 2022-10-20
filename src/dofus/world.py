@@ -69,6 +69,6 @@ class World:
             elif(dx == 0 and dy == -1):
                 action.append("up")
             else:
-                raise RuntimeError("action non reconnu dans pathfinding")
+                raise RuntimeError(f"action non reconnu dans pathfinding ({posxdep},{posydep}),({posxdest},{posydest}) {[(MapPosition.get_pos(p[0]),p) for p in path]}")
                 
         return path,action

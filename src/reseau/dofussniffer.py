@@ -3,6 +3,7 @@ import pyshark
 from src.reseau.tools import *
 from src.reseau.packet import Packet
 import asyncio
+import logging
 
 class PacketSniffer(Thread):
     def __init__(self,dofus):
@@ -22,7 +23,7 @@ class PacketSniffer(Thread):
         buffer = ""
 
         for packet in cap.sniff_continuously():
-            if(not self.running): 
+            if(not self.running):
                 break
             
             try : 

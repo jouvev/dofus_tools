@@ -11,7 +11,7 @@ parser.add_argument('--nodebug', action='store_false')
 args = parser.parse_args()
 
 if(args.nodebug):
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
 
 config = json.load(open("script/config.json",encoding="utf-8"))
 

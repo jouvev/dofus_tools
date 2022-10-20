@@ -9,7 +9,8 @@ class MapPosition:
         mappos[m["id"]] = m
         
     for m in mappostmp:
-        posmap[(m["posX"],m["posY"],m["worldMap"])] = m
+        if(m["hasPriorityOnWorldmap"]==True):
+            posmap[(m["posX"],m["posY"],m["worldMap"])] = m
         
     @classmethod
     def get_pos(cls,mapid):
