@@ -76,8 +76,8 @@ class Dofus(Observer):
             realx,realy = win32gui.ScreenToClient(self.hwnd,(866,28))
             self.click(realx,realy,delay)
             
-    def change_map_by_cellid(self,cellid,direction,type,delay=True):
-        x,y = get_cursor_pos_to_change_map(int(cellid),int(direction),int(type))
+    def change_map_by_cellid(self,mapdst,cellid,direction,type,delay=True):
+        x,y = get_cursor_pos_to_change_map(self.currentmapid,mapdst,int(cellid),int(direction),int(type))
         realx,realy = win32gui.ScreenToClient(self.hwnd,(x,y))
         self.click(realx,realy,delay)
                        

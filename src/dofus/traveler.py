@@ -23,6 +23,7 @@ class Traveler(Thread,Observer):
         
     def interrupt(self):
         self.stopped = True
+        self.next_action(None)
         
     def next_action(self,msg):
         with self.condition:
@@ -31,9 +32,9 @@ class Traveler(Thread,Observer):
     def run(self):
         self.stopped = False
         self.add_observer("finished",self.dofus.travel_finished)
-        for i,(direction,cell,type) in enumerate(self.a):
-            logging.info(f"{self.dofus.name} : {int(direction)} {cell} {type}")
-            self.dofus.change_map_by_cellid(cell,direction,type,delay=False)
+        for i,(mapdst,direction,cell,type) in enumerate(self.a):
+            logging.debug(f"{self.dofus.name} : {int(direction)} {cell} {type}")
+            self.dofus.change_map_by_cellid(mapdst,cell,direction,type,delay=False)
             with self.condition:
                 self.condition.wait()
             if(i != len(self.a)-1):

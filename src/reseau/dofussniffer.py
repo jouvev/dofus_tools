@@ -4,7 +4,7 @@ from src.reseau.packet import Packet
 
 class PacketSniffer(AsyncSniffer):
     def __init__(self, dofus):
-        AsyncSniffer.__init__(self, iface="Ethernet", filter=f"tcp src port 5555 and tcp dst port {dofus.port}", prn=self.packet_callback)
+        AsyncSniffer.__init__(self, iface="Ethernet", filter=f"tcp src port 5555 and tcp dst port {dofus.port}", prn=self.packet_callback,store=0)
         self.buffer = ""
         self.dofus = dofus
         

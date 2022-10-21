@@ -66,7 +66,7 @@ class World:
             dst = path[i+1]
             a = self.actions[(src,dst)]
             try:
-                action.append(a)
+                action.append((dst[0],*a))
             except:
                 raise RuntimeError(f"action non reconnu dans pathfinding {[(MapPosition.get_pos(p[0][0]),p[0]) for p in path]}")
                 

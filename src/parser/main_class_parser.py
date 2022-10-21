@@ -4,7 +4,7 @@ from src.parser.class_parser import parse
 import json
 import re
 
-DECOMP = False
+DECOMP = True
 
 def get_all_scripts(root_path):
     script_path = []

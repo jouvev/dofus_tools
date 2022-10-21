@@ -19,7 +19,7 @@ class Chasse(Thread):
         self.xdst,self.ydst = None,None
         
     def read_chasse_msg(self,msg):
-        listindice = msg.knownStepsList
+        self.listindice = msg.knownStepsList
         self.indicevalide = len(msg.flags)
         totalstep = msg.totalStepCount
         if(totalstep == 0):
@@ -37,9 +37,9 @@ class Chasse(Thread):
             self.npcid = msg.knownStepsList[-1].npcId
         
         self.direction = Direction(msg.knownStepsList[-1].direction).name
-        checkpoint = msg.checkPointCurrent
+        self.checkpoint = msg.checkPointCurrent
         
-        if(checkpoint != 0 or len(listindice) > 1):
+        if(self.checkpoint != 0 or len(self.listindice) > 1):
             #attention si phorreur
             if("Phorreur".lower() in self.indice.lower()):
                 logging.info(f"Chasse: Phorreur npcid {self.npcid}")
@@ -77,7 +77,7 @@ class Chasse(Thread):
     
     def newcurrentmap(self,mapid):
         currx,curry = MapPosition.get_pos(mapid)
-        if(mapid == self.startmap):
+        if(mapid == self.startmap and self.checkpoint == 0 and len(self.listindice) <= 1):
             if("Phorreur".lower() in self.indice.lower()):
                 logging.info(f"Chasse: Phorreur npcid {self.npcid}")
                 search = PhorreurSeacher(self.npcid,self,self.direction)
