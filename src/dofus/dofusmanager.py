@@ -1,5 +1,7 @@
 import keyboard
 import mouse
+import logging
+import time
 import win32gui
 import win32com.client
 from concurrent.futures import ThreadPoolExecutor
@@ -15,7 +17,7 @@ class DofusManager(Observer):
         self.running = True
         self.confirm = False
         self.cmdobject = Command(self.dofus_handler)
-        self.executor = ThreadPoolExecutor(4)
+        self.executor = ThreadPoolExecutor(4,thread_name_prefix="DofusManager(ThreadPool)")
         
         shell = win32com.client.Dispatch("WScript.Shell")
         shell.SendKeys('%')
@@ -58,6 +60,7 @@ class DofusManager(Observer):
         return self.dofus_handler.is_dofus_window(tmp)
 
     def _stop(self):
+        logging.info("Stopping all")
         if( not self.allow_event()):
             return
         self.notify("stop")

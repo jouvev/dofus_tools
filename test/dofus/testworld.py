@@ -10,7 +10,7 @@ w.deserialize()
 dep = (185860609.0,1.0)
 arr = (185861634.0,1.0)
 
-print(w[dep])
+print(w.actions[(88082192.0,1.0),(88081680.0,1.0)])
 
 posdep = MapPosition.get_pos(dep[0])
 posarr = MapPosition.get_pos(arr[0])

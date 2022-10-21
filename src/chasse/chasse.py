@@ -9,7 +9,7 @@ import win32gui
 
 class Chasse(Thread):
     def __init__(self, dofus):
-        Thread.__init__(self)
+        Thread.__init__(self,name="Chasse")
         self.dofus = dofus
         self.ddb = DofusDB()
         self.poitoindice = json.load(open("ressources/poi.json",encoding="utf-8"))

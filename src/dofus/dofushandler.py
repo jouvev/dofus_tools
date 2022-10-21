@@ -182,6 +182,13 @@ class DofusHandler(Thread,Observer):
             for d in self.dofus:
                 rep += d.stoptravel()+"\n"
             return rep
+        elif(cmd == "clickcell"):
+            curr_dof = self.get_current_dofus()
+            if(curr_dof):
+                curr_dof.click_cell(*arg)
+                return f"click on cellid {arg[0]}"
+            else:
+                return "no dofus window selected"
        
 def dofusEnumerationHandler(hwnd, top_windows):
     name = win32gui.GetWindowText(hwnd)

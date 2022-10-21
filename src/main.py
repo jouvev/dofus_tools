@@ -34,7 +34,5 @@ dh.add_observer("update_hwnd",lambda order,order_name : interface.update_order(o
 
 interface.mainloop()
 
-time.sleep(3)
-
 for thread in threading.enumerate(): 
     print(thread.name, "running")

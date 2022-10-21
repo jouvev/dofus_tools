@@ -5,7 +5,7 @@ import win32gui
 
 class Listener(Thread):
     def __init__(self,manager,interface):
-        Thread.__init__(self)
+        Thread.__init__(self,name="Listener")
         self.manager = manager
         self.interface = interface
         self.is_visible = True

@@ -12,6 +12,7 @@ from src.tools.observer import Observer
 from src.dofus.mapposition import MapPosition
 from src.dofus.traveler import Traveler
 from src.chasse.chasse import Chasse
+from src.dofus.cell import get_cursor_pos, get_cursor_pos_to_change_map
 
 class Dofus(Observer):
     def __init__(self,hwnd):
@@ -75,6 +76,11 @@ class Dofus(Observer):
             realx,realy = win32gui.ScreenToClient(self.hwnd,(866,28))
             self.click(realx,realy,delay)
             
+    def change_map_by_cellid(self,cellid,direction,delay=True):
+        x,y = get_cursor_pos_to_change_map(int(cellid),int(direction))
+        realx,realy = win32gui.ScreenToClient(self.hwnd,(x,y))
+        self.click(realx,realy,delay)
+                       
     def get_infos(self):
         return self.hwnd, self.pid, self.name, self.port
     
@@ -166,6 +172,11 @@ class Dofus(Observer):
     def open(self):
         win32gui.ShowWindow(self.hwnd,3)
         win32gui.SetForegroundWindow(self.hwnd)
+        
+    def click_cell(self,cellid,delay=True):
+        x,y = get_cursor_pos(int(cellid))
+        realx,realy = win32gui.ScreenToClient(self.hwnd,(x,y))
+        self.click(realx,realy,delay)
         
     def click(self,x,y,delay=True):
         lParam = win32api.MAKELONG(x, y)

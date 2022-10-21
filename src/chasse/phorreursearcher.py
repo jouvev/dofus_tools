@@ -4,7 +4,7 @@ import time
 
 class PhorreurSeacher(Thread):
     def __init__(self,npcid,chasse,direction):
-        Thread.__init__(self)
+        Thread.__init__(self,name="PhorreurSeacher")
         self.npcid = npcid
         self.direction = direction
         self.chasse = chasse
