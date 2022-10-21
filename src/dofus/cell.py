@@ -16,8 +16,11 @@ def get_cursor_pos(cellid):
         
     return (int(posx),int(posy))
 
-def get_cursor_pos_to_change_map(cellid,direction):
+def get_cursor_pos_to_change_map(cellid,direction,type):
     posx, posy = get_cursor_pos(cellid)
+    
+    if(type == 8 or type == 32):
+        return (posx,posy)
     
     if(Direction(direction) == Direction.up):
         posy -= DIMY//3

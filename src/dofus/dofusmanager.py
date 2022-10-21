@@ -60,9 +60,9 @@ class DofusManager(Observer):
         return self.dofus_handler.is_dofus_window(tmp)
 
     def _stop(self):
-        logging.info("Stopping all")
         if( not self.allow_event()):
             return
+        logging.info("Stopping all")
         self.notify("stop")
         self.running = False
         

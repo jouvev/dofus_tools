@@ -31,9 +31,9 @@ class Traveler(Thread,Observer):
     def run(self):
         self.stopped = False
         self.add_observer("finished",self.dofus.travel_finished)
-        for i,(direction,cell) in enumerate(self.a):
-            logging.info(f"{self.dofus.name} : {Direction(int(direction)).name} {cell}")
-            self.dofus.change_map_by_cellid(cell,direction,delay=False)
+        for i,(direction,cell,type) in enumerate(self.a):
+            logging.info(f"{self.dofus.name} : {int(direction)} {cell} {type}")
+            self.dofus.change_map_by_cellid(cell,direction,type,delay=False)
             with self.condition:
                 self.condition.wait()
             if(i != len(self.a)-1):

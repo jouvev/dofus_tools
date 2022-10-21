@@ -9,4 +9,5 @@ class Direction(Enum):
     left_up = 5
     up = 6
     right_up = 7
+    unknown = -1
     

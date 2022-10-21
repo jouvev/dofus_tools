@@ -13,6 +13,11 @@ print("nb edge",edgeCount)
 
 w = World()
 
+set_type = set()
+set_direction = set()
+set_id = set()
+set_skill = set()
+
 for i in range(edgeCount):
     print(f"{i+1}/{edgeCount}")
     mapid1, zone1  = data.readDouble(),data.readInt()
@@ -27,10 +32,18 @@ for i in range(edgeCount):
         cell = data.readInt()
         id = data.readDouble()
     
-    w.add_edge((mapid1,zone1),(mapid2,zone2),direction,cell)
+    set_type.add(type)
+    set_direction.add(direction)
+    set_id.add(id)
+    set_skill.add(skill)
+    w.add_edge((mapid1,zone1),(mapid2,zone2),direction,cell,type)
     
 print("save")
 w.serialize()
+print("type : ",set_type)
+print("direction : ",set_direction)
+print("id : ",set_id)
+print("skill : ",set_skill)
     
 
 

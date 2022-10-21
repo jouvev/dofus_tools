@@ -8,11 +8,11 @@ class World:
         self.graph = dict()
         self.actions = dict()
     
-    def add_edge(self,src,dst,direction,cell):
+    def add_edge(self,src,dst,direction,cell,type):
         if(src not in self.graph):
             self.graph[src] = []
         self.graph[src].append(dst)
-        self.actions[(src,dst)] = (direction,cell)
+        self.actions[(src,dst)] = (direction,cell,type)
         
     def serialize(self):
         pickle.dump( self.graph, open( "ressources/worldgraph.pkl", "wb" ) )
