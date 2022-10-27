@@ -9,27 +9,27 @@ class MapHint:
         self.up = None
         self.hints = []
         
-    def add_map_direction(self, direction, maphint):
+    def add_map_direction(self, direction, pos):
         if (Direction(direction) == Direction.right):
-            self.right = maphint
+            self.right = pos
         elif (Direction(direction) == Direction.left):
-            self.left = maphint
+            self.left = pos
         elif (Direction(direction) == Direction.down):
-            self.down = maphint
+            self.down = pos
         elif(Direction(direction) == Direction.up):
-            self.up = maphint
+            self.up = pos
         
     def add_hint(self, hint):
         self.hints.append(hint)
         
     def get_directon(self,direction):
-        if (Direction(direction) == Direction.right):
+        if (direction == 'right'):
             return self.right
-        elif (Direction(direction) == Direction.left):
+        elif (direction == 'left'):
             return self.left
-        elif (Direction(direction) == Direction.down):
+        elif (direction == 'down'):
             return self.down
-        elif(Direction(direction) == Direction.up):
+        elif(direction == 'up'):
             return self.up
         
     def get_pos(self):

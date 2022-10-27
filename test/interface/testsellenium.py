@@ -1,4 +1,6 @@
-from src.chasse.chasse import DofusDB
+from src.chasse.dofusnoob import DofusNoob
+import time
 
-d = DofusDB()
-d.get_hints(0,0,"left")
+d = DofusNoob()
+time.sleep(1)
+print(d.get_hint(1,1,'left',"Clef dorée"))

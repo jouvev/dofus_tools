@@ -5,8 +5,7 @@ Tad overcomplicated as they implement captcha verifications.
 
 import json
 from selenium import webdriver
-from selenium.webdriver import Chrome,Firefox
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -39,18 +38,15 @@ class DofusDB:
         self.open()
         
     def open(self):
-        #capabilities = DesiredCapabilities.CHROME
-        #capabilities['goog:loggingPrefs'] = {'performance': 'ALL'}
-        options = Options()
-        options.binary_location = 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
-        #w,h = random.randint(500,1920),random.randint(300,1080)
-        #options.add_argument(f'window-size={w},{h}')
-        #options.add_argument('--incognito')
-        #options.add_experimental_option("excludeSwitches", ['enable-logging'])
+        capabilities = DesiredCapabilities.CHROME
+        capabilities['goog:loggingPrefs'] = {'performance': 'ALL'}
+        options = webdriver.ChromeOptions()
+        options.add_argument('window-size=1920,1080')
+        options.add_experimental_option("excludeSwitches", ['enable-logging'])
 
-        self.driver = Firefox(options=options)#,desired_capabilities=capabilities)
+        self.driver = Chrome(options=options,desired_capabilities=capabilities)
         #self.driver.minimize_window()
-        self.wait = WebDriverWait(self.driver, 5)
+        self.wait = WebDriverWait(self.driver, 10)
         self.driver.get(SITE_URL)
     
     @staticmethod
@@ -116,7 +112,9 @@ class DofusDB:
             try:
                 # Prepare the page
                 DofusDB.clear_and_set_field(self.driver.find_element(By.XPATH, X_PATH), x)
+                time.sleep(random.random())
                 DofusDB.clear_and_set_field(self.driver.find_element(By.XPATH, Y_PATH), y)
+                time.sleep(random.random())
                 self.driver.find_element(By.CLASS_NAME, D_CLASS[d]).click()
 
                 # Wait for the requests answer (await the elements update)

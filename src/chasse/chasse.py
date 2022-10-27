@@ -1,6 +1,6 @@
 from threading import Thread, Condition
 from src.dofus.mapposition import MapPosition
-from src.chasse.dofusdb import DofusDB
+from src.chasse.worldhint import WorldHint
 from src.dofus.direction import Direction
 from src.chasse.phorreursearcher import PhorreurSeacher
 import logging
@@ -12,7 +12,7 @@ class Chasse(Thread):
     def __init__(self, dofus):
         Thread.__init__(self,name="Chasse")
         self.dofus = dofus
-        self.ddb = DofusDB()
+        self.ddb = WorldHint.get_instance()
         with open("ressources/poi.json",encoding="utf-8") as file :
             self.poitoindice = json.load(file)
         self.endCond = Condition()
@@ -56,7 +56,7 @@ class Chasse(Thread):
                 xsrc,ysrc = MapPosition.get_pos(msg.startMapId)
             try:
                 self.xdst,self.ydst = self.get_pos_indice(xsrc,ysrc,self.indice,self.direction)
-            except KeyError:
+            except :
                 logging.info("Chasse: indice not found")
                 return 
             self.dofus.goto(self.xdst,self.ydst)
@@ -68,15 +68,13 @@ class Chasse(Thread):
                 return
             try:
                 self.xdst,self.ydst = self.get_pos_indice(self.xstart,self.ystart,self.indice,self.direction)
-            except KeyError:
+            except :
                 logging.info("Chasse: indice not found")
                 return
         logging.info("Chasse: {} {} at pos {} {}".format(self.indice,self.direction,self.xdst,self.ydst))
             
     def get_pos_indice(self,xsrc,ysrc,indice,direction):
-        indiceslist = self.ddb.get_hints(xsrc,ysrc,direction)
-        xdst,ydst = indiceslist[indice]
-        return xdst,ydst
+        return self.ddb.get_hint(xsrc,ysrc,direction,indice)
     
     def newcurrentmap(self,mapid):
         currx,curry = MapPosition.get_pos(mapid)
