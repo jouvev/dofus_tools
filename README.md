@@ -13,4 +13,5 @@ Aide à la gestion du multi-comptes sur dofus
     - à la connexion inventorycontentmessage
     - prix min message quand clique sur item
     - entre le prix automatiquement selon quantité dans l'inventaire 
-
+- eviter les mobs goto 
+- zaap traveler

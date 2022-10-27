@@ -6,15 +6,18 @@ from src.chasse.phorreursearcher import PhorreurSeacher
 import logging
 import json
 import win32gui 
+import time
 
 class Chasse(Thread):
     def __init__(self, dofus):
         Thread.__init__(self,name="Chasse")
         self.dofus = dofus
         self.ddb = DofusDB()
-        self.poitoindice = json.load(open("ressources/poi.json",encoding="utf-8"))
+        with open("ressources/poi.json",encoding="utf-8") as file :
+            self.poitoindice = json.load(file)
         self.endCond = Condition()
         self.startCond = Condition()
+        self.search = None
         self.startmap = -1000.0
         self.xdst,self.ydst = None,None
         
@@ -43,8 +46,8 @@ class Chasse(Thread):
             #attention si phorreur
             if("Phorreur".lower() in self.indice.lower()):
                 logging.info(f"Chasse: Phorreur npcid {self.npcid}")
-                search = PhorreurSeacher(self.npcid,self,self.direction)
-                search.start()
+                self.search = PhorreurSeacher(self.npcid,self,self.direction)
+                self.search.start()
                 return 
             #sinon goto indice
             if(self.indicevalide > 0):
@@ -80,22 +83,25 @@ class Chasse(Thread):
         if(mapid == self.startmap and self.checkpoint == 0 and len(self.listindice) <= 1):
             if("Phorreur".lower() in self.indice.lower()):
                 logging.info(f"Chasse: Phorreur npcid {self.npcid}")
-                search = PhorreurSeacher(self.npcid,self,self.direction)
-                search.start()
+                self.search = PhorreurSeacher(self.npcid,self,self.direction)
+                self.search.start()
             else:
                 self.dofus.goto(self.xdst,self.ydst)
             logging.info("Chasse: start map reached")
-        if(self.xdst and self.ydst and self.xdst == currx and self.ydst == curry):
+        if(self.xdst is not None and self.ydst is not None and self.xdst == currx and self.ydst == curry):
             self.dofus.stoptravel()
             self.click_on_flag()
             
     def notify_cond_end(self):
+        if(self.search):
+            self.search.end = True
         with self.endCond:
             self.endCond.notify()
             
     def click_on_flag(self):
         y = 670 + self.indicevalide * 30
         realx,realy = win32gui.ScreenToClient(self.dofus.hwnd,(309,y))
+        time.sleep(0.5)
         self.dofus.click(realx,realy,False)
         logging.info("Chasse: click on flag")
         

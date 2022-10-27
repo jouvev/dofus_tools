@@ -13,6 +13,10 @@ from src.dofus.mapposition import MapPosition
 from src.dofus.traveler import Traveler
 from src.chasse.chasse import Chasse
 from src.dofus.cell import get_cursor_pos, get_cursor_pos_to_change_map
+import pywintypes
+import keyboard
+
+MAXCLICKTRY = 3
 
 class Dofus(Observer):
     def __init__(self,hwnd):
@@ -32,6 +36,8 @@ class Dofus(Observer):
             
         self.gamesynchro = None
         self.turnlist = None
+        
+        self.click_confirm = False
         
     def stop(self):
         if( self.dofusSniffer is not None):
@@ -76,8 +82,8 @@ class Dofus(Observer):
             realx,realy = win32gui.ScreenToClient(self.hwnd,(866,28))
             self.click(realx,realy,delay)
             
-    def change_map_by_cellid(self,mapdst,cellid,direction,type,delay=True):
-        x,y = get_cursor_pos_to_change_map(self.currentmapid,mapdst,int(cellid),int(direction),int(type))
+    def change_map_by_cellid(self,cellid,direction,type,delay=True):
+        x,y = get_cursor_pos_to_change_map(int(cellid),int(direction),int(type))
         realx,realy = win32gui.ScreenToClient(self.hwnd,(x,y))
         self.click(realx,realy,delay)
                        
@@ -170,8 +176,13 @@ class Dofus(Observer):
             self.chasseObject.newcurrentmap(self.currentmapid)
     
     def open(self):
-        win32gui.ShowWindow(self.hwnd,3)
-        win32gui.SetForegroundWindow(self.hwnd)
+        try :
+            win32gui.ShowWindow(self.hwnd,3)
+            win32gui.SetForegroundWindow(self.hwnd)
+        except pywintypes.error as e :
+            logging.error(f"Error when open {self.name} {e}")
+            return
+            
         
     def click_cell(self,cellid,delay=True):
         x,y = get_cursor_pos(int(cellid))
@@ -184,11 +195,12 @@ class Dofus(Observer):
             time.sleep(random.random())
         win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
         win32gui.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, None, lParam)
+            
         
     def travel_finished(self):
         self.remove_observer("newmap",self.travel.next_action)
         self.travel = None
-        logging.info("travel finished")
+        logging.info(f"{self.name}: travel finished")
         
     def stoptravel(self):
         if(self.travel):
@@ -197,11 +209,64 @@ class Dofus(Observer):
         return f"{self.name} : no travel to stop"
         
     def goto(self,x,y):
+        """if(self.travel is not None):
+            logging.info(f'already travelling')
+            self.travel.interrupt()
+            self.travel = No
+            return "already travelling"""
+
         logging.info(f"goto {x},{y}")
+        if(self.currentmapid is None and self.cellid is None):
+            logging.error(f"{self.name} : no current map infos")
+            return
         src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
         worldsrc = MapPosition.get_worldmap(src[0])
         dst = MapPosition.get_mapid(x,y,worldsrc),1.0
         self.travel = Traveler(self,src,dst)
         self.add_observer("newmap",self.travel.next_action)
+        time.sleep(random.random())
         self.travel.start()
         return f"{self.name} : travel from {MapPosition.get_pos(src[0])} to {MapPosition.get_pos(dst[0])}"
+    
+    def press_key(self,key):
+        win32gui.SendMessage(self.hwnd, win32con.WM_CHAR, ord(key), 0)
+    
+    def press_enter(self):
+        win32gui.SendMessage(self.hwnd, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+        win32gui.SendMessage(self.hwnd, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
+        
+    def write(self,text):
+        for c in text:
+            self.press_key(c)
+            
+    def invite(self,names):
+        for n in names:
+            realx,realy = win32gui.ScreenToClient(self.hwnd,(116,1028))
+            self.click(realx,realy,False)
+            self.write(f"/invite {n}")
+            self.press_enter()
+            time.sleep(0.1)
+        
+    def zaap(self,nom):
+        #verif si on est deja dans le havre sac
+        if(self.currentmapid != 162791424):
+            realx,realy = win32gui.ScreenToClient(self.hwnd,(1559,982))
+            self.click(realx,realy,False)
+            time.sleep(1)
+        #click zaap
+        realx,realy = win32gui.ScreenToClient(self.hwnd,(565,433))
+        self.click(realx,realy,False)
+        time.sleep(0.5)
+        #click champ
+        realx,realy = win32gui.ScreenToClient(self.hwnd,(1111,234))
+        self.click(realx,realy,False)
+        time.sleep(1)
+        #ecrire le nom
+        self.write(nom)
+        time.sleep(0.2)
+        self.press_enter()
+        #click tp
+        realx,realy = win32gui.ScreenToClient(self.hwnd,(955,776))
+        self.click(realx,realy,False)
+        return f"{self.name} : zaap to {nom} done"
+        

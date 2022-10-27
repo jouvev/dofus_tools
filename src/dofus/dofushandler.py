@@ -189,6 +189,29 @@ class DofusHandler(Thread,Observer):
                 return f"click on cellid {arg[0]}"
             else:
                 return "no dofus window selected"
+        elif(cmd == "zaap"):
+            curr_dof = self.get_current_dofus()
+            if(curr_dof):
+                nom = " ".join(arg)
+                return curr_dof.zaap(nom)
+            else:
+                return "no dofus window selected"
+        elif(cmd == "zaaps"):
+            nom = " ".join(arg)
+            rep = ""
+            for d in self.dofus:
+                rep += d.zaap(nom)+"\n"#thread ? 
+            return rep
+        elif(cmd == "group"):
+            curr_dof = self.get_current_dofus()
+            if(curr_dof):
+                listinv = [n for n in self.get_names() if n != curr_dof.name and n != ""]
+                if(len(listinv) == 0):
+                    return "no other dofus window"
+                curr_dof.invite(listinv)
+                return f"invite {listinv}"
+            else:
+                return "no dofus window selected"
        
 def dofusEnumerationHandler(hwnd, top_windows):
     name = win32gui.GetWindowText(hwnd)

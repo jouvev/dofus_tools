@@ -1,8 +1,10 @@
 import json 
 
 class MapPosition:
-    mapinfo = json.load(open(f"ressources/maps.json","r"))
-    mappostmp = json.load(open("ressources/MapPositions.json","r"))
+    with open(f"ressources/maps.json","r") as file:
+        mapinfo = json.load(file)
+    with open("ressources/MapPositions.json","r") as file:
+        mappostmp = json.load(file)
     mappos = dict()
     posmap = dict()
     for m in mappostmp:

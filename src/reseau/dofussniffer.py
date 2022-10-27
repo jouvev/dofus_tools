@@ -9,9 +9,9 @@ class PacketSniffer(AsyncSniffer):
         self.dofus = dofus
         
     def packet_callback(self,packet):
+        if(not packet.haslayer(Raw)):
+            return 
         v = bytes(packet["TCP"].payload).hex(":")
-        if v == "00:00:00:00:00:00" or v == '':
-            return
         data = hexa_to_bin(v)
         self.buffer += data
         rest = ' '

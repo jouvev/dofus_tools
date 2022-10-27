@@ -15,7 +15,8 @@ args = parser.parse_args()
 if(args.nodebug):
     logging.basicConfig(level=logging.INFO)
 
-config = json.load(open("script/config.json",encoding="utf-8"))
+with open("script/config.json",encoding="utf-8") as file:
+    config = json.load(file)
 
 dh = DofusHandler()
 dm = DofusManager(config,dh)
@@ -34,5 +35,6 @@ dh.add_observer("update_hwnd",lambda order,order_name : interface.update_order(o
 
 interface.mainloop()
 
+time.sleep(3)
 for thread in threading.enumerate(): 
     print(thread.name, "running")

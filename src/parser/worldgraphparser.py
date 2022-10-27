@@ -1,6 +1,6 @@
 from src.reseau.custominput import CustomInput
-from src.dofus.mapposition import MapPosition
 from src.dofus.world import World
+
 path = "C:\\Users\\vincent\\AppData\\Local\\Ankama\\zaap\\dofus\\content\\maps\\world-graph.binary"
 
 f = open(path,"rb")
@@ -37,6 +37,8 @@ for i in range(edgeCount):
     set_id.add(id)
     set_skill.add(skill)
     w.add_edge((mapid1,zone1),(mapid2,zone2),direction,cell,type)
+
+#liste des maps à changer
     
 print("save")
 w.serialize()
@@ -44,6 +46,7 @@ print("type : ",set_type)
 print("direction : ",set_direction)
 print("id : ",set_id)
 print("skill : ",set_skill)
+
     
 
 

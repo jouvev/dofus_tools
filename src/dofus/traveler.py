@@ -3,26 +3,21 @@ from src.dofus.world import World
 import time 
 import random
 import logging
-from src.dofus.direction import Direction
 from src.tools.observer import Observer
-
 
 class Traveler(Thread,Observer):
     def __init__(self, dofus, src, dest):
         Thread.__init__(self,name="Traveler")
         Observer.__init__(self, ["finished"])
-        w = World()
-        w.deserialize()
-        path = w.findpath(src, dest)
-        if(not path):
-            self.a = []
-        else:
-            self.a = path[1]
+        self.w = World.get_instance()
         self.dofus = dofus
         self.condition = Condition()
+        self.src = src
+        self.dest = dest
         
     def interrupt(self):
         self.stopped = True
+        time.sleep(1.1)
         self.next_action(None)
         
     def next_action(self,msg):
@@ -30,18 +25,28 @@ class Traveler(Thread,Observer):
             self.condition.notify()
         
     def run(self):
-        self.stopped = False
-        self.add_observer("finished",self.dofus.travel_finished)
-        for i,(mapdst,direction,cell,type) in enumerate(self.a):
-            logging.debug(f"{self.dofus.name} : {int(direction)} {cell} {type}")
-            self.dofus.change_map_by_cellid(mapdst,cell,direction,type,delay=False)
-            with self.condition:
-                self.condition.wait()
-            if(i != len(self.a)-1):
-                time.sleep(random.random()*0.3+1)
-            if(self.stopped):
-                break
-        self.notify("finished")
+        try:
+            path = self.w.findpath(self.src, self.dest)
+            if(not path):
+                return 
+            else:
+                self.a = path[1]
+            self.stopped = False
+            self.add_observer("finished",self.dofus.travel_finished)
+            
+            for i,(direction,cell,type) in enumerate(self.a):
+                logging.debug(f"{self.dofus.name} : {int(direction)} {cell} {type}")
+                self.dofus.change_map_by_cellid(cell,direction,type,delay=False)
+                with self.condition:
+                    self.condition.wait()
+                if(i != len(self.a)-1):
+                    time.sleep(1)
+                if(self.stopped):
+                    break
+        except Exception as e:
+            logging.error(f"Error in Traveler {e}")
+        finally:
+            self.notify("finished")
             
         
     

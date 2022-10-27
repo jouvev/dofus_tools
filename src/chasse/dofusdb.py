@@ -5,13 +5,16 @@ Tad overcomplicated as they implement captcha verifications.
 
 import json
 from selenium import webdriver
-from selenium.webdriver import Chrome
+from selenium.webdriver import Chrome,Firefox
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchWindowException
 import time
+import random
 import logging
 
 SITE_URL = 'https://dofusdb.fr/fr/tools/treasure-hunt'
@@ -33,16 +36,22 @@ class DofusDB:
     """
 
     def __init__(self):
-        capabilities = DesiredCapabilities.CHROME
-        capabilities['goog:loggingPrefs'] = {'performance': 'ALL'}
-        options = webdriver.ChromeOptions()
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        self.open()
+        
+    def open(self):
+        #capabilities = DesiredCapabilities.CHROME
+        #capabilities['goog:loggingPrefs'] = {'performance': 'ALL'}
+        options = Options()
+        options.binary_location = 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
+        #w,h = random.randint(500,1920),random.randint(300,1080)
+        #options.add_argument(f'window-size={w},{h}')
+        #options.add_argument('--incognito')
+        #options.add_experimental_option("excludeSwitches", ['enable-logging'])
 
-        self.driver = Chrome(options=options,desired_capabilities=capabilities)
-        self.driver.minimize_window()
-        self.wait = WebDriverWait(self.driver, 2)
+        self.driver = Firefox(options=options)#,desired_capabilities=capabilities)
+        #self.driver.minimize_window()
+        self.wait = WebDriverWait(self.driver, 5)
         self.driver.get(SITE_URL)
-
     
     @staticmethod
     def filter_logs(logs):
@@ -96,7 +105,12 @@ class DofusDB:
         """
         Get the elements in a dirtection from a position.
         """
-        
+        try :
+            #if chrome is closed, reopen it
+            self.driver.title
+        except NoSuchWindowException:
+            self.open()
+            
         good = False
         while (not good):
             try:

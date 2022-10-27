@@ -22,38 +22,12 @@ def get_cursor_pos(cellid):
         
     return (int(posx),int(posy))
 
-def get_cursor_pos_to_change_map(mapsrc,mapdst,cellid,direction,type):
+def get_cursor_pos_to_change_map(cellid,direction,type):
     posx, posy = get_cursor_pos(cellid)
     paire = (cellid // NBPARLIGNE)%2 == 0
-    if((type == 32 and Direction(direction) != Direction.unknown) or type == 8):
-        return (posx,posy)
     
-    if(Direction(direction) == Direction.unknown):
-        xsrc,ysrc = MapPosition.get_pos(mapsrc)
-        xdst,ydst = MapPosition.get_pos(mapdst)
-        dx = xdst - xsrc
-        dy = ydst - ysrc
-        if(dx < 0):
-            if(dy < 0):
-                direction = Direction.left_up
-            elif(dy > 0):
-                direction = Direction.left_down
-            else: #dy = 0
-                direction = Direction.left
-        elif(dx > 0):
-            if(dy < 0):
-                direction = Direction.right_up
-            elif(dy > 0):
-                direction = Direction.right_down
-            else: #dy = 0
-                direction = Direction.right
-        else:
-            if(dy < 0):
-                direction = Direction.up
-            if(dy > 0):
-                direction = Direction.down
-            else:
-                raise Exception("same map")
+    if type == 32 or Direction(direction) == Direction.unknown or type == 8:
+        return (posx,posy)
             
     if(Direction(direction) == Direction.up):
         posy = YUP
@@ -63,34 +37,6 @@ def get_cursor_pos_to_change_map(mapsrc,mapdst,cellid,direction,type):
         posx = XLEFT
     elif(Direction(direction) == Direction.right):
         posx = XRIGHT
-    elif(Direction(direction) == Direction.right_down):
-        if(paire):
-            posx += DIMX
-            posy += DIMY/1.5
-        else:
-            posx += DIMX/2
-            posy += DIMY/3
-    elif(Direction(direction) == Direction.right_up):
-        if(paire):
-            posx += DIMX
-            posy -= DIMY/3
-        else:
-            posx += DIMX/2
-            posy -= DIMY/1.5
-    elif(Direction(direction) == Direction.left_down):
-        if(paire):
-            posx -= DIMX/2
-            posy += DIMY/1.5
-        else:
-            posx -= DIMX
-            posy += DIMY/3
-    elif(Direction(direction) == Direction.left_up):
-        if(paire):
-            posx -= DIMX/2
-            posy -= DIMY/3
-        else:
-            posx -= DIMX
-            posy -= DIMY/1.5
     else:
         raise ValueError("direction not found")
     
