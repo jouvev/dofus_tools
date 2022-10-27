@@ -1,12 +1,20 @@
 import logging
 import pickle
 from src.dofus.mapposition import MapPosition
-from src.dofus.direction import Direction
 
 class World:
+    __instance = None
+    
     def __init__(self):
         self.graph = dict()
         self.actions = dict()
+    
+    @classmethod   
+    def get_instance(cls):
+        if(cls.__instance == None):
+            cls.__instance = World()
+            cls.__instance.deserialize()
+        return cls.__instance
     
     def add_edge(self,src,dst,direction,cell,type):
         if(src not in self.graph):
@@ -15,12 +23,16 @@ class World:
         self.actions[(src,dst)] = (direction,cell,type)
         
     def serialize(self):
-        pickle.dump( self.graph, open( "ressources/worldgraph.pkl", "wb" ) )
-        pickle.dump( self.actions, open( "ressources/worldgraphactions.pkl", "wb" ) )
+        with open( "ressources/worldgraph.pkl", "wb" ) as file :
+            pickle.dump(self.graph,file)
+        with open( "ressources/worldgraphactions.pkl", "wb" ) as file:
+            pickle.dump(self.actions,file)
         
     def deserialize(self):
-        self.graph = pickle.load( open( "ressources/worldgraph.pkl", "rb" ) )
-        self.actions = pickle.load( open( "ressources/worldgraphactions.pkl", "rb" ) )
+        with open( "ressources/worldgraph.pkl", "rb" ) as file :
+            self.graph = pickle.load(file)
+        with open( "ressources/worldgraphactions.pkl", "rb" ) as file:
+            self.actions = pickle.load(file)
         
     def __getitem__(self,key):
         return self.graph[key]
@@ -66,7 +78,7 @@ class World:
             dst = path[i+1]
             a = self.actions[(src,dst)]
             try:
-                action.append((dst[0],*a))
+                action.append(a)
             except:
                 raise RuntimeError(f"action non reconnu dans pathfinding {[(MapPosition.get_pos(p[0][0]),p[0]) for p in path]}")
                 
