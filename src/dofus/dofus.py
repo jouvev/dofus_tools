@@ -105,14 +105,13 @@ class Dofus(Observer):
         return change
     
     def sniffer_attach(self):
-        if(self.dofusSniffer is not None):
-            self.dofusSniffer.stop()
-            self.dofusSniffer.join()
-            self.dofusSniffer = None
-        if(self.port != ""):
-            logging.info(f"sniffer create to {self.name}")
+        if(self.dofusSniffer is None and self.port != ""):
             self.dofusSniffer = PacketSniffer(self)
+            logging.info(f"sniffer create to {self.name}")
             self.dofusSniffer.start()
+        elif(self.dofusSniffer is not None and self.port != ""):
+            logging.info(f"{self.name} : sniffer update to {self.port}")
+            self.dofusSniffer.change_port(self.port)
         
     def fight(self,msgname,p):
         if("GameFightSynchronizeMessage".lower() in msgname.lower()):            
@@ -138,7 +137,7 @@ class Dofus(Observer):
             
     def packet_received(self,p):
         msgname = MessagesFactory.id_class[str(p.packetid)].__name__
-        logging.debug(f"{self.name} received {msgname}")
+        logging.debug(f"{self.name} : received {msgname}")
         
         if("GameFightSynchronizeMessage".lower() in msgname.lower() or "GameFightTurnListMessage".lower() in msgname.lower()):
             self.fight(msgname,p)
@@ -218,7 +217,7 @@ class Dofus(Observer):
         logging.info(f"goto {x},{y}")
         if(self.currentmapid is None and self.cellid is None):
             logging.error(f"{self.name} : no current map infos")
-            return
+            return "no current map infos"
         src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
         worldsrc = MapPosition.get_worldmap(src[0])
         dst = MapPosition.get_mapid(x,y,worldsrc),1.0
