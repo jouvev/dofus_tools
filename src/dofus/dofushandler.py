@@ -123,7 +123,7 @@ class DofusHandler(Thread,Observer):
         self.lock.acquire()
         logging.info("dofus window removed")
         i = self.get_index_by_hwnd(hwnd)
-        self.dofus.pop(i)
+        d = self.dofus.pop(i)
         self.lock.release()
         self.notify("update_hwnd",self.get_hwnds(),self.get_names())
     
@@ -210,6 +210,13 @@ class DofusHandler(Thread,Observer):
                     return "no other dofus window"
                 curr_dof.invite(listinv)
                 return f"invite {listinv}"
+            else:
+                return "no dofus window selected"
+        elif(cmd == "reset"):
+            curr_dof = self.get_current_dofus()
+            if(curr_dof):
+                self.remove_win(curr_dof.hwnd)
+                return f"{curr_dof.name} reset"
             else:
                 return "no dofus window selected"
        
