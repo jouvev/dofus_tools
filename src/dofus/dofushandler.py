@@ -124,6 +124,8 @@ class DofusHandler(Thread,Observer):
         logging.info("dofus window removed")
         i = self.get_index_by_hwnd(hwnd)
         d = self.dofus.pop(i)
+        d.stop()
+        del d
         self.lock.release()
         self.notify("update_hwnd",self.get_hwnds(),self.get_names())
     
