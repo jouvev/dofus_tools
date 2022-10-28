@@ -9,6 +9,7 @@ Aide à la gestion du multi-comptes sur dofus
 - virer moudule keyboard et mouse -> thread qui s'arrête pas (je crois) et full bugs façon
 - pas d'interruption de chasse en cas de fin précoce
 - Oeuf bug a cause du Oe 
+- 1e indice de la route deja jalonné  
 
 ## à jouter:
 - mise en vente prix auto -1k
