@@ -10,7 +10,8 @@ Aide à la gestion du multi-comptes sur dofus
 - pas d'interruption de chasse en cas de fin précoce
 - Oeuf bug a cause du Oe 
 - 1e indice de la route deja jalonné  
-- - bug dans le graph [-33,-59] 
+- bug dans le graph [-33,-59] 
+- si on descend puis on remonte on clique sur nous meme
 
 ## à jouter:
 - mise en vente prix auto -1k
