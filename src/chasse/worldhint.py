@@ -30,7 +30,7 @@ class WorldHint:
                 return curr.get_pos()
             curr_pos = curr.get_directon(direction)
             curr = self.posToNode[curr_pos]
-        raise RuntimeError("Hint not found")
+        raise RuntimeError("indice not found")
     
     def add_hint(self,pos,hint):
         self.get_node(pos).add_hint(hint)

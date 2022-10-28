@@ -7,8 +7,9 @@ logging.basicConfig(level=logging.INFO)
 w = World()
 w.deserialize()
 
-dep = (54175012.0, 1.0)
-arr = w.graph[dep][0]
+dep = (70778880.0, 1.0)
+print(w[dep])
+arr = (185863682.0, 1.0)
 print(w.actions[dep,arr])
 
 """dep = (185860609.0,1.0)

@@ -8,12 +8,16 @@ import logging
 import argparse
 import threading
 
+DEFAULT_LEVEL_LOGGING = logging.INFO
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--nodebug', action='store_false')
 args = parser.parse_args()
 
 if(args.nodebug):
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=DEFAULT_LEVEL_LOGGING)
+else:
+    logging.basicConfig(level=logging.WARNING)
 
 with open("script/config.json",encoding="utf-8") as file:
     config = json.load(file)

@@ -17,7 +17,6 @@ class Traveler(Thread,Observer):
         
     def interrupt(self):
         self.stopped = True
-        time.sleep(1.1)
         self.next_action(None)
         
     def next_action(self,msg):

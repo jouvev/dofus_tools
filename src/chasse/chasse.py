@@ -57,7 +57,7 @@ class Chasse(Thread):
             try:
                 self.xdst,self.ydst = self.get_pos_indice(xsrc,ysrc,self.indice,self.direction)
             except :
-                logging.info("Chasse: indice not found")
+                logging.warning("Chasse: indice not found")
                 return 
             self.dofus.goto(self.xdst,self.ydst)
         else :
@@ -69,7 +69,7 @@ class Chasse(Thread):
             try:
                 self.xdst,self.ydst = self.get_pos_indice(self.xstart,self.ystart,self.indice,self.direction)
             except :
-                logging.info("Chasse: indice not found")
+                logging.warning("Chasse: indice not found")
                 return
         logging.info("Chasse: {} {} at pos {} {}".format(self.indice,self.direction,self.xdst,self.ydst))
             

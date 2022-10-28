@@ -14,7 +14,7 @@ from src.dofus.traveler import Traveler
 from src.chasse.chasse import Chasse
 from src.dofus.cell import get_cursor_pos, get_cursor_pos_to_change_map
 import pywintypes
-import keyboard
+from threading import Condition,Lock
 
 MAXCLICKTRY = 3
 
@@ -29,6 +29,8 @@ class Dofus(Observer):
         self.cellid = None
         self.travel = None
         self.chasseObject = None
+        self.travelCondition = Condition()
+        self.travelerLock = Lock()
         
         self.dofusSniffer = None
         if not (self.port == ""):
@@ -45,9 +47,9 @@ class Dofus(Observer):
             self.dofusSniffer.stop()
             self.dofusSniffer.join()
             self.dofusSniffer = None
-        if(self.travel):
-            logging.info(f"{self.name} : stop travel")
-            self.travel.interrupt()
+                
+        self.stoptravel()
+        
         if(self.chasseObject):
             logging.info(f"{self.name} : stop chasse")
             self.chasseObject.notify_cond_end()
@@ -197,22 +199,30 @@ class Dofus(Observer):
             
         
     def travel_finished(self):
-        self.remove_observer("newmap",self.travel.next_action)
-        self.travel = None
-        logging.info(f"{self.name}: travel finished")
+        with self.travelerLock:
+            self.remove_observer("newmap",self.travel.next_action)
+            self.travel = None
+            logging.info(f"{self.name}: travel finished")
+            with self.travelCondition:
+                self.travelCondition.notify()
         
     def stoptravel(self):
-        if(self.travel):
-            self.travel.interrupt()
-            return f"{self.name} : travel interrupted"
-        return f"{self.name} : no travel to stop"
+        with self.travelerLock:
+            if(self.travel):
+                self.travel.interrupt()
+                return f"{self.name} : travel interrupted"
+            return f"{self.name} : no travel to stop"
         
     def goto(self,x,y):
-        """if(self.travel is not None):
-            logging.info(f'already travelling')
+        self.travelerLock.acquire()
+        if(self.travel is not None):
+            logging.info(f'already travelling, wait for interruption')
             self.travel.interrupt()
-            self.travel = No
-            return "already travelling"""
+            with self.travelCondition:
+                self.travelerLock.release()
+                self.travelCondition.wait()
+                self.travelerLock.acquire()
+            
 
         logging.info(f"goto {x},{y}")
         if(self.currentmapid is None and self.cellid is None):
@@ -223,8 +233,9 @@ class Dofus(Observer):
         dst = MapPosition.get_mapid(x,y,worldsrc),1.0
         self.travel = Traveler(self,src,dst)
         self.add_observer("newmap",self.travel.next_action)
-        time.sleep(random.random())
+        time.sleep(random.random())#pour pas que que tous les perso partent en meme temps
         self.travel.start()
+        self.travelerLock.release()
         return f"{self.name} : travel from {MapPosition.get_pos(src[0])} to {MapPosition.get_pos(dst[0])}"
     
     def press_key(self,key):

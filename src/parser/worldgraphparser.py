@@ -40,13 +40,14 @@ for i in range(edgeCount):
 
 #liste des maps à changer
 w.add_edge((185862149,1),(185862148,1),6,6,8)#-2,-4 => -2,-5
+w.add_edge((70778880,1),(185863682,1),2,430,1)#1,-8 => 1,-7 changement de type et cell
     
 print("save")
 w.serialize()
-print("type : ",set_type)
+"""print("type : ",set_type)
 print("direction : ",set_direction)
 print("id : ",set_id)
-print("skill : ",set_skill)
+print("skill : ",set_skill)"""
 
     
 

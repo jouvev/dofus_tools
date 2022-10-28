@@ -16,9 +16,6 @@ for s in w.graph.keys():
     except RuntimeError:
         continue
     
-print(len(whint.posToNode))
-print(whint.get_node((-81,-37)).get_pos())
-    
 #connecter les noeuds
 for s in w.graph.keys():
     try:
@@ -28,12 +25,6 @@ for s in w.graph.keys():
                     whint.add_map_direction(MapPosition.get_pos(s[0]),w.actions[(s,voisin)][0],MapPosition.get_pos(voisin[0]))
     except RuntimeError:
         continue
-
-print(whint.posToNode[(-81,-37)].get_right())
-print(whint.posToNode[(-5,-8)].get_right())
-print(whint.posToNode[(-5,-8)].get_left())
-print(whint.posToNode[(-5,-8)].get_down())
-print(whint.posToNode[(-5,-8)].get_up())
 
 idname = json.load(open('ressources\\idname.json',encoding='utf-8'))
 idname = {e['clueid']:e['hintfr'] for e in idname}
@@ -45,7 +36,5 @@ for m in pos:
         hint = unidecode.unidecode(idname[i].lower())
         whint.posToNode[(int(x),int(y))].add_hint(hint)
     
-print(whint.posToNode[(-2,0)].get_hints())
-print(whint.posToNode[(-2,0)].get_right())
-print(whint.get_hint(-3,0,"right","Blé noir et blanc"))
+print('save')
 whint.sereliaze()
