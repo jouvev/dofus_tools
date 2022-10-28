@@ -47,5 +47,5 @@ for m in pos:
     
 print(whint.posToNode[(-2,0)].get_hints())
 print(whint.posToNode[(-2,0)].get_right())
-print(whint.get_hint((-3,0),0,"Blé noir et blanc"))
+print(whint.get_hint(-3,0,"right","Blé noir et blanc"))
 whint.sereliaze()
