@@ -84,7 +84,8 @@ class Chasse(Thread):
                 self.search = PhorreurSeacher(self.npcid,self,self.direction)
                 self.search.start()
             else:
-                self.dofus.goto(self.xdst,self.ydst)
+                if self.xdst and self.ydst:
+                    self.dofus.goto(self.xdst,self.ydst)
             logging.info("Chasse: start map reached")
         if(self.xdst is not None and self.ydst is not None and self.xdst == currx and self.ydst == curry):
             self.dofus.stoptravel()

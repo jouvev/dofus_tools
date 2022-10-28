@@ -41,7 +41,8 @@ for i in range(edgeCount):
 #liste des maps à changer
 w.add_edge((185862149,1),(185862148,1),6,6,8)#-2,-4 => -2,-5
 w.add_edge((70778880,1),(185863682,1),2,430,1)#1,-8 => 1,-7 changement de type et cell
-    
+w.add_edge((95420418.0,1),(90703872.0,1),0,335,2)#14,26 => 15,26 changement de cell
+   
 print("save")
 w.serialize()
 """print("type : ",set_type)

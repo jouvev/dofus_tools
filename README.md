@@ -21,3 +21,4 @@ Aide à la gestion du multi-comptes sur dofus
     - entre le prix automatiquement selon quantité dans l'inventaire 
 - eviter les mobs goto 
 - zaap traveler
+- thread pour faire les actions de l'objet de dofus (par exemple quand on fait une action apres avoir recu un packet car pour l'instant c'est le thread du sniffer qui le fait)
