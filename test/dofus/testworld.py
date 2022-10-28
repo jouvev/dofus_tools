@@ -1,16 +1,23 @@
 from src.dofus.world import World
+from src.chasse.worldhint import WorldHint
 from src.dofus.mapposition import MapPosition
 import logging
 
 logging.basicConfig(level=logging.INFO)
 
-w = World()
-w.deserialize()
+w = World().get_instance()
+whint = WorldHint().get_instance()
 
-dep = (70778880.0, 1.0)
-print(w[dep])
-arr = (185863682.0, 1.0)
-print(w.actions[dep,arr])
+
+mapid = MapPosition.get_mapid(0,0,1)
+print(mapid)
+print(MapPosition.mappos[mapid])
+dep = (mapid, 1.0)
+print([(m[0],MapPosition.get_pos(m[0]),w.actions[(dep,m)]) for m in w[dep]])
+print(whint.posToNode[(0,0)].get_right())
+
+"""arr = (185863682.0, 1.0)
+print(w.actions[dep,arr])"""
 
 """dep = (185860609.0,1.0)
 arr = (185861634.0,1.0)

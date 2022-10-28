@@ -19,9 +19,14 @@ for s in w.graph.keys():
 #connecter les noeuds
 for s in w.graph.keys():
     try:
-        if(MapPosition.get_worldmap(s[0]) == 1):
+        if(MapPosition.get_worldmap(s[0]) == 1 and 
+           MapPosition.mappos[s[0]]['hasPriorityOnWorldmap'] and 
+           MapPosition.mappos[s[0]]['outdoor']):
             for voisin in w.graph[s]:
-                if(MapPosition.get_pos(voisin[0]) in whint.posToNode and w.actions[(s,voisin)][0] in [0,2,4,6]):
+                if(MapPosition.get_pos(voisin[0]) in whint.posToNode and 
+                   MapPosition.mappos[voisin[0]]['hasPriorityOnWorldmap'] and 
+                   MapPosition.mappos[voisin[0]]['outdoor'] and 
+                   w.actions[(s,voisin)][0] in [0,2,4,6]):
                     whint.add_map_direction(MapPosition.get_pos(s[0]),w.actions[(s,voisin)][0],MapPosition.get_pos(voisin[0]))
     except RuntimeError:
         continue
