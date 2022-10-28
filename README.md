@@ -9,7 +9,8 @@ Aide à la gestion du multi-comptes sur dofus
 - virer moudule keyboard et mouse -> thread qui s'arrête pas (je crois) et full bugs façon
 - pas d'interruption de chasse en cas de fin précoce
 - 1e indice de la route deja jalonné  
-- bug dans le graph [-33,-59] 
+- bug dans le graph [-33,-59]
+- bug graph pandala 21 -30 (pb de zone je pense)
 - si on descend puis on remonte on clique sur nous meme
 
 ## à jouter:
