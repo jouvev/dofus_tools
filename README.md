@@ -8,6 +8,8 @@ Aide à la gestion du multi-comptes sur dofus
     - semble apparaître quand shift+tab
 - virer moudule keyboard et mouse -> thread qui s'arrête pas (je crois) et full bugs façon
 - pas d'interruption de chasse en cas de fin précoce
+- Oeuf bug a cause du Oe 
+
 ## à jouter:
 - mise en vente prix auto -1k
     - à la connexion inventorycontentmessage
