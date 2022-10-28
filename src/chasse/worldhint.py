@@ -23,7 +23,7 @@ class WorldHint:
         pos = (posx, posy)
         curr_pos = self.get_node(pos).get_directon(direction)
         curr = self.posToNode[curr_pos]
-        for i in range(9):
+        for i in range(10):
             if hint in curr.get_hints():
                 return curr.get_pos()
             curr_pos = curr.get_directon(direction)

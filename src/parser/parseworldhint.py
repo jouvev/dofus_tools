@@ -34,9 +34,9 @@ print(whint.posToNode[(-5,-8)].get_left())
 print(whint.posToNode[(-5,-8)].get_down())
 print(whint.posToNode[(-5,-8)].get_up())
 
-idname = json.load(open('D:\\Téléchargement\\idname.json',encoding='utf-8'))
+idname = json.load(open('ressources\\idname.json',encoding='utf-8'))
 idname = {e['clueid']:e['hintfr'] for e in idname}
-pos = json.load(open('D:\\Téléchargement\\huntlist.json',encoding='utf-8'))
+pos = json.load(open('ressources\\huntlist.json',encoding='utf-8'))
 
 for m in pos:
     x,y = m['x'],m['y']
