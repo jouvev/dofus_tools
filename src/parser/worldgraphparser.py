@@ -39,6 +39,7 @@ for i in range(edgeCount):
     w.add_edge((mapid1,zone1),(mapid2,zone2),direction,cell,type)
 
 #liste des maps à changer
+w.add_edge((185862149,1),(185862148,1),6,6,8)#-2,-4 => -2,-5
     
 print("save")
 w.serialize()
