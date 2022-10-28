@@ -1,4 +1,5 @@
 import pickle
+import unidecode
 
 class WorldHint:
     __instance = None
@@ -21,6 +22,7 @@ class WorldHint:
     
     def get_hint(self, posx, posy, direction, hint):
         pos = (posx, posy)
+        hint = unidecode.unidecode(hint.lower())
         curr_pos = self.get_node(pos).get_directon(direction)
         curr = self.posToNode[curr_pos]
         for i in range(10):

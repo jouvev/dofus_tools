@@ -2,6 +2,7 @@ from src.chasse.worldhint import WorldHint
 from src.chasse.maphint import MapHint
 from src.dofus.world import World,MapPosition
 import json
+import unidecode
 
 w = World.get_instance()
 whint = WorldHint()
@@ -41,7 +42,7 @@ pos = json.load(open('ressources\\huntlist.json',encoding='utf-8'))
 for m in pos:
     x,y = m['x'],m['y']
     for i in m['clues']:
-        hint = idname[i]
+        hint = unidecode.unidecode(idname[i].lower())
         whint.posToNode[(int(x),int(y))].add_hint(hint)
     
 print(whint.posToNode[(-2,0)].get_hints())
