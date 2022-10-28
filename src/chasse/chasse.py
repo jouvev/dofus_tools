@@ -12,7 +12,7 @@ class Chasse(Thread):
     def __init__(self, dofus):
         Thread.__init__(self,name="Chasse")
         self.dofus = dofus
-        self.ddb = WorldHint.get_instance()
+        self.hintBD = WorldHint.get_instance()
         with open("ressources/poi.json",encoding="utf-8") as file :
             self.poitoindice = json.load(file)
         self.endCond = Condition()
@@ -74,7 +74,7 @@ class Chasse(Thread):
         logging.info("Chasse: {} {} at pos {} {}".format(self.indice,self.direction,self.xdst,self.ydst))
             
     def get_pos_indice(self,xsrc,ysrc,indice,direction):
-        return self.ddb.get_hint(xsrc,ysrc,direction,indice)
+        return self.hintBD.get_hint(xsrc,ysrc,direction,indice)
     
     def newcurrentmap(self,mapid):
         currx,curry = MapPosition.get_pos(mapid)
@@ -112,6 +112,9 @@ class Chasse(Thread):
     def run(self):
         with self.endCond:
             self.endCond.wait()
-        self.ddb.driver.close()
+        try :
+            self.hintDB.driver.close()
+        except :
+            pass 
         self.dofus.endchasse()
         logging.info("Chasse: end of chasse")
