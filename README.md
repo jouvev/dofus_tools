@@ -8,7 +8,6 @@ Aide à la gestion du multi-comptes sur dofus
     - semble apparaître quand shift+tab
 - virer moudule keyboard et mouse -> thread qui s'arrête pas (je crois) et full bugs façon
 - pas d'interruption de chasse en cas de fin précoce
-- Oeuf bug a cause du Oe 
 - 1e indice de la route deja jalonné  
 - bug dans le graph [-33,-59] 
 - si on descend puis on remonte on clique sur nous meme
