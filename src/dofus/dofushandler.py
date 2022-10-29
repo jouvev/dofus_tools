@@ -6,6 +6,7 @@ import psutil
 from src.dofus.dofus import Dofus
 from src.tools.observer import Observer
 import logging
+import pyautogui
 
 
 class DofusHandler(Thread,Observer):
@@ -219,6 +220,25 @@ class DofusHandler(Thread,Observer):
             if(curr_dof):
                 self.remove_win(curr_dof.hwnd)
                 return f"{curr_dof.name} reset"
+            else:
+                return "no dofus window selected"
+        elif(cmd == "flagcalibrage"):
+            curr_dof = self.get_current_dofus()
+            #normalement une chasse doit être lancée sinon t'es con
+            if(curr_dof):
+                if(curr_dof.chasseObject is not None):
+                    pos = pyautogui.locateCenterOnScreen('ressources\\img\\hintflag.png',confidence=0.9)
+                    if(pos is not None):
+                        x,y = pos
+                    else : 
+                        return "Flag not found\n/!\ attention à ne pas cacher le flag avec la fenêtre de commande"
+                    y = y - 30*(len(curr_dof.chasseObject.listindice)-1)
+                    for d in self.dofus:
+                        if(d.chasseObject is not None):
+                            d.chasseObject.set_flag_pos(x,y)
+                    return f"Flag on {x},{y}"
+                else:
+                    return "Une chasse doit être lancée"
             else:
                 return "no dofus window selected"
        

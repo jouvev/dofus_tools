@@ -3,6 +3,7 @@ from src.dofus.mapposition import MapPosition
 from src.chasse.worldhint import WorldHint
 from src.dofus.direction import Direction
 from src.chasse.phorreursearcher import PhorreurSeacher
+import pickle
 import logging
 import json
 import win32gui 
@@ -11,6 +12,11 @@ import time
 class Chasse(Thread):
     def __init__(self, dofus):
         Thread.__init__(self,name="Chasse")
+        try :
+            with open('src/chasse/flagpos.pkl','rb') as f : 
+                self.xflag , self.yflag = pickle.load(f)
+        except :
+            self.set_flag_pos(309,670)
         self.dofus = dofus
         self.hintBD = WorldHint.get_instance()
         with open("ressources/poi.json",encoding="utf-8") as file :
@@ -21,6 +27,13 @@ class Chasse(Thread):
         self.startmap = -1000.0
         self.xdst,self.ydst = None,None
         
+    def set_flag_pos(self,xflag,yflag):
+        logging.info("set flag position to {} {}".format(xflag,yflag))
+        self.xflag = xflag
+        self.yflag = yflag
+        with open('src/chasse/flagpos.pkl','wb') as f : 
+            pickle.dump((self.xflag , self.yflag),f)
+    
     def read_chasse_msg(self,msg):
         self.listindice = msg.knownStepsList
         self.indicevalide = len(msg.flags)
@@ -98,15 +111,15 @@ class Chasse(Thread):
             self.endCond.notify()
             
     def click_on_flag(self):
-        y = 670 + self.indicevalide * 30
-        realx,realy = win32gui.ScreenToClient(self.dofus.hwnd,(309,y))
+        y = self.yflag + self.indicevalide * 30
+        realx,realy = win32gui.ScreenToClient(self.dofus.hwnd,(self.xflag,y))
         time.sleep(0.5)
         self.dofus.click(realx,realy,False)
         logging.info("Chasse: click on flag")
         
     def next_step(self):
-        y = 670 + self.indicevalide * 30
-        realx,realy = win32gui.ScreenToClient(self.dofus.hwnd,(293,y))
+        y = self.yflag + self.indicevalide * 30
+        realx,realy = win32gui.ScreenToClient(self.dofus.hwnd,(self.xflag-20,y))
         self.dofus.click(realx,realy,False)
         logging.info("Chasse: click on next step")
             

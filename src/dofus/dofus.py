@@ -17,8 +17,6 @@ from src.dofus.cell import get_cursor_pos, get_cursor_pos_to_change_map
 import pywintypes
 from threading import Condition,Lock
 
-MAXCLICKTRY = 3
-
 class Dofus(Observer):
     def __init__(self,hwnd):
         super().__init__(["fight","newmap"])
@@ -231,6 +229,7 @@ class Dofus(Observer):
         logging.info(f"goto {x},{y}")
         if(self.currentmapid is None and self.cellid is None):
             logging.error(f"{self.name} : no current map infos")
+            self.travelerLock.release()
             return "no current map infos"
         src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
         worldsrc = MapPosition.get_worldmap(src[0])
