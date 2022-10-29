@@ -26,10 +26,7 @@ class Traveler(Thread,Observer):
     def run(self):
         try:
             path = self.w.findpath(self.src, self.dest)
-            if(not path):
-                return 
-            else:
-                self.a = path[1]
+            self.a = path[1]
             self.stopped = False
             self.add_observer("finished",self.dofus.travel_finished)
             

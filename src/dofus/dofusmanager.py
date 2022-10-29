@@ -4,9 +4,9 @@ import logging
 import time
 import win32gui
 import win32com.client
-from concurrent.futures import ThreadPoolExecutor
 from src.tools.observer import Observer
 from src.command.command import Command
+from src.dofus.dofus import Dofus
 
 class DofusManager(Observer):
     def __init__(self,config,dofus_handler):
@@ -17,7 +17,6 @@ class DofusManager(Observer):
         self.running = True
         self.confirm = False
         self.cmdobject = Command(self.dofus_handler)
-        self.executor = ThreadPoolExecutor(4,thread_name_prefix="DofusManager(ThreadPool)")
         
         shell = win32com.client.Dispatch("WScript.Shell")
         shell.SendKeys('%')
@@ -53,7 +52,7 @@ class DofusManager(Observer):
             for d in self.dofus_handler.dofus:
                 if(d.hwnd != curr_h):
                     realx,realy = win32gui.ScreenToClient(d.hwnd,(x,y))
-                    self.executor.submit(lambda dof,i,j,bdelay : dof.click(i,j,bdelay),d,realx,realy,delay)
+                    d.do_async_action(Dofus.click,realx,realy,delay)
         
     def allow_event(self):
         tmp = win32gui.GetForegroundWindow()

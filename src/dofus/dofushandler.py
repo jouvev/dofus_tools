@@ -165,29 +165,29 @@ class DofusHandler(Thread,Observer):
         if(cmd == "goto"):
             curr_dof = self.get_current_dofus()
             if(curr_dof):
-                return curr_dof.goto(*arg)
+                curr_dof.do_async_action(Dofus.goto,*arg)
+                return "ok"
             else:
                 return "no dofus window selected"
         elif(cmd == "stoptravel"):
             curr_dof = self.get_current_dofus()
             if(curr_dof):
-                return curr_dof.stoptravel()
+                curr_dof.do_async_action(Dofus.stoptravel)
+                return "ok"
             else:
                 return "no dofus window selected"
         elif(cmd == "gotos"):
-            rep = ""
             for d in self.dofus:
-                rep += d.goto(*arg)+"\n"
-            return rep
+                d.do_async_action(Dofus.goto,*arg)
+            return "ok"
         elif(cmd == "stoptravels"):
-            rep = ""
             for d in self.dofus:
-                rep += d.stoptravel()+"\n"
-            return rep
+                d.do_async_action(Dofus.stoptravel)
+            return "ok"
         elif(cmd == "clickcell"):
             curr_dof = self.get_current_dofus()
             if(curr_dof):
-                curr_dof.click_cell(*arg)
+                curr_dof.do_async_action(Dofus.click_cell,*arg)
                 return f"click on cellid {arg[0]}"
             else:
                 return "no dofus window selected"
@@ -195,22 +195,22 @@ class DofusHandler(Thread,Observer):
             curr_dof = self.get_current_dofus()
             if(curr_dof):
                 nom = " ".join(arg)
-                return curr_dof.zaap(nom)
+                curr_dof.do_async_action(Dofus.zaap,nom)
+                return "ok"
             else:
                 return "no dofus window selected"
         elif(cmd == "zaaps"):
             nom = " ".join(arg)
-            rep = ""
-            for d in self.dofus:
-                rep += d.zaap(nom)+"\n"#thread ? 
-            return rep
+            for d in self.dofus:    
+                d.do_async_action(Dofus.zaap,nom)
+            return "ok"
         elif(cmd == "group"):
             curr_dof = self.get_current_dofus()
             if(curr_dof):
                 listinv = [n for n in self.get_names() if n != curr_dof.name and n != ""]
                 if(len(listinv) == 0):
                     return "no other dofus window"
-                curr_dof.invite(listinv)
+                curr_dof.do_async_action(Dofus.invite,listinv)
                 return f"invite {listinv}"
             else:
                 return "no dofus window selected"

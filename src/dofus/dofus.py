@@ -6,6 +6,7 @@ import win32con
 import psutil
 import time
 import random
+from concurrent.futures import ThreadPoolExecutor
 from src.reseau.dofussniffer import PacketSniffer
 from src.reseau.MessagesFactory import MessagesFactory
 from src.tools.observer import Observer
@@ -31,6 +32,7 @@ class Dofus(Observer):
         self.chasseObject = None
         self.travelCondition = Condition()
         self.travelerLock = Lock()
+        self.dofusExec = ThreadPoolExecutor(max_workers=1)
         
         self.dofusSniffer = None
         if not (self.port == ""):
@@ -40,6 +42,9 @@ class Dofus(Observer):
         self.turnlist = None
         
         self.click_confirm = False
+        
+    def do_async_action(self,action,*args):
+        self.dofusExec.submit(action,self,*args)
         
     def stop(self):
         if( self.dofusSniffer is not None):
@@ -139,14 +144,13 @@ class Dofus(Observer):
             
     def packet_received(self,p):
         msgname = MessagesFactory.id_class[str(p.packetid)].__name__
-        logging.debug(f"{self.name} : received {msgname}")
         
         if("GameFightSynchronizeMessage".lower() in msgname.lower() or "GameFightTurnListMessage".lower() in msgname.lower()):
-            self.fight(msgname,p)
+            self.do_async_action(Dofus.fight,msgname,p)
         elif("MapComplementaryInformationsDataMessage".lower() in msgname.lower()):
-            self.mapinfos(msgname,p)
+            self.do_async_action(Dofus.mapinfos,msgname,p)
         elif("TreasureHuntMessage".lower() in msgname.lower()):
-            self.chasse(msgname,p)
+            self.do_async_action(Dofus.chasse,msgname,p)
             
     def endchasse(self):
         if(self.chasseObject):
@@ -262,18 +266,18 @@ class Dofus(Observer):
         if(self.currentmapid != 162791424):
             realx,realy = win32gui.ScreenToClient(self.hwnd,(1559,982))
             self.click(realx,realy,False)
-            time.sleep(1)
+            time.sleep(1.5)
         #click zaap
         realx,realy = win32gui.ScreenToClient(self.hwnd,(565,433))
         self.click(realx,realy,False)
-        time.sleep(0.5)
+        time.sleep(1)
         #click champ
         realx,realy = win32gui.ScreenToClient(self.hwnd,(1111,234))
         self.click(realx,realy,False)
-        time.sleep(1)
+        time.sleep(0.2)
         #ecrire le nom
         self.write(nom)
-        time.sleep(0.2)
+        time.sleep(0.3)
         self.press_enter()
         #click tp
         realx,realy = win32gui.ScreenToClient(self.hwnd,(955,776))

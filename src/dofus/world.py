@@ -60,7 +60,7 @@ class World:
                         
         if(not find):
             logging.error(f"no path found from {src} to {dst}")
-            return None
+            return [],[]
                         
         #reconstruction du chemin
         cur = dst
