@@ -9,7 +9,7 @@ class PhorreurSeacher(Thread):
         self.direction = direction
         self.chasse = chasse
         self.dofus = chasse.dofus
-        self.dofus.add_observer("newmap",self.parse_map)
+        self.dofus.add_observer("newmapinfos",self.parse_map)
         self.newMapCond = Condition()
         self.end = False
         self.nbmap = 0
@@ -22,12 +22,12 @@ class PhorreurSeacher(Thread):
             except:
                 continue
         if(npcid == self.npcid):
-            self.gotit()
+            self.gotit()    
         with self.newMapCond:
             self.newMapCond.notify()
             
     def gotit(self):
-        self.dofus.remove_observer("newmap",self.parse_map)
+        self.dofus.remove_observer("newmapinfos",self.parse_map)
         logging.info(f"Chasse: got phorreur {self.npcid}, next step")
         time.sleep(1) # attendre fin de chargement avant de cliquer dur le drapeau
         self.chasse.click_on_flag()

@@ -19,7 +19,7 @@ from threading import Condition,Lock
 
 class Dofus(Observer):
     def __init__(self,hwnd):
-        super().__init__(["fight","newmap"])
+        super().__init__(["fight","newmap","newmapinfos"])
         self.hwnd = hwnd
         _,self.pid = win32process.GetWindowThreadProcessId(hwnd)
         self.set_name()
@@ -42,7 +42,16 @@ class Dofus(Observer):
         self.click_confirm = False
         
     def do_async_action(self,action,*args):
-        self.dofusExec.submit(action,self,*args)
+        f = self.dofusExec.submit(action,self,*args)
+        f.add_done_callback(self.res_print)
+        
+    def res_print(self,f):
+        res = f.result()
+        excep = f.exception()
+        if(excep is not None):
+            raise excep
+        elif(res is not None):
+            logging.info(f"{res}")
         
     def stop(self):
         if( self.dofusSniffer is not None):
@@ -143,11 +152,13 @@ class Dofus(Observer):
     def packet_received(self,p):
         msgname = MessagesFactory.id_class[str(p.packetid)].__name__
         
-        if("GameFightSynchronizeMessage".lower() in msgname.lower() or "GameFightTurnListMessage".lower() in msgname.lower()):
+        if("GameFightSynchronizeMessage".lower() == msgname.lower() or "GameFightTurnListMessage".lower() == msgname.lower()):
             self.do_async_action(Dofus.fight,msgname,p)
-        elif("MapComplementaryInformationsDataMessage".lower() in msgname.lower()):
+        elif("MapComplementaryInformationsDataMessage".lower() == msgname.lower()):
             self.do_async_action(Dofus.mapinfos,msgname,p)
-        elif("TreasureHuntMessage".lower() in msgname.lower()):
+        elif("CurrentMapMessage".lower() == msgname.lower()):
+            self.do_async_action(Dofus.newmapid,msgname,p)
+        elif("TreasureHuntMessage".lower() == msgname.lower()):
             self.do_async_action(Dofus.chasse,msgname,p)
             
     def endchasse(self):
@@ -160,11 +171,16 @@ class Dofus(Observer):
             self.chasseObject = Chasse(self)
             self.chasseObject.start()
         self.chasseObject.read_chasse_msg(msg)
+        
+    def newmapid(self,msgname,p):
+        inst = MessagesFactory.get_instance_id(p.packetid,p.get_content())
+        self.currentmapid = inst.mapId
+        self.notify("newmap",inst)
+        if(self.chasseObject):
+            self.chasseObject.newcurrentmap(self.currentmapid)
             
     def mapinfos(self,msgname,p):
         inst = MessagesFactory.get_instance_id(p.packetid,p.get_content())
-        
-        self.currentmapid = inst.mapId
         
         for a in inst.actors:
             try : 
@@ -174,9 +190,7 @@ class Dofus(Observer):
             if(name == self.name):
                 self.cellid = a.disposition.cellId
                 break
-        self.notify("newmap",inst)
-        if(self.chasseObject):
-            self.chasseObject.newcurrentmap(self.currentmapid)
+        self.notify("newmapinfos",inst)
     
     def open(self):
         try :
