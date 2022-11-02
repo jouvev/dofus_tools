@@ -13,6 +13,7 @@ Aide à la gestion du multi-comptes sur dofus
 - bug graph pandala 21 -30 (pb de zone je pense)
 - si on descend puis on remonte on clique sur nous meme
 - si l'indice n'est pas trouvé crash de toutes les chasses
+- si path non trouvé, ne fonctionne plus
 
 ## à jouter:
 - mise en vente prix auto -1k
