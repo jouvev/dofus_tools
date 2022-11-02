@@ -1,10 +1,10 @@
-from src.reseau.types.BasicGuildInformations import BasicGuildInformations
+from src.reseau.types.GuildInformations import GuildInformations
 
 class GuildInvitedMessage:
    def __init__(self,input):
       self._recruterIdFunc(input)
       self._recruterNameFunc(input)
-      self.guildInfo = BasicGuildInformations(input)
+      self.guildInfo = GuildInformations(input)
    
    def _recruterIdFunc(self,input) :
       self.recruterId = input.readVarUhLong()

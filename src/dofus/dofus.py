@@ -31,6 +31,7 @@ class Dofus(Observer):
         self.travelCondition = Condition()
         self.travelerLock = Lock()
         self.dofusExec = ThreadPoolExecutor(max_workers=1)
+        self.dofusSnifferThread = ThreadPoolExecutor(max_workers=1)
         
         self.dofusSniffer = None
         if not (self.port == ""):
@@ -40,6 +41,10 @@ class Dofus(Observer):
         self.turnlist = None
         
         self.click_confirm = False
+        
+    def sniffer_async(self,action,*args):
+        f = self.dofusExec.submit(action,self,*args)
+        f.add_done_callback(self.res_print)
         
     def do_async_action(self,action,*args):
         f = self.dofusExec.submit(action,self,*args)
@@ -153,13 +158,13 @@ class Dofus(Observer):
         msgname = MessagesFactory.id_class[str(p.packetid)].__name__
         
         if("GameFightSynchronizeMessage".lower() == msgname.lower() or "GameFightTurnListMessage".lower() == msgname.lower()):
-            self.do_async_action(Dofus.fight,msgname,p)
+            self.sniffer_async(Dofus.fight,msgname,p)
         elif("MapComplementaryInformationsDataMessage".lower() == msgname.lower()):
-            self.do_async_action(Dofus.mapinfos,msgname,p)
+            self.sniffer_async(Dofus.mapinfos,msgname,p)
         elif("CurrentMapMessage".lower() == msgname.lower()):
-            self.do_async_action(Dofus.newmapid,msgname,p)
+            self.sniffer_async(Dofus.newmapid,msgname,p)
         elif("TreasureHuntMessage".lower() == msgname.lower()):
-            self.do_async_action(Dofus.chasse,msgname,p)
+            self.sniffer_async(Dofus.chasse,msgname,p)
             
     def endchasse(self):
         if(self.chasseObject):
@@ -247,7 +252,12 @@ class Dofus(Observer):
             return "no current map infos"
         src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
         worldsrc = MapPosition.get_worldmap(src[0])
-        dst = MapPosition.get_mapid(x,y,worldsrc),1.0
+        try :
+            dst = MapPosition.get_mapid(x,y,worldsrc),1.0
+        except RuntimeError as e:
+            logging.error(f"{self.name} : {e}")
+            self.travelerLock.release()
+            return "{x}, {y} Unknown map"
         self.travel = Traveler(self,src,dst)
         self.add_observer("newmap",self.travel.next_action)
         time.sleep(random.random())#pour pas que que tous les perso partent en meme temps

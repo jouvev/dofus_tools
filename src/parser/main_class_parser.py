@@ -24,7 +24,18 @@ def parse_all_scripts(script_path,root_path_output,mode):
         with open(output_path,"w") as f:
             f.write(res_python)
             
-def get_resources(script_path):
+def get_preressources(root_path):
+    with open(os.path.join(root_path),"r") as f:
+        text = f.read()
+    
+    tmp = re.findall(r"_[a-zA-Z]+\[([0-9]+)\] = ([a-zA-Z0-9]+);",text)
+    return {str(i[1]):str(i[0]) for i in tmp}
+            
+def get_resources(script_path,preressources = None):
+    if(preressources != None):
+        pre = get_preressources(preressources)
+    else:
+        pre = {}
     idclass = {}
     for path in script_path:
         with open(path,"r") as f:
@@ -32,6 +43,8 @@ def get_resources(script_path):
             try :
                 classname = re.findall(r"class ([a-zA-Z0-9]+)",res)[0]
                 classid = re.findall(r"protocolId:uint = ([0-9]+)",res)[0]
+                if(classname in pre):
+                    classid = pre[classname]
                 if classid in idclass:
                     print("ERROR: id already exist",classid, classname, idclass[classid])
                 else:
@@ -76,7 +89,7 @@ def create_factory(scripts,ressources,root_path_output,mode):
 
 if(DECOMP):
     shutil.rmtree("C:\\Users\\vincent\\Desktop\\dofus_source\\scripts", ignore_errors=True)
-    os.system('ffdec.bat -selectclass com.ankamagames.dofus.network.types.++,com.ankamagames.dofus.network.messages.++ \
+    os.system('ffdec.bat -selectclass com.ankamagames.dofus.network.++ \
         -export script "C:\\Users\\vincent\\Desktop\\dofus_source" "C:\\Users\\vincent\\AppData\\Local\\Ankama\\zaap\\Dofus\\DofusInvoker.swf"')
 
 root_path_types = "C:\\Users\\vincent\\Desktop\\dofus_source\\scripts\\com\\ankamagames\\dofus\\network\\types"
@@ -94,9 +107,9 @@ parse_all(root_path_types,root_path_output_types,"types")
 parse_all(root_path_messages,root_path_output_msg,"messages")
 
 types_scripts = get_all_scripts(root_path_types)
-types_ressources = get_resources(types_scripts)
+types_ressources = get_resources(types_scripts,"C:\\Users\\vincent\\Desktop\\dofus_source\\scripts\\com\\ankamagames\\dofus\\network\\ProtocolTypeManager.as")
 create_factory(types_scripts,types_ressources,root_path_output,"types")
 
 msg_scripts = get_all_scripts(root_path_messages)
-msg_ressources = get_resources(msg_scripts)
+msg_ressources = get_resources(msg_scripts,"C:\\Users\\vincent\\Desktop\\dofus_source\\scripts\\com\\ankamagames\\dofus\\network\\MessageReceiver.as")
 create_factory(msg_scripts,msg_ressources,root_path_output,"messages")

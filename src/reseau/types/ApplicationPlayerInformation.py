@@ -22,7 +22,7 @@ class ApplicationPlayerInformation:
    
    def _breedFunc(self,input) :
       self.breed = input.readByte()
-      if(self.breed < 1 or self.breed > 18) :
+      if(self.breed < 1 or self.breed > PlayableBreedEnum.Forgelance) :
          raise RuntimeError("Forbidden value (" + str(self.breed) + ") on element of ApplicationPlayerInformation.breed.")
    
    def _sexFunc(self,input) :
