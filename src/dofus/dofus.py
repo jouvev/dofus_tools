@@ -43,7 +43,7 @@ class Dofus(Observer):
         self.click_confirm = False
         
     def sniffer_async(self,action,*args):
-        f = self.dofusExec.submit(action,self,*args)
+        f = self.dofusSnifferThread.submit(action,self,*args)
         f.add_done_callback(self.res_print)
         
     def do_async_action(self,action,*args):
