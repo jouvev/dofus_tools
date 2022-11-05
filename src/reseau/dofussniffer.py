@@ -56,3 +56,5 @@ class PacketSniffer(Thread):
                             self.buffer = ""
                             break
                         self.buffer = self.buffer[len(msg):]
+        cap.close()
+        loop.close()
