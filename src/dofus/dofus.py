@@ -251,19 +251,13 @@ class Dofus(Observer):
             self.travelerLock.release()
             return "no current map infos"
         src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
-        worldsrc = MapPosition.get_worldmap(src[0])
-        try :
-            dst = MapPosition.get_mapid(x,y,worldsrc),1.0
-        except RuntimeError as e:
-            logging.error(f"{self.name} : {e}")
-            self.travelerLock.release()
-            return "{x}, {y} Unknown map"
+        dst = (int(x),int(y))
         self.travel = Traveler(self,src,dst)
         self.add_observer("newmap",self.travel.next_action)
         time.sleep(random.random())#pour pas que que tous les perso partent en meme temps
         self.travel.start()
         self.travelerLock.release()
-        return f"{self.name} : travel from {MapPosition.get_pos(src[0])} to {MapPosition.get_pos(dst[0])}"
+        return f"{self.name} : travel from {MapPosition.get_pos(src[0])} to {dst}"
     
     def press_key(self,key):
         win32gui.SendMessage(self.hwnd, win32con.WM_CHAR, ord(key), 0)

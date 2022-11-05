@@ -9,12 +9,13 @@ w = World().get_instance()
 whint = WorldHint().get_instance()
 
 
-mapid = MapPosition.get_mapid(7,-5,1)
-print(mapid)
+pos = MapPosition.get_pos("207619076")
+print(pos)
+"""print(mapid)
 print(MapPosition.posmap[(7,-5,1)])
 dep = (mapid, 1.0)
 print([(m[0],MapPosition.get_pos(m[0]),w.actions[(dep,m)]) for m in w[dep]])
-print(whint.posToNode[(8,-5)].get_left())
+print(whint.posToNode[(8,-5)].get_left())"""
 
 """arr = (185863682.0, 1.0)
 print(w.actions[dep,arr])"""

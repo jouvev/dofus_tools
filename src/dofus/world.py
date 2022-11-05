@@ -48,7 +48,7 @@ class World:
         #parcour en largeur
         while len(q) > 0:
             cur = q.pop(0)
-            if cur == dst:
+            if MapPosition.get_pos(cur[0]) == dst:
                 find = True
                 break
             if cur in self.graph:
@@ -63,7 +63,6 @@ class World:
             return [],[]
                         
         #reconstruction du chemin
-        cur = dst
         while cur != src:
             path.append(cur)
             cur = pred[cur]
