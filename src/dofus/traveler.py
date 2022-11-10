@@ -1,7 +1,7 @@
 from threading import Thread,Condition
 from src.dofus.world import World
+from src.dofus.mapposition import MapPosition
 import time 
-import random
 import logging
 from src.tools.observer import Observer
 
@@ -25,18 +25,29 @@ class Traveler(Thread,Observer):
         
     def run(self):
         try:
-            path = self.w.findpath(self.src, self.dest)
-            self.a = path[1]
+            path,self.a = self.w.findpath(self.src, self.dest)
+            if(path == []):
+                return
+            dico_path = {m:a for m,a in zip(path[:-1],self.a)}
+            dico_path[path[-1]] = "stop"
             self.stopped = False
             self.add_observer("finished",self.dofus.travel_finished)
             
-            for i,(direction,cell,type) in enumerate(self.a):
+            mapi = (self.dofus.currentmapid,MapPosition.get_linkedzone(self.dofus.currentmapid,self.dofus.cellid))
+            while(dico_path[mapi] != "stop" and not self.stopped):
+                direction,cell,type = dico_path[mapi]
                 logging.debug(f"{self.dofus.name} : {int(direction)} {cell} {type}")
                 self.dofus.change_map_by_cellid(cell,direction,type,delay=False)
                 with self.condition:
                     self.condition.wait()
-                if(i != len(self.a)-1):
+                mapi = (self.dofus.currentmapid,MapPosition.get_linkedzone(self.dofus.currentmapid,self.dofus.cellid))
+                if (mapi not in dico_path):
+                    logging.info("Traveler : out of the way")
+                    return
+                if(dico_path[mapi] != "stop"):
                     time.sleep(1)
+                else:
+                    self.stopped = True
                 if(self.stopped):
                     break
         except Exception as e:

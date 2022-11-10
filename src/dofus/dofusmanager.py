@@ -49,7 +49,7 @@ class DofusManager(Observer):
             x,y = win32gui.GetCursorPos()
             delay = not keyboard.is_pressed(self.config["keyboard_bindings"]['click_no_delay'])
             curr_h = win32gui.GetForegroundWindow()
-            for d in self.dofus_handler.dofus:
+            for d in self.dofus_handler.selected:
                 if(d.hwnd != curr_h):
                     realx,realy = win32gui.ScreenToClient(d.hwnd,(x,y))
                     d.do_async_action(Dofus.click,realx,realy,delay)
@@ -62,8 +62,8 @@ class DofusManager(Observer):
         if( not self.allow_event()):
             return
         logging.info("Stopping all")
-        self.notify("stop")
         self.running = False
+        self.notify("stop")
         
     def add_observer(self,event,callback):
         self.observers[event].append(callback)

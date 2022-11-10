@@ -17,7 +17,7 @@ class DofusHandler(Thread,Observer):
     """
     def __init__(self):
         Thread.__init__(self)
-        Observer.__init__(self,["update_hwnd"])  
+        Observer.__init__(self,["update_hwnd","new_select_list"])  
         self.curr_hwnd = None
         self.running = True
         self.dofus = [Dofus(hwnd) for hwnd in self._get_win()]
@@ -25,6 +25,7 @@ class DofusHandler(Thread,Observer):
             d.add_observer("fight",self.update_order)
         self.lock = Lock()
         self.name_order = []
+        self.selected = [d for d in self.dofus]
         
     def get_hwnds(self):
         return [d.hwnd for d in self.dofus]
@@ -42,6 +43,14 @@ class DofusHandler(Thread,Observer):
         self.running = False
         for d in self.dofus:
             d.stop()
+            
+    def add_select(self,hwnd):
+        d = self.dofus[self.get_index_by_hwnd(hwnd)]
+        if(d not in self.selected):
+            self.selected.append(d)
+        else:
+            self.selected.remove(d)
+        self.notify("new_select_list",[d.hwnd for d in self.selected])
         
     def update_order(self,order):
         self.lock.acquire()
@@ -67,6 +76,8 @@ class DofusHandler(Thread,Observer):
             d = Dofus(hwnd)
             self.dofus.append(d)
             d.add_observer("fight",self.update_order)
+            self.selected.append(d)
+            self.notify("new_select_list",[d.hwnd for d in self.selected])
             
             self.lock.release()
             logging.info("new dofus window detected")
@@ -125,6 +136,8 @@ class DofusHandler(Thread,Observer):
         logging.info("dofus window removed")
         i = self.get_index_by_hwnd(hwnd)
         d = self.dofus.pop(i)
+        self.selected.remove(d)
+        self.notify("new_select_list",[d.hwnd for d in self.selected])
         d.stop()
         del d
         self.lock.release()
@@ -178,11 +191,11 @@ class DofusHandler(Thread,Observer):
             else:
                 return "no dofus window selected"
         elif(cmd == "gotos"):
-            for d in self.dofus:
+            for d in self.selected:
                 d.do_async_action(Dofus.goto,*arg)
             return "ok"
         elif(cmd == "stoptravels"):
-            for d in self.dofus:
+            for d in self.selected:
                 d.do_async_action(Dofus.stoptravel)
             return "ok"
         elif(cmd == "clickcell"):
@@ -202,7 +215,7 @@ class DofusHandler(Thread,Observer):
                 return "no dofus window selected"
         elif(cmd == "zaaps"):
             nom = " ".join(arg)
-            for d in self.dofus:    
+            for d in self.selected:    
                 d.do_async_action(Dofus.zaap,nom)
             return "ok"
         elif(cmd == "group"):

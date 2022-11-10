@@ -60,9 +60,9 @@ class Dofus(Observer):
         
     def stop(self):
         if( self.dofusSniffer is not None):
-            logging.info(f"{self.name} : stop sniffer")
             self.dofusSniffer.stop()
             self.dofusSniffer.join()
+            logging.info(f"{self.name} : sniffer stopped")
             self.dofusSniffer = None
                 
         self.stoptravel()
@@ -187,6 +187,8 @@ class Dofus(Observer):
     def mapinfos(self,msgname,p):
         inst = MessagesFactory.get_instance_id(p.packetid,p.get_content())
         
+        self.currentmapid = inst.mapId
+        
         for a in inst.actors:
             try : 
                 name = a.name
@@ -221,7 +223,7 @@ class Dofus(Observer):
         
     def travel_finished(self):
         with self.travelerLock:
-            self.remove_observer("newmap",self.travel.next_action)
+            self.remove_observer("newmapinfos",self.travel.next_action)
             self.travel = None
             logging.info(f"{self.name}: travel finished")
             with self.travelCondition:
@@ -246,14 +248,14 @@ class Dofus(Observer):
             
 
         logging.info(f"goto {x},{y}")
-        if(self.currentmapid is None and self.cellid is None):
+        if(self.currentmapid is None or self.cellid is None):
             logging.error(f"{self.name} : no current map infos")
             self.travelerLock.release()
             return "no current map infos"
         src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
         dst = (int(x),int(y))
         self.travel = Traveler(self,src,dst)
-        self.add_observer("newmap",self.travel.next_action)
+        self.add_observer("newmapinfos",self.travel.next_action)
         time.sleep(random.random())#pour pas que que tous les perso partent en meme temps
         self.travel.start()
         self.travelerLock.release()

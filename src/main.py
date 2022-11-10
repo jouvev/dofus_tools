@@ -8,7 +8,7 @@ import logging
 import argparse
 import threading
 
-DEFAULT_LEVEL_LOGGING = logging.INFO
+DEFAULT_LEVEL_LOGGING = logging.DEBUG
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--nodebug', action='store_false')
@@ -30,6 +30,8 @@ listener = Listener(dm,interface)
 dh.start()
 listener.start()
 
+interface.add_observer("add_select",dh.add_select)
+dh.add_observer("new_select_list",interface.new_select_list)
 dm.add_observer("stop",interface.stop)
 dm.add_observer("stop",dh.stop)
 dm.add_observer("update_mode",interface.update_mode)

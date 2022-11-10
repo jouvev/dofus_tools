@@ -8,7 +8,7 @@ import logging
 class PacketSniffer(Thread):
     def __init__(self,dofus):
         Thread.__init__(self)
-        self.running = True
+        self.running = False
         self.port = dofus.port
         self.dofus = dofus
         self.buffer = ""
@@ -16,6 +16,8 @@ class PacketSniffer(Thread):
         
     def stop(self):
         self.running = False
+        #on s'envoie un paquet pour sortir de la boucle ?
+        
         
     def change_port(self, port):
         with self.lock:
@@ -23,12 +25,13 @@ class PacketSniffer(Thread):
             self.buffer = ""
     
     def run(self):
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        self.running = True
+        self.loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(self.loop)
         
-        cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter=f'tcp src port 5555')
+        self.cap = pyshark.LiveCapture(bpf_filter=f'tcp src port 5555')
 
-        for packet in cap.sniff_continuously():
+        for packet in self.cap.sniff_continuously():
             with self.lock:
                 if(not self.running):
                     break
@@ -56,5 +59,5 @@ class PacketSniffer(Thread):
                             self.buffer = ""
                             break
                         self.buffer = self.buffer[len(msg):]
-        cap.close()
-        loop.close()
+        self.cap.close()
+        self.loop.close()
