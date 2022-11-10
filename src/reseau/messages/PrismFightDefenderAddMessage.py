@@ -1,8 +1,12 @@
+import src.reseau.TypesFactory as pf
+
 class PrismFightDefenderAddMessage:
    def __init__(self,input):
       self._subAreaIdFunc(input)
       self._fightIdFunc(input)
       _id3 = input.readUnsignedShort()
+      self.defender = pf.TypesFactory.get_instance_id(_id3,input)
+   
    def _subAreaIdFunc(self,input) :
       self.subAreaId = input.readVarUhShort()
       if(self.subAreaId < 0) :
@@ -16,3 +20,4 @@ class PrismFightDefenderAddMessage:
    def resume(self):
       print("subAreaId :",self.subAreaId)
       print("fightId :",self.fightId)
+      self.defender.resume()

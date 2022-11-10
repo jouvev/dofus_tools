@@ -46,6 +46,8 @@ def parse(path,mode):
     init_f = "\n".join(res.split("\n")[d:f])
     funcs = [init_f]
     
+    #print(funcs)
+    
     #other functions
     fnames = re.findall(r"self\.([^\(\.]+)\([^\)]+\)",init_f)
     for fname in fnames:
@@ -156,7 +158,7 @@ def dectecte_func(res,fname):
     f=len(res.split("\n"))
     d=0
     for i,l in enumerate(res.split("\n")):
-        if(dectectend and "def" in l):
+        if(dectectend and "def " in l):
             f = i
             break
         if(not dectectend and "def "+fname in l):
