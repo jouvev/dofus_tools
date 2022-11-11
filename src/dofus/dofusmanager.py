@@ -2,6 +2,7 @@ import keyboard
 import mouse
 import logging
 import win32gui
+import time
 from src.tools.observer import Observer
 from src.command.command import Command
 from src.dofus.dofus import Dofus
@@ -68,12 +69,14 @@ class DofusManager(Observer):
             return
         d = self.dofus_handler.get_previous_dofus()
         d.open()
+        time.sleep(0.3)
 
     def _switch_next_win(self):
         if( not self.allow_event()):
             return
         d = self.dofus_handler.get_next_dofus()
         d.open()
+        time.sleep(0.3)
 
     def _switch_mode(self):
         if( not self.allow_event()):

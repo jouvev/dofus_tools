@@ -208,7 +208,6 @@ class Dofus(Observer):
             shell.SendKeys('%')
             win32gui.ShowWindow(self.hwnd,3)
             win32gui.SetForegroundWindow(self.hwnd)
-            time.sleep(0.3)
         except pywintypes.error as e :
             logging.error(f"Error when open {self.name} {e}")
             return
