@@ -1,27 +1,16 @@
-import time
 import tkinter as tk
+from src.interface.commandinterface import CommandInterface
 
-class Example(tk.Frame):
-    def __init__(self, *args, **kwargs):
-        tk.Frame.__init__(self, *args, **kwargs)
-
-        self.text = tk.Text(self, height=6, width=40,bg="black",fg="white")
-        self.vsb = tk.Scrollbar(self, orient="vertical", command=self.text.yview)
-        self.text.configure(yscrollcommand=self.vsb.set)
-        self.vsb.pack(side="right", fill="y")
-        self.text.pack(side="top", fill="both", expand=True)
-        self.name = tk.Label(self, text="Name")
-        self.name.pack(side="bottom", fill="x")
-
-        self.add_timestamp()
-
-    def add_timestamp(self):
-        self.text.insert("end", time.ctime() + "\n")
-        self.text.see("end")
-        self.after(1000, self.add_timestamp)
+class CommandBouchon:
+    def __init__(self):
+        self.history = []
+        
+    def execute(self,cmd):
+        self.history.append(cmd)
+        return "ok"
 
 if __name__ == "__main__":
     root =tk.Tk()
-    frame = Example(root)
-    frame.pack(fill="both", expand=True)
+    CommandInterface(root,CommandBouchon())
+    
     root.mainloop()

@@ -4,6 +4,7 @@ class Command:
     def __init__(self,dofhandler):
         self.dofhandler = dofhandler
         self.cmd_valid = ["help","goto","stoptravel","gotos","stoptravels","clickcell","zaap","zaaps","group","reset","flagcalibrage"]
+        self.history = []
         
     def help(self):
         res = "command list :\n"
@@ -12,6 +13,7 @@ class Command:
         return res
         
     def execute(self,inp):
+        self.history.append(inp)
         res = re.fullmatch(r"(\S+)( .*)?",inp)
         if(not res):
             return f"'{inp}' doesn't match the pattern\n"

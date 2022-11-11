@@ -10,6 +10,26 @@ class CommandInterface(Toplevel,Observer):
         self.wm_resizable(False, False)
         self.create_widgets()
         self.bind('<Return>', lambda e : self.cmd())
+        self.bind("<Button-1>", lambda e : self.set_focus())
+        self.bind("<Up>", lambda e : self.history(e))
+        self.bind("<Down>", lambda e : self.history(e))
+        self.i = 0
+        
+    def history(self,event):
+        if(len(self.cmdobject.history) > 0):
+            if(event.keysym == "Up" and self.i > -1*len(self.cmdobject.history)):
+                self.i = (self.i-1)
+            elif(event.keysym == "Down" and self.i < 0):
+                self.i = (self.i+1)
+            
+            if(self.i == 0):
+                self.textvar.set("")
+            else:
+                self.textvar.set(self.cmdobject.history[self.i])
+            self.entry.icursor(END)
+        
+    def set_focus(self):
+        self.entry.focus_set()
 
     def create_widgets(self):
         self.main = Frame(self)
@@ -20,11 +40,16 @@ class CommandInterface(Toplevel,Observer):
         self.text.pack(side="top",fill="both",expand=True)
     
         self.textvar = StringVar()
+        self.textvar.trace_add("write", self.reset_i)
         self.entry = Entry(self.main, textvariable=self.textvar, bg='black',fg='white',font=('Consolas', 12), insertbackground='white')
         self.entry.pack(side="bottom",fill="x",pady=("3","0"))
         
         self.main.pack(fill="both",expand=True)
         self.text.config(state = "disabled")
+        
+    def reset_i(self,a,b,c):
+        if(self.textvar.get() == ""):
+            self.i = 0
     
     def cmd(self):
         self.text.config(state = "normal")
