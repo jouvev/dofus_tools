@@ -6,6 +6,8 @@ import win32con
 import psutil
 import time
 import random
+import win32com.client
+import pythoncom
 from concurrent.futures import ThreadPoolExecutor
 from src.reseau.dofussniffer import PacketSniffer
 from src.reseau.MessagesFactory import MessagesFactory
@@ -201,8 +203,12 @@ class Dofus(Observer):
     
     def open(self):
         try :
+            pythoncom.CoInitialize()
+            shell = win32com.client.Dispatch("WScript.Shell")
+            shell.SendKeys('%')
             win32gui.ShowWindow(self.hwnd,3)
             win32gui.SetForegroundWindow(self.hwnd)
+            time.sleep(0.3)
         except pywintypes.error as e :
             logging.error(f"Error when open {self.name} {e}")
             return

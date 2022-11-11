@@ -1,9 +1,7 @@
 import keyboard
 import mouse
 import logging
-import time
 import win32gui
-import win32com.client
 from src.tools.observer import Observer
 from src.command.command import Command
 from src.dofus.dofus import Dofus
@@ -17,9 +15,6 @@ class DofusManager(Observer):
         self.running = True
         self.confirm = False
         self.cmdobject = Command(self.dofus_handler)
-        
-        shell = win32com.client.Dispatch("WScript.Shell")
-        shell.SendKeys('%')
         
         #events binding
         keyboard.add_hotkey(config["keyboard_bindings"]['switch_mode'], lambda : self._switch_mode())
