@@ -267,7 +267,8 @@ class Dofus(Observer):
         return f"{self.name} : travel from {MapPosition.get_pos(src[0])} to {dst}"
     
     def press_key(self,key):
-        win32gui.SendMessage(self.hwnd, win32con.WM_CHAR, ord(key), 0)
+        win32gui.SendMessage(self.hwnd, win32con.WM_KEYDOWN, key, 0)
+        win32gui.SendMessage(self.hwnd, win32con.WM_KEYUP, key, 0)
     
     def press_enter(self):
         win32gui.SendMessage(self.hwnd, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
@@ -275,7 +276,7 @@ class Dofus(Observer):
         
     def write(self,text):
         for c in text:
-            self.press_key(c)
+            win32gui.SendMessage(self.hwnd, win32con.WM_CHAR, ord(c), 0)
             
     def invite(self,names):
         for n in names:
@@ -288,23 +289,17 @@ class Dofus(Observer):
     def zaap(self,nom):
         #verif si on est deja dans le havre sac
         if(self.currentmapid != 162791424):
-            realx,realy = win32gui.ScreenToClient(self.hwnd,(1559,982))
-            self.click(realx,realy,False)
+            #si pas dans le havre sac, on va dans le havre sac
+            self.press_key(0x48)
             time.sleep(1.5)
         #click zaap
         realx,realy = win32gui.ScreenToClient(self.hwnd,(565,433))
         self.click(realx,realy,False)
         time.sleep(1)
-        #click champ
-        realx,realy = win32gui.ScreenToClient(self.hwnd,(1111,234))
-        self.click(realx,realy,False)
-        time.sleep(0.2)
         #ecrire le nom
         self.write(nom)
-        time.sleep(0.3)
+        self.press_key(0xFF)#met à jour la liste des zaaps
+        time.sleep(0.2)
         self.press_enter()
-        #click tp
-        realx,realy = win32gui.ScreenToClient(self.hwnd,(955,776))
-        self.click(realx,realy,False)
         return f"{self.name} : zaap to {nom} done"
         
