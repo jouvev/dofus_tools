@@ -300,6 +300,10 @@ class Dofus(Observer):
         self.write(nom)
         self.press_key(0xFF)#met à jour la liste des zaaps
         time.sleep(0.5)
+        if(nom.lower() == "sufokia"):
+            realx,realy = win32gui.ScreenToClient(self.hwnd,(873,365))
+            self.click(realx,realy,False)
+            time.sleep(0.3)
         self.press_enter()
         return f"{self.name} : zaap to {nom} done"
         
