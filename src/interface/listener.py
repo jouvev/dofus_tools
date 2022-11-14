@@ -22,7 +22,7 @@ class Listener(Thread):
                 self.interface.update_perso(curr_hwnd)
                 
             hwnd = win32gui.GetForegroundWindow()
-            if(not self.manager.dofus_handler.is_dofus_window(hwnd) and int(self.interface.frame(),base=16)!= int(hwnd) and self.is_visible):
+            if(not self.manager.dofus_handler.is_dofus_window(hwnd) and int(self.interface.frame(),base=16) != int(hwnd) and self.is_visible):
                 self.interface.withdraw()
                 self.is_visible = False
             elif(self.manager.dofus_handler.is_dofus_window(hwnd) and not self.is_visible):
