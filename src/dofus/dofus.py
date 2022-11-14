@@ -299,7 +299,7 @@ class Dofus(Observer):
         #ecrire le nom
         self.write(nom)
         self.press_key(0xFF)#met à jour la liste des zaaps
-        time.sleep(0.2)
+        time.sleep(0.5)
         self.press_enter()
         return f"{self.name} : zaap to {nom} done"
         
