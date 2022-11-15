@@ -1,5 +1,7 @@
 import json 
 
+CAPABILITY_ALLOW_TELEPORT_TO = 4
+
 class MapPosition:
     with open(f"ressources/maps.json","r") as file:
         mapinfo = json.load(file)
@@ -43,3 +45,7 @@ class MapPosition:
             return (linkedzone & 240) >> 4
         except:
             raise RuntimeError(f"Error when you tried to got linkedzone on map {mapid}")
+        
+    @classmethod
+    def can_havresac(cls,mapid):
+        return cls.mappos[mapid]["capabilities"] & CAPABILITY_ALLOW_TELEPORT_TO != 0

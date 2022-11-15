@@ -29,5 +29,5 @@ print(w.actions[(185862149.0,1.0),(185862148.0,1.0)])
 posdep = MapPosition.get_pos(dep[0])
 posarr = MapPosition.get_pos(arr[0])
 
-p,a = w.findpath((185860609.0,2.0),(-3, -7))
-print(p,"\n",a)
+z,p,a = w.get_path((185860609.0,2.0),(-20, -20))
+print(z,p,"\n",a)

@@ -1,6 +1,10 @@
 import logging
 import pickle
 from src.dofus.mapposition import MapPosition
+from src.dofus.zaaps import Zaaps
+import numpy as np
+
+MAX_LEN_PATH = 20
 
 class World:
     __instance = None
@@ -59,7 +63,6 @@ class World:
                         pred[n] = cur
                         
         if(not find):
-            logging.error(f"no path found from {src} to {dst}")
             return [],[]
                         
         #reconstruction du chemin
@@ -82,3 +85,27 @@ class World:
                 raise RuntimeError(f"action non reconnu dans pathfinding {[(MapPosition.get_pos(p[0][0]),p[0]) for p in path]}")
                 
         return path,action
+    
+    def get_path(self,src,dst):
+        zaap = []
+        paths,actions = [],[]
+        path,action = self.findpath(src,dst)
+        if(len(path)>0):
+            zaap.append(None)
+            paths.append(path)
+            actions.append(action)
+        if((len(path) > MAX_LEN_PATH or len(path)==0) and MapPosition.can_havresac(src[0])):
+            zs = Zaaps.get_zaaps_by_order(dst,MapPosition.get_worldmap(src[0]))[:2]
+            for z in zs:
+                path,action = self.findpath((z["mapId"],z['zone']),dst)
+                if(len(path)>0):
+                    zaap.append(z)
+                    paths.append(path)
+                    actions.append(action)
+        
+        if(len(paths) == 0):
+            logging.error(f"no path found from {src} to {dst}")
+            return None,[],[]
+        
+        i = int(np.argmin([len(p) for p in paths]))
+        return zaap[i],paths[i],actions[i]

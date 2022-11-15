@@ -14,7 +14,7 @@ for m in mappostmp:
     
 idtotext = json.load(open("ressources/i18n_fr.json","r",encoding="latin-1"))
 
-cap = pyshark.LiveCapture(interface='Ethernet',bpf_filter='tcp src port 5555')
+cap = pyshark.LiveCapture(bpf_filter='tcp src port 5555')
 
 buffer = dict()
 
@@ -45,7 +45,7 @@ for packet in cap.sniff_continuously():
             if("".lower() in pname.lower()):
                 print("###### =>",pname,p.len)
                 #msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
-                #msg.resume()
+                
                 
                 
                     

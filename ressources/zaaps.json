@@ -1,0 +1,263 @@
+[
+   {
+      "id": 2838,
+      "mapId": 88212746,
+      "x": -1,
+      "y": 13,
+      "worldMapId": 1,
+      "name": "Bord de la forêt maléfique",
+      "zone": 1
+   },
+   {
+      "id": 2839,
+      "mapId": 88082704,
+      "x": 5,
+      "y": 7,
+      "worldMapId": 1,
+      "name": "Coin des Bouftous",
+      "zone": 1
+   },
+   {
+      "id": 2840,
+      "mapId": 88213271,
+      "x": -2,
+      "y": 0,
+      "worldMapId": 1,
+      "name": "Village d'Amakna",
+      "zone": 1
+   },
+   {
+      "id": 2841,
+      "mapId": 68419587,
+      "x": 7,
+      "y": -4,
+      "worldMapId": 1,
+      "name": "Port de Madrestam",
+      "zone": 1
+   },
+   {
+      "id": 2842,
+      "mapId": 185860609,
+      "x": -5,
+      "y": -8,
+      "worldMapId": 1,
+      "name": "Montagne des Craqueleurs",
+      "zone": 1
+   },
+   {
+      "id": 2843,
+      "mapId": 191105026,
+      "x": 5,
+      "y": -18,
+      "worldMapId": 1,
+      "name": "Cité d'Astrub",
+      "zone": 1
+   },
+   {
+      "id": 2849,
+      "mapId": 99615238,
+      "x": 25,
+      "y": -4,
+      "worldMapId": 1,
+      "name": "Île de la Cawotte",
+      "zone": 1
+   },
+   {
+      "id": 2850,
+      "mapId": 120062979,
+      "x": 1,
+      "y": -32,
+      "worldMapId": 1,
+      "name": "Tainéla",
+      "zone": 1
+   },
+   {
+      "id": 2851,
+      "mapId": 68552706,
+      "x": 3,
+      "y": -5,
+      "worldMapId": 1,
+      "name": "Château d'Amakna",
+      "zone": 1
+   },
+   {
+      "id": 2968,
+      "mapId": 88085249,
+      "x": 10,
+      "y": 22,
+      "worldMapId": 1,
+      "name": "Rivage sufokien",
+      "zone": 1
+   },
+   {
+      "id": 3026,
+      "mapId": 154642,
+      "x": -46,
+      "y": 18,
+      "worldMapId": 1,
+      "name": "Village côtier",
+      "zone": 1
+   },
+   {
+      "id": 3029,
+      "mapId": 207619076,
+      "x": 20,
+      "y": -29,
+      "worldMapId": 1,
+      "name": "Village de Pandala",
+      "zone": 1
+   },
+   {
+      "id": 3030,
+      "mapId": 212861955,
+      "x": -26,
+      "y": 37,
+      "worldMapId": 1,
+      "name": "La Cuirasse",
+      "zone": 1
+   },
+   {
+      "id": 3031,
+      "mapId": 212600323,
+      "x": -31,
+      "y": -56,
+      "worldMapId": 1,
+      "name": "Cœur immaculé",
+      "zone": 1
+   },
+   {
+      "id": 3032,
+      "mapId": 147590153,
+      "x": -17,
+      "y": -47,
+      "worldMapId": 1,
+      "name": "Plaines Rocheuses",
+      "zone": 1
+   },
+   {
+      "id": 3033,
+      "mapId": 164364304,
+      "x": -20,
+      "y": -20,
+      "worldMapId": 1,
+      "name": "Routes Rocailleuses",
+      "zone": 1
+   },
+   {
+      "id": 3035,
+      "mapId": 88212481,
+      "x": -1,
+      "y": 24,
+      "worldMapId": 1,
+      "name": "Plaine des Scarafeuilles",
+      "zone": 1
+   },
+   {
+      "id": 3036,
+      "mapId": 156762120,
+      "x": 35,
+      "y": 12,
+      "worldMapId": 1,
+      "name": "Plage de la Tortue",
+      "zone": 1
+   },
+   {
+      "id": 3038,
+      "mapId": 73400320,
+      "x": -16,
+      "y": 1,
+      "worldMapId": 1,
+      "name": "Village des Eleveurs",
+      "zone": 1
+   },
+   {
+      "id": 3101,
+      "mapId": 54172969,
+      "x": -78,
+      "y": -41,
+      "worldMapId": 1,
+      "name": "La Bourgade",
+      "zone": 1
+   },
+   {
+      "id": 3183,
+      "mapId": 165152263,
+      "x": -13,
+      "y": -28,
+      "worldMapId": 1,
+      "name": "Massif de Cania",
+      "zone": 1
+   },
+   {
+      "id": 3201,
+      "mapId": 95422468,
+      "x": 13,
+      "y": 26,
+      "worldMapId": 1,
+      "name": "Sufokia",
+      "zone": 1
+   },
+   {
+      "id": 3219,
+      "mapId": 84806401,
+      "x": -5,
+      "y": -23,
+      "worldMapId": 1,
+      "name": "Plaine des Porkass",
+      "zone": 1
+   },
+   {
+      "id": 3235,
+      "mapId": 115083777,
+      "x": 13,
+      "y": 35,
+      "worldMapId": 1,
+      "name": "Temple des alliances",
+      "zone": 1
+   },
+   {
+      "id": 3284,
+      "mapId": 20973313,
+      "x": -54,
+      "y": 16,
+      "worldMapId": 10,
+      "name": "Village de la Canopée",
+      "zone": 1
+   },
+   {
+      "id": 3297,
+      "mapId": 142087694,
+      "x": -27,
+      "y": -36,
+      "worldMapId": 1,
+      "name": "Champs de Cania",
+      "zone": 1
+   },
+   {
+      "id": 3384,
+      "mapId": 156240386,
+      "x": -3,
+      "y": -42,
+      "worldMapId": 1,
+      "name": "Lac de Cania",
+      "zone": 1
+   },
+   {
+      "id": 3387,
+      "mapId": 173278210,
+      "x": 15,
+      "y": -58,
+      "worldMapId": 1,
+      "name": "Dunes des ossements",
+      "zone": 1
+   },
+   {
+      "id": 3413,
+      "mapId": 171967506,
+      "x": -25,
+      "y": 12,
+      "worldMapId": 1,
+      "name": "Route des Roulottes",
+      "zone": 1
+   }
+]

@@ -25,7 +25,11 @@ class Traveler(Thread,Observer):
         
     def run(self):
         try:
-            path,self.a = self.w.findpath(self.src, self.dest)
+            z,path,self.a = self.w.get_path(self.src, self.dest)
+            if(z is not None):
+                self.dofus.zaap(z['name'])
+                with self.condition:
+                    self.condition.wait()
             if(path == []):
                 return
             dico_path = {m:a for m,a in zip(path[:-1],self.a)}
