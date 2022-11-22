@@ -1,4 +1,5 @@
 from src.interface.commandinterface import CommandInterface
+from tkinter import messagebox
 from src.interface.overlay import Overlay
 from src.tools.observer import Observer
 import tkinter as tk
@@ -45,6 +46,9 @@ class DofusOverlay(Overlay,Observer):
         self.hors_combat = f
         
         self.update_mode(mode)
+        
+    def alert(self):
+        messagebox.showerror(title="Maison", message="Maison en vente !")
         
     def stop(self):
         self.event_generate("<<Destroy>>", when="tail")

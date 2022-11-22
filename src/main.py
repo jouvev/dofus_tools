@@ -30,6 +30,7 @@ listener = Listener(dm,interface)
 dh.start()
 listener.start()
 
+dh.add_observer("houseevent",interface.alert)
 interface.add_observer("add_select",dh.add_select)
 dh.add_observer("new_select_list",interface.new_select_list)
 dm.add_observer("stop",interface.stop)

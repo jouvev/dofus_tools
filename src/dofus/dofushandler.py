@@ -17,15 +17,19 @@ class DofusHandler(Thread,Observer):
     """
     def __init__(self):
         Thread.__init__(self)
-        Observer.__init__(self,["update_hwnd","new_select_list"])  
+        Observer.__init__(self,["update_hwnd","new_select_list","houseevent"])
         self.curr_hwnd = None
         self.running = True
         self.dofus = [Dofus(hwnd) for hwnd in self._get_win()]
         for d in self.dofus:
             d.add_observer("fight",self.update_order)
+            d.add_observer("house",self.houseevent)
         self.lock = Lock()
         self.name_order = []
         self.selected = [d for d in self.dofus]
+        
+    def houseevent(self):
+        self.notify("houseevent")
         
     def get_hwnds(self):
         return [d.hwnd for d in self.dofus]
@@ -76,6 +80,7 @@ class DofusHandler(Thread,Observer):
             d = Dofus(hwnd)
             self.dofus.append(d)
             d.add_observer("fight",self.update_order)
+            d.add_observer("house",self.houseevent)
             self.selected.append(d)
             self.notify("new_select_list",[d.hwnd for d in self.selected])
             

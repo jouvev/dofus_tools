@@ -21,7 +21,7 @@ from threading import Condition,Lock
 
 class Dofus(Observer):
     def __init__(self,hwnd):
-        super().__init__(["fight","newmap","newmapinfos"])
+        super().__init__(["fight","newmap","newmapinfos","house"])
         self.hwnd = hwnd
         _,self.pid = win32process.GetWindowThreadProcessId(hwnd)
         self.set_name()
@@ -156,6 +156,14 @@ class Dofus(Observer):
             self.gamesynchro = None
             self.turnlist = None
             
+    def signalevent(self,msgname,p):
+        content = p.get_content()
+        inst = MessagesFactory.get_instance_id(p.packetid,content)
+        price = inst.properties.price
+        proprio = inst.properties.ownerTag.nickname
+        if(price>0 and "??" in proprio):
+            self.notify("house")
+            
     def packet_received(self,p):
         msgname = MessagesFactory.id_class[str(p.packetid)].__name__
         
@@ -167,6 +175,8 @@ class Dofus(Observer):
             self.sniffer_async(Dofus.newmapid,msgname,p)
         elif("TreasureHuntMessage".lower() == msgname.lower()):
             self.sniffer_async(Dofus.chasse,msgname,p)
+        elif("HousePropertiesMessage".lower() == msgname.lower()):
+            self.signalevent(msgname,p)
             
     def endchasse(self):
         if(self.chasseObject):
