@@ -306,6 +306,10 @@ class Dofus(Observer):
         realx,realy = win32gui.ScreenToClient(self.hwnd,(565,433))
         self.click(realx,realy,False)
         time.sleep(1)
+        #click champ
+        realx,realy = win32gui.ScreenToClient(self.hwnd,(1085,235))
+        self.click(realx,realy,False)
+        time.sleep(0.5)
         #ecrire le nom
         self.write(nom)
         self.press_key(0xFF)#met à jour la liste des zaaps
