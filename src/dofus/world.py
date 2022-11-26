@@ -4,6 +4,8 @@ from src.dofus.mapposition import MapPosition
 from src.dofus.zaaps import Zaaps
 import numpy as np
 
+logger = logging.getLogger(__name__)
+
 MAX_LEN_PATH = 20
 
 class World:
@@ -104,7 +106,7 @@ class World:
                     actions.append(action)
         
         if(len(paths) == 0):
-            logging.error(f"no path found from {src} to {dst}")
+            logger.error(f"no path found from {src} to {dst}")
             return None,[],[]
         
         i = int(np.argmin([len(p) for p in paths]))

@@ -42,7 +42,7 @@ for packet in cap.sniff_continuously():
             p = Packet(msg)
             pname = MessagesFactory.id_class[str(p.packetid)].__name__
             buffer[dst_port] = buffer[dst_port][len(msg):]
-            if("House".lower() in pname.lower()):
+            if("QuestStepInfoMessage".lower() in pname.lower()):
                 print("###### =>",pname,p.len)
                 msg = MessagesFactory.get_instance_id(p.packetid,p.get_content())
                 msg.resume()

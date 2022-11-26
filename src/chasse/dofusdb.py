@@ -16,6 +16,8 @@ import time
 import random
 import logging
 
+logger = logging.getLogger(__name__)
+
 SITE_URL = 'https://dofusdb.fr/fr/tools/treasure-hunt'
 RESPONSE_METHOD = 'Network.responseReceived'
 RESPONSE_URL = 'https://api.dofusdb.fr/treasure-hunt?'
@@ -124,7 +126,7 @@ class DofusDB:
             except:
                 self.driver.refresh()
                 time.sleep(1)
-                logging.info("Retrying to find hints")
+                logger.info("Retrying to find hints")
         
 
         # Get the network logs to find the results

@@ -5,6 +5,8 @@ from src.reseau.packet import Packet
 import asyncio
 import logging
 
+logger = logging.getLogger(__name__)
+
 class PacketSniffer(Thread):
     def __init__(self,dofus):
         Thread.__init__(self)
@@ -55,7 +57,7 @@ class PacketSniffer(Thread):
                         try :
                             self.dofus.packet_received(p)
                         except KeyError as e:
-                            logging.error("Error with packet" + str(e))
+                            logger.error("Error with packet" + str(e))
                             self.buffer = ""
                             break
                         self.buffer = self.buffer[len(msg):]

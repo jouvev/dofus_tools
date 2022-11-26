@@ -10,6 +10,8 @@ import random
 import logging
 import re
 
+logger = logging.getLogger(__name__)
+
 SITE_URL = 'https://www.dofuspourlesnoobs.com/resolution-de-chasse-aux-tresors.html'
 X_PATH = '//input[@id=\'huntposx\']'
 Y_PATH = '//input[@id=\'huntposy\']'
@@ -69,7 +71,7 @@ class DofusNoob:
         try:
             self.driver.find_element(By.XPATH, f"//option[not(@disabled) and contains(text(),'{hint}')]").click()
         except NoSuchElementException:
-            logging.info(f'hint : {hint}, not found')
+            logger.info(f'hint : {hint}, not found')
             return None
         
         time.sleep(0.5+random.random()*0.5)

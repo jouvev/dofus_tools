@@ -3,6 +3,8 @@ import logging
 import time
 import win32gui
 
+logger = logging.getLogger(__name__)
+
 class Listener(Thread):
     def __init__(self,manager,interface):
         Thread.__init__(self,name="Listener")
@@ -30,7 +32,7 @@ class Listener(Thread):
                 self.is_visible = True
             
             time.sleep(0.3)
-        logging.info("Listener stopped")
+        logger.info("Listener stopped")
               
         
                

@@ -8,6 +8,7 @@ from src.tools.observer import Observer
 import logging
 import pyautogui
 
+logger = logging.getLogger(__name__)
 
 class DofusHandler(Thread,Observer):
     """
@@ -85,7 +86,7 @@ class DofusHandler(Thread,Observer):
             self.notify("new_select_list",[d.hwnd for d in self.selected])
             
             self.lock.release()
-            logging.info("new dofus window detected")
+            logger.info("new dofus window detected")
             self.notify("update_hwnd",self.get_hwnds(),self.get_names())
             return True
         
@@ -138,7 +139,7 @@ class DofusHandler(Thread,Observer):
     
     def remove_win(self,hwnd):
         self.lock.acquire()
-        logging.info("dofus window removed")
+        logger.info("dofus window removed")
         i = self.get_index_by_hwnd(hwnd)
         d = self.dofus.pop(i)
         self.selected.remove(d)
@@ -167,7 +168,7 @@ class DofusHandler(Thread,Observer):
                     up = True
                 d.update_port()
             if(up):
-                logging.info(f"dofus window name updated {self.get_names()}")
+                logger.info(f"dofus window name updated {self.get_names()}")
                 self.notify("update_hwnd",self.get_hwnds(),self.get_names())
             
             tmp_name_order = self.get_names()
@@ -177,10 +178,10 @@ class DofusHandler(Thread,Observer):
 
             time.sleep(0.3)
             
-        logging.info("dofus window handler stopped")
+        logger.info("dofus window handler stopped")
     
     def execute(self,cmd,arg):
-        logging.info(f"execute cmd : {cmd}, args : {arg}")
+        logger.info(f"execute cmd : {cmd}, args : {arg}")
         if(cmd == "goto"):
             curr_dof = self.get_current_dofus()
             if(curr_dof):

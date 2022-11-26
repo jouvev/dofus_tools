@@ -5,6 +5,8 @@ import time
 import logging
 from src.tools.observer import Observer
 
+logger = logging.getLogger(__name__)
+
 class Traveler(Thread,Observer):
     def __init__(self, dofus, src, dest):
         Thread.__init__(self,name="Traveler")
@@ -40,13 +42,13 @@ class Traveler(Thread,Observer):
             mapi = (self.dofus.currentmapid,MapPosition.get_linkedzone(self.dofus.currentmapid,self.dofus.cellid))
             while(dico_path[mapi] != "stop" and not self.stopped):
                 direction,cell,type = dico_path[mapi]
-                logging.debug(f"{self.dofus.name} : {int(direction)} {cell} {type}")
+                logger.debug(f"{self.dofus.name} : {int(direction)} {cell} {type}")
                 self.dofus.change_map_by_cellid(cell,direction,type,delay=False)
                 with self.condition:
                     self.condition.wait()
                 mapi = (self.dofus.currentmapid,MapPosition.get_linkedzone(self.dofus.currentmapid,self.dofus.cellid))
                 if (mapi not in dico_path):
-                    logging.info("Traveler : out of the way")
+                    logger.info("Traveler : out of the way")
                     return
                 if(dico_path[mapi] != "stop"):
                     time.sleep(1)
@@ -55,7 +57,7 @@ class Traveler(Thread,Observer):
                 if(self.stopped):
                     break
         except Exception as e:
-            logging.error(f"Error in Traveler {e}")
+            logger.error(f"Error in Traveler {e}")
         finally:
             self.notify("finished")
             

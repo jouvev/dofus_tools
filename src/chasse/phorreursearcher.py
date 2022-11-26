@@ -2,6 +2,8 @@ from threading import Thread, Condition
 import logging
 import time
 
+logger = logging.getLogger(__name__)
+
 class PhorreurSeacher(Thread):
     def __init__(self,npcid,chasse,direction):
         Thread.__init__(self,name="PhorreurSeacher")
@@ -28,7 +30,7 @@ class PhorreurSeacher(Thread):
             
     def gotit(self):
         self.dofus.remove_observer("newmapinfos",self.parse_map)
-        logging.info(f"Chasse: got phorreur {self.npcid}, next step")
+        logger.info(f"Chasse: got phorreur {self.npcid}, next step")
         time.sleep(1) # attendre fin de chargement avant de cliquer dur le drapeau
         self.chasse.click_on_flag()
         self.end = True
@@ -36,13 +38,13 @@ class PhorreurSeacher(Thread):
     def run(self):
         while not self.end and self.nbmap <= 10:
             self.dofus.change_map(self.direction)
-            logging.info(f"Chasse: goto {self.direction}")
+            logger.info(f"Chasse: goto {self.direction}")
             self.nbmap += 1
             with self.newMapCond:
                 self.newMapCond.wait()
         
-        logging.info(f"Chasse: phorreur {self.npcid} terminated")
+        logger.info(f"Chasse: phorreur {self.npcid} terminated")
         if(self.nbmap > 10):
-            logging.info("Chasse: phorreur not found")
+            logger.info("Chasse: phorreur not found")
             
         

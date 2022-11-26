@@ -7,6 +7,8 @@ from src.tools.observer import Observer
 from src.command.command import Command
 from src.dofus.dofus import Dofus
 
+logger = logging.getLogger(__name__)
+
 class DofusManager(Observer):
     def __init__(self,config,dofus_handler):
         super().__init__(["stop","update_mode","open_console"])
@@ -57,7 +59,7 @@ class DofusManager(Observer):
     def _stop(self):
         if( not self.allow_event()):
             return
-        logging.info("Stopping all")
+        logger.info("Stopping all")
         self.running = False
         self.notify("stop")
         

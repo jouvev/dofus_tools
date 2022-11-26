@@ -9,6 +9,8 @@ import json
 import win32gui 
 import time
 
+logger = logging.getLogger(__name__)
+
 class Chasse(Thread):
     def __init__(self, dofus):
         Thread.__init__(self,name="Chasse")
@@ -28,7 +30,7 @@ class Chasse(Thread):
         self.xdst,self.ydst = None,None
         
     def set_flag_pos(self,xflag,yflag):
-        logging.info("set flag position to {} {}".format(xflag,yflag))
+        logger.info("set flag position to {} {}".format(xflag,yflag))
         self.xflag = xflag
         self.yflag = yflag
         with open('src/chasse/flagpos.pkl','wb') as f : 
@@ -43,7 +45,7 @@ class Chasse(Thread):
             return 
         if(totalstep == self.indicevalide):
             self.next_step()
-            logging.info("Chasse: end of this step chasse")
+            logger.info("Chasse: end of this step chasse")
             return
         
         try:
@@ -58,7 +60,7 @@ class Chasse(Thread):
         if(self.checkpoint != 0 or len(self.listindice) > 1):
             #attention si phorreur
             if("Phorreur".lower() in self.indice.lower()):
-                logging.info(f"Chasse: Phorreur npcid {self.npcid}")
+                logger.info(f"Chasse: Phorreur npcid {self.npcid}")
                 self.search = PhorreurSeacher(self.npcid,self,self.direction)
                 self.search.start()
                 return 
@@ -70,21 +72,21 @@ class Chasse(Thread):
             try:
                 self.xdst,self.ydst = self.get_pos_indice(xsrc,ysrc,self.indice,self.direction)
             except :
-                logging.warning(f"Chasse:{self.dofus.name}: indice not found")
+                logger.warning(f"Chasse:{self.dofus.name}: indice not found")
                 return 
             self.dofus.goto(self.xdst,self.ydst)
         else :
             self.startmap = msg.startMapId
             self.xstart,self.ystart = MapPosition.get_pos(self.startmap)
-            logging.info("Chasse: start position {} {}".format(self.xstart,self.ystart))
+            logger.info("Chasse: start position {} {}".format(self.xstart,self.ystart))
             if("Phorreur".lower() in self.indice.lower()):
                 return
             try:
                 self.xdst,self.ydst = self.get_pos_indice(self.xstart,self.ystart,self.indice,self.direction)
             except :
-                logging.warning(f"Chasse:{self.dofus.name}: indice not found")
+                logger.warning(f"Chasse:{self.dofus.name}: indice not found")
                 return
-        logging.info("Chasse: {} {} at pos {} {}".format(self.indice,self.direction,self.xdst,self.ydst))
+        logger.info("Chasse: {} {} at pos {} {}".format(self.indice,self.direction,self.xdst,self.ydst))
             
     def get_pos_indice(self,xsrc,ysrc,indice,direction):
         return self.hintBD.get_hint(xsrc,ysrc,direction,indice)
@@ -93,13 +95,13 @@ class Chasse(Thread):
         currx,curry = MapPosition.get_pos(mapid)
         if(mapid == self.startmap and self.checkpoint == 0 and len(self.listindice) <= 1):
             if("Phorreur".lower() in self.indice.lower()):
-                logging.info(f"Chasse: Phorreur npcid {self.npcid}")
+                logger.info(f"Chasse: Phorreur npcid {self.npcid}")
                 self.search = PhorreurSeacher(self.npcid,self,self.direction)
                 self.search.start()
             else:
                 if self.xdst and self.ydst:
                     self.dofus.goto(self.xdst,self.ydst)
-            logging.info("Chasse: start map reached")
+            logger.info("Chasse: start map reached")
         if(self.xdst is not None and self.ydst is not None and self.xdst == currx and self.ydst == curry):
             self.dofus.stoptravel()
             self.click_on_flag()
@@ -115,13 +117,13 @@ class Chasse(Thread):
         realx,realy = win32gui.ScreenToClient(self.dofus.hwnd,(self.xflag,y))
         time.sleep(0.5)
         self.dofus.click(realx,realy,False)
-        logging.info("Chasse: click on flag")
+        logger.info("Chasse: click on flag")
         
     def next_step(self):
         y = self.yflag + self.indicevalide * 30
         realx,realy = win32gui.ScreenToClient(self.dofus.hwnd,(self.xflag-20,y))
         self.dofus.click(realx,realy,False)
-        logging.info("Chasse: click on next step")
+        logger.info("Chasse: click on next step")
             
     def run(self):
         with self.endCond:
@@ -131,4 +133,4 @@ class Chasse(Thread):
         except :
             pass 
         self.dofus.endchasse()
-        logging.info("Chasse: end of chasse")
+        logger.info("Chasse: end of chasse")

@@ -19,6 +19,8 @@ from src.dofus.cell import get_cursor_pos, get_cursor_pos_to_change_map
 import pywintypes
 from threading import Condition,Lock
 
+logger = logging.getLogger(__name__)
+
 class Dofus(Observer):
     def __init__(self,hwnd):
         super().__init__(["fight","newmap","newmapinfos","house"])
@@ -58,19 +60,19 @@ class Dofus(Observer):
         if(excep is not None):
             raise excep
         elif(res is not None):
-            logging.info(f"{res}")
+            logger.info(f"{res}")
         
     def stop(self):
         if( self.dofusSniffer is not None):
             self.dofusSniffer.stop()
             self.dofusSniffer.join()
-            logging.info(f"{self.name} : sniffer stopped")
+            logger.info(f"{self.name} : sniffer stopped")
             self.dofusSniffer = None
                 
         self.stoptravel()
         
         if(self.chasseObject):
-            logging.info(f"{self.name} : stop chasse")
+            logger.info(f"{self.name} : stop chasse")
             self.chasseObject.notify_cond_end()
              
     def set_name(self):
@@ -121,17 +123,17 @@ class Dofus(Observer):
         self.set_port()
         change = tmp_port != self.port
         if(change):
-            logging.debug(f"{self.name} : port change {tmp_port} to {self.port}")
+            logger.debug(f"{self.name} : port change {tmp_port} to {self.port}")
             self.sniffer_attach()
         return change
     
     def sniffer_attach(self):
         if(self.dofusSniffer is None and self.port != ""):
             self.dofusSniffer = PacketSniffer(self)
-            logging.info(f"sniffer create to {self.name}")
+            logger.info(f"sniffer create to {self.name}")
             self.dofusSniffer.start()
         elif(self.dofusSniffer is not None and self.port != ""):
-            logging.info(f"{self.name} : sniffer update to {self.port}")
+            logger.info(f"{self.name} : sniffer update to {self.port}")
             self.dofusSniffer.change_port(self.port)
         
     def fight(self,msgname,p):
@@ -152,7 +154,7 @@ class Dofus(Observer):
                     continue
             orderlist = [idtoname[id] for id in self.turnlist.ids if id in idtoname]
             self.notify("fight",orderlist)
-            logging.info(f"{self.name} : fight started {orderlist}")
+            logger.info(f"{self.name} : fight started {orderlist}")
             self.gamesynchro = None
             self.turnlist = None
             
@@ -219,7 +221,7 @@ class Dofus(Observer):
             win32gui.ShowWindow(self.hwnd,3)
             win32gui.SetForegroundWindow(self.hwnd)
         except pywintypes.error as e :
-            logging.error(f"Error when open {self.name} {e}")
+            logger.error(f"Error when open {self.name} {e}")
             return
             
         
@@ -240,7 +242,7 @@ class Dofus(Observer):
         with self.travelerLock:
             self.remove_observer("newmapinfos",self.travel.next_action)
             self.travel = None
-            logging.info(f"{self.name}: travel finished")
+            logger.info(f"{self.name}: travel finished")
             with self.travelCondition:
                 self.travelCondition.notify()
         
@@ -254,7 +256,7 @@ class Dofus(Observer):
     def goto(self,x,y):
         self.travelerLock.acquire()
         if(self.travel is not None):
-            logging.info(f'already travelling, wait for interruption')
+            logger.info(f'already travelling, wait for interruption')
             self.travel.interrupt()
             with self.travelCondition:
                 self.travelerLock.release()
@@ -262,9 +264,9 @@ class Dofus(Observer):
                 self.travelerLock.acquire()
             
 
-        logging.info(f"goto {x},{y}")
+        logger.info(f"goto {x},{y}")
         if(self.currentmapid is None or self.cellid is None):
-            logging.error(f"{self.name} : no current map infos")
+            logger.error(f"{self.name} : no current map infos")
             self.travelerLock.release()
             return "no current map infos"
         src = self.currentmapid,MapPosition.get_linkedzone(self.currentmapid,self.cellid)
