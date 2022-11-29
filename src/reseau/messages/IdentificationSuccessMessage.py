@@ -7,9 +7,7 @@ class IdentificationSuccessMessage:
       self.accountTag = AccountTagInformation(input)
       self._accountIdFunc(input)
       self._communityIdFunc(input)
-      self._secretQuestionFunc(input)
       self._accountCreationFunc(input)
-      self._subscriptionElapsedDurationFunc(input)
       self._subscriptionEndDateFunc(input)
       self._havenbagAvailableRoomFunc(input)
    
@@ -33,18 +31,10 @@ class IdentificationSuccessMessage:
       if(self.communityId < 0) :
          raise RuntimeError("Forbidden value (" + str(self.communityId) + ") on element of IdentificationSuccessMessage.communityId.")
    
-   def _secretQuestionFunc(self,input) :
-      self.secretQuestion = input.readUTF()
-   
    def _accountCreationFunc(self,input) :
       self.accountCreation = input.readDouble()
       if(self.accountCreation < 0 or self.accountCreation > 9007199254740992) :
          raise RuntimeError("Forbidden value (" + str(self.accountCreation) + ") on element of IdentificationSuccessMessage.accountCreation.")
-   
-   def _subscriptionElapsedDurationFunc(self,input) :
-      self.subscriptionElapsedDuration = input.readDouble()
-      if(self.subscriptionElapsedDuration < 0 or self.subscriptionElapsedDuration > 9007199254740992) :
-         raise RuntimeError("Forbidden value (" + str(self.subscriptionElapsedDuration) + ") on element of IdentificationSuccessMessage.subscriptionElapsedDuration.")
    
    def _subscriptionEndDateFunc(self,input) :
       self.subscriptionEndDate = input.readDouble()
@@ -60,9 +50,7 @@ class IdentificationSuccessMessage:
       print("login :",self.login)
       print("accountId :",self.accountId)
       print("communityId :",self.communityId)
-      print("secretQuestion :",self.secretQuestion)
       print("accountCreation :",self.accountCreation)
-      print("subscriptionElapsedDuration :",self.subscriptionElapsedDuration)
       print("subscriptionEndDate :",self.subscriptionEndDate)
       print("havenbagAvailableRoom :",self.havenbagAvailableRoom)
       self.accountTag.resume()
