@@ -13,6 +13,7 @@ class HouseInstanceInformations:
       self.isLocked = bool(bin(_box0)[2:].zfill(8)[1])
       self.hasOwner = bool(bin(_box0)[2:].zfill(8)[2])
       self.isSaleLocked = bool(bin(_box0)[2:].zfill(8)[3])
+      self.isAdminLocked = bool(bin(_box0)[2:].zfill(8)[4])
    
    def _instanceIdFunc(self,input) :
       self.instanceId = input.readInt()
