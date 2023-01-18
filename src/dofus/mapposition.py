@@ -48,4 +48,4 @@ class MapPosition:
         
     @classmethod
     def can_havresac(cls,mapid):
-        return cls.mappos[mapid]["capabilities"] & CAPABILITY_ALLOW_TELEPORT_TO != 0
+        return True#cls.mappos[mapid]["capabilities"] & CAPABILITY_ALLOW_TELEPORT_TO != 0
