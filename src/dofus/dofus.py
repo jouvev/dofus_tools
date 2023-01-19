@@ -18,6 +18,8 @@ from src.chasse.chasse import Chasse
 from src.dofus.cell import get_cursor_pos, get_cursor_pos_to_change_map
 import pywintypes
 from threading import Condition,Lock
+from src.dofus.monstre import Monstre
+from playsound import playsound
 
 logger = logging.getLogger(__name__)
 
@@ -212,6 +214,16 @@ class Dofus(Observer):
                 self.cellid = a.disposition.cellId
                 break
         self.notify("newmapinfos",inst)
+        
+        #archi
+        for a in inst.actors:
+            try :
+                id = str(a.staticInfos.mainCreatureLightInfos.genericId)
+                if(Monstre.is_archi(id)):
+                    playsound('ressources/sound/bell.mp3',True)
+                    print("Archi sur",self.name,"/ POS ->",MapPosition.get_pos(inst.mapId))
+            except:
+                continue
     
     def open(self):
         try :
